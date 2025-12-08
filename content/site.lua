@@ -1,4 +1,4 @@
 return {
-    title = "Oriol Àvila Grijalva",
+    title = "Oriol Avila Grijalva",
     url = "https://avilagrijalva.github.io/",
 }

@@ -1,0 +1,11 @@
+<header>
+<h1><%= title %></h1>
+<p><%- htmlifyDate(date) %></p>
+</header>
+<%- content %>
+<footer>
+<% if keywords then -%>
+<%- keywordList(pathToRoot, table.sorted(keywords)) %>
+<% end -%>
+<p>&crarr; <a href="<%= pathToRoot %>index.html">Back</a>
+</footer>
