@@ -61,7 +61,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Explorador de fitxers"
             }
           }
         ],
@@ -124,7 +124,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of README"
+              "title": "Esquema de README"
             }
           }
         ],
@@ -136,18 +136,18 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "graph:Obre la vista gràfica": false,
+      "daily-notes:Obre la nota d'avui": false,
+      "templates:Inserir plantilla": false,
       "homepage:Open homepage": false,
-      "templates:Insert template": false,
-      "bases:Create new base": false,
-      "graph:Open graph view": false,
-      "daily-notes:Open today's daily note": false
+      "bases:Create new base": false
     }
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
+    "README.md",
     "content/testpost.md",
     "README.md.md",
-    "README.md",
     "content/Welcome.md",
     "Welcome.md",
     "luasmith",
