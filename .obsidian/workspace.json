@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/testpost.md",
+                "file": "README.md.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
-              "title": "testpost"
+              "title": "README.md"
             }
           }
         ]
@@ -118,13 +118,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/testpost.md",
+                "file": "README.md.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of testpost"
+              "title": "Outline of README.md"
             }
           }
         ],
@@ -145,8 +145,9 @@
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
-    "content/Welcome.md",
     "content/testpost.md",
+    "README.md.md",
+    "content/Welcome.md",
     "Welcome.md",
     "luasmith",
     "out/style.css",
@@ -180,7 +181,6 @@
     "textgenerator/templates/trash/awesomePrompts/techwriterAwesome.md",
     "textgenerator/templates/trash/awesomePrompts/techreviewerAwesome.md",
     "textgenerator/templates/trash/awesomePrompts/technologytransfererAwesome.md",
-    "textgenerator/templates/trash/awesomePrompts/teatasterAwesome.md",
-    "textgenerator/templates/trash/awesomePrompts/talentcoachAwesome.md"
+    "textgenerator/templates/trash/awesomePrompts/teatasterAwesome.md"
   ]
 }
