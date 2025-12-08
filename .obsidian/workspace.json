@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "content/Sense comentaris.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "Sense comentaris"
             }
           }
         ]
@@ -118,13 +118,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md",
+                "file": "content/Sense comentaris.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Esquema de README"
+              "title": "Esquema de Sense comentaris"
             }
           }
         ],
@@ -145,10 +145,13 @@
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
-    "README.md",
-    "content/testpost.md",
-    "README.md.md",
+    "out/topics/blog.html",
+    "out/topics",
+    "out/Sense comentaris.html",
     "content/Welcome.md",
+    "content/Sense comentaris.md",
+    "README.md",
+    "README.md.md",
     "Welcome.md",
     "luasmith",
     "out/style.css",
@@ -160,8 +163,6 @@
     "content",
     "3. Areas/index.md",
     "2. Diari/2025-12-08.md",
-    "4. Projectes",
-    "3. Areas",
     "Home.md",
     "2025-12-08.md",
     "2. Diari/create a link.md",
@@ -180,7 +181,6 @@
     "textgenerator/templates/trash/awesomePrompts/tictactoegameAwesome.md",
     "textgenerator/templates/trash/awesomePrompts/textbasedadventuregameAwesome.md",
     "textgenerator/templates/trash/awesomePrompts/techwriterAwesome.md",
-    "textgenerator/templates/trash/awesomePrompts/techreviewerAwesome.md",
-    "textgenerator/templates/trash/awesomePrompts/technologytransfererAwesome.md"
+    "textgenerator/templates/trash/awesomePrompts/techreviewerAwesome.md"
   ]
 }

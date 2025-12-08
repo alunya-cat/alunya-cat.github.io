@@ -7,16 +7,25 @@
 <author>
 <name>Untitled</name>
 </author>
-<updated>2025-04-22T00:00:00.000Z</updated>
+<updated>2025-12-08T00:00:00.000Z</updated>
 
 <entry>
-<title>Title of the post</title>
-<id>https://example.com/testpost.html</id>
-<link rel="alternate" href="https://example.com/testpost.html"/>
-<updated>2025-04-22T00:00:00.000Z</updated>
-<summary type="text">Short description of the post (for the Atom feed).</summary>
-<content type="html">&lt;h1 id=&quot;post-heading&quot;&gt;Post heading&lt;/h1&gt;
-&lt;p&gt;Content goes here. Note you can.&lt;/p&gt;
+<title>Sense comentaris</title>
+<id>https://example.com/Sense comentaris.html</id>
+<link rel="alternate" href="https://example.com/Sense comentaris.html"/>
+<updated>2025-12-08T00:00:00.000Z</updated>
+<summary type="text">¿Què fa que un blog sigui un blog?</summary>
+<content type="html">&lt;p&gt;&lt;strong&gt;Tots els blogs són blogs, amb o sense comentari.&lt;/strong&gt; Un blog només necessita, en la meva humil opinió, un creador de contingut. Amb aquest factor, és igual si té comentaris o no en té, si els censura, si els modera, etcètera. L&#039;important dels blogs és tenir alguna cosa per explicar i explicar-la, per descomptat. La resta de les coses són condiments, que en alguns casos milloren la finalitat d&#039;alguna cosa i en d&#039;altres simplement no afecten en res.&lt;/p&gt;
+&lt;p&gt;La qual cosa no treu que els comentaris siguin entretinguts i divertits si l&#039;autor del blog té ganes i temps per mantenir-los decentment. El que veritablement atreu la gent a llegir els blogs és el contingut. Així de senzill.&lt;/p&gt;
+&lt;p&gt;Encara que no hi hagi un sistema de comentaris es poden seguir mantenint converses mitjançant el correu electrònic (&lt;em&gt;&lt;a href=&quot;mailto:oriolavilagrijalva@gmail.com&quot;&gt;oriolavilagrijalva@gmail.com&lt;/a&gt;&lt;/em&gt;) i fins i tot realitzar «actualitzacions» que s&#039;afegeixen a les entrades. A vegades simplement conversem per correu, no es publica res. Les que es publiquen són actualitzacions generalment rellevants i, sobretot, «sense soroll».&lt;/p&gt;
+&lt;p&gt;No importa si l&#039;entrada és suculenta en debat, en informació, o si és una entrada de contingut regular, breu, programada, el tema és que &lt;strong&gt;la gran majoria dels comentaris són d&#039;índole insubstancial: no aporten res&lt;/strong&gt;. Quan em refereixo al fet que no aporten res simplement dic que no afegeixen valor a la discussió &lt;em&gt;per se&lt;/em&gt;, sinó que són veus de farciment, poden estar o no d&#039;acord amb el locutor i per això no han de ser millor o pitjor en matèria de contingut.&lt;/p&gt;
+&lt;p&gt;Un comentari insubstancial pot ser un &lt;em&gt;«Moltes gràcies, ets un geni»&lt;/em&gt; com un &lt;em&gt;«Vaja merda d&#039;escrit, ets brossa, que ho sàpigues»&lt;/em&gt;. O sigui, no cal que els comentaris es converteixin tampoc en una tesi per a un doctorat però simplement les respostes normalment manquen de base crítica, i per tant, són només un problema que està posat al costat del que té i manté un blog.&lt;/p&gt;
+&lt;p&gt;En certa manera entenc aquesta insubstancialitat: és un problema del mateix mitjà. &lt;strong&gt;Aquest mitjà no està ben dissenyat per a la discussió&lt;/strong&gt;, per a això hi ha altres mitjans molt millors que un blog: fòrums de discussió, Facebook, Twitter, i un munt de llocs on poder elaborar el debat que vulguis.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Per què fer ús del correu electrònic és millor?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Primer perquè ens treu a nosaltres (els autors dels blogs) la càrrega de moderar. El problema simplement se&#039;n va d&#039;un cop de ploma i era un problema complicat perquè un ha de ser jutge i botxí en molts casos, la qual cosa genera una quantitat de molèsties insuperables.&lt;/p&gt;
+&lt;p&gt;Els correus que solem obtenir tenen una càrrega més personal. Cada correu està dirigit cap a una persona o entitat en concret i no per a una audiència. Tenen un emissari i un receptor, això ens fa més cauts amb la nostra elecció de paraules.&lt;/p&gt;
+&lt;p&gt;I finalment, i el més important per als lectors, &lt;strong&gt;els comentaris canvien permanentment la forma en què els autors escriuen&lt;/strong&gt;. En lloc d&#039;escriure per a tothom, el locutor escriu anticipant-se i esperant la resposta a l&#039;escrit als comentaris.&lt;/p&gt;
+&lt;p&gt;En definitiva, els comentaris no són l&#039;única, ni necessàriament la millor, forma d&#039;interacció entre autors i lectors de weblogs i no van formar part estructural del mitjà en els seus començaments.&lt;/p&gt;
 </content>
 </entry>
 </feed>
