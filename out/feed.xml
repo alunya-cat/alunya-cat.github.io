@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title>Untitled</title>
+<id>https://example.com/</id>
+<link rel="self" href="https://example.com/feed.xml"/>
+<link rel="alternate" href="https://example.com/"/>
+<author>
+<name>Untitled</name>
+</author>
+<updated>2025-04-22T00:00:00.000Z</updated>
+
+<entry>
+<title>Title of the post</title>
+<id>https://example.com/testpost.html</id>
+<link rel="alternate" href="https://example.com/testpost.html"/>
+<updated>2025-04-22T00:00:00.000Z</updated>
+<summary type="text">Short description of the post (for the Atom feed).</summary>
+<content type="html">&lt;h1 id=&quot;post-heading&quot;&gt;Post heading&lt;/h1&gt;
+&lt;p&gt;Content goes here. Note you can.&lt;/p&gt;
+</content>
+</entry>
+</feed>
