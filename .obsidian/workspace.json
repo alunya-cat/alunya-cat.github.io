@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "README.md"
+              "title": "README"
             }
           }
         ]
@@ -118,13 +118,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md.md",
+                "file": "README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of README.md"
+              "title": "Outline of README"
             }
           }
         ],
@@ -147,6 +147,7 @@
   "lastOpenFiles": [
     "content/testpost.md",
     "README.md.md",
+    "README.md",
     "content/Welcome.md",
     "Welcome.md",
     "luasmith",
@@ -180,7 +181,6 @@
     "textgenerator/templates/trash/awesomePrompts/textbasedadventuregameAwesome.md",
     "textgenerator/templates/trash/awesomePrompts/techwriterAwesome.md",
     "textgenerator/templates/trash/awesomePrompts/techreviewerAwesome.md",
-    "textgenerator/templates/trash/awesomePrompts/technologytransfererAwesome.md",
-    "textgenerator/templates/trash/awesomePrompts/teatasterAwesome.md"
+    "textgenerator/templates/trash/awesomePrompts/technologytransfererAwesome.md"
   ]
 }
