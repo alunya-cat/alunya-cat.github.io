@@ -11,5 +11,5 @@ local groups = {}
 for k, v in pairs(grouped) do table.insert(groups, { key = k }) end
 -%>
 <%- keywordList(pathToRoot, table.sorted(table.map(groups, function (g) return g.key end))) %>
-<p>&rarr; Subscriure al feed d'<a href="feed.xml">Atom</a>.</p>
+<p>&rarr;<a href="feed.xml">RSS</a></p>
 </footer>

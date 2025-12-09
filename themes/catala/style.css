@@ -82,7 +82,7 @@ main, body > footer {
     margin-top: 5rem;
     margin-bottom: 5rem;
     width: 50%;
-    font-size: 115%;
+    font-size: 125%;
     line-height: 150%;
 }
 
@@ -141,7 +141,7 @@ li li ol > li { list-style-type: lower-alpha; }
 }
 
 .item-flex span {
-    margin-left: 10%; /* Empuja el span lo más a la derecha posible */
+    margin-left: 10%;
 }
 
 nav ul {
@@ -229,3 +229,48 @@ code, samp {
 .hl-error,
 .hl-regex { font-style: italic; text-decoration: underline; }
 
+/* Responsive adjustments */
+@media screen and (max-width: 900px) {
+    main, body > footer {
+        width: 90%;
+        max-width: 100%;
+        font-size: 110%;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    main figure, main aside {
+        float: none;
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        margin: 1.5rem 0;
+    }
+
+    main aside {
+        border-width: 0 0 0 4px;
+        background-color: rgba(0,0,0,0.02);
+        padding: 0.5rem 1rem;
+    }
+
+    blockquote {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .item-flex {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .item-flex span {
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+
+    nav ul li {
+        display: inline-block;
+        white-space: normal;
+        margin-bottom: 0.5rem;
+    }
+}
