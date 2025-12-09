@@ -1,0 +1,15 @@
+<header>
+<h1><%= site.title %></h1>
+</header>
+<hr>
+<%- postList(self) %>
+<footer>
+<hr>
+<%
+local grouped = table.groupBy(items, "keywords")
+local groups = {}
+for k, v in pairs(grouped) do table.insert(groups, { key = k }) end
+-%>
+<%- keywordList(pathToRoot, table.sorted(table.map(groups, function (g) return g.key end))) %>
+<p>&rarr; Subscriure al feed d'<a href="feed.xml">Atom</a>.</p>
+</footer>

@@ -1,0 +1,13 @@
+<header>
+<h1><%= title %></h1>
+<hr>
+</header>
+<%- content %>
+<footer>
+<hr>
+<p>Publicat el <%- htmlifyDate(date) %></p>
+<% if keywords then -%>
+<%- keywordList(pathToRoot, table.sorted(keywords)) %>
+<% end -%>
+<p>&crarr; <a href="<%= pathToRoot %>index.html">Endarrere</a>
+</footer>

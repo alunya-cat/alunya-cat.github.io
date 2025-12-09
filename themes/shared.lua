@@ -1,5 +1,5 @@
 -- Helpers
-local months = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }
+local months = { "Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre" }
 
 local function parseYamlDate(str)
 	local year, month, day = string.match(str, "^(%d%d%d%d)-(%d%d)-(%d%d)")
