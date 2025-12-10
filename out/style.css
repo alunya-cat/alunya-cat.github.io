@@ -229,6 +229,67 @@ code, samp {
 .hl-error,
 .hl-regex { font-style: italic; text-decoration: underline; }
 
+/* Nav del Footer */
+.footer-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    font-family: sans-serif;
+}
+
+/* Text a l'esquerra */
+.footer-nav .brand-name {
+    font-size: 1rem;
+    color: #555;
+    gap: 15px;
+    display: flex;
+}
+
+/* Enllaços centrals */
+.footer-nav .nav-center a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* Icons a la dreta */
+.footer-nav .nav-right {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-nav .nav-right a {
+    color: #333;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-nav .nav-right a:hover {
+    color: #6b6b6b;
+}
+
+/* --- RESPONSIVE --- */
+@media screen and (max-width: 600px) {
+    .footer-nav {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .nav-left, .nav-center, .nav-right {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .nav-right {
+        justify-content: center;
+    }
+}
+
 /* Responsive adjustments */
 @media screen and (max-width: 900px) {
     main, body > footer {
