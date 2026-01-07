@@ -10,7 +10,7 @@ Aquest repositori alberga el contingut de https://avilagrijalva.github.io. Us en
 
 # Creem la nostra carpeta amb el compilador de Luasmith
 
-1. fegim el fitxer **luasmith** que el podem descarregar del seu autor [original](https://github.com/jaredkrinke/luasmith/).
+1. Afegim el fitxer **luasmith** que el podem descarregar del seu autor [original](https://github.com/jaredkrinke/luasmith/).
 2. Reorganitzem el contingut de la carpeta de la següent forma on *content* tindrà el contingut dels fitxers MarkDown més el fitxer **site.lua** on s'especifica la configuració de la pàgina web que es generarà a la carpeta *out*. Recomano tindre els fitxers .md sense espais i utilitzar els guions com alternativa perquè sino quan es generi l'URL apareixerà *%20* on hauria d'haver-hi un espai.
 3. Executem `./luasmith blog` i trobarem els fitxers generats a la carpeta *out*. Podemos canviar *blog* per qualsevol altre tema com per exemple *catala*.
 
