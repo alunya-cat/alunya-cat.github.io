@@ -1,10 +1,17 @@
 <header>
 <h1><%= site.title %></h1>
 </header>
-<p>Breus apunts sobre temes diversos; coses quotidianes que aprenc, coses que sé però sovint oblido, i qualsevol altra cosa que em vingui de gust escriure mentre aprenc en públic. No sempre és definitiu ni nou, però espero que sigui útil o, si més no, interessant.</p>
-<p>Ves a <a href="_test.html">Test</a>.</p>
 <hr>
-<%- postList(self) %>
+<div class="not-found-container" style="text-align: center; padding: 50px 0;">
+    <h1>404</h1>
+    <h2>Ups, pàgina no trobada</h2>
+    
+    <p>Ho sento, la pàgina que busques no existeix, s'ha mogut o potser mai va existir.</p>    
+    <p>
+        <a href="<%= pathToRoot %>index.html" class="button">Tornar-hi a inici</a>
+    </p>
+</div>
+
 <footer>
 <hr>
 <nav class="footer-nav">
@@ -13,15 +20,6 @@
         <a href="index.html">Tèrmins</a>
         <a href="index.html">Privacitat</a>
         </span>
-    </div>
-
-    <div class="nav-center">
-        <%
-local grouped = table.groupBy(items, "keywords")
-local groups = {}
-for k, v in pairs(grouped) do table.insert(groups, { key = k }) end
--%>
-<%- keywordList(pathToRoot, table.sorted(table.map(groups, function (g) return g.key end))) %>
     </div>
 
     <div class="nav-right">

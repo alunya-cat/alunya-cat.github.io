@@ -75,33 +75,51 @@ local destination = args[4] or "out"
 
 -- Build pipeline
 return {
-	readFromSource(source),
-	injectFiles({ ["style.css"] = fs.readThemeFile("style.css"), }),
+    readFromSource(source),
+    injectFiles({ 
+        ["style.css"] = fs.readThemeFile("style.css"), 
+        ["_404.html"] = "",
+    }),
 
-	-- Markdown, drafts, syntax highlighting
-	processMarkdown(),
-	omitWhen(function (item) return item.draft or item.path == "site.lua" end),
-	highlightSyntax(highlightSpan),
+    processMarkdown(),
+    omitWhen(function (item) return item.path == "site.lua" end),
+    highlightSyntax(highlightSpan),
 
-	-- RSS and root page
-	aggregate("feed.xml", "%.html$"),
-	aggregate("index.html", "%.html$"),
+    -- 404.etlua
+    injectMetadata({
+        title = "Página no encontrada", 
+        pathToRoot = site.url,
+        date = "1970-01-01",
+    }, "^_404.html$"),
 
-	-- Keyword indexes
-	createIndexes(function (keyword) return "topics/" .. keyword .. ".html" end, "keywords", "%.html$"),
-	deriveMetadata({ title = function (item) return item.key end }, "^topics/.-%.html$"),
+    -- Filter 
+    aggregate("feed.xml", "^[^_].*%.html$"),
+    aggregate("index.html", "^[^_].*%.html$"),
 
-	-- Global metadata and templates
-	injectMetadata({ site = site }),
-	applyTemplates({
-		{ "%.html$", fs.readThemeFile("post.etlua") },
-		{ "^topics/.-%.html$", fs.readThemeFile("index.etlua") },
-		{ "^feed.xml$", fs.readThemeFile("../shared/feed.etlua") },
-		{ "^index.html$", fs.readThemeFile("blog.etlua") },
-	}),
-	applyTemplates({ { "%.html$", fs.readThemeFile("outer.etlua") } }),
+    -- Keywords
+    createIndexes(function (keyword) return "topics/" .. keyword .. ".html" end, "keywords", "^[^_].*%.html$"),
+    deriveMetadata({ title = function (item) return item.key end }, "^topics/.-%.html$"),
+    injectMetadata({ site = site }),
+    
+    -- Templates
+    applyTemplates({
+        
+        { "%.html$", fs.readThemeFile("post.etlua") },
+        { "^topics/.-%.html$", fs.readThemeFile("index.etlua") },
+        { "^feed.xml$", fs.readThemeFile("../shared/feed.etlua") },
+        { "^index.html$", fs.readThemeFile("blog.etlua") },
+        { "^_404.html$", fs.readThemeFile("404.etlua") },
+    }),
+    applyTemplates({ { "%.html$", fs.readThemeFile("outer.etlua") } }),
 
-	checkLinks(),
-	writeToDestination(destination),
+    -- Using an underscore for _404.html keeps it out of article lists. The file is built using its own template and then renamed after generation.
+    omitWhen(function(item)
+        if item.path == "_404.html" then
+            item.path = "404.html"
+        end
+        return false
+    end),
+
+    checkLinks(),
+    writeToDestination(destination),
 }
-

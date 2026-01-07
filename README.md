@@ -14,7 +14,7 @@ Aquest repositori alberga el contingut de https://avilagrijalva.github.io. Us en
 2. Obtindrem una carpeta amb una distribució semblant a:
  `.obsidian welcome`
  3. En aquest li afegim el fitxer **luasmith** que el podem descarregar del seu autor [original](https://github.com/jaredkrinke/luasmith/).
- 4. Reorganitzem el contingut de la carpeta de la següent forma on *content* tindrà el contingut dels fitxers MarkDown més el fitxer **site.lua** on s'especifica la configuració de la pàgina web que es generarà a la carpeta *out*.
+ 4. Reorganitzem el contingut de la carpeta de la següent forma on *content* tindrà el contingut dels fitxers MarkDown més el fitxer **site.lua** on s'especifica la configuració de la pàgina web que es generarà a la carpeta *out*. Recomano tindre els fitxers .md sense espais i utilitzar els guions com alternativa perquè sino quan es generi l'URL apareixerà *%20* on hauria d'haver-hi un espai.
  `.obsidian content>welcome|site.lua out`
  5. Executem `./luasmith blog` i trobarem els fitxers generats a la carpeta *out*.
 
@@ -62,4 +62,13 @@ Ara cada cop que modifiquem els continguts de la carpeta *content* amb Obsidian.
 | git commit -m "missatge"|
 | git push -u origin main |
 
+## Notes
+
+Per la configuració del lloc (title & URL) han de coincidir en contingut **/content/site.lua** i **/themes/blog/theme.lua**:
+
+| /content/site.lua        | /themes/blog/theme.lua    |
+| ------------- |:-------------:|
+| ```return {title = "Oriol Ávila Grijalva", url = "https://avilagrijalva.github.io/",}```      | ```local site = {title = "Oriol Ávila Grijalva", url = "https://avilagrijalva.github.io/",}``` |
+
+---
 

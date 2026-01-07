@@ -1,5 +1,5 @@
 <header>
-<h1>#<%= key %></h1>
+<h1>#<%= key %> | <input type="checkbox" class="toggle" title="Cambiar tema"></h1>
 </header>
 <%- postList(self) %>
 <footer>

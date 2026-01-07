@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca-ES">
 <head>
 <meta charset="utf-8" />
 <title><%= site.title %></title>
