@@ -8,17 +8,13 @@ The following text is written la IA aprèn, if you want another language use the
 
 Aquest repositori alberga el contingut de https://avilagrijalva.github.io. Us ensenyaré pas a pas com tindre un blog semblant sense que tinguis cap mena de coneixement tecnològic anterior, el qual per cert jo no tinc.
 
-# Creem la nostra arca a Obsidian.MD
+# Creem la nostra carpeta amb el compilador de Luasmith
 
-1. Primer configurem Obsidian.MD amb els plugins que nosaltres vulguem (al meu repositori de /homelab podeu trobar un apartat on parlo d'això).
-2. Obtindrem una carpeta amb una distribució semblant a:
- `.obsidian welcome`
- 3. En aquest li afegim el fitxer **luasmith** que el podem descarregar del seu autor [original](https://github.com/jaredkrinke/luasmith/).
- 4. Reorganitzem el contingut de la carpeta de la següent forma on *content* tindrà el contingut dels fitxers MarkDown més el fitxer **site.lua** on s'especifica la configuració de la pàgina web que es generarà a la carpeta *out*. Recomano tindre els fitxers .md sense espais i utilitzar els guions com alternativa perquè sino quan es generi l'URL apareixerà *%20* on hauria d'haver-hi un espai.
- `.obsidian content>welcome|site.lua out`
- 5. Executem `./luasmith blog` i trobarem els fitxers generats a la carpeta *out*.
+1. fegim el fitxer **luasmith** que el podem descarregar del seu autor [original](https://github.com/jaredkrinke/luasmith/).
+2. Reorganitzem el contingut de la carpeta de la següent forma on *content* tindrà el contingut dels fitxers MarkDown més el fitxer **site.lua** on s'especifica la configuració de la pàgina web que es generarà a la carpeta *out*. Recomano tindre els fitxers .md sense espais i utilitzar els guions com alternativa perquè sino quan es generi l'URL apareixerà *%20* on hauria d'haver-hi un espai.
+3. Executem `./luasmith blog` i trobarem els fitxers generats a la carpeta *out*. Podemos canviar *blog* per qualsevol altre tema com per exemple *catala*.
 
-# Connectem el repositori de Github amb la nostra arca
+# Connectem el repositori de Github amb la nostra carpeta
 
 1. Òbviament, ja tenim el repositori creat i **git** configurat al nostre ordinador.
 2. Fem un seguit de comandaments:
@@ -42,7 +38,7 @@ Aquest repositori alberga el contingut de https://avilagrijalva.github.io. Us en
 4. Li diem al nostre ordinador que faci ús de la connexió SSH amb `git remote set-url origin git@github.com:USUARI/PROJECTE.git`.
 5. Confirmem la connexió amb Github mitjançant `ssh -T git@github.com`. 
 
-# Pugem la nostra arca a Github
+# Pugem la nostra carpeta a Github
 
 Amb els fitxers ja preparats de `git add .` guardem els canvis amb `git commit -m "el teu missatge"` i els pugem amb `git push -u origin main`.
 
