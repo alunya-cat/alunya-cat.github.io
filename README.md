@@ -2,7 +2,7 @@ El següent text està escrit en català, si vols un altre idioma fes ús de la 
 
 El siguiente texto está escrito en catalán, si quieres otro idioma haz uso de la IA o aprende el idioma en el cual me expreso.
 
-The following text is written la IA aprèn, if you want another language use the AI ​​or learn the language in which I express myself.
+The following text is written in catalan, if you want another language use the AI ​​or learn the language in which I express myself.
 
 ---
 

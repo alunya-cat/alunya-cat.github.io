@@ -233,12 +233,13 @@ th, td {
   margin-top: 2rem;
   font-family: sans-serif;
 }
-.footer-nav .brand-name, .footer-nav .nav-center a {
+.footer-nav .nav-left, .footer-nav .nav-center a {
   color: #555;
   text-decoration: none;
   font-size: 0.9rem;
 }
-.footer-nav .brand-name { font-size: 1rem; gap: 15px; display: flex; }
+.footer-nav .nav-left { font-size: 1rem; gap: 15px; display: flex; }
+.footer-nav .nav-left a { display: flex; }
 .footer-nav .nav-center a { margin: 0 10px; }
 .footer-nav .nav-right { display: flex; gap: 15px; }
 .footer-nav .nav-right a {
@@ -249,6 +250,45 @@ th, td {
   transition: color 0.2s;
 }
 .footer-nav .nav-right a:hover { color: #6b6b6b; }
+
+/* Contact email */
+.contact-toggle {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  margin-left: 0.5ch;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--lighter);
+  transition: color 0.3s;
+}
+
+.contact-toggle:hover {
+  color: var(--a-body);
+}
+
+.contact-toggle input {
+  display: none; 
+}
+
+/* Mail text style */
+.contact-toggle span {
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  margin-left: 0;
+  font-weight: normal;
+  font-family: sans-serif, monospace;
+  color: var(--text-body);
+  transition: all 0.4s ease-in-out;
+}
+
+.contact-toggle input:checked ~ span {
+  max-width: 300px;
+  opacity: 1;
+  margin-left: 10px;
+}
 
 /* Syntax Highlighting */
 .hl-comment, .hl-operator { font-style: italic; color: var(--lighter); }
