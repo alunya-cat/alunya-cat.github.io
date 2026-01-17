@@ -1,7 +1,7 @@
 ---
 title: Test
 description: Testing .md
-date: 2026-01-01
+date: 1970-01-01
 ---
 
 # H1: Títol Principal

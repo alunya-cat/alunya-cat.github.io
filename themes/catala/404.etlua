@@ -17,8 +17,7 @@
 <nav class="footer-nav">
     <div class="nav-left">
         <span class="brand-name">
-        <a href="index.html">Tèrmins</a>
-        <a href="index.html">Privacitat</a>
+        <a href="_condicions.html">Condicions</a>
         </span>
     </div>
 
