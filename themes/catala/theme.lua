@@ -75,6 +75,7 @@ local site = {
 	title = "Oriol Àvila Grijalva",
 	url = "https://avilagrijalva.github.io/",
     description = "Breus apunts sobre temes diversos, coses quotidianes que aprenc, coses que sé però sovint oblido, i qualsevol altra cosa que em vingui de gust escriure mentre aprenc en públic. No sempre és definitiu ni nou, però espero que sigui útil o, si més no, interessant.",
+    email = "moc.liamg@avlajirgalivaloiro",
 }
 
 local siteOverrides = fs.tryLoadFile("site.lua")

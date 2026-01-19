@@ -27,7 +27,7 @@
             </svg>
             
             <span class="email-reveal" style="unicode-bidi: bidi-override; direction: rtl;">
-        moc.liamg@avlajirgalivaloiro
+        <%= site.email %>
         </span>
         </label>
     </div>

@@ -30,9 +30,10 @@ Posteriorment executo el fitxer *luasmith* per generar els fitxers de la carpeta
 
 # Disseny i característiques
 
-- Un peu de pàgina amb d'enllaços útils.
+- Un peu de pàgina amb enllaços útils.
 - Un botó per canviar entre el mode clar i fosc.
-- `site.description` a `theme.lua` per a una breu descripció del blog.
+- `site.description` a *theme.lua* per a una breu descripció del blog.
+- `site.email` a *theme.lua* per afegir el teu email. Aquest ha d'estar al revés per ofuscar-ho.
 -   Una pàgina d'error 404 ([https://avilagrijalva.github.io/404.html](https://avilagrijalva.github.io/404.html))
 -   Esborranys o fitxers Markdown que no vull que apareguin a la llista d'índex, però que vull que es generin igualment per poder-hi accedir mitjançant un enllaç directe. Això s'aconsegueix amb `^[^_].*%.html$`, la qual cosa significa que tots els fitxers Markdown que comencin amb un subratllat es tractaran d'aquesta manera.
 - Obfuscament del correu electrònic mitjançat CSS:
