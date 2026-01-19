@@ -12,24 +12,23 @@
 </head>
 <body>
 <main>
-<header>
-<h1>Colofó</h1>
-<p style="display: flex; justify-content: space-between; align-items: baseline;">
-  <span>
-    &#8672; <a href="index.html">Endarrere</a>
-  </span>
-
-  <span style="text-align: right;">
-    <time datetime="2026-01-18">Gener 18, 2026</time>
-    
-          | <a href="topics/blog.html">#blog</a>
-
-        | 4 min
-  </span>
-  <div class="date-update"></div>
-</p>
-<hr>
+<header class="main-header">
+  <h1 class="site-title"><a href="index.html">Oriol Àvila Grijalva</a></h1>
+  <nav class="nav-header">
+    <a href="_usos.html">Usos</a>
+    <a href="_colofo.html">Colofò</a>
+  </nav>
 </header>
+<h1 class="post-title">Colofó</h1>
+    <p class="post-description"></p>
+  <div class="post-meta">
+    <time datetime="2026-01-18">Gener 18, 2026</time>
+    · 4 min
+    · <span style="float:none;">()</span>
+    · <a href="topics/blog.html">#blog</a>
+
+  </div>
+<hr>
 <p>Quan vaig sentir parlar per primera vegada d'aquest tipus de pàgines, no vaig entendre realment a què es referien. Per a mi, «el colofó» és un text al final d'un document que proporciona informació sobre la seva autoria i impressió.</p>
 <p>Vaig haver de fer una mica de recerca i entendre que aquest colofó es troba en una pàgina separada per descriure les eines, els sistemes i les fonts utilitzats per crear el lloc web i per reconèixer els recursos emprats per produir-lo.</p>
 <p>Per tant, inclou el programari, el maquinari i els llenguatges de programació utilitzats en la preparació dels textos i en la creació del lloc, així com el tipus de servidor en què s'executa.</p>
@@ -95,18 +94,10 @@ Això significa que ets lliure de compartir i adaptar el contingut, sempre que d
     <div class="nav-left">
         CC BY-SA 4.0 / GPLv3
     </div>
+
     <div class="nav-center">
-        <label class="contact-toggle">
-            <input type="checkbox"> <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-            <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-            
-            <span class="email-reveal" style="unicode-bidi: bidi-override; direction: rtl;">
-        moc.liamg@avlajirgalivaloiro
-        </span>
-        </label>
     </div>
+
     <div class="nav-right">
         <input type="checkbox" class="toggle" title="Cambiar tema">
         <a href="https://github.com/avilagrijalva/avilagrijalva.github.io" aria-label="Github">
@@ -122,6 +113,15 @@ Això significa que ets lliure de compartir i adaptar el contingut, sempre que d
                 <path d="M4 4a16 16 0 0 1 16 16"></path>
                 <circle cx="5" cy="19" r="1"></circle>
             </svg></a>
+        <label class="contact-toggle">
+            <input type="checkbox"> <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span class="email-reveal" style="unicode-bidi: bidi-override; direction: rtl;">
+                moc.liamg@avlajirgalivaloiro
+            </span>
+        </label>
     </div>
 </nav>
 </footer>

@@ -127,6 +127,47 @@ pre code {
   white-space: inherit;
 }
 
+/* nav */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--text-body);
+  border-bottom: 1px solid var(--text-body);
+  padding: 10px 0;
+  margin: 2rem 0;
+  width: 100%;
+}
+.site-title {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.nav-header {
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+}
+.nav-header a {
+  display: inline-block;
+  font-size: 18px;
+  padding: 5px 10px;
+  font-variant: small-caps;
+  text-decoration: none !important;
+  color: var(--text-body);
+  transition: color 0.2s ease;
+  border: none !important;
+  box-shadow: none !important;
+  background: none !important;
+}
+.nav-header a:hover,
+.nav-header a.active {
+  color: var(--lighter) !important;
+  cursor: pointer;
+}
+
 /* --- Layout --- */
 body > header { text-align: center; }
 
@@ -161,7 +202,6 @@ blockquote {
 hr {
   border-top: medium none;
   border-bottom: 1px solid hsl(0, 0%, 70%); /* Simplificado */
-  margin: 1.5rem 0;
 }
 
 img { max-width: 100%; }
@@ -228,35 +268,97 @@ th, td {
     var(--offset-diagonal) calc(var(--offset-diagonal) * -1) 0 var(--ray-size);
 }
 
-/* Flex */
-.item-flex {
+/* --- Articles --- */
+.post-title {
+  margin-top: 0;
+  margin-bottom: 0.2rem;
+  line-height: 1.2;
+}
+.post-description {
+  font-size: 1.1rem;
+  color: var(--text-body);
+  margin-top: 0;
+  line-height: 1.4;
+  font-style: italic;
+}
+/* Article metadata */
+.post-meta {
+  font-size: 1rem;
+  color: var(--lighter);
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 0.5ch;
+  margin-top: 0.5rem;
 }
-.item-flex span { margin-left: 10%; }
+.post-meta time, 
+.post-meta span {
+  display: inline-block;
+}
 
-/* Date-updated */
-.date-update {
+/* --- Index --- */
+.post-list-container {
+  margin: 0;
+}
+.year-header {
+  font-family: Palatino, Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-body);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 3.5px double var(--lighter);
+  border-spacing: 1rem;
+  /* &sect; */
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+/* icon */
+.icon-year {
+  font-family: "Times New Roman", serif;
+  font-size: 1.5rem;
+  color: #c00000;
+  line-height: 1;
+  opacity: 0.8;
+}
+.post-entry-title .icon-title {
+  color: var(--lighter);       /* Color gris suave (clave para que no destaque demasiado) */
+  font-family: system-ui, sans-serif; /* Usamos una fuente limpia, no la serif del texto */
+  font-weight: bold;           /* Un poco de peso para que se defina bien a tamaño pequeño */
+  font-size: 1rem;           /* Tamaño ajustado */
+  line-height: 1;
+  margin-right: 0.3rem;        /* Espacio pequeño con el título */
+  vertical-align: -1px;        /* Pequeño ajuste para centrarlo con el texto */
+  transition: color 0.2s ease; /* Suavidad si queremos animarlo */
+  text-decoration: none !important;
+  border-bottom: none !important;
+  display: inline-block;
+}
+.post-entry-title:hover .icon-title {
+  color: #c00000;
+  text-decoration: none !important;
+}
+/* post-entry */
+.post-entry-title {
+  font-size: 1.2rem;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+  font-weight: bold;
+}
+/* Index metadata */
+.post-entry-meta {
   font-size: 1rem;
   color: var(--lighter);
-  font-style: italic;
-  text-align: right;
+  margin-bottom: 0.5rem;
 }
-
-/* Keywords */
-.keyword a {
-  font-size: 1rem;
-  color: var(--lighter);
+.post-entry-description {
+  font-size: 1.1rem;
+  margin-top: 0.1rem;
+  color: var(--text-body);
+  opacity: 0.9;
   font-style: italic;
-  text-align: left;
-}
-
-/* Description */
-.description {
-  font-size: 1rem;
-  font-style: italic;
-  text-align: center;
 }
 
 /* Footer-Nav */
@@ -296,15 +398,12 @@ th, td {
   color: var(--lighter);
   transition: color 0.3s;
 }
-
 .contact-toggle:hover {
   color: var(--a-body);
 }
-
 .contact-toggle input {
   display: none; 
 }
-
 /* Mail text style */
 .contact-toggle span {
   max-width: 0;
@@ -317,7 +416,6 @@ th, td {
   color: var(--text-body);
   transition: all 0.4s ease-in-out;
 }
-
 .contact-toggle input:checked ~ span {
   max-width: 300px;
   opacity: 1;

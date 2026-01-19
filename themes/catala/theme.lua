@@ -19,36 +19,38 @@ function keywordList(pathToRoot, keywords)
 	return keywordListTemplate({ pathToRoot = pathToRoot, keywords = keywords })
 end
 
-local postListTemplate = etlua.compile([[<% local lastYear = nil -%>
+local postListTemplate = etlua.compile([[
+<% local lastYear = nil -%>
+<div class="post-list-container">
 <% for i, item in ipairs(table.sortBy(items, "date", true)) do
    local year = string.match(item.date, "^(%d%d%d%d)")
-   if lastYear ~= year then
-     if lastYear ~= nil then -%>
-</ul>
-<% end -%>
-<h2><%= year %></h2>
-<ul class="posts">
+   if lastYear ~= year then -%>
+     <h2 class="year-header"><span class="icon-year">&sect;</span> <%= year %></h2>
 <%
 	 lastYear = year
    end
 -%>
-<li class="item-flex">
-    <a href="<%= pathToRoot %><%= item.path %>"><%= item.title %></a>
-    <div class="description"><%= item.description %></div>
-    <span><%- htmlifyDateShort(item.date) %></span>
-</li>
-<li class="item-flex">
-    <div class="keyword">
-    <%= item.readingTime %> |
-    <% if item.keywords then -%>
-        <%- keywordList(pathToRoot, item.keywords) %>
-    <% end -%></div>
-    <div class="date-update"><%= item.update %></div>
-</li>
+<article>
+    <h3 class="post-entry-title">
+        <a href="<%= pathToRoot %><%= item.path %>"><span class="icon-title">&#8250;</span><%= item.title %></a>
+    </h3>
+    <% if item.description then -%>
+     <p class="post-entry-description"><%= item.description %></p>
+    <% end -%>
+    <div class="post-entry-meta">
+        <%- htmlifyDate(item.date) %>
+        <% if item.readingTime then %> 
+        · <%= item.readingTime %> <% end %>
+        <% if item.keywords then -%>
+        · <%- keywordList(pathToRoot, item.keywords) %>
+        <% if item.update then -%>
+        · <span><%= item.update %></span>
+        <% end -%>
+    </div>
+    <% end -%>
+</article>
 <% end -%>
-<% if #items > 0 then -%>
-</ul>
-<% end -%>
+</div>
 ]])
 function postList(self)
 	return postListTemplate({ pathToRoot = self.pathToRoot, items = self.items })
@@ -77,6 +79,7 @@ local site = {
 	url = "https://avilagrijalva.github.io/",
     description = "Breus apunts sobre temes diversos, coses quotidianes que aprenc, coses que sé però sovint oblido, i qualsevol altra cosa que em vingui de gust escriure mentre aprenc en públic. No sempre és definitiu ni nou, però espero que sigui útil o, si més no, interessant.",
     email = "moc.liamg@avlajirgalivaloiro",
+    author = "Oriol Àvila Grijalva",
 }
 
 local siteOverrides = fs.tryLoadFile("site.lua")
