@@ -3,7 +3,7 @@ title: Usos
 description: 
 date: 2026-01-18
 update: 
-keywords: []
+keywords: [blog]
 ---
 
 # Hardware

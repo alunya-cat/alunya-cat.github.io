@@ -3,7 +3,7 @@ title: Colofó
 description: 
 date: 2026-01-18
 update: 
-keywords: []
+keywords: [blog]
 ---
 
 Quan vaig sentir parlar per primera vegada d'aquest tipus de pàgines, no vaig entendre realment a què es referien. Per a mi, «el colofó» és un text al final d'un document que proporciona informació sobre la seva autoria i impressió.

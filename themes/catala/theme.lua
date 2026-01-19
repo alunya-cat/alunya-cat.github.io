@@ -32,14 +32,18 @@ local postListTemplate = etlua.compile([[<% local lastYear = nil -%>
 	 lastYear = year
    end
 -%>
-<li class="item-flex"><a href="<%= pathToRoot %><%= item.path %>"><%= item.title %></a>
-<div class="description"><%= item.description %></div>
-<span><%- htmlifyDateShort(item.date) %></span></li>
-<div class="date-update"><%= item.update %></div>
-<div class="keyword">
+<li class="item-flex">
+    <a href="<%= pathToRoot %><%= item.path %>"><%= item.title %></a>
+    <div class="description"><%= item.description %></div>
+    <span><%- htmlifyDateShort(item.date) %></span>
+</li>
+<li class="item-flex">
+    <div class="keyword">
     <% if item.keywords then -%>
         <%- keywordList(pathToRoot, item.keywords) %>
     <% end -%></div>
+    <div class="date-update"><%= item.update %></div>
+</li>
 <% end -%>
 <% if #items > 0 then -%>
 </ul>
