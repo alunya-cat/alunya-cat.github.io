@@ -245,7 +245,7 @@ th, td {
   height: var(--size);
   box-shadow: inset calc(var(--size) * 0.33) calc(var(--size) * -0.25) 0;
   border-radius: 999px;
-  color: #222;
+  color: var(--lighter);
   transition: all 500ms;
   position: relative; 
 }
@@ -299,6 +299,10 @@ th, td {
 /* --- Index --- */
 .post-list-container {
   margin: 0;
+}
+.description-header {
+  font-size: 1.2rem;
+  font-style: italic;
 }
 .year-header {
   font-family: Palatino, Georgia, serif;

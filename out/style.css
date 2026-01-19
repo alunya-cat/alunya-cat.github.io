@@ -201,7 +201,7 @@ blockquote {
 
 hr {
   border-top: medium none;
-  border-bottom: 1px solid hsl(0, 0%, 70%); /* Simplificado */
+  border-bottom: 1px solid hsl(0, 0%, 70%);
 }
 
 img { max-width: 100%; }
@@ -245,7 +245,7 @@ th, td {
   height: var(--size);
   box-shadow: inset calc(var(--size) * 0.33) calc(var(--size) * -0.25) 0;
   border-radius: 999px;
-  color: #222;
+  color: var(--lighter);
   transition: all 500ms;
   position: relative; 
 }
@@ -300,6 +300,10 @@ th, td {
 .post-list-container {
   margin: 0;
 }
+.description-header {
+  font-size: 1.2rem;
+  font-style: italic;
+}
 .year-header {
   font-family: Palatino, Georgia, serif;
   font-size: 1.5rem;
@@ -324,14 +328,14 @@ th, td {
   opacity: 0.8;
 }
 .post-entry-title .icon-title {
-  color: var(--lighter);       /* Color gris suave (clave para que no destaque demasiado) */
-  font-family: system-ui, sans-serif; /* Usamos una fuente limpia, no la serif del texto */
-  font-weight: bold;           /* Un poco de peso para que se defina bien a tamaño pequeño */
-  font-size: 1rem;           /* Tamaño ajustado */
+  color: var(--lighter);
+  font-family: system-ui, sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
   line-height: 1;
-  margin-right: 0.3rem;        /* Espacio pequeño con el título */
-  vertical-align: -1px;        /* Pequeño ajuste para centrarlo con el texto */
-  transition: color 0.2s ease; /* Suavidad si queremos animarlo */
+  margin-right: 0.3rem;
+  vertical-align: -1px;
+  transition: color 0.2s ease;
   text-decoration: none !important;
   border-bottom: none !important;
   display: inline-block;
