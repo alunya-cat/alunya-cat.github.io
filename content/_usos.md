@@ -1,7 +1,9 @@
 ---
 title: Usos
-description:
+description: 
 date: 2026-01-18
+update: 
+keywords: []
 ---
 
 # Hardware

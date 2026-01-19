@@ -236,6 +236,30 @@ th, td {
 }
 .item-flex span { margin-left: 10%; }
 
+/* Date-updated */
+.date-update {
+  font-size: 1rem;
+  color: var(--lighter);
+  font-style: italic;
+  text-align: right;
+}
+
+/* Keywords */
+.keyword a {
+  font-size: 1rem;
+  color: var(--lighter);
+  font-style: italic;
+  text-align: left;
+  padding-left: 1.15rem;
+}
+
+/* Description */
+.description {
+  font-size: 1rem;
+  font-style: italic;
+  text-align: center;
+}
+
 /* Footer-Nav */
 .footer-nav {
   display: flex;

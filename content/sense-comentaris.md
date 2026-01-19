@@ -1,7 +1,8 @@
 ---
 title: Sense comentaris
 description: ¿Què fa que un blog sigui un blog?
-date: 2025-12-08
+date: 2016-09-19
+update: 2026-01-15
 keywords: [blog]
 ---
 

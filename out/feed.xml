@@ -14,7 +14,7 @@
 <id>https://avilagrijalva.github.io/250G5.html</id>
 <link rel="alternate" href="https://avilagrijalva.github.io/250G5.html"/>
 <updated>2026-01-20T00:00:00.000Z</updated>
-<summary type="text">Configuració de l&#039;HP 250 G5</summary>
+<summary type="text"></summary>
 <content type="html">&lt;p&gt;&lt;img src=&quot;assets/hp250g5-diagrama.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;Aquest diagrama destaca tres fluxos d&#039;informació crítics que es produeixen a la vostra xarxa:&lt;/p&gt;
 &lt;ol&gt;
@@ -40,8 +40,8 @@
 <title>Configuració d&#039;Acer Predator G3610</title>
 <id>https://avilagrijalva.github.io/g3610.html</id>
 <link rel="alternate" href="https://avilagrijalva.github.io/g3610.html"/>
-<updated>2026-01-19T00:00:00.000Z</updated>
-<summary type="text">Configuració d&#039;Acer Predator G3610</summary>
+<updated>2021-04-30T00:00:00.000Z</updated>
+<summary type="text"></summary>
 <content type="html">&lt;p&gt;Deixa de llegir, de debò, no ho facis. La publicació d&#039;avui no és un reflexió, és només que el meu ordinador m&#039;ha estat donant problemes i he esborrat per accident diverses coses.&lt;/p&gt;
 &lt;p&gt;Com que la cosa no pinta bé i podria deixar de funcionar en qualsevol moment, seria un desastre perdre tota la informació i l&#039;ergonomia de treball que he cultivat amb tant d&#039;esforç. Per això, aniré apuntant tot el que he fet servir per si en necessito recopilar la configuració i els programes en una instal·lació neta en el futur.&lt;/p&gt;
 &lt;h3 id=&quot;installaci-de-debian&quot;&gt;Instal·lació de Debian&lt;/h3&gt;
@@ -151,10 +151,42 @@ By following this optimized prompt, you will generate an effective summary that 
 </content>
 </entry>
 <entry>
+<title>Nessun Dorma</title>
+<id>https://avilagrijalva.github.io/nessundorma.html</id>
+<link rel="alternate" href="https://avilagrijalva.github.io/nessundorma.html"/>
+<updated>2020-09-26T00:00:00.000Z</updated>
+<summary type="text"></summary>
+<content type="html">&lt;p&gt;Són les 4 de la matinada i el despertador està a punt de sonar.&lt;/p&gt;
+&lt;p&gt;Em llevo uns 10 minuts abans de l&#039;alarma perquè el meu cos ja s&#039;ha acostumat a aquest horari. M&#039;han entrenat, com un gos. Durant aquest temps mort, m&#039;agrada reflexionar sobre el meu destí.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hauria d&#039;esforçar-me més?&lt;/li&gt;
+&lt;li&gt;Servirà de res?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;L&#039;alarma sona, és hora de llevar-se.&lt;/p&gt;
+&lt;p&gt;El primer que faig és dutxar-me perquè si no, qualsevol cadira serà la meva tomba. Em dutxo amb aigua freda, no perquè ho digués algun boig d&#039;Internet, sinó perquè surt més barat.&lt;/p&gt;
+&lt;p&gt;4:20 h. M&#039;agradaria que l&#039;esmorzar fos més sa, però no tinc temps, així que és un cafè amb llet i marxo. És curiós perquè quan era jove, mai m&#039;hauria imaginat que em deixaria anar tant.&lt;/p&gt;
+&lt;p&gt;Abans de marxar a la feina, m&#039;agrada respirar l&#039;aire fresc per la finestra per començar el dia amb la millor actitud, però de seguida recordo que visc just al costat d&#039;una de les principals artèries de la ciutat.&lt;/p&gt;
+&lt;p&gt;Recordo un dissabte que uns borratxos em van preguntar si anava a saltar. Vaig pensar que era una mala broma, però ara que hi penso, crec que estaven realment preocupats per mi.&lt;/p&gt;
+&lt;p&gt;És hora d&#039;anar a treballar.&lt;/p&gt;
+&lt;p&gt;Tanco la porta i surto del pis que oficialment serà meu d&#039;aquí a 30 anys. Prego a Déu que tots els veïns tinguin les instal·lacions de gas i electricitat en bon estat, perquè quan torni encara tingui un lloc on morir-me.&lt;/p&gt;
+&lt;p&gt;Abans anava en transport públic a la feina, però de vegades em trobava amb antics companys. Em molestava quan un d&#039;ells feia veure que no em coneixia o senzillament no em veia, però ara em resulta molt més fàcil que continuï així.&lt;/p&gt;
+&lt;p&gt;Treballo amb el públic, i a aquella hora del dia veus gent esgotada, cansada de la vida. Han estat arrencats dels seus somnis, dels quals preferirien no haver-se despertat. Van a llocs on no volen ser. Si ara passés alguna cosa, estic segur que ningú no aixecaria un dit per ajudar.&lt;/p&gt;
+&lt;p&gt;La meva jornada laboral s&#039;acaba i vaig a casa, la mateixa rutina de sempre. Una rutina sense propòsit destrueix la salut mental, t&#039;mata a poc a poc ─&lt;em&gt;També em matarà a mi?&lt;/em&gt;─.&lt;/p&gt;
+&lt;p&gt;Són les nou del vespre i em fico al llit amb la mateixa esperança de sempre, desitjant no despertar-me demà. És impossible dormir perquè els meus estimats veïns tornen a discutir, com cada nit. Abans ho feien amb una mica més de discreció, però ara que tot el veïnat ho sap, ja els és igual. No sé si una vida plena de drama seria més interessant. No ho sé, crec que prefereixo tenir els meus drames interns, en la meva ment.&lt;/p&gt;
+&lt;p&gt;Continuen discutint, així que em refugio en els meus pensaments fins que l&#039;esgotament mental em vènc i m&#039;adormo. Sempre són els mateixos records, els mateixos escenaris, en el meu cas sempre és el mateix enigma:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Què neix cada nit i mor a cada albada?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;La resposta és &lt;strong&gt;esperança&lt;/strong&gt;. La primera vegada que vaig llegir aquest enigma, no el vaig entendre, però amb el temps, normalment quan has tocat fons a la teva vida, acabes entenent-lo.&lt;/p&gt;
+&lt;p&gt;Vas al llit cada nit amb un objectiu, una intenció. Saps quins passos has de fer per sortir del forat de merda on ets. Conscient de la teva misèria, saps que vas dir el mateix ahir a la nit, i la nit anterior, però aquesta vegada és diferent.
+Ets prou madur per saber que els teus fracassos del passat no poden carregar el teu futur, amb la humilitat de qui sap que l&#039;orgull et pot encegar ─&lt;em&gt;aquesta vegada ho aconseguiràs, demà ho aconseguiràs tot&lt;/em&gt;─.&lt;/p&gt;
+&lt;p&gt;Sort un nou dia (i això no és poca cosa) i t&#039;adones que aquest és el matí en què les coses haurien de millorar, que aquest és el matí en què hauries de fer totes les coses que vas dir ahir ─&lt;em&gt;en realitat no tenies intenció de fer-les, només vas delegar aquestes accions al teu jo futur&lt;/em&gt; ─, però avui és el demà d&#039;ahir i no hi ha cap &lt;em&gt;jo del demà&lt;/em&gt; present, i ets tu amb la mateixa depressió i amargor de sempre.&lt;/p&gt;
+&lt;p&gt;La teva &lt;strong&gt;esperança&lt;/strong&gt;, la teva determinació (que feia només 6 hores que estava en el seu punt àlgid) s&#039;esvaeix com el cafè torrat que acabes de vessar a la teva tassa d&#039;aigua bullent.&lt;/p&gt;
+</content>
+</entry>
+<entry>
 <title>Sense comentaris</title>
 <id>https://avilagrijalva.github.io/sense-comentaris.html</id>
 <link rel="alternate" href="https://avilagrijalva.github.io/sense-comentaris.html"/>
-<updated>2025-12-08T00:00:00.000Z</updated>
+<updated>2016-09-19T00:00:00.000Z</updated>
 <summary type="text">¿Què fa que un blog sigui un blog?</summary>
 <content type="html">&lt;p&gt;&lt;strong&gt;Tots els blogs són blogs, amb o sense comentari.&lt;/strong&gt; Un blog només necessita, en la meva humil opinió, un creador de contingut. Amb aquest factor, és igual si té comentaris o no en té, si els censura, si els modera, etcètera. L&#039;important dels blogs és tenir alguna cosa per explicar i explicar-la, per descomptat. La resta de les coses són condiments, que en alguns casos milloren la finalitat d&#039;alguna cosa i en d&#039;altres simplement no afecten en res.&lt;/p&gt;
 &lt;p&gt;La qual cosa no treu que els comentaris siguin entretinguts i divertits si l&#039;autor del blog té ganes i temps per mantenir-los decentment. El que veritablement atreu la gent a llegir els blogs és el contingut. Així de senzill.&lt;/p&gt;

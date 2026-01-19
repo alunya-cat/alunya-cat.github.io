@@ -12,6 +12,7 @@
       | <%- keywordList(pathToRoot, table.sorted(keywords)) %>
     <% end -%>
   </span>
+  <div class="date-update"><%= update %></div>
 </p>
 <hr>
 </header>

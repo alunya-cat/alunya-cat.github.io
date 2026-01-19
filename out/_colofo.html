@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <title>Oriol Àvila Grijalva</title>
-
-
+<meta name="description" content="" />
+<meta name="keywords" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <link rel="stylesheet" href="style.css" />
 <link rel="icon" href="data:," />
@@ -22,7 +22,10 @@
   <span style="text-align: right;">
     <time datetime="2026-01-18">Gener 18, 2026</time>
     
+          | <a href="topics/.html">#</a>
+
       </span>
+  <div class="date-update"></div>
 </p>
 <hr>
 </header>
@@ -56,6 +59,16 @@
   <span class="hl-default">m</span><span class="hl-default">o</span><span class="hl-default">c</span><span class="hl-default">.</span><span class="hl-default">l</span><span class="hl-default">i</span><span class="hl-default">a</span><span class="hl-default">m</span><span class="hl-default">g</span><span class="hl-default">@</span><span class="hl-default">a</span><span class="hl-default">v</span><span class="hl-default">l</span><span class="hl-default">a</span><span class="hl-default">j</span><span class="hl-default">i</span><span class="hl-default">r</span><span class="hl-default">g</span><span class="hl-default">a</span><span class="hl-default">l</span><span class="hl-default">i</span><span class="hl-default">v</span><span class="hl-default">a</span><span class="hl-default">l</span><span class="hl-default">o</span><span class="hl-default">i</span><span class="hl-default">r</span><span class="hl-default">o</span>
 <b class="hl-tag">&lt;/</b><b class="hl-tag">span</b><b class="hl-tag">&gt;</b>
 </code></pre>
+<ul>
+<li>Seguiment RSS localitzat a <a href="https://avilagrijalva.github.io/feed.xml">https://avilagrijalva.github.io/feed.xml</a>.</li>
+<li>Se li ha afegit l'etiqueta <strong>update</strong> al Markdown que es veu reflectit a:<ul>
+<li><em>theme.lua</em> amb <code>&lt;div class=&quot;date-update&quot;&gt;&lt;%= item.update %&gt;&lt;/div&gt;</code>.</li>
+<li><em>post.lua</em> amb <code>&lt;div class=&quot;date-update&quot;&gt;&lt;%= update %&gt;&lt;/div&gt;</code>.</li>
+</ul>
+</li>
+<li>Se li ha afegit l'etiqueta <strong>keyword</strong> a <em>theme.lua</em> amb <code>&lt;div class=&quot;keyword&quot;&gt; &lt;% if item.keywords then -%&gt; &lt;%- keywordList(pathToRoot, item.keywords) %&gt; &lt;% end -%&gt;&lt;/div&gt;&lt;% end -%&gt; </code></li>
+<li>Se li ha afegit l'etiqueta <strong>description</strong> a <em>theme.lua</em> amb <code>&lt;div class=&quot;description&quot;&gt;&lt;%= item.description %&gt;&lt;/div&gt;</code>.</li>
+</ul>
 <h1 id="contingut-i-llicncies">Contingut i llicències</h1>
 <p>Aquest projecte opera sota una <strong>doble llicència</strong> per separar el codi del contingut editorial:</p>
 <ol>

@@ -1,7 +1,9 @@
 ---
 title: Colofó
-description:
+description: 
 date: 2026-01-18
+update: 
+keywords: []
 ---
 
 Quan vaig sentir parlar per primera vegada d'aquest tipus de pàgines, no vaig entendre realment a què es referien. Per a mi, «el colofó» és un text al final d'un document que proporciona informació sobre la seva autoria i impressió.
@@ -40,6 +42,16 @@ Posteriorment executo el fitxer *luasmith* per generar els fitxers de la carpeta
   moc.liamg@avlajirgalivaloiro
 </span>
 ```
+- Seguiment RSS localitzat a [https://avilagrijalva.github.io/feed.xml](https://avilagrijalva.github.io/feed.xml).
+- Se li ha afegit l'etiqueta **update** al Markdown que es veu reflectit a:
+  - *theme.lua* amb `<div class="date-update"><%= item.update %></div>`.
+  - *post.lua* amb `<div class="date-update"><%= update %></div>`.
+- Se li ha afegit l'etiqueta **keyword** a *theme.lua* amb `<div class="keyword">
+    <% if item.keywords then -%>
+        <%- keywordList(pathToRoot, item.keywords) %>
+    <% end -%></div><% end -%>
+`
+- Se li ha afegit l'etiqueta **description** a *theme.lua* amb `<div class="description"><%= item.description %></div>`.
 
 # Contingut i llicències
 

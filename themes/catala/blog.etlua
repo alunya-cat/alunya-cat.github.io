@@ -12,7 +12,7 @@
 </h1>
 </header>
 <p><%= site.description %></p>
-<p><a href="_about.html">Sobre aquest lloc</a> | <a href="_usos.html">Usos</a> | <a href="_colofo.html">Colofò</a></p>
+<p><a href="_usos.html">Usos</a> | <a href="_colofo.html">Colofò</a></p>
 <hr>
 <%- postList(self) %>
 <footer>
