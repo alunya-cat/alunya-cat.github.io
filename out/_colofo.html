@@ -24,7 +24,8 @@
     
           | <a href="topics/blog.html">#blog</a>
 
-      </span>
+        | 4 min
+  </span>
   <div class="date-update"></div>
 </p>
 <hr>
@@ -51,16 +52,10 @@
 <li>Un peu de pàgina amb enllaços útils.</li>
 <li>Un botó per canviar entre el mode clar i fosc.</li>
 <li><code>site.description</code> a <em>theme.lua</em> per a una breu descripció del blog.</li>
-<li><code>site.email</code>a <em>theme.lua</em> per afegir el teu email. Aquest ha d'estar al revés per ofuscar-ho.</li>
+<li><code>site.email</code> a <em>theme.lua</em> per afegir el teu email. Aquest ha d'estar al revés per ofuscar-ho.</li>
 <li>Una pàgina d'error 404 (<a href="https://avilagrijalva.github.io/404.html">https://avilagrijalva.github.io/404.html</a>)</li>
 <li>Esborranys o fitxers Markdown que no vull que apareguin a la llista d'índex, però que vull que es generin igualment per poder-hi accedir mitjançant un enllaç directe. Això s'aconsegueix amb <code>^[^_].*%.html$</code>, la qual cosa significa que tots els fitxers Markdown que comencin amb un subratllat es tractaran d'aquesta manera.</li>
-<li>Obfuscament del correu electrònic mitjançat CSS:</li>
-</ul>
-<pre><code class="language-html"><b class="hl-tag">&lt;</b><b class="hl-tag">span</b> <span class="hl-attribute">class</span><span class="hl-operator">=</span><i class="hl-string">&quot;email-reveal&quot;</i> <span class="hl-attribute">style</span><span class="hl-operator">=</span><i class="hl-string">&quot;</i><span class="hl-property">unicode-bidi</span><span class="hl-operator">:</span> <span class="hl-constant">bidi-override</span><span class="hl-operator">;</span> <span class="hl-property">direction</span><span class="hl-operator">:</span> <span class="hl-constant">rtl</span><span class="hl-operator">;</span><i class="hl-string">&quot;</i><b class="hl-tag">&gt;</b>
-  <span class="hl-default">m</span><span class="hl-default">o</span><span class="hl-default">c</span><span class="hl-default">.</span><span class="hl-default">l</span><span class="hl-default">i</span><span class="hl-default">a</span><span class="hl-default">m</span><span class="hl-default">g</span><span class="hl-default">@</span><span class="hl-default">a</span><span class="hl-default">v</span><span class="hl-default">l</span><span class="hl-default">a</span><span class="hl-default">j</span><span class="hl-default">i</span><span class="hl-default">r</span><span class="hl-default">g</span><span class="hl-default">a</span><span class="hl-default">l</span><span class="hl-default">i</span><span class="hl-default">v</span><span class="hl-default">a</span><span class="hl-default">l</span><span class="hl-default">o</span><span class="hl-default">i</span><span class="hl-default">r</span><span class="hl-default">o</span>
-<b class="hl-tag">&lt;/</b><b class="hl-tag">span</b><b class="hl-tag">&gt;</b>
-</code></pre>
-<ul>
+<li>Obfuscament del correu electrònic mitjançat CSS <code>unicode-bidi: bidi-override; direction: rtl</code>.</li>
 <li>Seguiment RSS localitzat a <a href="https://avilagrijalva.github.io/feed.xml">https://avilagrijalva.github.io/feed.xml</a>.</li>
 <li>Se li ha afegit l'etiqueta <strong>update</strong> al Markdown que es veu reflectit a:<ul>
 <li><em>theme.lua</em> amb <code>&lt;div class=&quot;date-update&quot;&gt;&lt;%= item.update %&gt;&lt;/div&gt;</code>.</li>
@@ -69,6 +64,7 @@
 </li>
 <li>Se li ha afegit l'etiqueta <strong>keyword</strong> a <em>theme.lua</em> amb <code>&lt;div class=&quot;keyword&quot;&gt; &lt;% if item.keywords then -%&gt; &lt;%- keywordList(pathToRoot, item.keywords) %&gt; &lt;% end -%&gt;&lt;/div&gt;&lt;% end -%&gt; </code></li>
 <li>Se li ha afegit l'etiqueta <strong>description</strong> a <em>theme.lua</em> amb <code>&lt;div class=&quot;description&quot;&gt;&lt;%= item.description %&gt;&lt;/div&gt;</code>.</li>
+<li>Se li ha afegit l'etiqueta <strong>readingTime</strong> a <em>theme.lua</em> amb <code>&lt;%= item.readingTime %&gt;</code>.</li>
 </ul>
 <h1 id="contingut-i-llicncies">Contingut i llicències</h1>
 <p>Aquest projecte opera sota una <strong>doble llicència</strong> per separar el codi del contingut editorial:</p>

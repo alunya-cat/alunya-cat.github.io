@@ -11,6 +11,7 @@
     <% if keywords then -%>
       | <%- keywordList(pathToRoot, table.sorted(keywords)) %>
     <% end -%>
+    | <%= readingTime %>
   </span>
   <div class="date-update"><%= update %></div>
 </p>

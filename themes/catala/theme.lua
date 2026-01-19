@@ -39,6 +39,7 @@ local postListTemplate = etlua.compile([[<% local lastYear = nil -%>
 </li>
 <li class="item-flex">
     <div class="keyword">
+    <%= item.readingTime %> |
     <% if item.keywords then -%>
         <%- keywordList(pathToRoot, item.keywords) %>
     <% end -%></div>
@@ -97,6 +98,17 @@ return {
     processMarkdown(),
     omitWhen(function (item) return item.path == "site.lua" end),
     highlightSyntax(highlightSpan),
+    -- readingTime
+    deriveMetadata({
+        readingTime = function (item)
+            if not item.content then return "1 min" end
+            local text = string.gsub(item.content, "<.->", " ")
+            local _, words = string.gsub(text, "%S+", "")
+            local minutes = math.ceil(words / 200)
+            if minutes < 1 then minutes = 1 end
+            return minutes .. " min"
+        end
+    }),
 
     -- 404.etlua
     injectMetadata({
