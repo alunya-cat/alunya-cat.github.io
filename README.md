@@ -68,3 +68,19 @@ Per la configuració del lloc (title & URL) han de coincidir en contingut **/con
 
 ---
 
+## Contingut i llicències
+
+Aquest projecte opera sota una **doble llicència** per separar el codi del contingut editorial:
+
+1. **Codi del Tema**
+Tot el codi font desenvolupat per a aquest tema està llicenciat sota la **GNU General Public License v3.0 (GPLv3)**.
+Això garanteix que el programari romangui lliure i obert per a tothom.
+Pots consultar el text complet a l'arxiu [LICENSE](LICENSE).
+
+2. **Contingut (Articles i Textos)**
+Tret que s'indiqui el contrari, el contingut dels articles, les entrades del blog i la documentació està subjecte a la llicència **Creative Commons Reconeixement-CompartirIgual 4.0 Internacional (CC BY-SA 4.0)**.
+
+Això significa que ets lliure de compartir i adaptar el contingut, sempre que donis el crèdit adequat i distribueixis les teves contribucions sota la mateixa llicència.
+
+[![CC BY-SA 4.0](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/deed.ca)
+

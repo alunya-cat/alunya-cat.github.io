@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ca-ES">
+<head>
+<meta charset="utf-8" />
+<title>Oriol Àvila Grijalva</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="data:," />
+
+</head>
+<body>
+<main>
+<header>
+<h1>Configuració d&#039;Acer Predator G3610</h1>
+<p style="display: flex; justify-content: space-between; align-items: baseline;">
+  <span>
+    &#8672; <a href="index.html">Endarrere</a>
+  </span>
+
+  <span style="text-align: right;">
+    <time datetime="2026-01-19">Gener 19, 2026</time>
+    
+      </span>
+</p>
+<hr>
+</header>
+<p>Deixa de llegir, de debò, no ho facis. La publicació d'avui no és un reflexió, és només que el meu ordinador m'ha estat donant problemes i he esborrat per accident diverses coses.</p>
+<p>Com que la cosa no pinta bé i podria deixar de funcionar en qualsevol moment, seria un desastre perdre tota la informació i l'ergonomia de treball que he cultivat amb tant d'esforç. Per això, aniré apuntant tot el que he fet servir per si en necessito recopilar la configuració i els programes en una instal·lació neta en el futur.</p>
+<h3 id="installaci-de-debian">Instal·lació de Debian</h3>
+<p>Si decidiu instal·lar aquesta meravellosa distribució de Linux, us recomano que utilitzeu els paràmetres següents:</p>
+<ul>
+<li>Un arrel (root) Ext4 &quot;/&quot;, d'aproximadament 120 GB, per al sistema operatiu i arrencable.</li>
+<li>Un swapon de la mateixa capacitat que la quantitat de GB de RAM instal·lada.</li>
+<li>la resta per a l'Ext4 &quot;/home&quot; per a les vostres dades.</li>
+</ul>
+<p>Abans de completar la instal·lació, se us demanarà que establiu una contrasenya per al vostre superusuari &quot;root&quot;, però ATENCIÓ, Debian no atorga permisos d'administrador a l'usuari que inicia sessió a l'ordinador, de manera que us trobareu amb el llegendari problema de <em>l'usuari no és al fitxer sudoers</em>. Això no passarà si deixeu la contrasenya en blanc, i Debian ATORGARÀ permisos de superusuari al primer usuari que iniciï sessió al sistema.</p>
+<p>Per si no t'havies adonat, sóc molt ximple i he après la lliçó a base d'errors a la vida, així que la solució per a una instal·lació amb contrasenya de <em>root</em> i un usuari sense permisos és fer <em>nano</em> amb <strong>su</strong> a <em>/etc/sudoers</em> i afegir-hi el nostre usuari, per exemple:</p>
+<pre><code>&gt; # Especificació de privilegis d'usuari
+&gt; root    ALL=(ALL:ALL) ALL
+&gt; user   ALL=(ALL:ALL) ALL
+</code></pre>
+<p>Desa amb Ctrl+O i surt amb Ctrl+X.</p>
+<p>Si per alguna raó no podem editar-lo per falta de permisos d'usuari, hem de permetre que el nostre usuari utilitzi l'ordre amb <code>usermod -aG sudo USUARI</code>.
+Finalment, fem un <em>reboot now</em> perquè els canvis tinguin efecte.</p>
+<p>De vegades, els passos anteriors no solucionen el problema i l'única opció és utilitzar <em>sudo</em> amb cada comanda, ja que no se'ns permet mantenir-nos com a superusuaris o accedir a <em>root</em> escrivint <strong>su</strong> a la consola (els canvis fets amb root es quedaran a la carpeta root i no a la carpeta de l'usuari del sistema).</p>
+<h3 id="installaci-dels-controladors-nvidia">Instal·lació dels controladors Nvidia.</h3>
+<p>Fem servir els repositoris de Debian seguint la guia a <a href="https://wiki.debian.org/NvidiaGraphicsDrivers">https://wiki.debian.org/NvidiaGraphicsDrivers</a>.
+Presteu especial atenció a la part sobre l'ús de Wayland a Debian, on primer hem de comprovar si <code># cat /sys/module/nvidia_drm/parameters/modeset</code> retorna un <em>Y</em> o un <em>N</em>.
+Si retorna un <em>N</em>, hem d'afegir <code>options nvidia-drm modeset=1</code> al fitxer <em>/etc/modprobe.d/nvidia-options.conf</em> amb <em>sudo nano</em>.
+Després d'això, podem reiniciar sempre que no tinguem la intenció d'utilitzar l'opció per suspendre l'ordinador. En el nostre cas, sí que ho volem fer, i per tant hem d'afegir l'opció <code>options nvidia NVreg_PreserveVideoMemoryAllocations=1</code> al fitxer <em>/etc/modprobe.d/nvidia-options.conf</em> amb <em>sudo nano</em>.</p>
+<p>A més, a Wayland hi ha un error amb els controladors de Nvidia que provocarà molts parpelleigs a les aplicacions perquè l'<strong>opció GSP</strong> està habilitada. Per desactivar-la, executem <em>sudo nano /etc/modprobe.d/nvidia-gsp-disable.conf</em> i afegim <code>options nvidia NVreg_EnableGpuFirmware=0</code>.</p>
+<h3 id="prompts-per-a-ollama-qwen34b">Prompts per a Ollama (qwen3:4B).</h3>
+<p>Normalment, faig servir la IA local per obtenir una URL modificada per a un vídeo de YouTube perquè estigui a punt per fer servir amb <strong>yt-dlp</strong> i pugui descarregar la transcripció en anglès sense els segells de temps.</p>
+<pre><code>You're a bot and you will  refactor the next code with the URL I give you on the brackets of &lt;URL_GOES_HERE_WITHOUT_QUOTES&gt;.  Don't think, just give me the code with the URL changed. Don't give me any summary, just the code.
+
+yt-dlp --skip-download --write-subs --write-auto-subs --sub-lang en --sub-format ttml --convert-subs srt --output &quot;transcript.%(ext)s&quot; &lt;URL_GOES_HERE_WITHOUT_QUOTES&gt; &amp;&amp; sed -i '' -e '/^[0-9][0-9]:[0-9][0-9]:[0-9][0-9].[0-9][0-9][0-9] --&gt; [0-9][0-9]:[0-9][0-9]:[0-9][0-9].[0-9][0-9][0-9]$/d' -e '/^[[:digit:]]\{1,4\}$/d' -e 's/&lt;[^&gt;]*&gt;//g' ./transcript.en.srt &amp;&amp; sed -e 's/&lt;[^&gt;]*&gt;//g' -e '/^[[:space:]]*$/d' transcript.en.srt &gt; output.txt &amp;&amp; rm
+
+Give me the output within a code block so I can copy it
+</code></pre>
+<p>Un cop tinc el fitxer de la transcripció, faig servir un altre prompt per resumir-lo:</p>
+<pre><code>As a professional summarizer, create a concise and comprehensive summary of the provided text, be it an article, post, conversation, or passage, while adhering to these guidelines:
+
+1. Craft a summary that is detailed, thorough, in-depth, and complex, while maintaining clarity and conciseness.
+2. Incorporate main ideas and essential information, eliminating extraneous language and focusing on critical aspects.
+3. Rely strictly on the provided text, without including external information.
+4. Format the summary in paragraph form for easy understanding.
+
+By following this optimized prompt, you will generate an effective summary that encapsulates the essence of the given text in a clear, concise, and reader-friendly manner.
+</code></pre>
+<h3 id="cpies-de-seguretat-darxius-amb-rclone">Còpies de seguretat d'arxius amb RClone</h3>
+<p>Per fer còpies de seguretat utilitzant el <strong>mètode 3-2-1</strong> (3 còpies de les dades, 1 original i 2 còpies, en 2 suports diferents, una de les quals és fora de les instal·lacions) farem servir RClone (<code>sudo -v ; curl https://rclone.org/install.sh | sudo bash</code>).</p>
+<p>Un cop hàgim configurat RClone (en el meu cas, seria <em>Original+HDD+GDrive</em>), farem servir el codi següent per muntar el GDrive com un &quot;disc local&quot;, especificant que l'emmagatzematge de GDrive (rclonedrive:) estigui muntat al nostre emmagatzematge local (<em>/home/user/rclonedrive</em>) amb l'opció <code>--vfs-cache-mode full</code> perquè sigui totalment compatible amb els nostres fitxers, a costa d'utilitzar més espai al disc.</p>
+<pre><code>rclone mount rclonedrive: /home/user/rclonedrive/ --vfs-cache-mode full
+</code></pre>
+<p>Com que la nostra intenció és ampliar la còpia original amb nou contingut, farem servir la comanda <em>sync</em>.</p>
+<pre><code>rclone sync --dry-run SOURCE DESTINATION --progress --interactive
+</code></pre>
+<p>Aquesta comanda farà una execució de prova perquè puguem veure què passaria si s'executés sense aquesta opció (si n'estem segurs, podem suprimir-la directament) i amb l'opció <em>--progress</em> per veure què està passant i l'opció <em>--interactive</em>, que ens preguntarà què fer amb cada fitxer. Compararà els fitxers de la nostra font amb els de la destinació i:</p>
+<ul>
+<li>Si no existeixen a DESTINATION, es crearan.</li>
+<li>Si existeixen, però són diferents, es modificaran els de DESTINATION perquè coincideixin amb els de SOURCE.</li>
+<li>Si no existeixen a SOURCE, s'eliminaran de DESTINATION.</li>
+</ul>
+<p>Si per qualsevol motiu no confiem en la SOURCE, podem afegir l'etiqueta <em>--backup-dir</em>*, que mourà a DESTINATION els fitxers que es modificarien com a resultat de la SOURCE.</p>
+<h3 id="texmaker">TexMaker:</h3>
+<ol>
+<li>Primer, instal·lem TexLive amb <code>sudo apt-get install texlive-full</code>.</li>
+<li>Continuem amb TexMaker <code>sudo apt-get install texmaker</code>.</li>
+<li>Creeu un document. En el meu cas, faig servir Markdown i LuaLaTeX com a compilador de PDF. Per a qui ho vulgui, aquí teniu la plantilla completa:</li>
+</ol>
+<pre><code class="language-latex"><i class="hl-comment">% Definimos el estilo del documento</i>
+<span class="hl-command">\documentclass</span><span class="hl-operator">[</span><span class="hl-default">1</span><span class="hl-default">1</span><span class="hl-default">p</span><span class="hl-default">t</span><span class="hl-default">,</span><span class="hl-default">t</span><span class="hl-default">w</span><span class="hl-default">o</span><span class="hl-default">s</span><span class="hl-default">i</span><span class="hl-default">d</span><span class="hl-default">e</span><span class="hl-default">,</span><span class="hl-default">a</span><span class="hl-default">4</span><span class="hl-default">p</span><span class="hl-default">a</span><span class="hl-default">p</span><span class="hl-default">e</span><span class="hl-default">r</span><span class="hl-default">,</span><span class="hl-default">s</span><span class="hl-default">p</span><span class="hl-default">a</span><span class="hl-default">n</span><span class="hl-default">i</span><span class="hl-default">s</span><span class="hl-default">h</span><span class="hl-operator">]</span><span class="hl-operator">{</span><span class="hl-default">a</span><span class="hl-default">r</span><span class="hl-default">t</span><span class="hl-default">i</span><span class="hl-default">c</span><span class="hl-default">l</span><span class="hl-default">e</span><span class="hl-operator">}</span>
+<i class="hl-comment">% Utilizamos el paquete para utilizar español</i>
+<span class="hl-command">\usepackage</span><span class="hl-operator">[</span><span class="hl-default">s</span><span class="hl-default">p</span><span class="hl-default">a</span><span class="hl-default">n</span><span class="hl-default">i</span><span class="hl-default">s</span><span class="hl-default">h</span><span class="hl-operator">]</span><span class="hl-operator">{</span><span class="hl-default">b</span><span class="hl-default">a</span><span class="hl-default">b</span><span class="hl-default">e</span><span class="hl-default">l</span><span class="hl-operator">}</span>
+<span class="hl-command">\usepackage</span><span class="hl-operator">[</span><span class="hl-default">l</span><span class="hl-default">i</span><span class="hl-default">n</span><span class="hl-default">i</span><span class="hl-default">n</span><span class="hl-default">g</span><span class="hl-operator">]</span><span class="hl-operator">{</span><span class="hl-default">i</span><span class="hl-default">b</span><span class="hl-default">a</span><span class="hl-default">r</span><span class="hl-default">r</span><span class="hl-default">a</span><span class="hl-operator">}</span> <i class="hl-comment">%% remove option &apos;lining&apos; to get oldstyle figures as default</i>
+<i class="hl-comment">% Utilizamos el paquete para gestionar acentos !- Con LuaLaTeX no hace falta inputenc y éste hace uso directo de UTF-8 -!</i>
+<i class="hl-comment">% \usepackage[latin1]{inputenc}</i>
+<i class="hl-comment">% Utilizamos el paquete para gestionar la estructura del papel</i>
+<span class="hl-command">\usepackage</span><span class="hl-operator">{</span><span class="hl-default">g</span><span class="hl-default">e</span><span class="hl-default">o</span><span class="hl-default">m</span><span class="hl-default">e</span><span class="hl-default">t</span><span class="hl-default">r</span><span class="hl-default">y</span><span class="hl-operator">}</span>
+<span class="hl-command">\geometry</span><span class="hl-operator">{</span><span class="hl-default">m</span><span class="hl-default">a</span><span class="hl-default">r</span><span class="hl-default">g</span><span class="hl-default">i</span><span class="hl-default">n</span><span class="hl-default">=</span><span class="hl-default">0</span><span class="hl-default">.</span><span class="hl-default">5</span><span class="hl-default">i</span><span class="hl-default">n</span><span class="hl-operator">}</span>
+<i class="hl-comment">% Recommended, but optional, packages for figures and better typesetting:</i>
+<span class="hl-command">\usepackage</span><span class="hl-operator">{</span><span class="hl-default">m</span><span class="hl-default">i</span><span class="hl-default">c</span><span class="hl-default">r</span><span class="hl-default">o</span><span class="hl-default">t</span><span class="hl-default">y</span><span class="hl-default">p</span><span class="hl-default">e</span><span class="hl-operator">}</span>
+<span class="hl-command">\usepackage</span><span class="hl-operator">{</span><span class="hl-default">g</span><span class="hl-default">r</span><span class="hl-default">a</span><span class="hl-default">p</span><span class="hl-default">h</span><span class="hl-default">i</span><span class="hl-default">c</span><span class="hl-default">x</span><span class="hl-operator">}</span>
+<span class="hl-command">\usepackage</span><span class="hl-operator">{</span><span class="hl-default">s</span><span class="hl-default">u</span><span class="hl-default">b</span><span class="hl-default">f</span><span class="hl-default">i</span><span class="hl-default">g</span><span class="hl-default">u</span><span class="hl-default">r</span><span class="hl-default">e</span><span class="hl-operator">}</span>
+<span class="hl-command">\usepackage</span><span class="hl-operator">{</span><span class="hl-default">b</span><span class="hl-default">o</span><span class="hl-default">o</span><span class="hl-default">k</span><span class="hl-default">t</span><span class="hl-default">a</span><span class="hl-default">b</span><span class="hl-default">s</span><span class="hl-operator">}</span> <i class="hl-comment">% for professional tables</i>
+<span class="hl-command">\usepackage</span><span class="hl-operator">{</span><span class="hl-default">a</span><span class="hl-default">m</span><span class="hl-default">s</span><span class="hl-default">m</span><span class="hl-default">a</span><span class="hl-default">t</span><span class="hl-default">h</span><span class="hl-operator">}</span>
+<span class="hl-command">\usepackage</span><span class="hl-operator">{</span><span class="hl-default">a</span><span class="hl-default">m</span><span class="hl-default">s</span><span class="hl-default">f</span><span class="hl-default">o</span><span class="hl-default">n</span><span class="hl-default">t</span><span class="hl-default">s</span><span class="hl-operator">}</span>
+<span class="hl-command">\usepackage</span><span class="hl-operator">{</span><span class="hl-default">a</span><span class="hl-default">m</span><span class="hl-default">s</span><span class="hl-default">s</span><span class="hl-default">y</span><span class="hl-default">m</span><span class="hl-default">b</span><span class="hl-operator">}</span>
+<i class="hl-comment">% Utilizamos el paquete para usar markdown dentro de LaTeX</i>
+<span class="hl-command">\usepackage</span><span class="hl-operator">[</span><span class="hl-default">h</span><span class="hl-default">a</span><span class="hl-default">s</span><span class="hl-default">h</span><span class="hl-default">E</span><span class="hl-default">n</span><span class="hl-default">u</span><span class="hl-default">m</span><span class="hl-default">e</span><span class="hl-default">r</span><span class="hl-default">a</span><span class="hl-default">t</span><span class="hl-default">o</span><span class="hl-default">r</span><span class="hl-default">s</span><span class="hl-default">,</span><span class="hl-default">s</span><span class="hl-default">m</span><span class="hl-default">a</span><span class="hl-default">r</span><span class="hl-default">t</span><span class="hl-default">E</span><span class="hl-default">l</span><span class="hl-default">l</span><span class="hl-default">i</span><span class="hl-default">p</span><span class="hl-default">s</span><span class="hl-default">e</span><span class="hl-default">s</span><span class="hl-default">,</span><span class="hl-default">h</span><span class="hl-default">y</span><span class="hl-default">b</span><span class="hl-default">r</span><span class="hl-default">i</span><span class="hl-default">d</span><span class="hl-default">,</span><span class="hl-default">p</span><span class="hl-default">i</span><span class="hl-default">p</span><span class="hl-default">e</span><span class="hl-default">T</span><span class="hl-default">a</span><span class="hl-default">b</span><span class="hl-default">l</span><span class="hl-default">e</span><span class="hl-default">s</span><span class="hl-default">,</span><span class="hl-default">t</span><span class="hl-default">a</span><span class="hl-default">b</span><span class="hl-default">l</span><span class="hl-default">e</span><span class="hl-default">C</span><span class="hl-default">a</span><span class="hl-default">p</span><span class="hl-default">t</span><span class="hl-default">i</span><span class="hl-default">o</span><span class="hl-default">n</span><span class="hl-default">s</span><span class="hl-operator">]</span><span class="hl-operator">{</span><span class="hl-default">m</span><span class="hl-default">a</span><span class="hl-default">r</span><span class="hl-default">k</span><span class="hl-default">d</span><span class="hl-default">o</span><span class="hl-default">w</span><span class="hl-default">n</span><span class="hl-operator">}</span>
+<i class="hl-comment">% Specify to LaTeX that it should not make tables float</i>
+<span class="hl-command">\usepackage</span><span class="hl-operator">{</span><span class="hl-default">f</span><span class="hl-default">l</span><span class="hl-default">o</span><span class="hl-default">a</span><span class="hl-default">t</span><span class="hl-operator">}</span>
+<span class="hl-command">\makeatletter</span>
+<span class="hl-command">\renewcommand</span><span class="hl-default">*</span><span class="hl-operator">{</span><span class="hl-command">\fps</span><span class="hl-default">@</span><span class="hl-default">t</span><span class="hl-default">a</span><span class="hl-default">b</span><span class="hl-default">l</span><span class="hl-default">e</span><span class="hl-operator">}</span><span class="hl-operator">{</span><span class="hl-default">H</span><span class="hl-operator">}</span>
+<span class="hl-command">\makeatother</span>
+<i class="hl-comment">% Autor</i>
+<span class="hl-command">\author</span><span class="hl-operator">{</span><span class="hl-default">A</span><span class="hl-default">u</span><span class="hl-default">t</span><span class="hl-default">o</span><span class="hl-default">r</span><span class="hl-operator">}</span>
+<span class="hl-command">\title</span><span class="hl-operator">{</span><span class="hl-default">M</span><span class="hl-default">D</span><span class="hl-default">L</span><span class="hl-default">a</span><span class="hl-default">t</span><span class="hl-default">e</span><span class="hl-default">x</span> <span class="hl-default">T</span><span class="hl-default">e</span><span class="hl-default">m</span><span class="hl-default">p</span><span class="hl-default">l</span><span class="hl-default">a</span><span class="hl-default">t</span><span class="hl-default">e</span><span class="hl-operator">}</span>
+<i class="hl-comment">%Empieza el documento</i>
+<span class="hl-environment">\begin{document}</span>
+
+<span class="hl-environment">\begin{markdown}</span>
+<i class="hl-comment">% (El contenido aquí está colapsado en la imagen, líneas 33-98)</i>
+
+<span class="hl-command">\newpage</span>
+
+<span class="hl-environment">\begin{markdown}</span>
+<i class="hl-comment">% (El contenido aquí está colapsado en la imagen, líneas 103-130)</i>
+
+<span class="hl-environment">\end{document}</span>
+</code></pre>
+<p><img src="assets/texmaker.png" alt=""></p>
+
+<footer>
+<hr>
+<nav class="footer-nav">
+    <div class="nav-left">
+        CC BY-SA 4.0 / GPLv3
+    </div>
+    <div class="nav-center">
+        <label class="contact-toggle">
+            <input type="checkbox"> <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            
+            <span class="email-reveal" style="unicode-bidi: bidi-override; direction: rtl;">
+        moc.liamg@avlajirgalivaloiro
+        </span>
+        </label>
+    </div>
+    <div class="nav-right">
+        <input type="checkbox" class="toggle" title="Cambiar tema">
+        <a href="https://github.com/avilagrijalva/avilagrijalva.github.io" aria-label="Github">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+        </a>
+        <!-- <a href="index.html" aria-label="Email">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </a> -->
+        <a href="feed.xml"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 11a9 9 0 0 1 9 9"></path>
+                <path d="M4 4a16 16 0 0 1 16 16"></path>
+                <circle cx="5" cy="19" r="1"></circle>
+            </svg></a>
+    </div>
+</nav>
+</footer>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,11 @@
+---
+title: Crypto
+description:
+date: 2026-01-20
+---
+
+Es importante que hagamos uso de nuestro propio nodo Bitcoin para poder confirmar las transacciones. Para ello sincronizaremos nuestro nodo con una billetera de sólo lectura en Sparrow Wallet.
+
+Ésta nos pedirá **xpub** y la **derivation path**. Para ello primero nos vamos a Ledger Live y seleccionamos nuestra cuenta de BTC, luego editar -> avanzado; allí nos fijamos en el "xpub" y en el "freshAddressPath" que básicamente es el derivation path.
+
+*A modo de referencia futura me gustaría aclarar que el derivation path de Ledger es 84'/0'/1'/0/4*

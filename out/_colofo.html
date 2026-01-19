@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ca-ES">
+<head>
+<meta charset="utf-8" />
+<title>Oriol Àvila Grijalva</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="data:," />
+
+</head>
+<body>
+<main>
+<header>
+<h1>Colofó</h1>
+<p style="display: flex; justify-content: space-between; align-items: baseline;">
+  <span>
+    &#8672; <a href="index.html">Endarrere</a>
+  </span>
+
+  <span style="text-align: right;">
+    <time datetime="2026-01-18">Gener 18, 2026</time>
+    
+      </span>
+</p>
+<hr>
+</header>
+<p>Quan vaig sentir parlar per primera vegada d'aquest tipus de pàgines, no vaig entendre realment a què es referien. Per a mi, «el colofó» és un text al final d'un document que proporciona informació sobre la seva autoria i impressió.</p>
+<p>Vaig haver de fer una mica de recerca i entendre que aquest colofó es troba en una pàgina separada per descriure les eines, els sistemes i les fonts utilitzats per crear el lloc web i per reconèixer els recursos emprats per produir-lo.</p>
+<p>Per tant, inclou el programari, el maquinari i els llenguatges de programació utilitzats en la preparació dels textos i en la creació del lloc, així com el tipus de servidor en què s'executa.</p>
+<p>Tot el seu contingut està escrit en arxius Markdown mitjançant qualsevol editor de textos, actualment utilitzo <em>VSCodium</em>.</p>
+<p>Posteriorment executo el fitxer <em>luasmith</em> per generar els fitxers de la carpeta <em>out</em> que seran pujats a Github mitjançant <strong>git</strong>.</p>
+<h1 id="infraestructura">Infraestructura</h1>
+<ul>
+<li><strong>Registrador del domini</strong>: Github Pages.</li>
+<li><strong>Allotjament</strong>: Github Pages.</li>
+<li><strong>Repositori</strong>: <a href="https://github.com/avilagrijalva/avilagrijalva.github.io">https://github.com/avilagrijalva/avilagrijalva.github.io</a></li>
+<li><strong>Desplegament</strong>: <a href="https://github.com/avilagrijalva/avilagrijalva.github.io/blob/main/.github/workflows/static.yml">Github Actions</a>.</li>
+</ul>
+<h1 id="stack-tecnolgic">Stack tecnològic</h1>
+<ul>
+<li><strong>Generador del lloc</strong>: <a href="https://github.com/jaredkrinke/luasmith/">Luasmith</a></li>
+<li><strong>Tema</strong>: Tema original de <a href="https://github.com/jaredkrinke/luasmith/tree/main/themes/blog">blog</a>, el que ve per defecte amb <em>Luasmith</em>, però ara molt modificat que jo anomeno <em>català</em>.</li>
+</ul>
+<h1 id="disseny-i-caracterstiques">Disseny i característiques</h1>
+<ul>
+<li>Un peu de pàgina amb d'enllaços útils.</li>
+<li>Un botó per canviar entre el mode clar i fosc.</li>
+<li><code>site.description</code> a <code>theme.lua</code> per a una breu descripció del blog.</li>
+<li>Una pàgina d'error 404 (<a href="https://avilagrijalva.github.io/404.html">https://avilagrijalva.github.io/404.html</a>)</li>
+<li>Esborranys o fitxers Markdown que no vull que apareguin a la llista d'índex, però que vull que es generin igualment per poder-hi accedir mitjançant un enllaç directe. Això s'aconsegueix amb <code>^[^_].*%.html$</code>, la qual cosa significa que tots els fitxers Markdown que comencin amb un subratllat es tractaran d'aquesta manera.</li>
+<li>Obfuscament del correu electrònic mitjançat CSS:</li>
+</ul>
+<pre><code class="language-html"><b class="hl-tag">&lt;</b><b class="hl-tag">span</b> <span class="hl-attribute">class</span><span class="hl-operator">=</span><i class="hl-string">&quot;email-reveal&quot;</i> <span class="hl-attribute">style</span><span class="hl-operator">=</span><i class="hl-string">&quot;</i><span class="hl-property">unicode-bidi</span><span class="hl-operator">:</span> <span class="hl-constant">bidi-override</span><span class="hl-operator">;</span> <span class="hl-property">direction</span><span class="hl-operator">:</span> <span class="hl-constant">rtl</span><span class="hl-operator">;</span><i class="hl-string">&quot;</i><b class="hl-tag">&gt;</b>
+  <span class="hl-default">m</span><span class="hl-default">o</span><span class="hl-default">c</span><span class="hl-default">.</span><span class="hl-default">l</span><span class="hl-default">i</span><span class="hl-default">a</span><span class="hl-default">m</span><span class="hl-default">g</span><span class="hl-default">@</span><span class="hl-default">a</span><span class="hl-default">v</span><span class="hl-default">l</span><span class="hl-default">a</span><span class="hl-default">j</span><span class="hl-default">i</span><span class="hl-default">r</span><span class="hl-default">g</span><span class="hl-default">a</span><span class="hl-default">l</span><span class="hl-default">i</span><span class="hl-default">v</span><span class="hl-default">a</span><span class="hl-default">l</span><span class="hl-default">o</span><span class="hl-default">i</span><span class="hl-default">r</span><span class="hl-default">o</span>
+<b class="hl-tag">&lt;/</b><b class="hl-tag">span</b><b class="hl-tag">&gt;</b>
+</code></pre>
+<h1 id="contingut-i-llicncies">Contingut i llicències</h1>
+<p>Aquest projecte opera sota una <strong>doble llicència</strong> per separar el codi del contingut editorial:</p>
+<ol>
+<li><strong>Codi del Tema</strong></li>
+</ol>
+<p>Tot el codi font desenvolupat per a aquest tema està llicenciat sota la <strong>GNU General Public License v3.0 (GPLv3)</strong>.
+Això garanteix que el programari romangui lliure i obert per a tothom.
+Pots consultar el text complet a l'arxiu <a href="https://github.com/avilagrijalva/avilagrijalva.github.io/blob/main/LICENSE">LICENSE</a>.</p>
+<ol start="2">
+<li><strong>Contingut (Articles i Textos)</strong></li>
+</ol>
+<p>Tret que s'indiqui el contrari, el contingut dels articles, les entrades del blog i la documentació està subjecte a la llicència <strong>Creative Commons Reconeixement-CompartirIgual 4.0 Internacional (CC BY-SA 4.0)</strong>.
+Això significa que ets lliure de compartir i adaptar el contingut, sempre que donis el crèdit adequat i distribueixis les teves contribucions sota la mateixa llicència.</p>
+<h1 id="analtiques-i-privacitat">Analítiques i privacitat</h1>
+<ul>
+<li><strong>Analítiques</strong>: Aquest lloc no posseeix ni utilitza serveis d'analítica.</li>
+<li><strong>Galetes</strong>: Aquest lloc no utilitza galetes.</li>
+<li><strong>Anuncis</strong>: Aquest lloc és completament lliure d'anuncis.</li>
+<li><strong>Conservació de dades</strong>: Nosaltres no guardem cap dada de la teva visita.</li>
+</ul>
+<p>Els articles d'aquest lloc poden incloure contingut incrustat (per exemple, vídeos, imatges, articles, etc.). El contingut incrustat d'altres webs es comporta exactament de la mateixa manera que si el visitant hagués visitat l'altra web.</p>
+<p>Aquests webs poden recopilar dades sobre tu, utilitzar galetes, incrustar un seguiment addicional de tercers, i supervisar la teva interacció amb aquest contingut incrustat, inclòs el seguiment de la teva interacció amb el contingut incrustat si tens un compte i estàs connectat a aquest web.</p>
+
+<footer>
+<hr>
+<nav class="footer-nav">
+    <div class="nav-left">
+        CC BY-SA 4.0 / GPLv3
+    </div>
+    <div class="nav-center">
+        <label class="contact-toggle">
+            <input type="checkbox"> <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            
+            <span class="email-reveal" style="unicode-bidi: bidi-override; direction: rtl;">
+        moc.liamg@avlajirgalivaloiro
+        </span>
+        </label>
+    </div>
+    <div class="nav-right">
+        <input type="checkbox" class="toggle" title="Cambiar tema">
+        <a href="https://github.com/avilagrijalva/avilagrijalva.github.io" aria-label="Github">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+        </a>
+        <!-- <a href="index.html" aria-label="Email">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </a> -->
+        <a href="feed.xml"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 11a9 9 0 0 1 9 9"></path>
+                <path d="M4 4a16 16 0 0 1 16 16"></path>
+                <circle cx="5" cy="19" r="1"></circle>
+            </svg></a>
+    </div>
+</nav>
+</footer>
+
+</main>
+</body>
+</html>
