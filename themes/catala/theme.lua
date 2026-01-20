@@ -25,7 +25,7 @@ local postListTemplate = etlua.compile([[
 <% for i, item in ipairs(table.sortBy(items, "date", true)) do
    local year = string.match(item.date, "^(%d%d%d%d)")
    if lastYear ~= year then -%>
-     <h2 class="year-header"><span class="icon-year">&sect;</span> <%= year %></h2>
+     <h2 class="year-header"><span class="icon">&sect;</span> <%= year %></h2>
 <%
 	 lastYear = year
    end

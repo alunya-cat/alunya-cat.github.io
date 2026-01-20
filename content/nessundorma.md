@@ -37,7 +37,7 @@ Són les nou del vespre i em fico al llit amb la mateixa esperança de sempre, d
 
 Continuen discutint, així que em refugio en els meus pensaments fins que l'esgotament mental em vènc i m'adormo. Sempre són els mateixos records, els mateixos escenaris, en el meu cas sempre és el mateix enigma:
 
-**Què neix cada nit i mor a cada albada?**
+## Què neix cada nit i mor a cada albada?
 
 La resposta és **esperança**. La primera vegada que vaig llegir aquest enigma, no el vaig entendre, però amb el temps, normalment quan has tocat fons a la teva vida, acabes entenent-lo. 
 

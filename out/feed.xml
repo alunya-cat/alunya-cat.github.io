@@ -34,6 +34,42 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+&lt;h2 id=&quot;contenidors-docker&quot;&gt;Contenidors Docker&lt;/h2&gt;
+&lt;h3 id=&quot;adguard&quot;&gt;Adguard&lt;/h3&gt;
+&lt;p&gt;192.168.X.Y:3000&lt;/p&gt;
+&lt;h2 id=&quot;contenidors-daplicacions&quot;&gt;Contenidors d&#039;aplicacions&lt;/h2&gt;
+&lt;h3 id=&quot;freshrss&quot;&gt;FreshRSS&lt;/h3&gt;
+&lt;p&gt;192.168.X.X:8080&lt;/p&gt;
+&lt;h3 id=&quot;bentopdf&quot;&gt;BentoPDF&lt;/h3&gt;
+&lt;p&gt;192.168.X.X:8081&lt;/p&gt;
+&lt;h3 id=&quot;trip&quot;&gt;Trip&lt;/h3&gt;
+&lt;p&gt;192.168.X.X:8082&lt;/p&gt;
+&lt;h3 id=&quot;tasktrove&quot;&gt;TaskTrove&lt;/h3&gt;
+&lt;p&gt;192.168.X.X:8083&lt;/p&gt;
+&lt;h3 id=&quot;eigenfocus&quot;&gt;Eigenfocus&lt;/h3&gt;
+&lt;p&gt;192.168.X.X:8084&lt;/p&gt;
+&lt;h3 id=&quot;metube&quot;&gt;MeTube&lt;/h3&gt;
+&lt;p&gt;192.168.X.X:8085&lt;/p&gt;
+&lt;h3 id=&quot;languagetool&quot;&gt;LanguageTool&lt;/h3&gt;
+&lt;p&gt;192.168.X.X:8086&lt;/p&gt;
+&lt;h3 id=&quot;yamtrack&quot;&gt;YamTrack&lt;/h3&gt;
+&lt;p&gt;192.168.X.X:8087&lt;/p&gt;
+&lt;h3 id=&quot;lubelogger&quot;&gt;LubeLogger&lt;/h3&gt;
+&lt;p&gt;192.168.X.X:8088&lt;/p&gt;
+&lt;h3 id=&quot;&quot;&gt;&lt;/h3&gt;
+&lt;p&gt;192.168.X.X:8089&lt;/p&gt;
+&lt;h3 id=&quot;scrutiny&quot;&gt;Scrutiny&lt;/h3&gt;
+&lt;p&gt;192.168.X.X:8090&lt;/p&gt;
+&lt;h3 id=&quot;-1&quot;&gt;&lt;/h3&gt;
+&lt;p&gt;192.168.X.X:8091&lt;/p&gt;
+&lt;h3 id=&quot;filewizard&quot;&gt;Filewizard&lt;/h3&gt;
+&lt;p&gt;192.168.X.X:8092&lt;/p&gt;
+&lt;h3 id=&quot;changedetection&quot;&gt;ChangeDetection&lt;/h3&gt;
+&lt;p&gt;192.168.X.X:5555&lt;/p&gt;
+&lt;h3 id=&quot;sun&quot;&gt;Sun&lt;/h3&gt;
+&lt;p&gt;192.168.X.X:3002&lt;/p&gt;
+&lt;h3 id=&quot;mealie&quot;&gt;Mealie&lt;/h3&gt;
+&lt;p&gt;192.168.X.X:9925&lt;/p&gt;
 </content>
 </entry>
 <entry>

@@ -18,7 +18,7 @@ Un comentari insubstancial pot ser un _«Moltes gràcies, ets un geni»_ com un 
 
 En certa manera entenc aquesta insubstancialitat: és un problema del mateix mitjà. **Aquest mitjà no està ben dissenyat per a la discussió**, per a això hi ha altres mitjans molt millors que un blog: fòrums de discussió, Facebook, Twitter, i un munt de llocs on poder elaborar el debat que vulguis.
 
-**Per què fer ús del correu electrònic és millor?**
+## Per què fer ús del correu electrònic és millor?
 
 Primer perquè ens treu a nosaltres (els autors dels blogs) la càrrega de moderar. El problema simplement se'n va d'un cop de ploma i era un problema complicat perquè un ha de ser jutge i botxí en molts casos, la qual cosa genera una quantitat de molèsties insuperables.
 

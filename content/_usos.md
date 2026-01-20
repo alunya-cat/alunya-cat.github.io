@@ -6,7 +6,7 @@ update:
 keywords: [blog]
 ---
 
-# Hardware
+## Hardware
 
 - **Escriptori**: Acer Predator G3610 adquirit el 21 de novembre de 2011 a la qual s'han actualitzat alguns components:
     - *SO*: Debian 13 (Testing).
@@ -20,7 +20,7 @@ keywords: [blog]
     - *GPU*: Intel HD Graphics 5500.
 - **Smartphone**: Poco F5 adquirit el 8 de juny de 2024 i al qual se li ha alliberat el bootloader i instalat LineageOS 23.0 (Android 16).
 
-# Software
+## Software
 
 - **Correu electrònic, calendari, emmagatzematge al núvol**: Google Suite.
 - **Notes i llista de tasques**: TaskTrove (autoallotjat).

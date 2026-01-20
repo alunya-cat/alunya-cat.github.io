@@ -53,12 +53,56 @@ body {
 
 h1, h2, h3, h4, h5, h6, th { font-weight: normal; }
 h1, h2, h3 { line-height: 3rem; margin: 1.5rem 0 0; }
-h1 { font-size: 2.488em; }
-h2 { font-size: 2.074em; }
-h3 { font-size: 1.728em; }
-h4 { font-size: 1.44em; }
-h5 { font-size: 1.2em; }
-h6 { font-size: 1em; }
+h1 {
+  font-family: var(--font-family);
+  font-size: 2.2rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--text-body);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+h2 { 
+  font-family: var(--font-family);
+  font-size: 1.8rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  border-bottom: solid 1px black;  
+  color: var(--text-body);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+h3 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: var(--text-body);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  border-bottom: solid 1px var(--lighter);
+}
+h4 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--text-body);
+  border-bottom: dotted 1px var(--lighter);
+}
+h5 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--lighter);
+  border-bottom: dashed 1px var(--lighter);
+}
+h6 {
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--lighter);
+  opacity: 0.8;
+}
 small, sup, sub { font-size: 0.833em; }
 sup, sub { line-height: 1em; }
 
@@ -142,6 +186,10 @@ pre code {
   margin: 0;
   font-size: 1.5rem;
   line-height: 1;
+  border: none !important;
+  padding: 0 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
 }
 .nav-header {
   display: flex;
@@ -175,7 +223,7 @@ main, body > footer {
   display: block;
   margin: 5rem auto;
   width: 50%;
-  font-size: 125%;
+  font-size: 1.1rem;
   line-height: 150%;
 }
 
@@ -280,6 +328,7 @@ th, td {
   margin-top: 0;
   line-height: 1.4;
   font-style: italic;
+  text-align: center;
 }
 /* Article metadata */
 .post-meta {
@@ -290,6 +339,7 @@ th, td {
   align-items: center;
   gap: 0.5ch;
   margin-top: 0.5rem;
+  justify-content: center;
 }
 .post-meta time, 
 .post-meta span {
@@ -313,6 +363,9 @@ th, td {
   margin-bottom: 0.5rem;
   border-bottom: 3.5px double var(--lighter);
   border-spacing: 1rem;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
   /* &sect; */
   padding: 0;
   display: flex;
@@ -320,7 +373,7 @@ th, td {
   gap: 0.25rem;
 }
 /* icon */
-.icon-year {
+.icon {
   font-family: "Times New Roman", serif;
   font-size: 1.5rem;
   color: #c00000;
@@ -350,6 +403,9 @@ th, td {
   margin: 0 0 0.5rem 0;
   line-height: 1.2;
   font-weight: bold;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
 }
 /* Index metadata */
 .post-entry-meta {
@@ -426,15 +482,86 @@ th, td {
   margin-left: 10px;
 }
 
-/* Syntax Highlighting */
-.hl-comment, .hl-operator { font-style: italic; color: var(--lighter); }
-.hl-preprocessor { font-weight: bold; font-style: italic; }
-.hl-tag, .hl-function, .hl-heading, .hl-label { font-weight: bold; }
-.hl-reference, .hl-variable, .hl-code, .hl-embedded, .hl-identifier { font-weight: normal; }
-.hl-annotation, .hl-class, .hl-type, .hl-keyword { font-weight: bolder; }
-.hl-attribute, .hl-constant { font-weight: normal; }
-.hl-bold, .hl-italic, .hl-number, .hl-underline, .hl-string { font-style: italic; }
-.hl-link, .hl-list, .hl-error, .hl-regex { font-style: italic; text-decoration: underline; }
+/* --- Syntax Highlighting Editorial --- */
+
+/* 1. Comentarios: Discretos, en cursiva y gris */
+.hl-comment, 
+.hl-quote { 
+  font-style: italic; 
+  color: var(--lighter); /* Usamos tu variable de gris suave */
+}
+
+/* 2. Palabras clave (if, else, return, class): 
+   Un violeta/morado sobrio para la lógica de control */
+.hl-keyword, 
+.hl-selector-tag, 
+.hl-subst { 
+  font-weight: bold;
+  color: #8959a8; 
+}
+
+/* 3. Cadenas de texto ("String"): 
+   Un verde oliva que es muy legible y elegante */
+.hl-string, 
+.hl-attribute, 
+.hl-symbol, 
+.hl-bullet, 
+.hl-addition { 
+  color: #718c00; 
+  font-style: italic; /* Opcional: el estilo cursivo en strings queda muy "libro" */
+}
+
+/* 4. Funciones y Métodos: 
+   Usamos TU ROJO característico (#c00000) para las acciones */
+.hl-function, 
+.hl-section, 
+.hl-title, 
+.hl-tag, 
+.hl-name { 
+  font-weight: bold;
+  color: #c00000; /* Coherencia con tus h2 y enlaces */
+}
+
+/* 5. Variables y Atributos: 
+   Azul oscuro o el color de texto base para no saturar */
+.hl-variable, 
+.hl-template-variable, 
+.hl-attribute, 
+.hl-attr { 
+  color: #4271ae; 
+}
+
+/* 6. Números y Constantes: 
+   Naranja quemado */
+.hl-number, 
+.hl-literal, 
+.hl-type, 
+.hl-built_in, 
+.hl-builtin-name { 
+  color: #eab700; 
+}
+
+/* 7. Meta y Preprocesadores: 
+   Gris azulado oscuro */
+.hl-meta, 
+.hl-preprocessor,
+.hl-annotation { 
+  color: #3e999f;
+  font-weight: bold;
+}
+
+/* 8. Errores y Borrados: Rojo vivo */
+.hl-deletion, 
+.hl-error { 
+  color: #c00000;
+  text-decoration: underline;
+}
+
+/* 9. Enlaces en código */
+.hl-link { 
+  color: var(--lighter);
+  text-decoration: underline; 
+}
 
 /* --- Responsive --- */
 @media screen and (max-width: 900px) {

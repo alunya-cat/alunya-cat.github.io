@@ -16,19 +16,19 @@ Tot el seu contingut està escrit en arxius Markdown mitjançant qualsevol edito
 
 Posteriorment executo el fitxer *luasmith* per generar els fitxers de la carpeta *out* que seran pujats a Github mitjançant **git**.
 
-# Infraestructura
+## Infraestructura
 
 - **Registrador del domini**: Github Pages.
 - **Allotjament**: Github Pages.
 - **Repositori**: https://github.com/avilagrijalva/avilagrijalva.github.io
 - **Desplegament**: [Github Actions](https://github.com/avilagrijalva/avilagrijalva.github.io/blob/main/.github/workflows/static.yml).
 
-# Stack tecnològic
+## Stack tecnològic
 
 - **Generador del lloc**: [Luasmith](https://github.com/jaredkrinke/luasmith/)
 - **Tema**: Tema original de [blog](https://github.com/jaredkrinke/luasmith/tree/main/themes/blog), el que ve per defecte amb *Luasmith*, però ara molt modificat que jo anomeno *català*.
 
-# Disseny i característiques
+## Disseny i característiques
 
 - Un peu de pàgina amb enllaços útils.
 - Un botó per canviar entre el mode clar i fosc.
@@ -49,7 +49,7 @@ Posteriorment executo el fitxer *luasmith* per generar els fitxers de la carpeta
 - Se li ha afegit l'etiqueta **description** a *theme.lua* amb `<div class="description"><%= item.description %></div>`.
 - Se li ha afegit l'etiqueta **readingTime** a *theme.lua* amb `<%= item.readingTime %>`.
 
-# Contingut i llicències
+## Contingut i llicències
 
 Aquest projecte opera sota una **doble llicència** per separar el codi del contingut editorial:
 
@@ -64,7 +64,7 @@ Pots consultar el text complet a l'arxiu [LICENSE](https://github.com/avilagrija
 Tret que s'indiqui el contrari, el contingut dels articles, les entrades del blog i la documentació està subjecte a la llicència **Creative Commons Reconeixement-CompartirIgual 4.0 Internacional (CC BY-SA 4.0)**.
 Això significa que ets lliure de compartir i adaptar el contingut, sempre que donis el crèdit adequat i distribueixis les teves contribucions sota la mateixa llicència.
 
-# Analítiques i privacitat
+## Analítiques i privacitat
 
 - **Analítiques**: Aquest lloc no posseeix ni utilitza serveis d'analítica.
 - **Galetes**: Aquest lloc no utilitza galetes.
