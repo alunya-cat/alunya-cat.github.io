@@ -252,7 +252,10 @@ hr {
   border-bottom: 1px solid hsl(0, 0%, 70%);
 }
 
-img { max-width: 100%; }
+img { 
+  max-width: 100%; 
+  filter: brightness(90%) contrast(125%) grayscale(100%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(100%) sepia(18%);
+}
 
 /* --- Lists --- */
 ul, ol, dd { padding: 0; }
