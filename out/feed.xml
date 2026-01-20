@@ -80,7 +80,7 @@
 <summary type="text"></summary>
 <content type="html">&lt;p&gt;Deixa de llegir, de debò, no ho facis. La publicació d&#039;avui no és un reflexió, és només que el meu ordinador m&#039;ha estat donant problemes i he esborrat per accident diverses coses.&lt;/p&gt;
 &lt;p&gt;Com que la cosa no pinta bé i podria deixar de funcionar en qualsevol moment, seria un desastre perdre tota la informació i l&#039;ergonomia de treball que he cultivat amb tant d&#039;esforç. Per això, aniré apuntant tot el que he fet servir per si en necessito recopilar la configuració i els programes en una instal·lació neta en el futur.&lt;/p&gt;
-&lt;h3 id=&quot;installaci-de-debian&quot;&gt;Instal·lació de Debian&lt;/h3&gt;
+&lt;h2 id=&quot;installaci-de-debian&quot;&gt;Instal·lació de Debian&lt;/h2&gt;
 &lt;p&gt;Si decidiu instal·lar aquesta meravellosa distribució de Linux, us recomano que utilitzeu els paràmetres següents:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Un arrel (root) Ext4 &amp;quot;/&amp;quot;, d&#039;aproximadament 120 GB, per al sistema operatiu i arrencable.&lt;/li&gt;
@@ -97,13 +97,13 @@
 &lt;p&gt;Si per alguna raó no podem editar-lo per falta de permisos d&#039;usuari, hem de permetre que el nostre usuari utilitzi l&#039;ordre amb &lt;code&gt;usermod -aG sudo USUARI&lt;/code&gt;.
 Finalment, fem un &lt;em&gt;reboot now&lt;/em&gt; perquè els canvis tinguin efecte.&lt;/p&gt;
 &lt;p&gt;De vegades, els passos anteriors no solucionen el problema i l&#039;única opció és utilitzar &lt;em&gt;sudo&lt;/em&gt; amb cada comanda, ja que no se&#039;ns permet mantenir-nos com a superusuaris o accedir a &lt;em&gt;root&lt;/em&gt; escrivint &lt;strong&gt;su&lt;/strong&gt; a la consola (els canvis fets amb root es quedaran a la carpeta root i no a la carpeta de l&#039;usuari del sistema).&lt;/p&gt;
-&lt;h3 id=&quot;installaci-dels-controladors-nvidia&quot;&gt;Instal·lació dels controladors Nvidia.&lt;/h3&gt;
+&lt;h2 id=&quot;installaci-dels-controladors-nvidia&quot;&gt;Instal·lació dels controladors Nvidia.&lt;/h2&gt;
 &lt;p&gt;Fem servir els repositoris de Debian seguint la guia a &lt;a href=&quot;https://wiki.debian.org/NvidiaGraphicsDrivers&quot;&gt;https://wiki.debian.org/NvidiaGraphicsDrivers&lt;/a&gt;.
 Presteu especial atenció a la part sobre l&#039;ús de Wayland a Debian, on primer hem de comprovar si &lt;code&gt;# cat /sys/module/nvidia_drm/parameters/modeset&lt;/code&gt; retorna un &lt;em&gt;Y&lt;/em&gt; o un &lt;em&gt;N&lt;/em&gt;.
 Si retorna un &lt;em&gt;N&lt;/em&gt;, hem d&#039;afegir &lt;code&gt;options nvidia-drm modeset=1&lt;/code&gt; al fitxer &lt;em&gt;/etc/modprobe.d/nvidia-options.conf&lt;/em&gt; amb &lt;em&gt;sudo nano&lt;/em&gt;.
 Després d&#039;això, podem reiniciar sempre que no tinguem la intenció d&#039;utilitzar l&#039;opció per suspendre l&#039;ordinador. En el nostre cas, sí que ho volem fer, i per tant hem d&#039;afegir l&#039;opció &lt;code&gt;options nvidia NVreg_PreserveVideoMemoryAllocations=1&lt;/code&gt; al fitxer &lt;em&gt;/etc/modprobe.d/nvidia-options.conf&lt;/em&gt; amb &lt;em&gt;sudo nano&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;A més, a Wayland hi ha un error amb els controladors de Nvidia que provocarà molts parpelleigs a les aplicacions perquè l&#039;&lt;strong&gt;opció GSP&lt;/strong&gt; està habilitada. Per desactivar-la, executem &lt;em&gt;sudo nano /etc/modprobe.d/nvidia-gsp-disable.conf&lt;/em&gt; i afegim &lt;code&gt;options nvidia NVreg_EnableGpuFirmware=0&lt;/code&gt;.&lt;/p&gt;
-&lt;h3 id=&quot;prompts-per-a-ollama-qwen34b&quot;&gt;Prompts per a Ollama (qwen3:4B).&lt;/h3&gt;
+&lt;h2 id=&quot;prompts-per-a-ollama-qwen34b&quot;&gt;Prompts per a Ollama (qwen3:4B).&lt;/h2&gt;
 &lt;p&gt;Normalment, faig servir la IA local per obtenir una URL modificada per a un vídeo de YouTube perquè estigui a punt per fer servir amb &lt;strong&gt;yt-dlp&lt;/strong&gt; i pugui descarregar la transcripció en anglès sense els segells de temps.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;You&#039;re a bot and you will  refactor the next code with the URL I give you on the brackets of &amp;lt;URL_GOES_HERE_WITHOUT_QUOTES&amp;gt;.  Don&#039;t think, just give me the code with the URL changed. Don&#039;t give me any summary, just the code.
 
@@ -121,7 +121,7 @@ Give me the output within a code block so I can copy it
 
 By following this optimized prompt, you will generate an effective summary that encapsulates the essence of the given text in a clear, concise, and reader-friendly manner.
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;cpies-de-seguretat-darxius-amb-rclone&quot;&gt;Còpies de seguretat d&#039;arxius amb RClone&lt;/h3&gt;
+&lt;h2 id=&quot;cpies-de-seguretat-darxius-amb-rclone&quot;&gt;Còpies de seguretat d&#039;arxius amb RClone&lt;/h2&gt;
 &lt;p&gt;Per fer còpies de seguretat utilitzant el &lt;strong&gt;mètode 3-2-1&lt;/strong&gt; (3 còpies de les dades, 1 original i 2 còpies, en 2 suports diferents, una de les quals és fora de les instal·lacions) farem servir RClone (&lt;code&gt;sudo -v ; curl https://rclone.org/install.sh | sudo bash&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Un cop hàgim configurat RClone (en el meu cas, seria &lt;em&gt;Original+HDD+GDrive&lt;/em&gt;), farem servir el codi següent per muntar el GDrive com un &amp;quot;disc local&amp;quot;, especificant que l&#039;emmagatzematge de GDrive (rclonedrive:) estigui muntat al nostre emmagatzematge local (&lt;em&gt;/home/user/rclonedrive&lt;/em&gt;) amb l&#039;opció &lt;code&gt;--vfs-cache-mode full&lt;/code&gt; perquè sigui totalment compatible amb els nostres fitxers, a costa d&#039;utilitzar més espai al disc.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;rclone mount rclonedrive: /home/user/rclonedrive/ --vfs-cache-mode full
@@ -136,7 +136,7 @@ By following this optimized prompt, you will generate an effective summary that 
 &lt;li&gt;Si no existeixen a SOURCE, s&#039;eliminaran de DESTINATION.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Si per qualsevol motiu no confiem en la SOURCE, podem afegir l&#039;etiqueta &lt;em&gt;--backup-dir&lt;/em&gt;*, que mourà a DESTINATION els fitxers que es modificarien com a resultat de la SOURCE.&lt;/p&gt;
-&lt;h3 id=&quot;texmaker&quot;&gt;TexMaker:&lt;/h3&gt;
+&lt;h2 id=&quot;texmaker&quot;&gt;TexMaker:&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;Primer, instal·lem TexLive amb &lt;code&gt;sudo apt-get install texlive-full&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Continuem amb TexMaker &lt;code&gt;sudo apt-get install texmaker&lt;/code&gt;.&lt;/li&gt;
@@ -210,7 +210,7 @@ By following this optimized prompt, you will generate an effective summary that 
 &lt;p&gt;La meva jornada laboral s&#039;acaba i vaig a casa, la mateixa rutina de sempre. Una rutina sense propòsit destrueix la salut mental, t&#039;mata a poc a poc ─&lt;em&gt;També em matarà a mi?&lt;/em&gt;─.&lt;/p&gt;
 &lt;p&gt;Són les nou del vespre i em fico al llit amb la mateixa esperança de sempre, desitjant no despertar-me demà. És impossible dormir perquè els meus estimats veïns tornen a discutir, com cada nit. Abans ho feien amb una mica més de discreció, però ara que tot el veïnat ho sap, ja els és igual. No sé si una vida plena de drama seria més interessant. No ho sé, crec que prefereixo tenir els meus drames interns, en la meva ment.&lt;/p&gt;
 &lt;p&gt;Continuen discutint, així que em refugio en els meus pensaments fins que l&#039;esgotament mental em vènc i m&#039;adormo. Sempre són els mateixos records, els mateixos escenaris, en el meu cas sempre és el mateix enigma:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Què neix cada nit i mor a cada albada?&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;qu-neix-cada-nit-i-mor-a-cada-albada&quot;&gt;Què neix cada nit i mor a cada albada?&lt;/h2&gt;
 &lt;p&gt;La resposta és &lt;strong&gt;esperança&lt;/strong&gt;. La primera vegada que vaig llegir aquest enigma, no el vaig entendre, però amb el temps, normalment quan has tocat fons a la teva vida, acabes entenent-lo.&lt;/p&gt;
 &lt;p&gt;Vas al llit cada nit amb un objectiu, una intenció. Saps quins passos has de fer per sortir del forat de merda on ets. Conscient de la teva misèria, saps que vas dir el mateix ahir a la nit, i la nit anterior, però aquesta vegada és diferent.
 Ets prou madur per saber que els teus fracassos del passat no poden carregar el teu futur, amb la humilitat de qui sap que l&#039;orgull et pot encegar ─&lt;em&gt;aquesta vegada ho aconseguiràs, demà ho aconseguiràs tot&lt;/em&gt;─.&lt;/p&gt;
@@ -230,7 +230,7 @@ Ets prou madur per saber que els teus fracassos del passat no poden carregar el 
 &lt;p&gt;No importa si l&#039;entrada és suculenta en debat, en informació, o si és una entrada de contingut regular, breu, programada, el tema és que &lt;strong&gt;la gran majoria dels comentaris són d&#039;índole insubstancial: no aporten res&lt;/strong&gt;. Quan em refereixo al fet que no aporten res simplement dic que no afegeixen valor a la discussió &lt;em&gt;per se&lt;/em&gt;, sinó que són veus de farciment, poden estar o no d&#039;acord amb el locutor i per això no han de ser millor o pitjor en matèria de contingut.&lt;/p&gt;
 &lt;p&gt;Un comentari insubstancial pot ser un &lt;em&gt;«Moltes gràcies, ets un geni»&lt;/em&gt; com un &lt;em&gt;«Vaja merda d&#039;escrit, ets brossa, que ho sàpigues»&lt;/em&gt;. O sigui, no cal que els comentaris es converteixin tampoc en una tesi per a un doctorat però simplement les respostes normalment manquen de base crítica, i per tant, són només un problema que està posat al costat del que té i manté un blog.&lt;/p&gt;
 &lt;p&gt;En certa manera entenc aquesta insubstancialitat: és un problema del mateix mitjà. &lt;strong&gt;Aquest mitjà no està ben dissenyat per a la discussió&lt;/strong&gt;, per a això hi ha altres mitjans molt millors que un blog: fòrums de discussió, Facebook, Twitter, i un munt de llocs on poder elaborar el debat que vulguis.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Per què fer ús del correu electrònic és millor?&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;per-qu-fer-s-del-correu-electrnic-s-millor&quot;&gt;Per què fer ús del correu electrònic és millor?&lt;/h2&gt;
 &lt;p&gt;Primer perquè ens treu a nosaltres (els autors dels blogs) la càrrega de moderar. El problema simplement se&#039;n va d&#039;un cop de ploma i era un problema complicat perquè un ha de ser jutge i botxí en molts casos, la qual cosa genera una quantitat de molèsties insuperables.&lt;/p&gt;
 &lt;p&gt;Els correus que solem obtenir tenen una càrrega més personal. Cada correu està dirigit cap a una persona o entitat en concret i no per a una audiència. Tenen un emissari i un receptor, això ens fa més cauts amb la nostra elecció de paraules.&lt;/p&gt;
 &lt;p&gt;I finalment, i el més important per als lectors, &lt;strong&gt;els comentaris canvien permanentment la forma en què els autors escriuen&lt;/strong&gt;. En lloc d&#039;escriure per a tothom, el locutor escriu anticipant-se i esperant la resposta a l&#039;escrit als comentaris.&lt;/p&gt;

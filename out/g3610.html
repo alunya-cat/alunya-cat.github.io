@@ -31,7 +31,7 @@
 <hr>
 <p>Deixa de llegir, de debò, no ho facis. La publicació d'avui no és un reflexió, és només que el meu ordinador m'ha estat donant problemes i he esborrat per accident diverses coses.</p>
 <p>Com que la cosa no pinta bé i podria deixar de funcionar en qualsevol moment, seria un desastre perdre tota la informació i l'ergonomia de treball que he cultivat amb tant d'esforç. Per això, aniré apuntant tot el que he fet servir per si en necessito recopilar la configuració i els programes en una instal·lació neta en el futur.</p>
-<h3 id="installaci-de-debian">Instal·lació de Debian</h3>
+<h2 id="installaci-de-debian">Instal·lació de Debian</h2>
 <p>Si decidiu instal·lar aquesta meravellosa distribució de Linux, us recomano que utilitzeu els paràmetres següents:</p>
 <ul>
 <li>Un arrel (root) Ext4 &quot;/&quot;, d'aproximadament 120 GB, per al sistema operatiu i arrencable.</li>
@@ -48,13 +48,13 @@
 <p>Si per alguna raó no podem editar-lo per falta de permisos d'usuari, hem de permetre que el nostre usuari utilitzi l'ordre amb <code>usermod -aG sudo USUARI</code>.
 Finalment, fem un <em>reboot now</em> perquè els canvis tinguin efecte.</p>
 <p>De vegades, els passos anteriors no solucionen el problema i l'única opció és utilitzar <em>sudo</em> amb cada comanda, ja que no se'ns permet mantenir-nos com a superusuaris o accedir a <em>root</em> escrivint <strong>su</strong> a la consola (els canvis fets amb root es quedaran a la carpeta root i no a la carpeta de l'usuari del sistema).</p>
-<h3 id="installaci-dels-controladors-nvidia">Instal·lació dels controladors Nvidia.</h3>
+<h2 id="installaci-dels-controladors-nvidia">Instal·lació dels controladors Nvidia.</h2>
 <p>Fem servir els repositoris de Debian seguint la guia a <a href="https://wiki.debian.org/NvidiaGraphicsDrivers">https://wiki.debian.org/NvidiaGraphicsDrivers</a>.
 Presteu especial atenció a la part sobre l'ús de Wayland a Debian, on primer hem de comprovar si <code># cat /sys/module/nvidia_drm/parameters/modeset</code> retorna un <em>Y</em> o un <em>N</em>.
 Si retorna un <em>N</em>, hem d'afegir <code>options nvidia-drm modeset=1</code> al fitxer <em>/etc/modprobe.d/nvidia-options.conf</em> amb <em>sudo nano</em>.
 Després d'això, podem reiniciar sempre que no tinguem la intenció d'utilitzar l'opció per suspendre l'ordinador. En el nostre cas, sí que ho volem fer, i per tant hem d'afegir l'opció <code>options nvidia NVreg_PreserveVideoMemoryAllocations=1</code> al fitxer <em>/etc/modprobe.d/nvidia-options.conf</em> amb <em>sudo nano</em>.</p>
 <p>A més, a Wayland hi ha un error amb els controladors de Nvidia que provocarà molts parpelleigs a les aplicacions perquè l'<strong>opció GSP</strong> està habilitada. Per desactivar-la, executem <em>sudo nano /etc/modprobe.d/nvidia-gsp-disable.conf</em> i afegim <code>options nvidia NVreg_EnableGpuFirmware=0</code>.</p>
-<h3 id="prompts-per-a-ollama-qwen34b">Prompts per a Ollama (qwen3:4B).</h3>
+<h2 id="prompts-per-a-ollama-qwen34b">Prompts per a Ollama (qwen3:4B).</h2>
 <p>Normalment, faig servir la IA local per obtenir una URL modificada per a un vídeo de YouTube perquè estigui a punt per fer servir amb <strong>yt-dlp</strong> i pugui descarregar la transcripció en anglès sense els segells de temps.</p>
 <pre><code>You're a bot and you will  refactor the next code with the URL I give you on the brackets of &lt;URL_GOES_HERE_WITHOUT_QUOTES&gt;.  Don't think, just give me the code with the URL changed. Don't give me any summary, just the code.
 
@@ -72,7 +72,7 @@ Give me the output within a code block so I can copy it
 
 By following this optimized prompt, you will generate an effective summary that encapsulates the essence of the given text in a clear, concise, and reader-friendly manner.
 </code></pre>
-<h3 id="cpies-de-seguretat-darxius-amb-rclone">Còpies de seguretat d'arxius amb RClone</h3>
+<h2 id="cpies-de-seguretat-darxius-amb-rclone">Còpies de seguretat d'arxius amb RClone</h2>
 <p>Per fer còpies de seguretat utilitzant el <strong>mètode 3-2-1</strong> (3 còpies de les dades, 1 original i 2 còpies, en 2 suports diferents, una de les quals és fora de les instal·lacions) farem servir RClone (<code>sudo -v ; curl https://rclone.org/install.sh | sudo bash</code>).</p>
 <p>Un cop hàgim configurat RClone (en el meu cas, seria <em>Original+HDD+GDrive</em>), farem servir el codi següent per muntar el GDrive com un &quot;disc local&quot;, especificant que l'emmagatzematge de GDrive (rclonedrive:) estigui muntat al nostre emmagatzematge local (<em>/home/user/rclonedrive</em>) amb l'opció <code>--vfs-cache-mode full</code> perquè sigui totalment compatible amb els nostres fitxers, a costa d'utilitzar més espai al disc.</p>
 <pre><code>rclone mount rclonedrive: /home/user/rclonedrive/ --vfs-cache-mode full
@@ -87,7 +87,7 @@ By following this optimized prompt, you will generate an effective summary that 
 <li>Si no existeixen a SOURCE, s'eliminaran de DESTINATION.</li>
 </ul>
 <p>Si per qualsevol motiu no confiem en la SOURCE, podem afegir l'etiqueta <em>--backup-dir</em>*, que mourà a DESTINATION els fitxers que es modificarien com a resultat de la SOURCE.</p>
-<h3 id="texmaker">TexMaker:</h3>
+<h2 id="texmaker">TexMaker:</h2>
 <ol>
 <li>Primer, instal·lem TexLive amb <code>sudo apt-get install texlive-full</code>.</li>
 <li>Continuem amb TexMaker <code>sudo apt-get install texmaker</code>.</li>
