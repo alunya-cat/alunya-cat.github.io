@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Oriol Àvila Grijalva</title>
-<meta name="description" content="" />
+<meta name="description" content="La meva experiència al donar-li una segona vida a un portàtil com a servidor." />
 <meta name="keywords" content="tecnologia" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <link rel="stylesheet" href="style.css" />
@@ -20,70 +20,779 @@
   </nav>
 </header>
 <h1 class="post-title">Configuració de l&#039;HP 250 G5</h1>
-    <p class="post-description"></p>
+    <p class="post-description">La meva experiència al donar-li una segona vida a un portàtil com a servidor.</p>
   <div class="post-meta">
-    <time datetime="2026-01-20">Gener 20, 2026</time>
-    · 2 min
-    · <span style="float:none;">()</span>
+    <time datetime="2026-01-30">Gener 30, 2026</time>
+    · 25 min
+    · <span style="float:none;">(2026-02-26)</span>
     · <a href="topics/tecnologia.html">#tecnologia</a>
 
   </div>
 <hr>
-<p><img src="assets/hp250g5-diagrama.png" alt=""></p>
-<p>Aquest diagrama destaca tres fluxos d'informació crítics que es produeixen a la vostra xarxa:</p>
+<p>En aquest article vull compartir l'experiència i els motius que m'han portat a transformar un portàtil sense cap utilitat prèvia a ser el meu propi servidor, així com els seus avantatges i inconvenients que m'ha portat aquesta decisió.</p>
+<p>Com molts de nosaltres que fem servir serveis al núvol com el correu electrònic, l'emmagatzematge de fitxers, les fotos, etcètera, vaig començar a buscar maneres de reduir la meva dependència de Google. En particular, em preocupava que si Google algun dia decidís tancar o canviar els seus termes de servei, perdés l'accés a les meves dades. Tanmateix, el meu desig d'estar menys dependent no es limitava només a Google, sinó també a altres serveis de tercers.</p>
+<p>Avui puc dir amb orgull que he «des-googlitzat» la meva vida digital. Allotjo el meu propi servidor de calendari i diari, a més de gestionar els meus documents, fotos, vídeos i altres serveis.</p>
+<p>Sóc (relativament) el propietari de la meva informació personal i, tot i que podria haver optat per un servidor autoallotjat per al meu correu electrònic, vaig triar seguir utilitzant els serveis de Google per comoditat més que per cap altra cosa.</p>
+<blockquote>
+<p>En un futur m'agradaria tindre automatitzada les còpies de seguretat de les dades en comptes d'anar fent còpies esporàdiques seguint la norma 3-2-1 <em>(3 còpies en 2 sistemes diferents i 1 d'ells fora del meu abast)</em>.</p>
+</blockquote>
+<h2 id="1-elecci-del-servidor">1. Elecció del servidor</h2>
+<p>El cost de muntar un servidor domèstic depèn del tipus de servidor que muntis i dels serveis que vulguis instal·lar. En el meu cas, vaig muntar un servidor en un portàtil que tenia la bateria i un parell de tecles trencades, així que el meu cost d'adquisició és zero.
+També és important tenir en compte no només el cost del maquinari, sinó també el consum elèctric del servidor (el portàtil consumeix entre 8W i 15W <em>-sense tindre en compte el consum dels discs durs adicionals-</em>).</p>
+<p>Si ho mires des de la perspectiva que en autoallotjar certs serveis pots estalviar en quotes de subscripció com les de Google Drive o OneDrive, la inversió comença a tenir sentit.</p>
+<p>El portàtil trencat del qual us parlava és un <strong>HP 250 G5</strong> de 2017 amb el processador i3-5005U i 8GB DDR3L de RAM.</p>
+<h2 id="2-installaci-i-configuraci-del-sistema-operatiu">2. Instal·lació i configuració del sistema operatiu</h2>
+<p>M'he decantat per Debian bàsicament perquè m'agrada la seva filosofia i fa anys que utilitzo la seva branca <em>testing</em> com a ordinador personal. Prefereix-ho estalviar-me el procés d'instal·lació del sistema operatiu, però bàsicament és crear un USB <em>bootable</em> amb l'ISO de Debian, utilitzar tot el disc dur pel sistema sense complicacions de particions, seleccionar l'opció del servidor SSH perquè s'instal·li i l'entorn gràfic que vulguem (tot i que posteriorment el desactivarem).</p>
+<h3 id="21-treballar-amb-la-tapa-tancada">2.1. Treballar amb la tapa tancada</h3>
+<p>Com no volem que l'ordinador s'apagui quan tanquem la tapa hem d'editar la configuració de <em>logind</em>:</p>
+<pre><code class="language-bash"><span class="hl-identifier">sudo</span> <span class="hl-identifier">nano</span> <span class="hl-default">/</span><span class="hl-identifier">etc</span><span class="hl-default">/</span><span class="hl-identifier">systemd</span><span class="hl-default">/</span><span class="hl-identifier">logind</span><span class="hl-default">.</span><span class="hl-identifier">conf</span>
+</code></pre>
+<p>En aquesta busquem la línia que diu <code>#HandleLidSwitch=suspend</code> i traiem <strong>#</strong> i canviem el <strong>suspend</strong> per <strong>ignore</strong>. Un cop fet, guardem (<em>Ctrl+O</em>) i sortim (<em>Ctrl+X</em>).</p>
+<h3 id="22-treballar-amb-la-pantalla-apagada">2.2. Treballar amb la pantalla apagada</h3>
+<p>Per maximitzar l'estalvi d'electricitat desactivarem la pantalla al cap de pocs segons que el sistema s'inici. Per fer-ho editem el <strong>GRUB</strong> amb:</p>
+<pre><code class="language-bash"><span class="hl-identifier">sudo</span> <span class="hl-identifier">nano</span> <span class="hl-default">/</span><span class="hl-identifier">etc</span><span class="hl-default">/</span><span class="hl-identifier">default</span><span class="hl-default">/</span><span class="hl-identifier">grub</span>
+</code></pre>
+<p>Seguidament, busquem la línia <code>GRUB_CMDLINE_LINUX_DEFAULT</code> i li afegim <code>consoleblank=30</code> perquè s'apagui al cap de 30 segons. Quedant la configuració del GRUB tal que així:</p>
+<pre><code class="language-bash"><span class="hl-variable">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="hl-operator">=</span><i class="hl-string">&quot;quiet consoleblank=30&quot;</i>
+</code></pre>
+<p>Guardem (<em>Ctrl+O</em>) i sortim (<em>Ctrl+X</em>). Per actualitzar el GRUB fem <code>sudo update-grub</code> i reiniciem l'ordinador (<code>sudo reboot</code>).</p>
+<h2 id="3-connexi-ssh-amb-el-servidor">3. Connexió SSH amb el servidor</h2>
+<p>Un cop tenim el portàtil configurat és hora de connectar-se mitjançant un ordinador per poder portar a terme les tasques més fàcilment, però si deixem que el rúter assigni al portàtil una IP aleatòria cada cop que aquest és reinici, un dia ens modificaran la IP i ens serà impossible accedir als nostres serveis.</p>
+<p>Abans d'escriure res, hem de saber com Debian anomena el nostre cable de xarxa. Executem això a la terminal:</p>
+<pre><code class="language-bash"><span class="hl-identifier">ip</span> <span class="hl-default">-c</span> <span class="hl-identifier">link</span> <span class="hl-identifier">show</span>
+</code></pre>
+<p>Veurem una llista:</p>
+<ol>
+<li>Ignorem <code>lo</code> (Loopback).</li>
+<li>Ignorem els que diuen <code>docker0</code>, <code>br-xxxx</code> o <code>vethxxxx</code> (són de Docker si ja l'hem instal·lat).</li>
+<li>El nostre cable de xarxa tindrà un nom estrany com ara <strong><code>enp3s0</code></strong>, <strong><code>eth0</code></strong>, <strong><code>eno1</code></strong> o <strong><code>wlp2s0</code></strong> (si és Wi-Fi).</li>
+</ol>
+<p>Apuntem aquest últim nom i modificarem l'arxiu que s'encarrega d'administrar les xarxes: <code>sudo nmtui</code>. Veurem una eina gràfica a la terminal i utilitzant les fletxes del teclat:</p>
+<ul>
+<li>Seleccionem <strong>&quot;Edita una connexió&quot;</strong> i premem Retorn.</li>
+<li>Seleccionem la nostra connexió per cable (normalment anomenada &quot;Connexió amb cable 1&quot; o el nom de la vostra targeta <code>enp...</code>). Premem Retorn.</li>
+<li>Ens desplacem cap avall fins a <strong>Configuració d'IPv4</strong>.</li>
+<li>Canviem <code>&lt;Automatic&gt;</code> per a <strong><Manual></strong>.</li>
+<li>Fem clic a <strong><Show></strong> per mostrar les opcions.<ul>
+<li><strong>Adreces:</strong> Introduïm <code>192.168.0.19/24</code> (el <code>/24</code> és important, us estalvia haver d'introduir la màscara).</li>
+<li><strong>Porta d'enllaç:</strong> <code>192.168.0.1</code></li>
+<li><strong>Servidors DNS:</strong> <code>1.1.1.1</code></li>
+<li>Ens desplacem fins a la part inferior i seleccionem <strong><Accept></strong>.</li>
+</ul>
+</li>
+<li>Tanquem el menú (<code>&lt;Back&gt;</code> -&gt; <code>&lt;Exit&gt;</code>).</li>
+</ul>
+<p>Ara que l'hem configurat, reiniciem la connexió de manera segura:</p>
+<pre><code class="language-bash"><span class="hl-identifier">sudo</span> <span class="hl-identifier">nmcli</span> <span class="hl-identifier">connection</span> <span class="hl-identifier">reload</span>
+<span class="hl-identifier">sudo</span> <span class="hl-identifier">nmcli</span> <span class="hl-identifier">networking</span> <span class="hl-identifier">off</span> <span class="hl-operator">&amp;</span><span class="hl-operator">&amp;</span> <span class="hl-identifier">sudo</span> <span class="hl-identifier">nmcli</span> <span class="hl-identifier">networking</span> <span class="hl-identifier">on</span>
+</code></pre>
+<p>O simplement reiniciem el servidor (<code>sudo reboot</code>) i comprovem que l'IP del nostre servidor és la que hem posat amb <code>ip addr show YOUR_INTERFACE</code>. Per connectar-nos amb el servidor mitjançant SSH posarem a la terminal de l'ordinador principal <code>ssh usuari@IP</code>.</p>
+<h2 id="4-gestionant-els-nostres-serveis">4. Gestionant els nostres serveis</h2>
+<p>Per la seva gestió he decidit utilitzar Docker i els seus contenidors. Per la instal·lació de Docker Engine, crec que és millor us guieu per la pàgina web oficial de (Docker)[<a href="https://docs.docker.com/engine/install/debian/#install-using-the-repository">https://docs.docker.com/engine/install/debian/#install-using-the-repository</a>].</p>
+<p>A l'hora de gestionar a mi m'agrada organitzat els projectes dintre de carpetes i per fer-ho normalment faig <code>cd docker</code> i <code>mkdir projecte</code>. Seguidament <code>cd projecte</code> i <code>nano docker-compose.yml</code>.</p>
+<blockquote>
+<p><em>El contingut de <strong>docker-compose.yml</strong> de cada projecte serà detallat en els següents apartats.</em></p>
+</blockquote>
+<p>Alguns comandaments que faig servir normalment són:</p>
+<ul>
+<li><code>docker compose up -d</code> per començar un projecte nou.</li>
+<li><code>docker ps</code> per veure quins projectes s'estn executant.</li>
+<li><code>docker container list</code> per veure tots els contenidors que tenen un projecte establert.</li>
+<li><code>docker container start/stop projecte</code> per iniciar o aturar un projecte.</li>
+</ul>
+<h2 id="5-cpies-de-seguretat-clonezilla">5. Còpies de seguretat (CloneZilla)</h2>
+<p>Ara ens trobem amb la part més important d'un servidor; les còpies de seguretat.
+Personalment utilitzo <strong>Clonezilla</strong> i las faig mensualment.</p>
+<p>Clonezilla, per defecte, guarda la mida del disc d'origen en les metadades de la imatge creada com a còpia de seguretat. Si fem una còpia d'un disc de 1TB (tot i que només s'utilitzin 100GB) no podrem restaurar-la en un disc d'una mida menor. Per evitar aquest conflicte podem:</p>
+<ul>
+<li>Restaurar-ho en un disc amb la mateixa capacitat o superior (però potser entren en una espiral d'augment de mides).</li>
+<li>Fraccionar el disc amb anterioritat i ficar una part del disc com a <em>no assignada</em>.</li>
+</ul>
+<p>Un cop tenim l'ISO de Clonezilla en un USB, seguim les següents passes per fer una còpia de seguretat:</p>
+<ol>
+<li>Preparació.</li>
+</ol>
+<ul>
+<li><strong>Pantalla d'inici:</strong> Triem la primera opció (VGA 800x600 o per defecte).</li>
+<li><strong>Idioma:</strong> <code>es_ES.UTF-8 Spanish</code>.</li>
+<li><strong>Teclat:</strong> <code>Don't touch keymap</code>.</li>
+<li><strong>Menú d'inici:</strong> Aquí és on canvia la cosa. <strong>No triem &quot;Start Clonezilla&quot;</strong>.<ul>
+<li>Triem: <strong><code>Enter_shell</code></strong>.</li>
+<li>Premem <code>2</code> (o Enter) per entrar a la terminal.</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>Configurar SSH.</li>
+</ol>
+<ul>
+<li>Fer-te root: <code>sudo -i</code>.</li>
+<li>Configurar la meva IP manualment: <code>ip address add 192.168.1.20/24 dev eth0</code>.
+<em>Nota: Verifica primer el nom de la teva targeta de xarxa amb l'ordre <code>ifconfig</code> (pot ser eth0, enp3s0, etc.).</em></li>
+<li>Configurar la contrasenya per a l'usuari &quot;user&quot; (necessària per a iniciar sessió per SSH): <code>passwd user</code>.</li>
+<li>Iniciar el servei SSH: <code>systemctl start ssh</code>.</li>
+</ul>
+<ol start="3">
+<li>Connexió SSH.</li>
+</ol>
+<ul>
+<li>Dintre d'una terminal: <code>ssh user@192.168.1.20</code>.</li>
+<li>Iniciem la configuració de Clonezilla: <code>start clonezilla</code>.</li>
+</ul>
+<ol start="4">
+<li>Configuració de Clonezilla.</li>
+</ol>
+<ul>
+<li><strong>Modo:</strong> <code>device-image</code> (Disco/Partició a imatge).</li>
+<li><strong>Muntatge:</strong> <code>local_dev</code> (Muntar dispositiu local). Et demanarà que prems <code>Enter</code> per escanejar els USB.</li>
+<li><strong>Selecció de la destinació:</strong> Veuràs una llista de discs. Busca el teu <strong>disc extern USB</strong>.</li>
+<li><strong>Directori:</strong> Trieu el directori arrel <code>/</code>.</li>
+<li><strong>Modo d'execució:</strong> <code>Beginner</code> (Principiant).</li>
+<li><strong>Acció:</strong> <code>savedisk</code> (Guardar el disc local com a imatge).</li>
+<li><strong>Nom:</strong> Escriviu el nom (p. ex.: <code>backup-server-HP250</code>).</li>
+<li><strong>Origen:</strong> Seleccioneu el <strong>Disc intern de 450 GB</strong> (sda).</li>
+<li><strong>Compressió:</strong> Al triar el mode <em>Beginner</em> s'aplicarà automàticament (normalment zstd).</li>
+<li><strong>Comprovació:</strong> <code>sfsck</code> (Saltar la comprovació del sistema de fitxers d'origen / Skip checking source fs).</li>
+<li><strong>Xifratge:</strong> <code>senc</code> (Sense xifrar).</li>
+<li><strong>Acció en finalitzar:</strong> <code>poweroff</code> (Apagar) o <code>reboot</code>.</li>
+</ul>
+<h2 id="6-conclusions-i-diagrama">6. Conclusions i diagrama</h2>
+<p>Una de les grans lliçons de crear i mantenir un servidor domèstic és que has de tenir ganes d'aprendre i, sobretot, temps. Al llarg del procés, segur que et trobaràs amb problemes tècnics o necessitaràs adquirir coneixements que abans no tenies.</p>
+<p>La millor part és que, passi el temps que passi, sempre estaràs aprenent alguna cosa nova. Ja sigui una actualització, un pegat de seguretat o un canvi de maquinari, sempre hi haurà alguna cosa per investigar i aprendre. Això és el que fa que el procés sigui tan interessant i gratificant, però també exigent.</p>
+<p><img src="assets/hp250g5-diagrama.webp" alt=""></p>
+<p>Aquest diagrama destaca tres fluxos d'informació crítics dintre de la meva xarxa:</p>
 <ol>
 <li><strong>El flux DHCP (línies de punt):</strong><ul>
-<li>Quan engegueu el vostre <strong>ordinador personal</strong>, aquest no sap quina adreça IP té ni a qui ha de demanar les pàgines web.</li>
-<li>Envia una consulta a la xarxa. El servei <strong>DHCP</strong> del vostre servidor recepciona aquesta consulta i respon: «La vostra IP és 192.168.X.X i el vostre servidor DNS és AdGuard».</li>
+<li>Quan engego el meu <strong>ordinador personal</strong>, aquest no sap quina adreça IP té ni a qui ha de demanar les pàgines web.</li>
+<li>Envia una consulta a la xarxa. El servei <strong>DHCP</strong> del servidor recepciona aquesta consulta i respon: «La vostra IP és 192.168.X.X i el vostre servidor DNS és AdGuard».</li>
 </ul>
 </li>
 <li><strong>El flux DNS/AdGuard (línies sòlides fines):</strong><ul>
-<li>Quan voleu accedir a un lloc web des del vostre PC (o una aplicació intenta carregar publicitat), el vostre PC pregunta al contenidor <code>adguard</code>: «Quina és l'adreça IP d'aquest domini?».</li>
-<li>Si és publicitat, AdGuard la bloqueja. Si és un lloc web legítim, AdGuard consulta Internet a través del encaminador i retorna la resposta al vostre PC.</li>
+<li>Quan accedeix-ho a un lloc web des del PC (o una aplicació intenta carregar publicitat), el PC pregunta al contenidor <code>adguard</code>: «Quina és l'adreça IP d'aquest domini?».<ul>
+<li>Si és publicitat, AdGuard la bloqueja.</li>
+<li>Si és un lloc web legítim, AdGuard consulta Internet a través de l'encaminador i retorna la resposta al PC.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><strong>Flux d'accés a les aplicacions (línies dobles i gruixudes):</strong><ul>
-<li>Un cop el vostre PC té una adreça IP i pot resoldre noms, obriu un navegador per utilitzar els vostres serveis (p. ex., Mealie per a receptes o FreshRSS per a notícies).</li>
-<li>El vostre PC es connecta directament als ports exposats per aquests contenidors dins del bloc &quot;Aplicacions&quot;.</li>
+<li>El PC es connecta directament als ports exposats per aquests contenidors dins del bloc &quot;Aplicacions&quot;.</li>
 </ul>
 </li>
 </ol>
-<h2 id="contenidors-docker">Contenidors Docker</h2>
-<h3 id="adguard">Adguard</h3>
-<p>192.168.X.Y:3000</p>
-<h2 id="contenidors-daplicacions">Contenidors d'aplicacions</h2>
-<h3 id="freshrss">FreshRSS</h3>
-<p>192.168.X.X:8080</p>
-<h3 id="bentopdf">BentoPDF</h3>
-<p>192.168.X.X:8081</p>
-<h3 id="trip">Trip</h3>
-<p>192.168.X.X:8082</p>
-<h3 id="tasktrove">TaskTrove</h3>
-<p>192.168.X.X:8083</p>
-<h3 id="eigenfocus">Eigenfocus</h3>
-<p>192.168.X.X:8084</p>
-<h3 id="metube">MeTube</h3>
-<p>192.168.X.X:8085</p>
-<h3 id="languagetool">LanguageTool</h3>
-<p>192.168.X.X:8086</p>
-<h3 id="yamtrack">YamTrack</h3>
-<p>192.168.X.X:8087</p>
-<h3 id="lubelogger">LubeLogger</h3>
-<p>192.168.X.X:8088</p>
-<h3 id=""></h3>
-<p>192.168.X.X:8089</p>
-<h3 id="scrutiny">Scrutiny</h3>
-<p>192.168.X.X:8090</p>
-<h3 id="-1"></h3>
-<p>192.168.X.X:8091</p>
-<h3 id="filewizard">Filewizard</h3>
-<p>192.168.X.X:8092</p>
-<h3 id="changedetection">ChangeDetection</h3>
-<p>192.168.X.X:5555</p>
-<h3 id="sun">Sun</h3>
-<p>192.168.X.X:3002</p>
-<h3 id="mealie">Mealie</h3>
-<p>192.168.X.X:9925</p>
+<h2 id="7-contenidors-docker">7. Contenidors Docker</h2>
+<h3 id="adguard-home--3000">Adguard Home ~ :3000</h3>
+<p>Servidor DNS que bloqueja anuncis i rastrejadors a tota la xarxa local. La seva configuració és més complexa perquè el meu rúter no accepta canviar els DNS (maleïda Vodafone) i estic obligat a utilitzar el servidor com a servei DHCP pel meu rúter.</p>
+<p>Primer crearem el nostre servei d'Adguard amb Docker-Compose mitjançant:</p>
+<pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">adguardhome</span><span class="hl-default">:</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">adguard</span><span class="hl-default">/</span><span class="hl-identifier">adguardhome</span>
+    <span class="hl-identifier">container_name</span><span class="hl-default">:</span> <span class="hl-identifier">adguardhome</span>
+    <span class="hl-identifier">restart</span><span class="hl-default">:</span> <span class="hl-identifier">unless</span><span class="hl-default">-stopped</span>
+    
+    <i class="hl-comment"># Asignem la nostra xarxa creada anteriorment.</i>
+    <span class="hl-identifier">networks</span><span class="hl-default">:</span>
+      <span class="hl-identifier">adguard_net</span><span class="hl-default">:</span>
+        <span class="hl-identifier">ipv4_address</span><span class="hl-default">:</span> <i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.200</i>  <i class="hl-comment"># &lt;--- LA IP QUE VOLS PER ADGUARD</i>
+    <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-default">.</span><span class="hl-default">/</span><span class="hl-identifier">work</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">opt</span><span class="hl-default">/</span><span class="hl-identifier">adguardhome</span><span class="hl-default">/</span><span class="hl-identifier">work</span>
+      <span class="hl-default">-</span> <span class="hl-default">.</span><span class="hl-default">/</span><span class="hl-identifier">conf</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">opt</span><span class="hl-default">/</span><span class="hl-identifier">adguardhome</span><span class="hl-default">/</span><span class="hl-identifier">conf</span>
+
+<span class="hl-identifier">networks</span><span class="hl-default">:</span>
+  <span class="hl-identifier">adguard_net</span><span class="hl-default">:</span>
+    <span class="hl-identifier">driver</span><span class="hl-default">:</span> <span class="hl-identifier">macvlan</span>
+    <span class="hl-identifier">driver_opts</span><span class="hl-default">:</span>
+      <span class="hl-identifier">parent</span><span class="hl-default">:</span> <span class="hl-identifier">enp7s0</span>  <i class="hl-comment"># &lt;--- CANVIEM AIXÒ PEL NOSTRE NOM DEL CABLE DE XARXA (ex. enp3s0)</i>
+    <span class="hl-identifier">ipam</span><span class="hl-default">:</span>
+      <span class="hl-identifier">config</span><span class="hl-default">:</span>
+        <span class="hl-default">-</span> <span class="hl-identifier">subnet</span><span class="hl-default">:</span> <i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.0</i><span class="hl-default">/</span><i class="hl-number">24</i>    <i class="hl-comment"># &lt;--- EL NOSTRE RANG DE XARXA</i>
+          <span class="hl-identifier">gateway</span><span class="hl-default">:</span> <i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.1</i>      <i class="hl-comment"># &lt;--- LA IP DEL NOSTRE RÚTER</i>
+</code></pre>
+<p>Seguidament, entrem al nostre panell d'Adguard amb la IP que li hem assignat i accedim a <strong>Configuració &gt; Configuració de DHCP</strong> i aquí omplim les dades de la següent manera:</p>
+<ol>
+<li><strong>Interfície de passarel·la:</strong> <code>192.168.0.1</code> (Aquesta és l'adreça IP del vostre rúter).</li>
+<li><strong>Màscara de subxarxa:</strong> <code>255.255.255.0</code></li>
+<li><strong>Rang d'adreces IP:</strong> El nostre servidor es troba en el rang <code>.200</code>. Per evitar conflictes, establirem un rang que NO arribi al 200.</li>
+</ol>
+<ul>
+<li>Des de: <code>192.168.0.50</code></li>
+<li>Fins a: <code>192.168.0.190</code></li>
+</ul>
+<ol start="4">
+<li><strong>Durada del lloguer:</strong> Deixeu-ho com està (normalment 86400).</li>
+<li><strong>MOLT IMPORTANT!</strong> No fem clic a &quot;Activa el servidor DHCP&quot; encara. Fem clic al botó que normalment apareix a sota per a <strong>&quot;Comprovar conflictes&quot;</strong>. Sortirà en vermell: <em>&quot;S'ha detectat un altre servidor DHCP a la xarxa&quot;</em>. Això és bo! Vol dir que l'AdGuard veu el rúter.</li>
+</ol>
+<p>Ara n'anirem a la IP del nostre rúter i accedim amb l'usuari i contrasenya per canviar posteriorment, si fos necessari, al mode expert per poder modificar l'apartat <strong>Servidor DHCP</strong> el qual desconnectarem per anar ràpidament a Adguard i <em>Habilitar servidor DHCP</em>.</p>
+<h4 id="configuraci-dadguard-home">Configuració d'Adguard Home</h4>
+<p>Aquesta és la meva configuració personal. Totes aquelles parts que no mencioni s'han de deixar tal com estan.</p>
+<ul>
+<li><strong>Configuració General</strong>:<ul>
+<li>Actualitzacions dels filtres: <em>24 hores</em>.</li>
+<li>Retenció d'estadístiques: <em>30 dies</em>.</li>
+</ul>
+</li>
+<li><strong>Configuració DNS</strong>:<ul>
+<li>Upstream DNS servers: <em>Parallel requests</em>.<pre><code>h3://dns.cloudflare.com/dns-query
+h3://1.1.1.1/dns-query
+h3://1.0.0.1/dns-query
+h3://[2606:4700:4700::1111]/dns-query
+h3://[2606:4700:4700::1001]/dns-query
+h3://unfiltered.adguard-dns.com/dns-query
+h3://94.140.14.140/dns-query
+h3://94.140.14.141/dns-query
+h3://dns.nextdns.io/
+</code></pre>
+</li>
+<li>Bootstrap DNS servers:<pre><code>1.1.1.1
+1.0.0.1
+2606:4700:4700::1111
+2606:4700:4700::1001
+94.140.14.140
+94.140.14.141
+2a10:50c0::1:ff
+2a10:50c0::2:ff
+</code></pre>
+</li>
+<li>Upstream timeout: <em>1000</em>.</li>
+<li>Rate limit: <em>1000</em>.</li>
+<li>EDNS: <em>deshabilitat</em>.</li>
+<li>DNSSEC: <em>habilitat</em>.</li>
+<li>Cache: <em>habilitat i optimístic</em>.</li>
+</ul>
+</li>
+<li><strong>Configuració de filtres</strong>: Aquests són els filtres que jo utilitzo:<ul>
+<li>Hagezi Pro.</li>
+<li>OISD.</li>
+<li>Phising Army.</li>
+<li>Hagezi Threat Intelligence Feeds.</li>
+<li>Dandelion Sprout's Anti-Malware List.</li>
+</ul>
+</li>
+</ul>
+<p>Aquestes llistes t'han de proporcionar una bona protecció general contra anuncis, seguidors i programari maliciós. Tanmateix, no es poden bloquejar tots els anuncis a nivell DNS. Necessitaràs una extensió o complement per gestionar els anuncis que AdGuard Home no bloqueja, com per exemple uBlock Origin a Firefox.</p>
+<h3 id="freshrss--8080">FreshRSS ~ :8080</h3>
+<p>Agregador de notícies i feeds RSS lleuger i ràpid per llegir blogs i premsa. Aquest a la seva vegada està configurat amb l'aplicació <strong>ReadYou</strong> a Android mitjançant l'API de FreshRSS i amb l'ajuda de <strong>TailScale</strong>.</p>
+<pre><code class="language-bash"><span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+  <span class="hl-identifier">data</span><span class="hl-default">:</span>
+  <span class="hl-identifier">extensions</span><span class="hl-default">:</span>
+
+<span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">freshrss</span><span class="hl-default">:</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">freshrss</span><span class="hl-default">/</span><span class="hl-identifier">freshrss</span><span class="hl-default">:</span><i class="hl-number">1.28</i><i class="hl-number">.0</i>
+    <i class="hl-comment"># # Optional build section if you want to build the image locally:</i>
+    <i class="hl-comment"># build:</i>
+    <i class="hl-comment">#   # Pick #latest (slow releases) or #edge (rolling release) or a specific release like #1.27.1</i>
+    <i class="hl-comment">#   context: https://github.com/FreshRSS/FreshRSS.git#latest</i>
+    <i class="hl-comment">#   dockerfile: Docker/Dockerfile-Alpine</i>
+    <span class="hl-identifier">container_name</span><span class="hl-default">:</span> <span class="hl-identifier">freshrss</span>
+    <span class="hl-identifier">hostname</span><span class="hl-default">:</span> <span class="hl-identifier">freshrss</span>
+    <span class="hl-identifier">restart</span><span class="hl-default">:</span> <span class="hl-identifier">unless</span><span class="hl-default">-stopped</span>
+    <span class="hl-identifier">logging</span><span class="hl-default">:</span>
+      <span class="hl-identifier">options</span><span class="hl-default">:</span>
+        <span class="hl-identifier">max</span><span class="hl-default">-size</span><span class="hl-default">:</span> <i class="hl-number">10</i><span class="hl-identifier">m</span>
+    <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">data</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">var</span><span class="hl-default">/</span><span class="hl-identifier">www</span><span class="hl-default">/</span><span class="hl-identifier">FreshRSS</span><span class="hl-default">/</span><span class="hl-identifier">data</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">extensions</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">var</span><span class="hl-default">/</span><span class="hl-identifier">www</span><span class="hl-default">/</span><span class="hl-identifier">FreshRSS</span><span class="hl-default">/</span><span class="hl-identifier">extensions</span>
+    <span class="hl-identifier">ports</span><span class="hl-default">:</span>
+      <i class="hl-comment"># If you want to open a port 8080 on the local machine:</i>
+      <span class="hl-default">-</span> <i class="hl-string">&quot;8080:80&quot;</i>
+    <span class="hl-identifier">environment</span><span class="hl-default">:</span>
+      <span class="hl-identifier">TZ</span><span class="hl-default">:</span> <span class="hl-identifier">Europe</span><span class="hl-default">/</span><span class="hl-identifier">Madrid</span>
+      <span class="hl-identifier">CRON_MIN</span><span class="hl-default">:</span> <i class="hl-string">&apos;3,33&apos;</i>
+      <span class="hl-identifier">TRUSTED_PROXY</span><span class="hl-default">:</span> <i class="hl-number">0</i>
+    <i class="hl-comment"># # Optional healthcheck section:</i>
+    <i class="hl-comment"># healthcheck:</i>
+    <i class="hl-comment">#   test: [&quot;CMD&quot;, &quot;cli/health.php&quot;]</i>
+    <i class="hl-comment">#   timeout: 10s</i>
+    <i class="hl-comment">#   start_period: 60s</i>
+    <i class="hl-comment">#   start_interval: 11s</i>
+    <i class="hl-comment">#   interval: 75s</i>
+    <i class="hl-comment">#   retries: 3</i>
+</code></pre>
+<h3 id="bentopdf--8081">BentoPDF ~ :8081</h3>
+<p>És un conjunt d'eines per a PDF que permet manipular, editar, fusionar i processar fitxers PDF directament al navegador.</p>
+<pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">bentopdf</span><span class="hl-default">:</span>
+    <i class="hl-comment"># simple mode - bentopdf/bentopdf-simple:latest</i>
+    <i class="hl-comment"># default mode - bentopdf/bentopdf:latest</i>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">bentopdf</span><span class="hl-default">/</span><span class="hl-identifier">bentopdf</span><span class="hl-default">-simple</span><span class="hl-default">:</span><span class="hl-identifier">latest</span>
+    <span class="hl-identifier">container_name</span><span class="hl-default">:</span> <span class="hl-identifier">bentopdf</span>
+    <span class="hl-identifier">restart</span><span class="hl-default">:</span> <span class="hl-identifier">unless</span><span class="hl-default">-stopped</span>
+    <span class="hl-identifier">ports</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <i class="hl-string">&apos;8081:8080&apos;</i>
+    <i class="hl-comment"># For IPv4-only environments</i>
+    <i class="hl-comment">#environment:</i>
+    <i class="hl-comment">#  - DISABLE_IPV6=true</i>
+</code></pre>
+<h3 id="trip--8082">Trip ~ :8082</h3>
+<p>És un rastrejador de mapes i planificador de viatges minimalista per visualitzar els teus punts d'interès i organitzar els detalls de la teva propera aventura.</p>
+<pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">app</span><span class="hl-default">:</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">ghcr</span><span class="hl-default">.</span><span class="hl-identifier">io</span><span class="hl-default">/</span><span class="hl-identifier">itskovacs</span><span class="hl-default">/</span><span class="hl-identifier">trip</span><span class="hl-default">:</span><i class="hl-number">1.34</i><i class="hl-number">.1</i>
+    <span class="hl-identifier">ports</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <i class="hl-number">8082</i><span class="hl-default">:</span><i class="hl-number">8000</i> <i class="hl-comment">#127.0.0.1: locally exposed, on port 8080 by default</i>
+    <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-default">.</span><span class="hl-default">/</span><span class="hl-identifier">storage</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">app</span><span class="hl-default">/</span><span class="hl-identifier">storage</span> <i class="hl-comment">#If you were previously using a named volume, follow https://github.com/itskovacs/trip/releases/tag/1.5.0 to migrate your data.</i>
+    <b class="hl-function">command</b><span class="hl-default">:</span> <span class="hl-operator">[</span><i class="hl-string">&quot;fastapi&quot;</i><span class="hl-default">,</span> <i class="hl-string">&quot;run&quot;</i><span class="hl-default">,</span> <i class="hl-string">&quot;/app/trip/main.py&quot;</i><span class="hl-default">,</span> <i class="hl-string">&quot;--host&quot;</i><span class="hl-default">,</span> <i class="hl-string">&quot;0.0.0.0&quot;</i><span class="hl-operator">]</span>
+</code></pre>
+<h3 id="tasktrove--8083">TaskTrove ~ :8083</h3>
+<p>Gestor de tasques. No hi ha més que explicar, simplement el millor que he provat.</p>
+<pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">tasktrove</span><span class="hl-default">:</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">ghcr</span><span class="hl-default">.</span><span class="hl-identifier">io</span><span class="hl-default">/</span><span class="hl-identifier">dohsimpson</span><span class="hl-default">/</span><span class="hl-identifier">tasktrove</span><span class="hl-default">:</span><span class="hl-identifier">v0</span><i class="hl-number">.12</i><i class="hl-number">.4</i>
+    <span class="hl-identifier">container_name</span><span class="hl-default">:</span> <span class="hl-identifier">tasktrove</span>
+    <span class="hl-identifier">ports</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <i class="hl-string">&quot;8083:3000&quot;</i>
+    <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-default">.</span><span class="hl-default">/</span><span class="hl-identifier">data</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">app</span><span class="hl-default">/</span><span class="hl-identifier">data</span>
+      <span class="hl-default">-</span> <span class="hl-default">.</span><span class="hl-default">/</span><span class="hl-identifier">backups</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">app</span><span class="hl-default">/</span><span class="hl-identifier">backups</span>
+    <i class="hl-comment"># environment:</i>
+    <i class="hl-comment">#   - AUTH_SECRET=CHANGE_ME</i>
+    <span class="hl-identifier">restart</span><span class="hl-default">:</span> <span class="hl-identifier">unless</span><span class="hl-default">-stopped</span>
+</code></pre>
+<h3 id="eigenfocus--8084">Eigenfocus ~ :8084</h3>
+<p>És una eina de gestió que destaca per les seves múltiples vistes de projecte (tauler, llista i quadrícula) i integra un cronòmetre que permet gestionar les hores i generar informes. Especial atenció al cronòmetre per projecte doncs l'utilitzo per calcular el temps destinat a diverses tasques.</p>
+<pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">web</span><span class="hl-default">:</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">eigenfocus</span><span class="hl-default">/</span><span class="hl-identifier">eigenfocus</span><span class="hl-default">:</span><i class="hl-number">1.4</i><i class="hl-number">.1</i><span class="hl-default">-free</span>
+    <span class="hl-identifier">restart</span><span class="hl-default">:</span> <span class="hl-identifier">unless</span><span class="hl-default">-stopped</span>
+    <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-default">.</span><span class="hl-default">/</span><span class="hl-identifier">app</span><span class="hl-default">-data</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">eigenfocus</span><span class="hl-default">-app</span><span class="hl-default">/</span><span class="hl-identifier">app</span><span class="hl-default">-data</span>
+    <span class="hl-identifier">environment</span><span class="hl-default">:</span>
+     <span class="hl-default">-</span> <span class="hl-identifier">DEFAULT_HOST_URL</span><span class="hl-default">=</span><span class="hl-identifier">http</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">localhost</span><span class="hl-default">:</span><i class="hl-number">8084</i>
+    <span class="hl-identifier">ports</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <i class="hl-number">8084</i><span class="hl-default">:</span><i class="hl-number">3000</i>
+</code></pre>
+<h3 id="metube--8085">MeTube ~ :8085</h3>
+<p>Interfície web per a <em>youtube-dl/yt-dlp</em>; permet descarregar vídeos de YouTube i altres plataformes fàcilment.</p>
+<pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">metube</span><span class="hl-default">:</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">ghcr</span><span class="hl-default">.</span><span class="hl-identifier">io</span><span class="hl-default">/</span><span class="hl-identifier">alexta69</span><span class="hl-default">/</span><span class="hl-identifier">metube</span>
+    <span class="hl-identifier">container_name</span><span class="hl-default">:</span> <span class="hl-identifier">metube</span>
+    <span class="hl-identifier">restart</span><span class="hl-default">:</span> <span class="hl-identifier">unless</span><span class="hl-default">-stopped</span>
+    <span class="hl-identifier">ports</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <i class="hl-string">&quot;8085:8081&quot;</i>
+    <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-default">.</span><span class="hl-default">/</span><span class="hl-identifier">downloads</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">downloads</span>
+</code></pre>
+<h3 id="languagetool--8086">LanguageTool ~ :8086</h3>
+<p>És un corrector de gramàtica, estil i ortografia de codi obert i gratuït que utilitzo principalment amb l'extensió LTeX+ a VSCodium perquè es connecti a l'API de LanguageTool i corregeix-hi les faltes.</p>
+<pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">languagetool</span><span class="hl-default">:</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">erikvl87</span><span class="hl-default">/</span><span class="hl-identifier">languagetool</span>
+    <span class="hl-identifier">container_name</span><span class="hl-default">:</span> <span class="hl-identifier">languagetool</span>
+    <span class="hl-identifier">ports</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <i class="hl-number">8086</i><span class="hl-default">:</span><i class="hl-number">8010</i>
+</code></pre>
+<h3 id="yamtrack--8087">YamTrack ~ :8087</h3>
+<p>És un seguidor de mitjans per a pel·lícules, sèries de televisió, anime, manga, videojocs, llibres, còmics i jocs de taula. Per mi substitueix <em>Trak.tv</em> i <em>GoodReads</em>.</p>
+<pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">yamtrack</span><span class="hl-default">:</span>
+    <span class="hl-identifier">container_name</span><span class="hl-default">:</span> <span class="hl-identifier">yamtrack</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">ghcr</span><span class="hl-default">.</span><span class="hl-identifier">io</span><span class="hl-default">/</span><span class="hl-identifier">fuzzygrim</span><span class="hl-default">/</span><span class="hl-identifier">yamtrack</span><span class="hl-default">:</span><span class="hl-identifier">dev</span>
+    <span class="hl-identifier">restart</span><span class="hl-default">:</span> <span class="hl-identifier">unless</span><span class="hl-default">-stopped</span>
+    <span class="hl-identifier">depends_on</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">redis</span>
+    <span class="hl-identifier">environment</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">TZ</span><span class="hl-default">=</span><span class="hl-identifier">Europe</span><span class="hl-default">/</span><span class="hl-identifier">Madrid</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">SECRET</span><span class="hl-default">=</span><span class="hl-identifier">longstring</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">REDIS_URL</span><span class="hl-default">=</span><span class="hl-identifier">redis</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">redis</span><span class="hl-default">:</span><i class="hl-number">6379</i>
+      <span class="hl-default">-</span> <span class="hl-identifier">TMDB_NSFW</span><span class="hl-default">=</span><span class="hl-identifier">true</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">MU_NSFW</span><span class="hl-default">=</span><span class="hl-identifier">true</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">MAL_NSFW</span><span class="hl-default">=</span><span class="hl-identifier">true</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">ADMIN_ENABLED</span><span class="hl-default">=</span><span class="hl-identifier">true</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">STEAM_API_KEY</span><span class="hl-default">=</span><span class="hl-identifier">D2EFFF405881FD8F18638768D5394648</span>
+    <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-default">.</span><span class="hl-default">/</span><span class="hl-identifier">db</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">yamtrack</span><span class="hl-default">/</span><span class="hl-identifier">db</span>
+    <span class="hl-identifier">ports</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <i class="hl-string">&quot;8087:8000&quot;</i>
+
+  <span class="hl-identifier">redis</span><span class="hl-default">:</span>
+    <span class="hl-identifier">container_name</span><span class="hl-default">:</span> <span class="hl-identifier">yamtrack</span><span class="hl-default">-redis</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">redis</span><span class="hl-default">:</span><i class="hl-number">8</i><span class="hl-default">-alpine</span>
+    <span class="hl-identifier">restart</span><span class="hl-default">:</span> <span class="hl-identifier">unless</span><span class="hl-default">-stopped</span>
+    <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">redis_data</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">data</span>
+
+<span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+  <span class="hl-identifier">redis_data</span><span class="hl-default">:</span>
+</code></pre>
+<h3 id="lubelogger--8088">LubeLogger ~ :8088</h3>
+<p>Registre digital per al manteniment, reparacions i consum de combustible dels teus vehicles.</p>
+<pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">app</span><span class="hl-default">:</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">ghcr</span><span class="hl-default">.</span><span class="hl-identifier">io</span><span class="hl-default">/</span><span class="hl-identifier">hargata</span><span class="hl-default">/</span><span class="hl-identifier">lubelogger</span><span class="hl-default">:</span><span class="hl-identifier">latest</span>
+    <span class="hl-identifier">restart</span><span class="hl-default">:</span> <span class="hl-identifier">unless</span><span class="hl-default">-stopped</span>
+    <i class="hl-comment"># volumes used to keep data persistent</i>
+    <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">data</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">App</span><span class="hl-default">/</span><span class="hl-identifier">data</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">keys</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">root</span><span class="hl-default">/</span><span class="hl-default">.</span><span class="hl-identifier">aspnet</span><span class="hl-default">/</span><span class="hl-identifier">DataProtection</span><span class="hl-default">-Keys</span>
+    <i class="hl-comment"># expose port and/or use serving via traefik</i>
+    <span class="hl-identifier">ports</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <i class="hl-number">8088</i><span class="hl-default">:</span><i class="hl-number">8080</i>
+
+<span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+  <span class="hl-identifier">data</span><span class="hl-default">:</span>
+  <span class="hl-identifier">keys</span><span class="hl-default">:</span>
+</code></pre>
+<h3 id="mazanoke--8089">Mazanoke ~ :8089</h3>
+<p>És un optimitzador d'imatges senzill que funciona al vostre navegador, treballa sense connexió i manté les vostres imatges privades sense sortir mai del vostre dispositiu.</p>
+<p>Serveix com a alternativa a les eines en línia «gratuïtes» qüestionables i l'utilitzo per disminuir el tamany de les fotos del blog.</p>
+<pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">mazanoke</span><span class="hl-default">:</span>
+    <span class="hl-identifier">container_name</span><span class="hl-default">:</span> <span class="hl-identifier">mazanoke</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">ghcr</span><span class="hl-default">.</span><span class="hl-identifier">io</span><span class="hl-default">/</span><span class="hl-identifier">civilblur</span><span class="hl-default">/</span><span class="hl-identifier">mazanoke</span><span class="hl-default">:</span><span class="hl-identifier">latest</span>
+    <span class="hl-identifier">ports</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <i class="hl-string">&quot;8089:80&quot;</i>
+</code></pre>
+<h3 id="scrutiny--8090">Scrutiny ~ :8090</h3>
+<p>Monitorització de la salut dels discs durs (dades S.M.A.R.T) a través d'una interfície web.</p>
+<pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">scrutiny</span><span class="hl-default">:</span>
+    <span class="hl-identifier">restart</span><span class="hl-default">:</span> <span class="hl-identifier">unless</span><span class="hl-default">-stopped</span>
+    <span class="hl-identifier">container_name</span><span class="hl-default">:</span> <span class="hl-identifier">scrutiny</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">ghcr</span><span class="hl-default">.</span><span class="hl-identifier">io</span><span class="hl-default">/</span><span class="hl-identifier">starosdev</span><span class="hl-default">/</span><span class="hl-identifier">scrutiny</span><span class="hl-default">:</span><span class="hl-identifier">latest</span><span class="hl-default">-omnibus</span>
+    <span class="hl-identifier">cap_add</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">SYS_RAWIO</span>
+    <span class="hl-identifier">ports</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <i class="hl-string">&quot;8090:8080&quot;</i> <i class="hl-comment"># webapp</i>
+      <span class="hl-default">-</span> <i class="hl-string">&quot;8091:8086&quot;</i> <i class="hl-comment"># influxDB admin</i>
+    <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-default">/</span><span class="hl-identifier">run</span><span class="hl-default">/</span><span class="hl-identifier">udev</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">run</span><span class="hl-default">/</span><span class="hl-identifier">udev</span><span class="hl-default">:</span><span class="hl-identifier">ro</span>
+      <span class="hl-default">-</span> <span class="hl-default">.</span><span class="hl-default">/</span><span class="hl-identifier">config</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">opt</span><span class="hl-default">/</span><span class="hl-identifier">scrutiny</span><span class="hl-default">/</span><span class="hl-identifier">config</span>
+      <span class="hl-default">-</span> <span class="hl-default">.</span><span class="hl-default">/</span><span class="hl-identifier">influxdb</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">opt</span><span class="hl-default">/</span><span class="hl-identifier">scrutiny</span><span class="hl-default">/</span><span class="hl-identifier">influxdb</span>
+    <span class="hl-identifier">devices</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <i class="hl-string">&quot;/dev/sda&quot;</i>
+</code></pre>
+<h3 id="filewizard--8092">Filewizard ~ :8092</h3>
+<p>Una utilitat per a la conversió de fitxers, el reconeixement òptic de caràcters (OCR) i la transcripció d'àudio. Engloba convertidors comuns (FFmpeg, LibreOffice, Pandoc, ImageMagick, etc.).</p>
+<pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">web</span><span class="hl-default">:</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">loredcast</span><span class="hl-default">/</span><span class="hl-identifier">filewizard</span><span class="hl-default">:</span><i class="hl-number">0.4</i><span class="hl-default">-latest</span>
+    <span class="hl-identifier">build</span><span class="hl-default">:</span>
+      <span class="hl-identifier">context</span><span class="hl-default">:</span> <span class="hl-operator">.</span>
+      <span class="hl-identifier">target</span><span class="hl-default">:</span> <span class="hl-identifier">full</span><span class="hl-default">-final</span> <i class="hl-comment"># Change to &apos;full-final&apos; or &apos;small-final&apos; as needed</i>
+    <i class="hl-comment">#env_file:</i>
+    <i class="hl-comment"># - .env</i>
+    <span class="hl-identifier">environment</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">LOCAL_ONLY</span><span class="hl-default">=</span><span class="hl-identifier">True</span> <i class="hl-comment"># set to False to enable OIDC auth (requires configuration in settings.yml)</i>
+      <span class="hl-default">-</span> <span class="hl-identifier">SECRET_KEY</span><span class="hl-default">=</span> <i class="hl-comment"># if using auth</i>
+      <span class="hl-default">-</span> <span class="hl-identifier">UPLOADS_DIR</span><span class="hl-default">=</span><span class="hl-default">/</span><span class="hl-identifier">app</span><span class="hl-default">/</span><span class="hl-identifier">uploads</span> <i class="hl-comment"># directory structure INSIDE the container, not on host</i>
+      <span class="hl-default">-</span> <span class="hl-identifier">PROCESSED_DIR</span><span class="hl-default">=</span><span class="hl-default">/</span><span class="hl-identifier">app</span><span class="hl-default">/</span><span class="hl-identifier">processed</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">OMP_NUM_THREADS</span><span class="hl-default">=</span><i class="hl-number">1</i>
+      <span class="hl-default">-</span> <span class="hl-identifier">DOWNLOAD_KOKORO_ON_STARTUP</span><span class="hl-default">=</span><span class="hl-identifier">true</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">TRANSCRIPTION_DEVICE</span><span class="hl-default">=</span><span class="hl-identifier">cpu</span>  <i class="hl-comment"># change to &apos;cuda&apos; if GPU available</i>
+      <span class="hl-default">-</span> <span class="hl-identifier">TRANSCRIPTION_COMPUTE_TYPE</span><span class="hl-default">=</span><span class="hl-identifier">int8</span> <i class="hl-comment"># change to &apos;float16&apos; or &apos;int8_float16&apos; if GPU available</i>
+      <i class="hl-comment">#- TRANSCRIPTION_DEVICE_INDEX=0 # change if multiple GPUs available</i>
+    <i class="hl-comment">#user: &quot;1000:1000&quot;</i>
+    <span class="hl-identifier">ports</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <i class="hl-string">&quot;8092:8000&quot;</i>
+    <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+      <i class="hl-comment"># Mount local directories and files into the container for persistence</i>
+      <span class="hl-default">-</span> <span class="hl-default">.</span><span class="hl-default">/</span><span class="hl-identifier">config</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">app</span><span class="hl-default">/</span><span class="hl-identifier">config</span> <i class="hl-comment"># you can copy settings.default.yml into here as settings.yml</i>
+      <span class="hl-default">-</span> <span class="hl-default">.</span><span class="hl-default">/</span><span class="hl-identifier">uploads_data</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">app</span><span class="hl-default">/</span><span class="hl-identifier">uploads</span>
+      <span class="hl-default">-</span> <span class="hl-default">.</span><span class="hl-default">/</span><span class="hl-identifier">processed_data</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">app</span><span class="hl-default">/</span><span class="hl-identifier">processed</span>
+
+    <i class="hl-comment"># For CUDA builds, enable GPU access (uncomment below)</i>
+    <i class="hl-comment">#deploy:</i>
+    <i class="hl-comment">#  resources:</i>
+    <i class="hl-comment">#    reservations:</i>
+    <i class="hl-comment">#      devices:</i>
+    <i class="hl-comment">#        - driver: nvidia</i>
+    <i class="hl-comment">#          count: all</i>
+    <i class="hl-comment">#          capabilities: [gpu]</i>
+
+<span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+  <span class="hl-identifier">uploads_data</span><span class="hl-default">:</span> <span class="hl-operator">{</span><span class="hl-operator">}</span>
+  <span class="hl-identifier">processed_data</span><span class="hl-default">:</span> <span class="hl-operator">{</span><span class="hl-operator">}</span>
+</code></pre>
+<h3 id="dashdot--8093">Dashdot ~ :8093</h3>
+<p>És un panell de control per al teu servidor domèstic i està pensat per oferir una visió ràpida de la càrrega actual del teu sistema (i per tenir un bon aspecte).</p>
+<pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">dash</span><span class="hl-default">:</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">mauricenino</span><span class="hl-default">/</span><span class="hl-identifier">dashdot</span><span class="hl-default">:</span><span class="hl-identifier">latest</span>
+    <span class="hl-identifier">restart</span><span class="hl-default">:</span> <span class="hl-identifier">unless</span><span class="hl-default">-stopped</span>
+    <span class="hl-identifier">privileged</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+    <span class="hl-identifier">ports</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <i class="hl-string">&apos;8093:3001&apos;</i>
+    <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-default">/</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">mnt</span><span class="hl-default">/</span><span class="hl-identifier">host</span><span class="hl-default">:</span><span class="hl-identifier">ro</span>
+    <span class="hl-identifier">environment</span><span class="hl-default">:</span>
+      <span class="hl-identifier">DASHDOT_PAGE_TITLE</span><span class="hl-default">:</span> <i class="hl-string">&apos;HP250G5&apos;</i>
+      <span class="hl-identifier">DASHDOT_ALWAYS_SHOW_PERCENTAGES</span><span class="hl-default">:</span> <i class="hl-string">&apos;true&apos;</i>
+      <span class="hl-identifier">DASHDOT_ENABLE_CPU_TEMPS</span><span class="hl-default">:</span> <i class="hl-string">&apos;true&apos;</i>
+</code></pre>
+<h3 id="mafl--8094">Mafl ~ :8094</h3>
+<p>Panell central per poder-hi accedir directament a tots els contenidors Docker.</p>
+<pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">mafl</span><span class="hl-default">:</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">hywax</span><span class="hl-default">/</span><span class="hl-identifier">mafl</span><span class="hl-default">:</span><span class="hl-identifier">latest</span>
+    <span class="hl-identifier">restart</span><span class="hl-default">:</span> <span class="hl-identifier">unless</span><span class="hl-default">-stopped</span>
+    <span class="hl-identifier">ports</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <i class="hl-string">&apos;8094:3000&apos;</i>
+    <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-default">.</span><span class="hl-default">/</span><span class="hl-identifier">config</span><span class="hl-default">.</span><span class="hl-identifier">yml</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">app</span><span class="hl-default">/</span><span class="hl-identifier">data</span><span class="hl-default">/</span><span class="hl-identifier">config</span><span class="hl-default">.</span><span class="hl-identifier">yml</span>
+</code></pre>
+<p>I la seva configuració que utilitzo actualment:</p>
+<pre><code class="language-bash"><span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">HP</span> <i class="hl-number">250</i> <span class="hl-identifier">G5</span>
+<span class="hl-identifier">theme</span><span class="hl-default">:</span> <span class="hl-identifier">dark</span>
+<span class="hl-identifier">tags</span><span class="hl-default">:</span>
+  <span class="hl-default">-</span> <span class="hl-identifier">name</span><span class="hl-default">:</span> <span class="hl-identifier">diari</span>
+    <span class="hl-identifier">color</span><span class="hl-default">:</span> <span class="hl-identifier">blue</span>
+<span class="hl-identifier">layout</span><span class="hl-default">:</span>
+  <span class="hl-identifier">grid</span><span class="hl-default">:</span>
+    <span class="hl-identifier">small</span><span class="hl-default">:</span> <i class="hl-number">1</i>
+    <span class="hl-identifier">medium</span><span class="hl-default">:</span> <i class="hl-number">2</i>
+    <span class="hl-identifier">large</span><span class="hl-default">:</span> <i class="hl-number">3</i>
+    <span class="hl-identifier">xlarge</span><span class="hl-default">:</span> <i class="hl-number">3</i>
+<span class="hl-identifier">checkUpdates</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+<span class="hl-identifier">behaviour</span><span class="hl-default">:</span>
+  <span class="hl-identifier">target</span><span class="hl-default">:</span> <span class="hl-identifier">_blank</span>
+<span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">Serveis</span><span class="hl-default">:</span>
+    <span class="hl-default">-</span> <span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">FreshRSS</span>
+      <span class="hl-identifier">description</span><span class="hl-default">:</span> <span class="hl-identifier">Agregador</span> <span class="hl-identifier">de</span> <span class="hl-identifier">not</span><span class="hl-default">�</span><span class="hl-default">�</span><span class="hl-identifier">cies</span> <span class="hl-identifier">i</span> <span class="hl-identifier">feeds</span> <span class="hl-identifier">RSS</span>
+      <span class="hl-identifier">link</span><span class="hl-default">:</span> <span class="hl-identifier">http</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.19</i><span class="hl-default">:</span><i class="hl-number">8080</i>
+      <span class="hl-identifier">tags</span><span class="hl-default">:</span>
+        <span class="hl-default">-</span> <span class="hl-identifier">diari</span>
+      <span class="hl-identifier">icon</span><span class="hl-default">:</span>
+        <span class="hl-identifier">url</span><span class="hl-default">:</span> <span class="hl-identifier">https</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">raw</span><span class="hl-default">.</span><span class="hl-identifier">githubusercontent</span><span class="hl-default">.</span><span class="hl-identifier">com</span><span class="hl-default">/</span><span class="hl-identifier">FreshRSS</span><span class="hl-default">/</span><span class="hl-identifier">FreshRSS</span><span class="hl-default">/</span><span class="hl-identifier">d7848e9fd674c6113dae5d1e448abcc94452b646</span><span class="hl-default">/</span><span class="hl-identifier">p</span><span class="hl-default">/</span><span class="hl-identifier">themes</span><span class="hl-default">/</span><span class="hl-identifier">icons</span><span class="hl-default">/</span><span class="hl-identifier">favicon</span><span class="hl-default">.</span><span class="hl-identifier">svg</span>
+        <span class="hl-identifier">wrap</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+      <span class="hl-identifier">status</span><span class="hl-default">:</span>
+        <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+        <span class="hl-identifier">interval</span><span class="hl-default">:</span> <i class="hl-number">3600</i>
+    <span class="hl-default">-</span> <span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">Trip</span>
+      <span class="hl-identifier">description</span><span class="hl-default">:</span> <span class="hl-identifier">Planificador</span> <span class="hl-identifier">de</span> <span class="hl-identifier">viatges</span> <span class="hl-identifier">minimalista</span>
+      <span class="hl-identifier">link</span><span class="hl-default">:</span> <span class="hl-identifier">http</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.19</i><span class="hl-default">:</span><i class="hl-number">8082</i>
+      <span class="hl-identifier">icon</span><span class="hl-default">:</span>
+        <span class="hl-identifier">url</span><span class="hl-default">:</span> <span class="hl-identifier">https</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">github</span><span class="hl-default">.</span><span class="hl-identifier">com</span><span class="hl-default">/</span><span class="hl-identifier">itskovacs</span><span class="hl-default">/</span><span class="hl-identifier">trip</span><span class="hl-default">/</span><span class="hl-identifier">raw</span><span class="hl-default">/</span><span class="hl-identifier">main</span><span class="hl-default">/</span><span class="hl-identifier">src</span><span class="hl-default">/</span><span class="hl-identifier">public</span><span class="hl-default">/</span><span class="hl-identifier">favicon</span><span class="hl-default">.</span><span class="hl-identifier">png</span>
+        <span class="hl-identifier">wrap</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+      <span class="hl-identifier">status</span><span class="hl-default">:</span>
+        <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+        <span class="hl-identifier">interval</span><span class="hl-default">:</span> <i class="hl-number">3600</i>
+    <span class="hl-default">-</span> <span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">TraskTrove</span>
+      <span class="hl-identifier">description</span><span class="hl-default">:</span> <span class="hl-identifier">Gestor</span> <span class="hl-identifier">de</span> <span class="hl-identifier">tasques</span>
+      <span class="hl-identifier">link</span><span class="hl-default">:</span> <span class="hl-identifier">http</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.19</i><span class="hl-default">:</span><i class="hl-number">8083</i>
+      <span class="hl-identifier">tags</span><span class="hl-default">:</span>
+        <span class="hl-default">-</span> <span class="hl-identifier">diari</span>
+      <span class="hl-identifier">icon</span><span class="hl-default">:</span>
+        <span class="hl-identifier">url</span><span class="hl-default">:</span> <span class="hl-identifier">https</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">raw</span><span class="hl-default">.</span><span class="hl-identifier">githubusercontent</span><span class="hl-default">.</span><span class="hl-identifier">com</span><span class="hl-default">/</span><span class="hl-identifier">dohsimpson</span><span class="hl-default">/</span><span class="hl-identifier">TaskTrove</span><span class="hl-default">/</span><span class="hl-identifier">f5b9550096d6e6190dd12a82af487adcea66be06</span><span class="hl-default">/</span><span class="hl-identifier">apps</span><span class="hl-default">/</span><span class="hl-identifier">web</span><span class="hl-default">/</span><span class="hl-identifier">public</span><span class="hl-default">/</span><span class="hl-identifier">icon</span><span class="hl-default">-rounded</span><span class="hl-default">.</span><span class="hl-identifier">svg</span>
+        <span class="hl-identifier">wrap</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+      <span class="hl-identifier">status</span><span class="hl-default">:</span>
+        <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+        <span class="hl-identifier">interval</span><span class="hl-default">:</span> <i class="hl-number">3600</i>
+    <span class="hl-default">-</span> <span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">EigenFocus</span>
+      <span class="hl-identifier">description</span><span class="hl-default">:</span> <span class="hl-identifier">Gesti</span><span class="hl-default">�</span><span class="hl-default">�</span> <span class="hl-identifier">de</span> <span class="hl-identifier">productivitat</span>
+      <span class="hl-identifier">link</span><span class="hl-default">:</span> <span class="hl-identifier">http</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.19</i><span class="hl-default">:</span><i class="hl-number">8084</i>
+      <span class="hl-identifier">tags</span><span class="hl-default">:</span>
+        <span class="hl-default">-</span> <span class="hl-identifier">diari</span>
+      <span class="hl-identifier">icon</span><span class="hl-default">:</span>
+        <span class="hl-identifier">url</span><span class="hl-default">:</span> <span class="hl-identifier">https</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">raw</span><span class="hl-default">.</span><span class="hl-identifier">githubusercontent</span><span class="hl-default">.</span><span class="hl-identifier">com</span><span class="hl-default">/</span><span class="hl-identifier">Eigenfocus</span><span class="hl-default">/</span><span class="hl-identifier">eigenfocus</span><span class="hl-default">/</span><span class="hl-identifier">af844672e387dae8110f8ec00cdb152c606a3475</span><span class="hl-default">/</span><span class="hl-identifier">public</span><span class="hl-default">/</span><span class="hl-identifier">icon</span><span class="hl-default">.</span><span class="hl-identifier">svg</span>
+        <span class="hl-identifier">wrap</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+      <span class="hl-identifier">status</span><span class="hl-default">:</span>
+        <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+        <span class="hl-identifier">interval</span><span class="hl-default">:</span> <i class="hl-number">3600</i>
+    <span class="hl-default">-</span> <span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">Yamtrack</span>
+      <span class="hl-identifier">description</span><span class="hl-default">:</span> <span class="hl-identifier">Seguidor</span> <span class="hl-identifier">de</span> <span class="hl-identifier">mitjans</span> <span class="hl-identifier">de</span> <span class="hl-identifier">consum</span>
+      <span class="hl-identifier">link</span><span class="hl-default">:</span> <span class="hl-identifier">http</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.19</i><span class="hl-default">:</span><i class="hl-number">8087</i>
+      <span class="hl-identifier">icon</span><span class="hl-default">:</span>
+        <span class="hl-identifier">url</span><span class="hl-default">:</span> <span class="hl-identifier">https</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">github</span><span class="hl-default">.</span><span class="hl-identifier">com</span><span class="hl-default">/</span><span class="hl-identifier">FuzzyGrim</span><span class="hl-default">/</span><span class="hl-identifier">Yamtrack</span><span class="hl-default">/</span><span class="hl-identifier">blob</span><span class="hl-default">/</span><i class="hl-number">9098</i><span class="hl-identifier">ced3cd2f5801649274f25694afbf6f1365bd</span><span class="hl-default">/</span><span class="hl-identifier">src</span><span class="hl-default">/</span><span class="hl-identifier">static</span><span class="hl-default">/</span><span class="hl-identifier">favicon</span><span class="hl-default">/</span><span class="hl-identifier">android</span><span class="hl-default">-chrome</span><i class="hl-number">-192</i><span class="hl-identifier">x192</span><span class="hl-default">.</span><span class="hl-identifier">png</span><span class="hl-default">?</span><span class="hl-identifier">raw</span><span class="hl-default">=</span><span class="hl-identifier">true</span>
+        <span class="hl-identifier">wrap</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+      <span class="hl-identifier">status</span><span class="hl-default">:</span>
+        <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+        <span class="hl-identifier">interval</span><span class="hl-default">:</span> <i class="hl-number">3600</i>
+    <span class="hl-default">-</span> <span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">LubeLogger</span>
+      <span class="hl-identifier">description</span><span class="hl-default">:</span> <span class="hl-identifier">Registre</span> <span class="hl-identifier">digital</span> <span class="hl-identifier">dels</span> <span class="hl-identifier">teus</span> <span class="hl-identifier">vehicles</span>
+      <span class="hl-identifier">link</span><span class="hl-default">:</span> <span class="hl-identifier">http</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.19</i><span class="hl-default">:</span><i class="hl-number">8088</i>
+      <span class="hl-identifier">icon</span><span class="hl-default">:</span>
+        <span class="hl-identifier">url</span><span class="hl-default">:</span> <span class="hl-identifier">https</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">github</span><span class="hl-default">.</span><span class="hl-identifier">com</span><span class="hl-default">/</span><span class="hl-identifier">hargata</span><span class="hl-default">/</span><span class="hl-identifier">lubelog</span><span class="hl-default">/</span><span class="hl-identifier">blob</span><span class="hl-default">/</span><span class="hl-identifier">main</span><span class="hl-default">/</span><span class="hl-identifier">wwwroot</span><span class="hl-default">/</span><span class="hl-identifier">defaults</span><span class="hl-default">/</span><span class="hl-identifier">lubelogger_maskable_icon_192</span><span class="hl-default">.</span><span class="hl-identifier">png</span><span class="hl-default">?</span><span class="hl-identifier">raw</span><span class="hl-default">=</span><span class="hl-identifier">true</span>
+        <span class="hl-identifier">wrap</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+      <span class="hl-identifier">status</span><span class="hl-default">:</span>
+        <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+        <span class="hl-identifier">interval</span><span class="hl-default">:</span> <i class="hl-number">3600</i>
+    <span class="hl-default">-</span> <span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">Dashdot</span>
+      <span class="hl-identifier">description</span><span class="hl-default">:</span> <span class="hl-identifier">Panell</span> <span class="hl-identifier">de</span> <span class="hl-identifier">control</span> <span class="hl-identifier">del</span> <span class="hl-identifier">servidor</span>
+      <span class="hl-identifier">link</span><span class="hl-default">:</span> <span class="hl-identifier">http</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.19</i><span class="hl-default">:</span><i class="hl-number">8093</i>
+      <span class="hl-identifier">icon</span><span class="hl-default">:</span>
+        <span class="hl-identifier">url</span><span class="hl-default">:</span> <span class="hl-identifier">https</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">github</span><span class="hl-default">.</span><span class="hl-identifier">com</span><span class="hl-default">/</span><span class="hl-identifier">MauriceNino</span><span class="hl-default">/</span><span class="hl-identifier">dashdot</span><span class="hl-default">/</span><span class="hl-identifier">blob</span><span class="hl-default">/</span><span class="hl-identifier">main</span><span class="hl-default">/</span><span class="hl-identifier">apps</span><span class="hl-default">/</span><span class="hl-identifier">docs</span><span class="hl-default">/</span><span class="hl-identifier">static</span><span class="hl-default">/</span><span class="hl-identifier">img</span><span class="hl-default">/</span><span class="hl-identifier">logo512</span><span class="hl-default">.</span><span class="hl-identifier">png</span><span class="hl-default">?</span><span class="hl-identifier">raw</span><span class="hl-default">=</span><span class="hl-identifier">true</span>
+        <span class="hl-identifier">wrap</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+      <span class="hl-identifier">status</span><span class="hl-default">:</span>
+        <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+        <span class="hl-identifier">interval</span><span class="hl-default">:</span> <i class="hl-number">3600</i>
+    <span class="hl-default">-</span> <span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">Mealie</span>
+      <span class="hl-identifier">description</span><span class="hl-default">:</span> <span class="hl-identifier">Gestor</span> <span class="hl-identifier">de</span> <span class="hl-identifier">receptes</span>
+      <span class="hl-identifier">link</span><span class="hl-default">:</span> <span class="hl-identifier">http</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.19</i><span class="hl-default">:</span><i class="hl-number">9925</i>
+      <span class="hl-identifier">icon</span><span class="hl-default">:</span>
+        <span class="hl-identifier">url</span><span class="hl-default">:</span> <span class="hl-identifier">https</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">github</span><span class="hl-default">.</span><span class="hl-identifier">com</span><span class="hl-default">/</span><span class="hl-identifier">mealie</span><span class="hl-default">-recipes</span><span class="hl-default">/</span><span class="hl-identifier">mealie</span><span class="hl-default">/</span><span class="hl-identifier">blob</span><span class="hl-default">/</span><span class="hl-identifier">mealie</span><span class="hl-default">-next</span><span class="hl-default">/</span><span class="hl-identifier">frontend</span><span class="hl-default">/</span><span class="hl-identifier">static</span><span class="hl-default">/</span><span class="hl-identifier">icon</span><span class="hl-default">.</span><span class="hl-identifier">png</span><span class="hl-default">?</span><span class="hl-identifier">raw</span><span class="hl-default">=</span><span class="hl-identifier">true</span>
+        <span class="hl-identifier">wrap</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+      <span class="hl-identifier">status</span><span class="hl-default">:</span>
+        <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+        <span class="hl-identifier">interval</span><span class="hl-default">:</span> <i class="hl-number">3600</i>
+    <span class="hl-default">-</span> <span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">Mafl</span>
+      <span class="hl-identifier">description</span><span class="hl-default">:</span> <span class="hl-identifier">Panell</span> <span class="hl-identifier">central</span> <span class="hl-identifier">de</span> <span class="hl-identifier">tots</span> <span class="hl-identifier">els</span> <span class="hl-identifier">contenidors</span> <span class="hl-identifier">Docker</span>
+      <span class="hl-identifier">link</span><span class="hl-default">:</span> <span class="hl-identifier">http</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.19</i><span class="hl-default">:</span><i class="hl-number">8094</i>
+      <span class="hl-identifier">icon</span><span class="hl-default">:</span>
+        <span class="hl-identifier">url</span><span class="hl-default">:</span> <span class="hl-identifier">https</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">raw</span><span class="hl-default">.</span><span class="hl-identifier">githubusercontent</span><span class="hl-default">.</span><span class="hl-identifier">com</span><span class="hl-default">/</span><span class="hl-identifier">hywax</span><span class="hl-default">/</span><span class="hl-identifier">mafl</span><span class="hl-default">/</span><span class="hl-identifier">f2166171b46f16c59b80204b717d6bb352567810</span><span class="hl-default">/</span><span class="hl-identifier">docs</span><span class="hl-default">/</span><span class="hl-identifier">public</span><span class="hl-default">/</span><span class="hl-identifier">logotype</span><span class="hl-default">.</span><span class="hl-identifier">svg</span>
+        <span class="hl-identifier">wrap</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+      <span class="hl-identifier">status</span><span class="hl-default">:</span>
+        <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">false</span>
+  <span class="hl-identifier">Eines</span><span class="hl-default">:</span>
+    <span class="hl-default">-</span> <span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">AdGuard</span> <span class="hl-identifier">Home</span>
+      <span class="hl-identifier">description</span><span class="hl-default">:</span> <span class="hl-identifier">Servidor</span> <span class="hl-identifier">DNS</span>
+      <span class="hl-identifier">link</span><span class="hl-default">:</span> <span class="hl-identifier">http</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.200</i>
+      <span class="hl-identifier">icon</span><span class="hl-default">:</span>
+        <span class="hl-identifier">url</span><span class="hl-default">:</span> <span class="hl-identifier">https</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">upload</span><span class="hl-default">.</span><span class="hl-identifier">wikimedia</span><span class="hl-default">.</span><span class="hl-identifier">org</span><span class="hl-default">/</span><span class="hl-identifier">wikipedia</span><span class="hl-default">/</span><span class="hl-identifier">commons</span><span class="hl-default">/</span><i class="hl-number">4</i><span class="hl-default">/</span><i class="hl-number">4</i><span class="hl-identifier">c</span><span class="hl-default">/</span><span class="hl-identifier">AdGuard</span><span class="hl-default">.</span><span class="hl-identifier">svg</span>
+        <span class="hl-identifier">wrap</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+      <span class="hl-identifier">status</span><span class="hl-default">:</span>
+        <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">false</span>
+    <span class="hl-default">-</span> <span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">BentoPDF</span>
+      <span class="hl-identifier">description</span><span class="hl-default">:</span> <span class="hl-identifier">Conjunt</span> <span class="hl-identifier">d</span><i class="hl-string">&apos;eines per a PDF
+      link: http://192.168.0.19:8081
+      icon:
+        url: https://raw.githubusercontent.com/alam00000/bentopdf/36ebb3b429b0ae9b2b086b8c64b6c27af1057569/public/images/favicon.svg
+        wrap: true
+      status:
+        enabled: true
+        interval: 3600
+    - title: MeTube
+      description: Interfície web per a yt-dlp
+      link: http://192.168.0.19:8085
+      icon:
+        url: https://github.com/alexta69/metube/blob/96e1863a6891a4e18768581a3d3cdc1d87905b1f/ui/src/assets/icons/android-chrome-384x384.png?raw=true
+        wrap: true
+      status:
+        enabled: true
+        interval: 3600
+    - title: LanguageTool
+      description: Corrector de gramàtica, estil i ortografia
+      link: http://192.168.0.19:8086/v2/check
+      icon:
+        url: https://avatars.githubusercontent.com/u/5187764?s=200&amp;v=4
+        wrap: true
+      status:
+        enabled: true
+        interval: 3600
+    - title: Mazanoke
+      description: Optimitzador d&apos;</i><span class="hl-identifier">imatges</span>
+      <span class="hl-identifier">link</span><span class="hl-default">:</span> <span class="hl-identifier">http</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.19</i><span class="hl-default">:</span><i class="hl-number">8089</i>
+      <span class="hl-identifier">icon</span><span class="hl-default">:</span>
+        <span class="hl-identifier">url</span><span class="hl-default">:</span> <span class="hl-identifier">https</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">github</span><span class="hl-default">.</span><span class="hl-identifier">com</span><span class="hl-default">/</span><span class="hl-identifier">civilblur</span><span class="hl-default">/</span><span class="hl-identifier">mazanoke</span><span class="hl-default">/</span><span class="hl-identifier">blob</span><span class="hl-default">/</span><span class="hl-identifier">main</span><span class="hl-default">/</span><span class="hl-identifier">assets</span><span class="hl-default">/</span><span class="hl-identifier">images</span><span class="hl-default">/</span><span class="hl-identifier">android</span><span class="hl-default">-chrome</span><i class="hl-number">-192</i><span class="hl-identifier">x192</span><span class="hl-default">.</span><span class="hl-identifier">png</span><span class="hl-default">?</span><span class="hl-identifier">raw</span><span class="hl-default">=</span><span class="hl-identifier">true</span>
+        <span class="hl-identifier">wrap</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+      <span class="hl-identifier">status</span><span class="hl-default">:</span>
+        <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+        <span class="hl-identifier">interval</span><span class="hl-default">:</span> <i class="hl-number">3600</i>
+    <span class="hl-default">-</span> <span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">Scrutiny</span>
+      <span class="hl-identifier">description</span><span class="hl-default">:</span> <span class="hl-identifier">Monitoritzaci</span><span class="hl-default">�</span><span class="hl-default">�</span> <span class="hl-identifier">de</span> <span class="hl-identifier">S</span><span class="hl-default">.</span><span class="hl-identifier">M</span><span class="hl-default">.</span><span class="hl-identifier">A</span><span class="hl-default">.</span><span class="hl-identifier">R</span><span class="hl-default">.</span><span class="hl-identifier">T</span>
+      <span class="hl-identifier">link</span><span class="hl-default">:</span> <span class="hl-identifier">http</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.19</i><span class="hl-default">:</span><i class="hl-number">8090</i>
+      <span class="hl-identifier">icon</span><span class="hl-default">:</span>
+        <span class="hl-identifier">url</span><span class="hl-default">:</span> <span class="hl-identifier">https</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">raw</span><span class="hl-default">.</span><span class="hl-identifier">githubusercontent</span><span class="hl-default">.</span><span class="hl-identifier">com</span><span class="hl-default">/</span><span class="hl-identifier">Starosdev</span><span class="hl-default">/</span><span class="hl-identifier">scrutiny</span><span class="hl-default">/</span><i class="hl-number">24</i><span class="hl-identifier">f6518a81a1c487251f1e8bc62cc28bf0074667</span><span class="hl-default">/</span><span class="hl-identifier">webapp</span><span class="hl-default">/</span><span class="hl-identifier">frontend</span><span class="hl-default">/</span><span class="hl-identifier">src</span><span class="hl-default">/</span><span class="hl-identifier">assets</span><span class="hl-default">/</span><span class="hl-identifier">images</span><span class="hl-default">/</span><span class="hl-identifier">logo</span><span class="hl-default">/</span><span class="hl-identifier">scrutiny</span><span class="hl-default">-logo-white</span><span class="hl-default">.</span><span class="hl-identifier">svg</span>
+        <span class="hl-identifier">wrap</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+      <span class="hl-identifier">status</span><span class="hl-default">:</span>
+        <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+        <span class="hl-identifier">interval</span><span class="hl-default">:</span> <i class="hl-number">3600</i>
+    <span class="hl-default">-</span> <span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">Filewizard</span>
+      <span class="hl-identifier">description</span><span class="hl-default">:</span> <span class="hl-identifier">Conversi</span><span class="hl-default">�</span><span class="hl-default">�</span> <span class="hl-identifier">de</span> <span class="hl-identifier">fitxers</span>
+      <span class="hl-identifier">link</span><span class="hl-default">:</span> <span class="hl-identifier">http</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.19</i><span class="hl-default">:</span><i class="hl-number">8092</i>
+      <span class="hl-identifier">icon</span><span class="hl-default">:</span>
+        <span class="hl-identifier">name</span><span class="hl-default">:</span> <span class="hl-identifier">streamline</span><span class="hl-default">-plump</span><span class="hl-default">:</span><span class="hl-identifier">convert</span><span class="hl-default">-pdf</span><i class="hl-number">-1</i>
+        <span class="hl-identifier">wrap</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+      <span class="hl-identifier">status</span><span class="hl-default">:</span>
+        <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+        <span class="hl-identifier">interval</span><span class="hl-default">:</span> <i class="hl-number">3600</i>
+    <span class="hl-default">-</span> <span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">ChangeDetection</span>
+      <span class="hl-identifier">description</span><span class="hl-default">:</span> <span class="hl-identifier">Monitora</span> <span class="hl-identifier">p</span><span class="hl-default">�</span><span class="hl-default">�</span><span class="hl-identifier">gines</span> <span class="hl-identifier">web</span>
+      <span class="hl-identifier">link</span><span class="hl-default">:</span> <span class="hl-identifier">http</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.19</i><span class="hl-default">:</span><i class="hl-number">5555</i>
+      <span class="hl-identifier">icon</span><span class="hl-default">:</span>
+        <span class="hl-identifier">url</span><span class="hl-default">:</span> <span class="hl-identifier">https</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">github</span><span class="hl-default">.</span><span class="hl-identifier">com</span><span class="hl-default">/</span><span class="hl-identifier">dgtlmoon</span><span class="hl-default">/</span><span class="hl-identifier">changedetection</span><span class="hl-default">.</span><span class="hl-identifier">io</span><span class="hl-default">/</span><span class="hl-identifier">blob</span><span class="hl-default">/</span><i class="hl-number">892</i><span class="hl-identifier">b645147e05b206af2ec952539593e6d57b9a7</span><span class="hl-default">/</span><span class="hl-identifier">changedetectionio</span><span class="hl-default">/</span><span class="hl-identifier">static</span><span class="hl-default">/</span><span class="hl-identifier">images</span><span class="hl-default">/</span><span class="hl-identifier">avatar</span><i class="hl-number">-256</i><span class="hl-identifier">x256</span><span class="hl-default">.</span><span class="hl-identifier">png</span><span class="hl-default">?</span><span class="hl-identifier">raw</span><span class="hl-default">=</span><span class="hl-identifier">true</span>
+        <span class="hl-identifier">wrap</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+      <span class="hl-identifier">status</span><span class="hl-default">:</span>
+        <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+        <span class="hl-identifier">interval</span><span class="hl-default">:</span> <i class="hl-number">3600</i>
+</code></pre>
+<h3 id="changedetection--5555">ChangeDetection ~ :5555</h3>
+<p>Monitora pàgines web i t'envia una notificació quan detecta canvis en el contingut. Ho tinc configurat amb un bot de Telegram per enviar-me avisos automàtics quan apareixen productes a Wallapop.</p>
+<pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">browser</span><span class="hl-default">-sockpuppet-chrome</span><span class="hl-default">:</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">dgtlmoon</span><span class="hl-default">/</span><span class="hl-identifier">sockpuppetbrowser</span><span class="hl-default">:</span><span class="hl-identifier">latest</span>
+    <span class="hl-identifier">container_name</span><span class="hl-default">:</span> <span class="hl-identifier">browser</span><span class="hl-default">-sockpuppet-chrome</span>
+    <span class="hl-identifier">hostname</span><span class="hl-default">:</span> <span class="hl-identifier">browser</span><span class="hl-default">-sockpuppet-chrome</span>
+    <span class="hl-identifier">restart</span><span class="hl-default">:</span> <span class="hl-identifier">unless</span><span class="hl-default">-stopped</span>
+    <span class="hl-identifier">cap_add</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">SYS_ADMIN</span>
+    <span class="hl-identifier">cpu_shares</span><span class="hl-default">:</span> <i class="hl-number">90</i>
+    <span class="hl-identifier">environment</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">MAX_CONCURRENT_CHROME_PROCESSES</span><span class="hl-default">=</span><i class="hl-number">10</i>
+      <span class="hl-default">-</span> <span class="hl-identifier">SCREEN_DEPTH</span><span class="hl-default">=</span><i class="hl-number">16</i>
+      <span class="hl-default">-</span> <span class="hl-identifier">SCREEN_HEIGHT</span><span class="hl-default">=</span><i class="hl-number">1024</i>
+      <span class="hl-default">-</span> <span class="hl-identifier">SCREEN_WIDTH</span><span class="hl-default">=</span><i class="hl-number">1920</i>
+    <span class="hl-identifier">labels</span><span class="hl-default">:</span>
+      <span class="hl-identifier">icon</span><span class="hl-default">:</span> <span class="hl-identifier">https</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">github</span><span class="hl-default">.</span><span class="hl-identifier">com</span><span class="hl-default">/</span><span class="hl-identifier">dgtlmoon</span><span class="hl-default">/</span><span class="hl-identifier">changedetection</span><span class="hl-default">.</span><span class="hl-identifier">io</span><span class="hl-default">/</span><span class="hl-identifier">blob</span><span class="hl-default">/</span><span class="hl-identifier">dev</span><span class="hl-default">/</span><span class="hl-identifier">changedetectionio</span><span class="hl-default">/</span><span class="hl-identifier">static</span><span class="hl-default">/</span><span class="hl-identifier">favicons</span><span class="hl-default">/</span><span class="hl-identifier">android</span><span class="hl-default">-chrome</span><i class="hl-number">-192</i><span class="hl-identifier">x192</span><span class="hl-default">.</span><span class="hl-identifier">png</span><span class="hl-default">?</span><span class="hl-identifier">raw</span><span class="hl-default">=</span><span class="hl-identifier">true</span>
+    <span class="hl-identifier">networks</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">browser</span><span class="hl-default">-sockpuppet-chrome</span>
+    <span class="hl-identifier">deploy</span><span class="hl-default">:</span>
+      <span class="hl-identifier">resources</span><span class="hl-default">:</span>
+        <span class="hl-identifier">limits</span><span class="hl-default">:</span>
+          <span class="hl-identifier">memory</span><span class="hl-default">:</span> <i class="hl-number">4</i><span class="hl-identifier">G</span>
+
+  <span class="hl-identifier">changedetection</span><span class="hl-default">:</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">lscr</span><span class="hl-default">.</span><span class="hl-identifier">io</span><span class="hl-default">/</span><span class="hl-identifier">linuxserver</span><span class="hl-default">/</span><span class="hl-identifier">changedetection</span><span class="hl-default">.</span><span class="hl-identifier">io</span><span class="hl-default">:</span><i class="hl-number">0.51</i><i class="hl-number">.4</i>
+    <span class="hl-identifier">container_name</span><span class="hl-default">:</span> <span class="hl-identifier">changedetection</span>
+    <span class="hl-identifier">hostname</span><span class="hl-default">:</span> <span class="hl-identifier">changedetection</span>
+    <span class="hl-identifier">restart</span><span class="hl-default">:</span> <span class="hl-identifier">unless</span><span class="hl-default">-stopped</span>
+    <span class="hl-identifier">depends_on</span><span class="hl-default">:</span>
+      <span class="hl-identifier">browser</span><span class="hl-default">-sockpuppet-chrome</span><span class="hl-default">:</span>
+        <span class="hl-identifier">condition</span><span class="hl-default">:</span> <span class="hl-identifier">service_started</span>
+        <span class="hl-identifier">required</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
+    <span class="hl-identifier">environment</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">PGID</span><span class="hl-default">=</span><i class="hl-number">1000</i>
+      <span class="hl-default">-</span> <span class="hl-identifier">PUID</span><span class="hl-default">=</span><i class="hl-number">1000</i>
+      <span class="hl-default">-</span> <span class="hl-identifier">TZ</span><span class="hl-default">=</span><span class="hl-identifier">Europe</span><span class="hl-default">/</span><span class="hl-identifier">Madrid</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">PLAYWRIGHT_DRIVER_URL</span><span class="hl-default">=</span><span class="hl-identifier">ws</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">browser</span><span class="hl-default">-sockpuppet-chrome</span><span class="hl-default">:</span><i class="hl-number">3000</i>
+    <span class="hl-identifier">labels</span><span class="hl-default">:</span>
+      <span class="hl-identifier">icon</span><span class="hl-default">:</span> <span class="hl-identifier">https</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><span class="hl-identifier">github</span><span class="hl-default">.</span><span class="hl-identifier">com</span><span class="hl-default">/</span><span class="hl-identifier">dgtlmoon</span><span class="hl-default">/</span><span class="hl-identifier">changedetection</span><span class="hl-default">.</span><span class="hl-identifier">io</span><span class="hl-default">/</span><span class="hl-identifier">blob</span><span class="hl-default">/</span><span class="hl-identifier">dev</span><span class="hl-default">/</span><span class="hl-identifier">changedetectionio</span><span class="hl-default">/</span><span class="hl-identifier">static</span><span class="hl-default">/</span><span class="hl-identifier">favicons</span><span class="hl-default">/</span><span class="hl-identifier">android</span><span class="hl-default">-chrome</span><i class="hl-number">-192</i><span class="hl-identifier">x192</span><span class="hl-default">.</span><span class="hl-identifier">png</span><span class="hl-default">?</span><span class="hl-identifier">raw</span><span class="hl-default">=</span><span class="hl-identifier">true</span>
+    <span class="hl-identifier">networks</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">browser</span><span class="hl-default">-sockpuppet-chrome</span>
+    <span class="hl-identifier">ports</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">target</span><span class="hl-default">:</span> <i class="hl-number">5000</i>
+        <span class="hl-identifier">published</span><span class="hl-default">:</span> <i class="hl-string">&quot;5555&quot;</i>
+        <span class="hl-identifier">protocol</span><span class="hl-default">:</span> <span class="hl-identifier">tcp</span>
+    <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">changedetection</span><span class="hl-default">-data</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">config</span>
+    <span class="hl-identifier">deploy</span><span class="hl-default">:</span>
+      <span class="hl-identifier">resources</span><span class="hl-default">:</span>
+        <span class="hl-identifier">limits</span><span class="hl-default">:</span>
+          <span class="hl-identifier">memory</span><span class="hl-default">:</span> <i class="hl-number">1</i><span class="hl-identifier">G</span>
+<span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+  <span class="hl-identifier">changedetection</span><span class="hl-default">-data</span><span class="hl-default">:</span>
+<span class="hl-identifier">networks</span><span class="hl-default">:</span>
+  <span class="hl-identifier">browser</span><span class="hl-default">-sockpuppet-chrome</span><span class="hl-default">:</span>
+    <span class="hl-identifier">name</span><span class="hl-default">:</span> <span class="hl-identifier">browser</span><span class="hl-default">-sockpuppet-chrome</span>
+</code></pre>
+<h3 id="mealie--9925">Mealie ~ :9925</h3>
+<p>Gestor de receptes de cuina, planificador de menjars i llistes de la compra.</p>
+<pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
+  <span class="hl-identifier">mealie</span><span class="hl-default">:</span>
+    <span class="hl-identifier">image</span><span class="hl-default">:</span> <span class="hl-identifier">ghcr</span><span class="hl-default">.</span><span class="hl-identifier">io</span><span class="hl-default">/</span><span class="hl-identifier">mealie</span><span class="hl-default">-recipes</span><span class="hl-default">/</span><span class="hl-identifier">mealie</span><span class="hl-default">:</span><span class="hl-identifier">v3</span><i class="hl-number">.9</i><i class="hl-number">.2</i> <i class="hl-comment"># </i>
+    <span class="hl-identifier">container_name</span><span class="hl-default">:</span> <span class="hl-identifier">mealie</span>
+    <span class="hl-identifier">restart</span><span class="hl-default">:</span> <span class="hl-identifier">unless</span><span class="hl-default">-stopped</span>
+    <span class="hl-identifier">ports</span><span class="hl-default">:</span>
+        <span class="hl-default">-</span> <i class="hl-string">&quot;9925:9000&quot;</i> <i class="hl-comment"># </i>
+    <span class="hl-identifier">deploy</span><span class="hl-default">:</span>
+      <span class="hl-identifier">resources</span><span class="hl-default">:</span>
+        <span class="hl-identifier">limits</span><span class="hl-default">:</span>
+          <span class="hl-identifier">memory</span><span class="hl-default">:</span> <i class="hl-number">1000</i><span class="hl-identifier">M</span> <i class="hl-comment"># </i>
+    <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+      <span class="hl-default">-</span> <span class="hl-identifier">mealie</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">app</span><span class="hl-default">/</span><span class="hl-identifier">data</span><span class="hl-default">/</span>
+    <span class="hl-identifier">environment</span><span class="hl-default">:</span>
+      <i class="hl-comment"># Set Backend ENV Variables Here</i>
+      <span class="hl-identifier">ALLOW_SIGNUP</span><span class="hl-default">:</span> <i class="hl-string">&quot;false&quot;</i>
+      <span class="hl-identifier">PUID</span><span class="hl-default">:</span> <i class="hl-number">1000</i>
+      <span class="hl-identifier">PGID</span><span class="hl-default">:</span> <i class="hl-number">1000</i>
+      <span class="hl-identifier">TZ</span><span class="hl-default">:</span> <span class="hl-identifier">Europe</span><span class="hl-default">/</span><span class="hl-identifier">Madrid</span>
+
+<span class="hl-identifier">volumes</span><span class="hl-default">:</span>
+  <span class="hl-identifier">mealie</span><span class="hl-default">:</span>
+</code></pre>
 
 <footer>
 <hr>
