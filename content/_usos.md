@@ -13,12 +13,13 @@ keywords: [blog]
     - *Memòria*: 32 GiB DDR3.
     - *CPU*: Intel i7-2600 (2011).
     - *GPU*: Gigabyte NVIDIA GeForce GTX 1650 SUPER - 4 GiB DDR6 (2019).
+    - *Ratolí*: SteelSeries Prime+ cablejat adquirit el 3 de febrer de 2026.
 - **Servidor**: HP 250 G5 amb el teclat trencat i sense bateria:
     - *SO*: Debian 13 (Testing).
     - *Memòria*: 8GB DDR3L.
     - *CPU*: Intel Core i3-5005U (2015).
     - *GPU*: Intel HD Graphics 5500.
-- **Smartphone**: Poco F5 adquirit el 8 de juny de 2024 i al qual se li ha alliberat el bootloader i instalat LineageOS 23.0 (Android 16).
+- **Smartphone**: Poco F5 adquirit el 8 de juny de 2024 i al qual se li ha alliberat el bootloader i instal·lat LineageOS 23.0 (Android 16).
 
 ## Software
 
