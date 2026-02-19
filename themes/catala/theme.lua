@@ -21,36 +21,36 @@ end
 
 local postListTemplate = etlua.compile([[
 <% local lastYear = nil -%>
-<div class="post-list-container">
+<ul class="post-list-container">
 <% for i, item in ipairs(table.sortBy(items, "date", true)) do
    local year = string.match(item.date, "^(%d%d%d%d)")
    if lastYear ~= year then -%>
-     <h2 class="year-header"><span class="icon">&sect;</span> <%= year %></h2>
-<%
-	 lastYear = year
-   end
--%>
-<article>
-    <h3 class="post-entry-title">
-        <a href="<%= pathToRoot %><%= item.path %>"><span class="icon-title">&#8250;</span><%= item.title %></a>
-    </h3>
-    <% if item.description then -%>
-     <p class="post-entry-description"><%= item.description %></p>
-    <% end -%>
-    <div class="post-entry-meta">
-        <%- htmlifyDate(item.date) %>
-        <% if item.readingTime then %> 
-        · <%= item.readingTime %> <% end %>
-        <% if item.keywords then -%>
-        · <%- keywordList(pathToRoot, item.keywords) %>
-        <% if item.update then -%>
-        · <span><%= item.update %></span>
+     <time class="year-header"><%= year %></time>
+<% lastYear = year end -%>
+    <div class="post-row">
+        <li class="post-entry-title">
+            <a href="<%= pathToRoot %><%= item.path %>"><%= item.title %></a>
+        </li>
+        <% if item.description then -%>
+            <p class="post-entry-description">
+            <%= item.description %>
+            </p>
         <% end -%>
-    </div>
-    <% end -%>
-</article>
+            <p class="post-entry-description">
+            <%- htmlifyDate(item.date) %>
+            <% if item.readingTime then %> 
+            · <%= item.readingTime %> <% end %>
+            <% if item.update then -%>
+            · <span><%= item.update %></span>
+            </p>
+        <div class="post-entry-meta">
+            <% if item.keywords then -%>
+            <%- keywordList(pathToRoot, item.keywords) %>
+            <% end -%>
+        </div>
+    </div> <% end -%>
 <% end -%>
-</div>
+</ul>
 ]])
 function postList(self)
 	return postListTemplate({ pathToRoot = self.pathToRoot, items = self.items })

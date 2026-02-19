@@ -22,7 +22,7 @@
 <h1 class="post-title">Configuració de l&#039;HP 250 G5</h1>
     <p class="post-description">La meva experiència al donar-li una segona vida a un portàtil com a servidor.</p>
   <div class="post-meta">
-    <time datetime="2026-01-30">Gener 30, 2026</time>
+    <time datetime="2021-01-30">Gener 30, 2021</time>
     · 25 min
     · <span style="float:none;">(Actualitzat el 2026-02-26)</span>
     · <a href="topics/tecnologia.html">#tecnologia</a>
@@ -690,7 +690,7 @@ h3://dns.nextdns.io/
       <span class="hl-identifier">status</span><span class="hl-default">:</span>
         <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
         <span class="hl-identifier">interval</span><span class="hl-default">:</span> <i class="hl-number">3600</i>
-    <span class="hl-default">-</span> <span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">Filewizard</span>
+    <span class="hl-default">-</span> <span class="hl-identifier">title</span><span class="hl-default">:</span> <span class="hl-identifier">Filewizardmon</span><span class="hl-default">/</span><span class="hl-identifier">comments</span><span class="hl-default">/</span><i class="hl-number">1</i><span class="hl-identifier">r8njh6</span><span class="hl-default">/</span><span class="hl-identifier">future_paradox_reshiram_concept</span><span class="hl-default">/</span>
       <span class="hl-identifier">description</span><span class="hl-default">:</span> <span class="hl-identifier">Conversi</span><span class="hl-default">�</span><span class="hl-default">�</span> <span class="hl-identifier">de</span> <span class="hl-identifier">fitxers</span>
       <span class="hl-identifier">link</span><span class="hl-default">:</span> <span class="hl-identifier">http</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-default">/</span><i class="hl-number">192.168</i><i class="hl-number">.0</i><i class="hl-number">.19</i><span class="hl-default">:</span><i class="hl-number">8092</i>
       <span class="hl-identifier">icon</span><span class="hl-default">:</span>
@@ -708,6 +708,17 @@ h3://dns.nextdns.io/
       <span class="hl-identifier">status</span><span class="hl-default">:</span>
         <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
         <span class="hl-identifier">interval</span><span class="hl-default">:</span> <i class="hl-number">3600</i>
+</code></pre>
+<h3 id="haus--8095">Haus ~ :8095</h3>
+<pre><code>services:
+  haus:
+    image: ghcr.io/remvze/haus:latest
+    logging:
+      options:
+        max-size: 1g
+    restart: always
+    ports:
+      - '8095:8080'
 </code></pre>
 <h3 id="changedetection--5555">ChangeDetection ~ :5555</h3>
 <p>Monitora pàgines web i t'envia una notificació quan detecta canvis en el contingut. Ho tinc configurat amb un bot de Telegram per enviar-me avisos automàtics quan apareixen productes a Wallapop.</p>

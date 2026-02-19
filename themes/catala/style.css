@@ -5,22 +5,22 @@
 
 /* --- Variables & Dark Mode --- */
 :root {
-  --bg-body: #fffdf0;
-  --text-body: #222;
-  --a-body: #1a1a1a;
-  --thead-body: #0000000d;
+  --bg-body: #FDFDFD;
+  --text-body: #1A1C20;
+  --a-body: #000;
+  --thead-body: #00000008;
   --icon-body: #1a1a1a;
   --code-body: #222; 
   --card-bg: #fff;
-  --lighter: #888;
+  --lighter: #8B949E;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-body: #27282a;
-    --text-body: #f0f0f0;
-    --a-body: #dbdbdb;
-    --thead-body: #444548;
+    --bg-body: #080808;
+    --text-body: #EAEAEA;
+    --a-body: #fff;
+    --thead-body: #171717;
     --icon-body: #F5F5F0;
     --card-bg: #333;
     --code-body: #f5f5f0; 
@@ -28,10 +28,10 @@
 }
 
 body:has(.toggle:checked) {
-  --bg-body: #27282a;
-  --text-body: #f0f0f0;
-  --a-body: #dbdbdb;
-  --thead-body: #444548;
+  --bg-body: #080808;
+  --text-body: #EAEAEA;
+  --a-body: #fff;
+  --thead-body: #171717;
   --icon-body: #F5F5F0;
   --card-bg: #333;
   --code-body: #f5f5f0; 
@@ -39,7 +39,7 @@ body:has(.toggle:checked) {
 
 /* --- Base & Typo --- */
 html {
-  font-family: Palatino, Georgia, Lucida Bright, Book Antiqua, serif;
+  font-family: Montserrat, sans-serif;
   font-size: 16px;
   line-height: 1.5rem;
 }
@@ -109,6 +109,7 @@ sup, sub { line-height: 1em; }
 p, ul, ol, dl, table, blockquote, pre { margin: 1.5rem 0 0; }
 
 ::selection {
+
   color:black;
   background:#ffd700
 }
@@ -116,10 +117,9 @@ p, ul, ol, dl, table, blockquote, pre { margin: 1.5rem 0 0; }
 /* --- Links --- */
 a, header nav a:visited, a code {
   color: var(--a-body);
-  text-decoration: underline dotted 1px;
+  font-weight: 550;
+  text-decoration: underline;
 }
-a:visited, a:visited code { color: var(--a-body); }
-a:hover { text-decoration: underline wavy 1px; }
 
 mark {
   color: inherit;
@@ -307,7 +307,6 @@ hr {
 
 img { 
   max-width: 100%; 
-  filter: brightness(90%) contrast(125%) grayscale(100%) hue-rotate(0deg) invert(0%) opacity(100%) saturate(100%) sepia(18%);
   border-radius: 10px;
 }
 
@@ -373,6 +372,69 @@ th, td {
     var(--offset-diagonal) calc(var(--offset-diagonal) * -1) 0 var(--ray-size);
 }
 
+/* --- Index List --- */
+.post-list-container {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.description-header {
+  font-size: 1.2rem;
+  font-style: italic;
+}
+.year-header {
+  grid-column: 1; /* Espacio fijo que reservamos para la columna izquierda */
+  padding: 12px 0; /* Ajustamos el padding para alinearlo con el texto del artículo */
+  margin: 0;
+  font-weight: normal;
+}
+
+.post-row {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; /* Los centra verticalmente */
+  padding: 12px 10px;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease;
+  border-radius: 6px;
+}
+
+.post-row:hover {
+  background-color: var(--thead-body);
+  cursor: pointer;
+}
+
+.post-entry-title {
+  order: 1;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-entry-meta {
+  order: 2;
+  margin: 0;
+  text-align: right;
+  flex-shrink: 0; 
+}
+
+.post-entry-description {
+  order: 3;
+  width: 100%; 
+  margin: 8px 0 0 0;
+  font-size: 0.95rem;
+  color: var(--text-body);
+  display: none;
+}
+
+.post-row:hover .post-entry-description {
+  display: block;
+}
+
 /* --- Articles --- */
 .post-title {
   margin-top: 0;
@@ -401,82 +463,6 @@ th, td {
 .post-meta time, 
 .post-meta span {
   display: inline-block;
-}
-
-/* --- Index --- */
-.post-list-container {
-  margin: 0;
-}
-.description-header {
-  font-size: 1.2rem;
-  font-style: italic;
-}
-.year-header {
-  font-family: Palatino, Georgia, serif;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--text-body);
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  border-bottom: 1.5px dotted var(--lighter);
-  border-spacing: 1rem;
-  text-transform: none !important;
-  letter-spacing: 0 !important;
-  text-align: left !important;
-  /* &sect; */
-  padding: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-/* icon */
-.icon {
-  font-family: "Times New Roman", serif;
-  font-size: 1.5rem;
-  color: #c00000;
-  line-height: 1;
-  opacity: 0.8;
-}
-.post-entry-title .icon-title {
-  color: var(--lighter);
-  font-family: system-ui, sans-serif;
-  font-weight: bold;
-  font-size: 1rem;
-  line-height: 1;
-  margin-right: 0.3rem;
-  vertical-align: -1px;
-  transition: color 0.2s ease;
-  text-decoration: none !important;
-  border-bottom: none !important;
-  display: inline-block;
-}
-.post-entry-title:hover .icon-title {
-  color: #c00000;
-  text-decoration: none !important;
-}
-/* post-entry */
-.post-entry-title {
-  font-size: 1.2rem;
-  margin: 0 0 0.5rem 0;
-  line-height: 1.2;
-  font-weight: bold;
-  text-transform: none !important;
-  letter-spacing: 0 !important;
-  text-align: left !important;
-  border-bottom: none !important;
-}
-/* Index metadata */
-.post-entry-meta {
-  font-size: 1rem;
-  color: var(--lighter);
-  margin-bottom: 0.5rem;
-}
-.post-entry-description {
-  font-size: 1.1rem;
-  margin-top: 0.1rem;
-  color: var(--text-body);
-  opacity: 0.9;
-  font-style: italic;
 }
 
 /* Footer-Nav */
@@ -660,5 +646,30 @@ th, td {
   pre code {
     white-space: inherit;
     overflow-wrap: normal;
+  }
+
+  .post-list-container {
+    /* Pasamos de dos columnas a una sola columna que ocupa el 100% */
+    grid-template-columns: 1fr; 
+  }
+
+  .year-header {
+    /* El año se coloca en la única columna disponible */
+    grid-column: 1; 
+    padding: 20px 10px 8px 10px; /* Le damos más aire por arriba para separar los años */
+    font-weight: bold; /* Lo ponemos en negrita para que destaque más como separador */
+    font-size: 1.1rem;
+    color: var(--text-body);
+  }
+
+  .post-row {
+    /* Los artículos también van a la primera (y única) columna */
+    grid-column: 1; 
+    padding: 12px 10px;
+  }
+  
+  /* Hacemos que la descripción ocupe bien el espacio si se despliega */
+  .post-entry-description {
+    font-size: 0.9rem; /* Un pelín más pequeña en móvil */
   }
 }
