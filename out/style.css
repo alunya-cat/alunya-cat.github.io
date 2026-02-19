@@ -38,17 +38,18 @@ body:has(.toggle:checked) {
 }
 
 /* --- Base & Typo --- */
-html {
+html, body {
   font-family: Montserrat, sans-serif;
   font-size: 16px;
-  line-height: 1.5rem;
-}
-
-body {
+  line-height: 1.6rem;
   background-color: var(--bg-body);
   color: var(--text-body);
   transition: background-color 0.5s ease, color 0.5s ease;
-  margin: 1.5rem 1ch;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 h1, h2, h3, h4, h5, h6, th { font-weight: normal; }
@@ -229,11 +230,21 @@ pre:focus-within::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid var(--text-body);
   border-bottom: 1px solid var(--text-body);
-  padding: 10px 0;
-  margin: 2rem 0;
-  width: 100%;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
+  
+  /* Mantiene el texto alineado exactamente con tu contenido */
+  padding: 15px calc(50vw - 50%);
+  
+  /* Ubicación: Pegado arriba */
+  margin-top: 0; 
+  margin-bottom: 3rem;
 }
 .site-title {
   margin: 0;
@@ -273,11 +284,10 @@ pre:focus-within::after {
 body > header { text-align: center; }
 
 main, body > footer {
-  display: block;
-  margin: 5rem auto;
-  width: 50%;
-  font-size: 1.1rem;
-  line-height: 150%;
+  flex-grow: 1; /* Esto obliga al contenido a empujar el footer hacia abajo */
+  width: 100%;
+  max-width: 800px; /* O el ancho máximo que uses para tu web */
+  margin: 0 auto; /* Centra el contenido en la pantalla */
 }
 
 main figure, main aside {
@@ -380,15 +390,27 @@ th, td {
   padding: 0;
   margin: 0;
 }
+
 .description-header {
-  font-size: 1.2rem;
-  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-body);
+  line-height: 1.6;
+  
+  /* El recuadro de fondo */
+  background-color: var(--thead-body); /* Gris ultra claro, casi blanco */
+  padding: 1.25rem 1.5rem; /* Espacio interior para que respire */
+  border-radius: 8px; /* Esquinas ligeramente redondeadas */
+  border: 1px solid #f3f4f6; /* Borde súper sutil para dar nitidez */
+  
+  margin-bottom: 2.5rem;
 }
+
 .year-header {
   grid-column: 1; /* Espacio fijo que reservamos para la columna izquierda */
   padding: 12px 0; /* Ajustamos el padding para alinearlo con el texto del artículo */
   margin: 0;
   font-weight: normal;
+  font-family: monospace;
 }
 
 .post-row {
@@ -413,13 +435,26 @@ th, td {
   margin: 0;
   padding: 0;
   list-style: none;
+  /* NUEVO: Alineamos el texto y la línea */
+  display: flex;
+  align-items: center; /* Centra la línea verticalmente con el texto */
+}
+
+.post-entry-title::after {
+  content: "";
+  flex: 1; /* Esto hace que la línea ocupe todo el espacio sobrante hasta la keyword */
+  border-bottom: 1px dashed var(--text-body); /* Puedes cambiar 'dashed' por 'dotted' para que sean puntos */
+  margin: 0 15px; /* Crea un poco de aire entre el texto, la línea y la keyword */
+  opacity: 0.4; /* Hace que la línea sea sutil y no quite protagonismo al texto */
 }
 
 .post-entry-meta {
   order: 2;
   margin: 0;
   text-align: right;
-  flex-shrink: 0; 
+  flex-shrink: 0;
+  font-family: monospace;
+  font-size: medium;
 }
 
 .post-entry-description {
@@ -470,8 +505,20 @@ th, td {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 2rem;
   font-family: sans-serif;
+  /* Añadimos la línea divisoria superior */
+  border-top: 1px solid var(--text-body);
+  
+  /* TRUCO FULL-BLEED (Igual que en el header) */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: 3rem;
+  box-sizing: border-box;
+  padding: 20px calc(50vw - 50%);
 }
 .footer-nav .nav-left, .footer-nav .nav-center a {
   color: #555;
@@ -657,9 +704,9 @@ th, td {
     /* El año se coloca en la única columna disponible */
     grid-column: 1; 
     padding: 20px 10px 8px 10px; /* Le damos más aire por arriba para separar los años */
-    font-weight: bold; /* Lo ponemos en negrita para que destaque más como separador */
     font-size: 1.1rem;
     color: var(--text-body);
+    font-family: monospace;
   }
 
   .post-row {
