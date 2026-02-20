@@ -88,7 +88,7 @@ if siteOverrides then
 end
 
 local source = args[3] or "content"
-local destination = args[4] or "out"
+local destination = args[4] or "./"
 
 -- Build pipeline
 return {
