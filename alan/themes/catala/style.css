@@ -69,7 +69,7 @@ h2 {
   font-size: 1.8rem;
   font-weight: 300;
   text-transform: uppercase;
-  border-bottom: solid 1px black;  
+  border-bottom: solid 1px var(--lighter);  
   color: var(--text-body);
   margin-bottom: 1rem;
   line-height: 1.2;
