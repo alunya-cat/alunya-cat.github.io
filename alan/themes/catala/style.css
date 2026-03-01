@@ -3,105 +3,113 @@
  * sota els termes de la GNU General Public License (GPLv3).
 */
 
-/* --- Variables & Dark Mode --- */
+/* --- Variables & Dark Mode (Sincronizadas con style.css) --- */
 :root {
-  --bg-body: #FDFDFD;
-  --text-body: #1A1C20;
-  --a-body: #000;
-  --thead-body: #00000008;
-  --icon-body: #1a1a1a;
-  --code-body: #222; 
-  --card-bg: #fff;
-  --lighter: #8B949E;
+    --bg: #FAF9F5;  
+    --font-serif: 'Cormorant Garamond', 'Garamond', serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;  
+    --text-main: #1A1C20; 
+    --text-muted: #8B949E;
+    --text-description: #52585F;
+    --border: #E0D8D0;
+    --card-hover: #EFE8E0;
+    --accent: #000000;
+    --bento-bg: #F4EFEA; 
+    --selection-bg: #171717;
+    --selection-text: #FAFAF9;
+    --code-color: #1A1C20;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg-body: #080808;
-    --text-body: #EAEAEA;
-    --a-body: #fff;
-    --thead-body: #171717;
-    --icon-body: #F5F5F0;
-    --card-bg: #333;
-    --code-body: #f5f5f0; 
-  }
+    :root {
+        --bg: #1A1816; 
+        --text-main: #EFE8E0;
+        --text-muted: #A39D98;
+        --text-description: #C9C2BC;
+        --border: #332F2A;
+        --card-hover: #2A2622;
+        --accent: #EFE8E0;
+        --bento-bg: #221F1C;
+        --selection-bg: #EFE8E0;
+        --selection-text: #1A1816;
+        --code-color: #EFE8E0;
+    }
 }
 
 body:has(.toggle:checked) {
-  --bg-body: #080808;
-  --text-body: #EAEAEA;
-  --a-body: #fff;
-  --thead-body: #171717;
-  --icon-body: #F5F5F0;
-  --card-bg: #333;
-  --code-body: #f5f5f0; 
+    --bg: #1A1816; 
+    --text-main: #EFE8E0;
+    --text-muted: #A39D98;
+    --text-description: #C9C2BC;
+    --border: #332F2A;
+    --card-hover: #2A2622;
+    --accent: #EFE8E0;
+    --bento-bg: #221F1C;
+    --selection-bg: #EFE8E0;
+    --selection-text: #1A1816;
+    --code-color: #EFE8E0;
 }
 
 /* --- Base & Typo --- */
 html, body {
-  font-family: Montserrat, sans-serif;
-  font-size: 16px;
-  line-height: 1.6rem;
-  background-color: var(--bg-body);
-  color: var(--text-body);
+  font-family: var(--font-serif);
+  font-size: 1.1rem; /* Un poco más grande para Garamond, ya que tiende a verse pequeña */
+  line-height: 1.7;
+  background-color: var(--bg);
+  color: var(--text-main);
   transition: background-color 0.5s ease, color 0.5s ease;
   margin: 0;
   padding: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6, th { font-weight: normal; }
-h1, h2, h3 { line-height: 3rem; margin: 1.5rem 0 0; }
+h1, h2, h3, h4, h5, h6, th { font-weight: 600; }
+h1, h2, h3 { line-height: 1.2; margin: 1.5rem 0 1rem; }
 h1 {
-  font-family: var(--font-family);
+  font-family: var(--font-serif);
   font-size: 2.2rem;
-  font-weight: 300;
-  text-transform: uppercase;
+  text-transform: none;
   text-align: center;
-  color: var(--text-body);
-  margin-bottom: 1rem;
-  line-height: 1.2;
+  color: var(--text-main);
+  letter-spacing: -0.04em;
 }
 h2 { 
-  font-family: var(--font-family);
+  font-family: var(--font-serif);
   font-size: 1.8rem;
-  font-weight: 300;
-  text-transform: uppercase;
-  border-bottom: solid 1px var(--lighter);  
-  color: var(--text-body);
-  margin-bottom: 1rem;
-  line-height: 1.2;
+  text-transform: none;
+  border-bottom: solid 1px var(--border);  
+  color: var(--text-main);
+  padding-bottom: 0.5rem;
+  letter-spacing: -0.02em;
 }
 h3 {
   font-size: 1.5rem;
-  font-weight: 300;
-  text-transform: uppercase;
-  color: var(--text-body);
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-  border-bottom: solid 1px var(--lighter);
+  text-transform: none;
+  color: var(--text-main);
+  border-bottom: solid 1px var(--border);
+  padding-bottom: 0.3rem;
 }
 h4 {
-  font-size: 1.1rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  color: var(--text-body);
-  border-bottom: dotted 1px var(--lighter);
+  font-size: 1.2rem;
+  text-transform: none;
+  color: var(--text-main);
+  border-bottom: dotted 1px var(--border);
 }
 h5 {
+  font-family: var(--font-mono);
   font-size: 0.9rem;
-  font-weight: 600;
   text-transform: uppercase;
-  color: var(--lighter);
-  border-bottom: dashed 1px var(--lighter);
+  color: var(--text-muted);
+  border-bottom: dashed 1px var(--border);
 }
 h6 {
+  font-family: var(--font-mono);
   font-size: 0.8rem;
-  font-weight: 400;
   text-transform: uppercase;
-  color: var(--lighter);
+  color: var(--text-muted);
   opacity: 0.8;
 }
 small, sup, sub { font-size: 0.833em; }
@@ -110,55 +118,58 @@ sup, sub { line-height: 1em; }
 p, ul, ol, dl, table, blockquote, pre { margin: 1.5rem 0 0; }
 
 ::selection {
-
-  color:black;
-  background:#ffd700
+  color: var(--selection-text);
+  background: var(--selection-bg);
 }
 
 /* --- Links --- */
 a, header nav a:visited, a code {
-  color: var(--a-body);
-  font-weight: 550;
+  color: var(--accent);
+  font-weight: 500;
   text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 3px;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  text-decoration-color: var(--accent);
 }
 
 mark {
   color: inherit;
-  background-color: #fe0;
-  padding: 1px;
+  background-color: var(--card-hover);
+  padding: 1px 4px;
+  border-radius: 4px;
 }
 
 ins {
-  border: solid var(--thead-body);
-  border-width: 1px;
-  padding: 1px;
+  border-bottom: 1px solid var(--text-main);
   text-decoration: none;
 }
 
 /* --- CODE, PRE, SAMP, KBD --- */
 code, pre, samp, kbd {
-  font-family: Consolas, Liberation Mono, Menlo, Courier, monospace;
-  font-size: 0.833rem;
-  color: var(--code-body);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--code-color);
 }
-kbd { font-weight: bold; }
+kbd { font-weight: 600; }
 
 /* Code+Table */
-code, pre, samp, thead, tfoot { background-color: var(--thead-body); }
+code, pre, samp, thead, tfoot { background-color: var(--bento-bg); }
 
 code, samp {
-  border: solid rgba(0, 0, 0, 0.1);
-  border-width: 1px;
-  border-radius: 2px;
-  padding: 0.1em 0.2em;
+  border: solid 1px var(--border);
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
   white-space: nowrap;
 }
 
 pre {
-  border: solid rgba(0, 0, 0, 0.1);
-  border-width: 1px;
-  border-radius: 2px;
-  padding: 0 0.5ch;
+  border: solid 1px var(--border);
+  border-radius: 8px;
+  padding: 1rem;
   overflow-x: auto;
   margin-top: calc(1.5rem - 1px);
   margin-bottom: -1px;
@@ -168,6 +179,7 @@ pre {
   position: relative;
   transition: max-height 0.5s ease-in-out;
   cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
 }
 
 pre code {
@@ -178,39 +190,27 @@ pre code {
 }
 
 pre::after {
-  /* CAMBIA ESTE CÓDIGO POR EL ICONO QUE ELIJAS */
-  content: "\276F"; /* Usando el chevron grueso (❯) */
-
-  /* Importante para poder rotar o transformar el icono */
+  content: "\276F"; 
   display: block; 
-  
-  /* Rotamos 90 grados para que apunte hacia abajo */
   transform: rotate(90deg); 
-  
-  /* Ajustes visuales para darle "fuerza" */
-  font-size: 28px;       /* Tamaño grande */
-  font-weight: bold;     /* Negrita (si la fuente lo soporta) */
-  color: #444;           /* Un gris oscuro, más visible */
-  
-  /* Posicionamiento (igual que antes) */
+  font-size: 28px;       
+  font-weight: bold;     
+  color: var(--text-muted);           
   position: absolute;
-  top: 110px;          /* Un poco separado del borde inferior */
+  bottom: 10px;          
   left: 0;
-  right: 0;              /* Truco para centrar con margin auto */
-  margin: 0 auto;        /* Centrado horizontal */
-  width: 40px;           /* Ancho fijo para el contenedor del icono */
+  right: 0;              
+  margin: 0 auto;        
+  width: 40px;           
   height: 40px;
-  line-height: 40px;     /* Centrado vertical del texto */
+  line-height: 40px;     
   text-align: center;
-  
-  /* ANIMACIÓN: Le damos un "latido" para llamar la atención */
   animation: pulse 2s infinite;
 }
 
-/* Animación de latido (Scale) */
 @keyframes pulse {
   0% { transform: rotate(90deg) scale(1); opacity: 0.7; }
-  50% { transform: rotate(90deg) scale(1.3); opacity: 1; } /* Crece un 30% */
+  50% { transform: rotate(90deg) scale(1.3); opacity: 1; } 
   100% { transform: rotate(90deg) scale(1); opacity: 0.7; }
 }
 
@@ -230,7 +230,7 @@ pre:focus-within::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--text-body);
+  border-bottom: 1px solid var(--border);
   width: 100vw;
   position: relative;
   left: 50%;
@@ -238,11 +238,7 @@ pre:focus-within::after {
   margin-left: -50vw;
   margin-right: -50vw;
   box-sizing: border-box;
-  
-  /* Mantiene el texto alineado exactamente con tu contenido */
   padding: 15px calc(50vw - 50%);
-  
-  /* Ubicación: Pegado arriba */
   margin-top: 0; 
   margin-bottom: 3rem;
 }
@@ -264,19 +260,20 @@ pre:focus-within::after {
 }
 .nav-header a {
   display: inline-block;
-  font-size: 18px;
+  font-size: 16px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 1px;
   padding: 5px 10px;
-  font-variant: small-caps;
   text-decoration: none !important;
-  color: var(--text-body);
+  color: var(--text-main);
   transition: color 0.2s ease;
   border: none !important;
-  box-shadow: none !important;
   background: none !important;
 }
 .nav-header a:hover,
 .nav-header a.active {
-  color: var(--lighter) !important;
+  color: var(--text-muted) !important;
   cursor: pointer;
 }
 
@@ -284,10 +281,10 @@ pre:focus-within::after {
 body > header { text-align: center; }
 
 main, body > footer {
-  flex-grow: 1; /* Esto obliga al contenido a empujar el footer hacia abajo */
+  flex-grow: 1; 
   width: 100%;
-  max-width: 800px; /* O el ancho máximo que uses para tu web */
-  margin: 0 auto; /* Centra el contenido en la pantalla */
+  max-width: 700px; /* Igualamos el ancho a style.css (700px) */
+  margin: 0 auto; 
 }
 
 main figure, main aside {
@@ -297,27 +294,30 @@ main figure, main aside {
 
 main aside {
   max-width: 26ch;
-  border: solid var(--thead-body);
-  border-width: 0 0 0 0.5ch;
-  padding: 0 0 0 0.5ch;
+  border-left: 2px solid var(--border);
+  padding: 0 0 0 1rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
 }
 
 blockquote {
-  border: solid var(--thead-body);
-  border-width: 0 0 0 0.5ch;
+  border-left: 2px solid var(--border);
   margin-right: 3ch;
   margin-left: 1.5ch;
-  padding: 0 0 0 1ch;
+  padding: 0 0 0 1.5rem;
+  font-style: italic;
+  color: var(--text-muted);
 }
 
 hr {
   border-top: medium none;
-  border-bottom: 1px solid hsl(0, 0%, 70%);
+  border-bottom: 1px solid var(--border);
 }
 
 img { 
   max-width: 100%; 
-  border-radius: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 /* --- Lists --- */
@@ -344,9 +344,8 @@ table {
   margin-bottom: -1px;
 }
 th, td {
-  border: solid #dbdbdb;
-  border-width: 1px;
-  padding: 0 0.5ch;
+  border: solid 1px var(--border);
+  padding: 0.5rem 1rem;
 }
 
 /* Toggle Light-Dark */
@@ -359,7 +358,7 @@ th, td {
   height: var(--size);
   box-shadow: inset calc(var(--size) * 0.33) calc(var(--size) * -0.25) 0;
   border-radius: 999px;
-  color: var(--lighter);
+  color: var(--text-main);
   transition: all 500ms;
   position: relative; 
 }
@@ -392,41 +391,40 @@ th, td {
 }
 
 .description-header {
-  font-size: 1rem;
-  color: var(--text-body);
+  font-size: 0.9rem;
+  color: var(--text-main);
   line-height: 1.6;
-  
-  /* El recuadro de fondo */
-  background-color: var(--thead-body); /* Gris ultra claro, casi blanco */
-  padding: 1.25rem 1.5rem; /* Espacio interior para que respire */
-  border-radius: 8px; /* Esquinas ligeramente redondeadas */
-  border: 1px solid #f3f4f6; /* Borde súper sutil para dar nitidez */
-  
+  background-color: var(--bento-bg); 
+  padding: 1.5rem; 
+  border-radius: 12px; 
+  border: 1px solid var(--border); 
   margin-bottom: 2.5rem;
 }
 
 .year-header {
-  grid-column: 1; /* Espacio fijo que reservamos para la columna izquierda */
-  padding: 12px 0; /* Ajustamos el padding para alinearlo con el texto del artículo */
+  grid-column: 1; 
+  padding: 12px 0; 
   margin: 0;
-  font-weight: normal;
-  font-family: monospace;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
 }
 
 .post-row {
   grid-column: 2;
   display: flex;
   flex-wrap: wrap;
-  align-items: center; /* Los centra verticalmente */
-  padding: 12px 10px;
+  align-items: center; 
+  padding: 12px 16px;
   box-sizing: border-box;
-  transition: background-color 0.2s ease;
-  border-radius: 6px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  border-radius: 8px;
 }
 
 .post-row:hover {
-  background-color: var(--thead-body);
+  background-color: var(--bento-bg);
   cursor: pointer;
+  transform: scale(1.01);
 }
 
 .post-entry-title {
@@ -435,17 +433,16 @@ th, td {
   margin: 0;
   padding: 0;
   list-style: none;
-  /* NUEVO: Alineamos el texto y la línea */
   display: flex;
-  align-items: center; /* Centra la línea verticalmente con el texto */
+  align-items: center; 
+  font-weight: 500;
 }
 
 .post-entry-title::after {
   content: "";
-  flex: 1; /* Esto hace que la línea ocupe todo el espacio sobrante hasta la keyword */
-  border-bottom: 1px dashed var(--text-body); /* Puedes cambiar 'dashed' por 'dotted' para que sean puntos */
-  margin: 0 15px; /* Crea un poco de aire entre el texto, la línea y la keyword */
-  opacity: 0.4; /* Hace que la línea sea sutil y no quite protagonismo al texto */
+  flex: 1; 
+  border-bottom: 1px dashed var(--border); 
+  margin: 0 15px; 
 }
 
 .post-entry-meta {
@@ -453,16 +450,17 @@ th, td {
   margin: 0;
   text-align: right;
   flex-shrink: 0;
-  font-family: monospace;
-  font-size: medium;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-main);
 }
 
 .post-entry-description {
   order: 3;
   width: 100%; 
   margin: 8px 0 0 0;
-  font-size: 0.95rem;
-  color: var(--text-body);
+  font-size: 1rem;
+  color: var(--text-description);
   display: none;
 }
 
@@ -473,31 +471,28 @@ th, td {
 /* --- Articles --- */
 .post-title {
   margin-top: 0;
-  margin-bottom: 0.2rem;
-  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
 }
 .post-description {
-  font-size: 1.1rem;
-  color: var(--text-body);
+  font-size: 1.2rem;
+  color: var(--text-description);
   margin-top: 0;
   line-height: 1.4;
   font-style: italic;
   text-align: center;
 }
-/* Article metadata */
 .post-meta {
-  font-size: 1rem;
-  color: var(--lighter);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.5ch;
-  margin-top: 0.5rem;
+  gap: 1rem;
+  margin-top: 1rem;
   justify-content: center;
-}
-.post-meta time, 
-.post-meta span {
-  display: inline-block;
+  text-transform: uppercase;
 }
 
 /* Footer-Nav */
@@ -505,38 +500,35 @@ th, td {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: sans-serif;
-  /* Añadimos la línea divisoria superior */
-  border-top: 1px solid var(--text-body);
-  
-  /* TRUCO FULL-BLEED (Igual que en el header) */
+  font-family: var(--font-mono);
+  border-top: 1px solid var(--border);
   width: 100vw;
   position: relative;
   left: 50%;
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  margin-top: 3rem;
+  margin-top: 4rem;
   box-sizing: border-box;
   padding: 20px calc(50vw - 50%);
 }
 .footer-nav .nav-left, .footer-nav .nav-center a {
-  color: #555;
+  color: var(--text-muted);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
-.footer-nav .nav-left { font-size: 0.9rem; gap: 15px; display: flex; }
+.footer-nav .nav-left { gap: 15px; display: flex; }
 .footer-nav .nav-left a { display: flex; }
 .footer-nav .nav-center a { margin: 0 10px; }
 .footer-nav .nav-right { display: flex; gap: 15px; }
 .footer-nav .nav-right a {
-  color: var(--icon-body);
+  color: var(--text-main);
   display: flex;
   align-items: center;
   text-decoration: none;
   transition: color 0.2s;
 }
-.footer-nav .nav-right a:hover { color: #6b6b6b; }
+.footer-nav .nav-right a:hover { color: var(--text-muted); transform: translateY(-2px); }
 
 /* Contact email */
 .contact-toggle {
@@ -544,18 +536,17 @@ th, td {
   align-items: center;
   vertical-align: middle;
   margin-left: 0.5ch;
-  font-size: 1rem;
+  font-size: 0.85rem;
   cursor: pointer;
-  color: var(--lighter);
+  color: var(--text-muted);
   transition: color 0.3s;
 }
 .contact-toggle:hover {
-  color: var(--a-body);
+  color: var(--accent);
 }
 .contact-toggle input {
   display: none; 
 }
-/* Mail text style */
 .contact-toggle span {
   max-width: 0;
   overflow: hidden;
@@ -563,8 +554,7 @@ th, td {
   opacity: 0;
   margin-left: 0;
   font-weight: normal;
-  font-family: sans-serif, monospace;
-  color: var(--text-body);
+  color: var(--text-main);
   transition: all 0.4s ease-in-out;
 }
 .contact-toggle input:checked ~ span {
@@ -573,150 +563,35 @@ th, td {
   margin-left: 10px;
 }
 
-/* --- Syntax Highlighting Editorial --- */
-
-/* 1. Comentarios: Discretos, en cursiva y gris */
-.hl-comment, 
-.hl-quote { 
-  font-style: italic; 
-  color: var(--lighter); /* Usamos tu variable de gris suave */
-}
-
-/* 2. Palabras clave (if, else, return, class): 
-   Un violeta/morado sobrio para la lógica de control */
-.hl-keyword, 
-.hl-selector-tag, 
-.hl-subst { 
-  font-weight: bold;
-  color: #8959a8; 
-}
-
-/* 3. Cadenas de texto ("String"): 
-   Un verde oliva que es muy legible y elegante */
-.hl-string, 
-.hl-attribute, 
-.hl-symbol, 
-.hl-bullet, 
-.hl-addition { 
-  color: #718c00; 
-  font-style: italic; /* Opcional: el estilo cursivo en strings queda muy "libro" */
-}
-
-/* 4. Funciones y Métodos: 
-   Usamos TU ROJO característico (#c00000) para las acciones */
-.hl-function, 
-.hl-section, 
-.hl-title, 
-.hl-tag, 
-.hl-name { 
-  font-weight: bold;
-  color: #c00000; /* Coherencia con tus h2 y enlaces */
-}
-
-/* 5. Variables y Atributos: 
-   Azul oscuro o el color de texto base para no saturar */
-.hl-variable, 
-.hl-template-variable, 
-.hl-attribute, 
-.hl-attr { 
-  color: #4271ae; 
-}
-
-/* 6. Números y Constantes: 
-   Naranja quemado */
-.hl-number, 
-.hl-literal, 
-.hl-type, 
-.hl-built_in, 
-.hl-builtin-name { 
-  color: #eab700; 
-}
-
-/* 7. Meta y Preprocesadores: 
-   Gris azulado oscuro */
-.hl-meta, 
-.hl-preprocessor,
-.hl-annotation { 
-  color: #3e999f;
-  font-weight: bold;
-}
-
-/* 8. Errores y Borrados: Rojo vivo */
-.hl-deletion, 
-.hl-error { 
-  color: #c00000;
-  text-decoration: underline;
-}
-
-/* 9. Enlaces en código */
-.hl-link { 
-  color: var(--lighter);
-  text-decoration: underline; 
-}
+/* --- Syntax Highlighting Editorial (Se mantiene igual pero con sutiles mejoras) --- */
+.hl-comment, .hl-quote { font-style: italic; color: var(--text-muted); }
+.hl-keyword, .hl-selector-tag, .hl-subst { font-weight: 600; color: #8959a8; }
+.hl-string, .hl-attribute, .hl-symbol, .hl-bullet, .hl-addition { color: #718c00; font-style: italic; }
+.hl-function, .hl-section, .hl-title, .hl-tag, .hl-name { font-weight: 600; color: #c00000; }
+.hl-variable, .hl-template-variable, .hl-attribute, .hl-attr { color: #4271ae; }
+.hl-number, .hl-literal, .hl-type, .hl-built_in, .hl-builtin-name { color: #eab700; }
+.hl-meta, .hl-preprocessor, .hl-annotation { color: #3e999f; font-weight: 600; }
+.hl-deletion, .hl-error { color: #c00000; text-decoration: underline; }
+.hl-link { color: var(--text-muted); text-decoration: underline; }
 
 /* --- Responsive --- */
 @media screen and (max-width: 900px) {
-  main, body > footer {
-      width: 90%;
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-      font-size: 110%;
-  }
-  main figure, main aside {
-      float: none;
-      display: block;
-      width: 100%;
-      margin: 1.5rem 0;
-  }
-  main aside {
-      border-width: 0 0 0 4px;
-      background-color: rgba(0,0,0,0.02);
-      padding: 0.5rem 1rem;
-  }
+  main, body > footer { width: 90%; margin-top: 2rem; margin-bottom: 2rem; }
+  main figure, main aside { float: none; display: block; width: 100%; margin: 1.5rem 0; }
+  main aside { border-left-width: 4px; background-color: var(--bento-bg); padding: 1rem; }
   blockquote { margin-right: 0; margin-left: 0; }
   .item-flex { flex-direction: column; align-items: flex-start; }
   .item-flex span { margin-left: 0; margin-top: 0.5rem; }
   nav ul li { display: inline-block; white-space: normal; margin-bottom: 0.5rem; }
-  .description-header, .post-entry-description { font-size: 1rem; }
 }
 
 @media screen and (max-width: 600px) {
   .footer-nav { flex-direction: column; gap: 1.5rem; }
   .nav-left, .nav-center, .nav-right { width: 100%; justify-content: center; text-align: center; }
-  code, samp {
-    white-space: normal;
-    overflow-wrap: break-word;
-    word-break: break-word;
-  }
-
-  /* (pre) code blocks continue to function with scroll */
-  pre code {
-    white-space: inherit;
-    overflow-wrap: normal;
-  }
-
-  .post-list-container {
-    /* Pasamos de dos columnas a una sola columna que ocupa el 100% */
-    grid-template-columns: 1fr; 
-  }
-
-  .year-header {
-    /* El año se coloca en la única columna disponible */
-    grid-column: 1; 
-    padding: 20px 10px 8px 10px; /* Le damos más aire por arriba para separar los años */
-    font-size: 1.1rem;
-    color: var(--text-body);
-    font-family: monospace;
-  }
-
-  .post-row {
-    /* Los artículos también van a la primera (y única) columna */
-    grid-column: 1; 
-    padding: 12px 10px;
-  }
-  
-  /* Hacemos que la descripción ocupe bien el espacio si se despliega */
-  .post-entry-description {
-    font-size: 0.9rem; /* Un pelín más pequeña en móvil */
-  }
+  code, samp { white-space: normal; overflow-wrap: break-word; word-break: break-word; }
+  pre code { white-space: inherit; overflow-wrap: normal; }
+  .post-list-container { grid-template-columns: 1fr; }
+  .year-header { grid-column: 1; padding: 20px 10px 8px 10px; font-size: 1.1rem; }
+  .post-row { grid-column: 1; padding: 12px 10px; }
+  .post-entry-description { font-size: 0.95rem; }
 }

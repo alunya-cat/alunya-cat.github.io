@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="<%= pathToRoot %>style.css" />
 <link rel="icon" href="data:," />
 <% if path == "index.html" then %><link rel="alternate" type="application/rss+xml" href="feed.xml" /><% end %>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 <main>
