@@ -1,61 +1,40 @@
 <!DOCTYPE html>
 <html lang="ca-ES">
-<meta charset="utf-8" />
-<title>Alunya</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<link rel="stylesheet" href="style.css" />
-<link rel="icon" type="image/png" href="favicon.png">
+<head>
+    <meta charset="utf-8" />
+    <title>Alunya</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <input type="checkbox" class="theme-toggle-btn" title="Cambiar tema">
     <div class="wrapper">
         <aside class="profile-section">
-            <div class="avatar-container">
-                <img src="logo.png" alt="Alunya" class="avatar">
-            </div>
-            <h1>Alunya</h1>
-            <div class="avatar-description">
-                Aspiring Web Developer
-            </div>
-            <div class="contact-button">
-                <span>Contacte: </span>
-                <label class="contact-toggle">
-                    <input type="checkbox"> <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                    <span class="email-reveal" style="unicode-bidi: bidi-override; direction: rtl;">
-                        moc.liamg@avlajirgalivaloiro
-                    </span>
-                </label>
-            </div>
-            <div class="social-links">
-                <a href="https://github.com/alunya-cat" target="_blank">
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                </a>
-            </div>
-            <div class="comment-wrapper">
-                <div class="comment">
-                    <span>Lorem Ipsum Views</span>
+            <div class="profile-header">
+                <div class="avatar-container">
+                    <img src="logo-b.png" alt="Alunya" class="avatar">
+                </div>
+                <div class="profile-text">
+                    <h1>Alunya</h1>
+                    <div class="avatar-description">
+                        El valor d'intentar-ho.
+                    </div>
                 </div>
             </div>
+            <div class="social-links">
+                </div>
         </aside>
         <main>
             <div class="block">
-                <div class="section-header">01 / About</div>
+                <div class="section-header">Qué és Alunya?</div>
                 <p>
-                    I am a student developer exploring the world of
-                    <span class="highlight">web engineering</span> and <span class="highlight">interface design</span>.
-                </p>
-                <p>
-                    Currently based in India, I am dedicating my time to mastering the modern web stack. I enjoy the
-                    process of turning ideas into working code.
+                    Alunya és el paraigua sota el qual construeixo i dono vida a les meves curiositats. Una col·lecció de projectes independents on experimento amb idees que no tenen res a veure les unes amb les altres, sense lligams ni definicions tancades.
                 </p>
             </div>
             <div class="block">
-                <div class="section-header">02 / Projectes</div>
+                <div class="section-header">Projectes</div>
                 <div class="box-grid">
                     <div class="box box-1">
                         <div class="box-header">
@@ -68,7 +47,7 @@
                             </div>
                             <div class="status-badge">
                                 <div class="pulsing-dot-false"></div>
-                                <span id="badge-description">--:--</span>
+                                <span class="badge-description">--:--</span>
                             </div>
                         </div>
                     </div>
@@ -81,7 +60,7 @@
                             </div>
                             <div class="status-badge">
                                 <div class="pulsing-dot-true"></div>
-                                <span id="badge-description">--:--</span>
+                                <span class="badge-description">--:--</span>
                             </div>
                         </div>
                     </div>
@@ -96,33 +75,30 @@
                             </div>
                             <div class="status-badge">
                                 <div class="pulsing-dot-standby"></div>
-                                <span id="badge-description">--:--</span>
+                                <span class="badge-description">--:--</span>
                             </div>
                         </div>
                         <a href="https://github.com/alunya-cat" target="_blank" class="box-link"></a>
                     </div>
                 </div>
             </div>
-            <div class="block">
-                <div class="section-header">03 / Experience</div>
-                <div class="timeline-item">
-                    <div class="tl-left">
-                        <h3>Independent Developer</h3>
-                        <span class="tl-desc">
-                            Exploring the modern web stack.
-                            I am actively learning how to build better user interfaces
-                            by experimenting with new frameworks and design patterns. Currently Building hxrshit.lol and
-                            few other projects will be added to the project section soon.
-                        </span>
-                    </div>
-                    <div class="tl-right">2024 — Present</div>
-                </div>
-            </div>
             <footer class="footer">
-                <p class="funny-note">
-                    Lorem Ipsum.
-                </p>
-                <p>© Lorem Ipsum. All rights reserved.</p>
+                <div class="contact-button">
+                    <span>Contacte: </span>
+                    <label class="contact-toggle">
+                        <input type="checkbox"> 
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span class="email-reveal" style="unicode-bidi: bidi-override; direction: rtl;">
+                            moc.liamg@avlajirgalivaloiro
+                        </span>
+                    </label>
+                </div>
+                <a href="/alan" class="discreet-link" title="Aquest és el meu laboratori">
+                    ↳ Registre del creador (/alan)
+                </a>
             </footer>
         </main>
     </div>
