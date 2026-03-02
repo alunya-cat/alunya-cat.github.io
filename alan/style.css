@@ -35,7 +35,7 @@
         --code-color: #EFE8E0;
     }
 }
-
+body.dark-mode,
 body:has(.toggle:checked) {
     --bg: #1A1816; 
     --text-main: #EFE8E0;

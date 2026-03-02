@@ -136,5 +136,29 @@
 </footer>
 
 </main>
+<script>
+    // Busca el botón, ya sea el de la web principal o el del blog
+    const themeToggle = document.querySelector('.theme-toggle-btn, .toggle');
+    const currentTheme = localStorage.getItem('theme');
+
+    // 1. Al cargar, comprobar si ya había un tema guardado
+    if (currentTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        if (themeToggle) themeToggle.checked = true;
+    }
+
+    // 2. Escuchar los clicks en el botón
+    if (themeToggle) {
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    }
+</script>
 </body>
 </html>
