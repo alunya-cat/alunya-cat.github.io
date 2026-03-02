@@ -75,11 +75,11 @@ end
 
 -- Site metadata
 local site = {
-	title = "Oriol Àvila Grijalva",
-	url = "https://avilagrijalva.github.io/",
+	title = "alunya.cat/Alan",
+	url = "https://alunya.cat/alan/",
     description = "Breus apunts sobre temes diversos, coses quotidianes que aprenc, coses que sé però sovint oblido, i qualsevol altra cosa que em vingui de gust escriure mentre aprenc en públic. No sempre és definitiu ni nou, però espero que sigui útil o, si més no, interessant.",
-    email = "moc.liamg@avlajirgalivaloiro",
-    author = "Oriol Àvila Grijalva",
+    email = "tac.aynula@tac",
+    author = "Alan",
 }
 
 local siteOverrides = fs.tryLoadFile("site.lua")
@@ -115,7 +115,7 @@ return {
 
     -- 404.etlua
     injectMetadata({
-        title = "Página no encontrada", 
+        title = "Pàgina no encontrada", 
         pathToRoot = site.url,
         date = "1970-01-01",
     }, "^_404.html$"),

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-<title>Oriol Àvila Grijalva</title>
-<id>https://avilagrijalva.github.io/</id>
-<link rel="self" href="https://avilagrijalva.github.io/feed.xml"/>
-<link rel="alternate" href="https://avilagrijalva.github.io/"/>
+<title>alunya.cat/Alan</title>
+<id>https://alunya.cat/alan/</id>
+<link rel="self" href="https://alunya.cat/alan/feed.xml"/>
+<link rel="alternate" href="https://alunya.cat/alan/"/>
 <author>
-<name>Oriol Àvila Grijalva</name>
+<name>alunya.cat/Alan</name>
 </author>
 <updated>2026-01-30T00:00:00.000Z</updated>
 
 <entry>
 <title>Configuració de l&#039;HP 250 G5</title>
-<id>https://avilagrijalva.github.io/250G5.html</id>
-<link rel="alternate" href="https://avilagrijalva.github.io/250G5.html"/>
+<id>https://alunya.cat/alan/250G5.html</id>
+<link rel="alternate" href="https://alunya.cat/alan/250G5.html"/>
 <updated>2026-01-30T00:00:00.000Z</updated>
 <summary type="text">La meva experiència al donar-li una segona vida a un portàtil com a servidor.</summary>
 <content type="html">&lt;p&gt;En aquest article vull compartir l&#039;experiència i els motius que m&#039;han portat a transformar un portàtil sense cap utilitat prèvia a ser el meu propi servidor, així com els seus avantatges i inconvenients que m&#039;ha portat aquesta decisió.&lt;/p&gt;
@@ -794,8 +794,8 @@ h3://dns.nextdns.io/
 </entry>
 <entry>
 <title>Configuració d&#039;Acer Predator G3610</title>
-<id>https://avilagrijalva.github.io/g3610.html</id>
-<link rel="alternate" href="https://avilagrijalva.github.io/g3610.html"/>
+<id>https://alunya.cat/alan/g3610.html</id>
+<link rel="alternate" href="https://alunya.cat/alan/g3610.html"/>
 <updated>2021-04-30T00:00:00.000Z</updated>
 <summary type="text"></summary>
 <content type="html">&lt;p&gt;Deixa de llegir, de debò, no ho facis. La publicació d&#039;avui no és un reflexió, és només que el meu ordinador m&#039;ha estat donant problemes i he esborrat per accident diverses coses.&lt;/p&gt;
@@ -908,8 +908,8 @@ By following this optimized prompt, you will generate an effective summary that 
 </entry>
 <entry>
 <title>Nessun Dorma</title>
-<id>https://avilagrijalva.github.io/nessundorma.html</id>
-<link rel="alternate" href="https://avilagrijalva.github.io/nessundorma.html"/>
+<id>https://alunya.cat/alan/nessundorma.html</id>
+<link rel="alternate" href="https://alunya.cat/alan/nessundorma.html"/>
 <updated>2020-09-26T00:00:00.000Z</updated>
 <summary type="text"></summary>
 <content type="html">&lt;p&gt;Són les 4 de la matinada i el despertador està a punt de sonar.&lt;/p&gt;
@@ -940,8 +940,8 @@ Ets prou madur per saber que els teus fracassos del passat no poden carregar el 
 </entry>
 <entry>
 <title>Sense comentaris</title>
-<id>https://avilagrijalva.github.io/sense-comentaris.html</id>
-<link rel="alternate" href="https://avilagrijalva.github.io/sense-comentaris.html"/>
+<id>https://alunya.cat/alan/sense-comentaris.html</id>
+<link rel="alternate" href="https://alunya.cat/alan/sense-comentaris.html"/>
 <updated>2016-09-19T00:00:00.000Z</updated>
 <summary type="text">¿Què fa que un blog sigui un blog?</summary>
 <content type="html">&lt;p&gt;&lt;strong&gt;Tots els blogs són blogs, amb o sense comentari.&lt;/strong&gt; Un blog només necessita, en la meva humil opinió, un creador de contingut. Amb aquest factor, és igual si té comentaris o no en té, si els censura, si els modera, etcètera. L&#039;important dels blogs és tenir alguna cosa per explicar i explicar-la, per descomptat. La resta de les coses són condiments, que en alguns casos milloren la finalitat d&#039;alguna cosa i en d&#039;altres simplement no afecten en res.&lt;/p&gt;
