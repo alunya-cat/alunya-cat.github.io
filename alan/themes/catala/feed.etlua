@@ -2,19 +2,15 @@
 local filtered_posts = {}
 
 for _, item in ipairs(items) do
-    -- Comprueba si el archivo empieza por "_" (en la raíz) o contiene "/_" (dentro de una carpeta)
-    local es_borrador = string.match(item.path, "^_") or string.match(item.path, "/_")
+    local draft = string.match(item.path, "^_") or string.match(item.path, "/_")
     
-    -- Solo añadimos al feed los posts que NO son borradores y que tienen una fecha definida
-    if not es_borrador and item.date then
+    if not draft and item.date then
         table.insert(filtered_posts, item)
     end
 end
 
--- Ordenamos la lista ya filtrada
 local posts = table.sortBy(filtered_posts, "date", true) 
 
--- Función para proteger el HTML y evitar el error "XML not well-formed"
 local function safeCDATA(str)
     if not str then return "" end
     return (string.gsub(str, "]]>", "]]]]><![CDATA[>"))
