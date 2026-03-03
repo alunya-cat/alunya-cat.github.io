@@ -10,12 +10,12 @@
 <updated>2026-01-30T00:00:00.000Z</updated>
 
 <entry>
-<title>Configuració de l&#039;HP 250 G5</title>
+<title><![CDATA[Configuració de l&#039;HP 250 G5]]></title>
 <id>https://alunya.cat/alan/250G5.html</id>
 <link rel="alternate" href="https://alunya.cat/alan/250G5.html"/>
 <updated>2026-01-30T00:00:00.000Z</updated>
-<summary type="text">La meva experiència al donar-li una segona vida a un portàtil com a servidor.</summary>
-<content type="html">&lt;p&gt;En aquest article vull compartir l&#039;experiència i els motius que m&#039;han portat a transformar un portàtil sense cap utilitat prèvia a ser el meu propi servidor, així com els seus avantatges i inconvenients que m&#039;ha portat aquesta decisió.&lt;/p&gt;
+<summary type="html"><![CDATA[La meva experiència al donar-li una segona vida a un portàtil com a servidor.]]></summary>
+<content type="html"><![CDATA[&lt;p&gt;En aquest article vull compartir l&#039;experiència i els motius que m&#039;han portat a transformar un portàtil sense cap utilitat prèvia a ser el meu propi servidor, així com els seus avantatges i inconvenients que m&#039;ha portat aquesta decisió.&lt;/p&gt;
 &lt;p&gt;Com molts de nosaltres que fem servir serveis al núvol com el correu electrònic, l&#039;emmagatzematge de fitxers, les fotos, etcètera, vaig començar a buscar maneres de reduir la meva dependència de Google. En particular, em preocupava que si Google algun dia decidís tancar o canviar els seus termes de servei, perdés l&#039;accés a les meves dades. Tanmateix, el meu desig d&#039;estar menys dependent no es limitava només a Google, sinó també a altres serveis de tercers.&lt;/p&gt;
 &lt;p&gt;Avui puc dir amb orgull que he «des-googlitzat» la meva vida digital. Allotjo el meu propi servidor de calendari i diari, a més de gestionar els meus documents, fotos, vídeos i altres serveis.&lt;/p&gt;
 &lt;p&gt;Sóc (relativament) el propietari de la meva informació personal i, tot i que podria haver optat per un servidor autoallotjat per al meu correu electrònic, vaig triar seguir utilitzant els serveis de Google per comoditat més que per cap altra cosa.&lt;/p&gt;
@@ -790,15 +790,15 @@ h3://dns.nextdns.io/
 &lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;hl-identifier&quot;&gt;mealie&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-</content>
+]]></content>
 </entry>
 <entry>
-<title>Configuració d&#039;Acer Predator G3610</title>
+<title><![CDATA[Configuració d&#039;Acer Predator G3610]]></title>
 <id>https://alunya.cat/alan/g3610.html</id>
 <link rel="alternate" href="https://alunya.cat/alan/g3610.html"/>
 <updated>2021-04-30T00:00:00.000Z</updated>
-<summary type="text"></summary>
-<content type="html">&lt;p&gt;Deixa de llegir, de debò, no ho facis. La publicació d&#039;avui no és un reflexió, és només que el meu ordinador m&#039;ha estat donant problemes i he esborrat per accident diverses coses.&lt;/p&gt;
+<summary type="html"><![CDATA[]]></summary>
+<content type="html"><![CDATA[&lt;p&gt;Deixa de llegir, de debò, no ho facis. La publicació d&#039;avui no és un reflexió, és només que el meu ordinador m&#039;ha estat donant problemes i he esborrat per accident diverses coses.&lt;/p&gt;
 &lt;p&gt;Com que la cosa no pinta bé i podria deixar de funcionar en qualsevol moment, seria un desastre perdre tota la informació i l&#039;ergonomia de treball que he cultivat amb tant d&#039;esforç. Per això, aniré apuntant tot el que he fet servir per si en necessito recopilar la configuració i els programes en una instal·lació neta en el futur.&lt;/p&gt;
 &lt;h2 id=&quot;installaci-de-debian&quot;&gt;Instal·lació de Debian&lt;/h2&gt;
 &lt;p&gt;Si decidiu instal·lar aquesta meravellosa distribució de Linux, us recomano que utilitzeu els paràmetres següents:&lt;/p&gt;
@@ -904,15 +904,15 @@ By following this optimized prompt, you will generate an effective summary that 
 &lt;span class=&quot;hl-environment&quot;&gt;\end{document}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&quot;assets/texmaker.webp&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
+]]></content>
 </entry>
 <entry>
-<title>Nessun Dorma</title>
+<title><![CDATA[Nessun Dorma]]></title>
 <id>https://alunya.cat/alan/nessundorma.html</id>
 <link rel="alternate" href="https://alunya.cat/alan/nessundorma.html"/>
 <updated>2020-09-26T00:00:00.000Z</updated>
-<summary type="text"></summary>
-<content type="html">&lt;p&gt;Són les 4 de la matinada i el despertador està a punt de sonar.&lt;/p&gt;
+<summary type="html"><![CDATA[]]></summary>
+<content type="html"><![CDATA[&lt;p&gt;Són les 4 de la matinada i el despertador està a punt de sonar.&lt;/p&gt;
 &lt;p&gt;Em llevo uns 10 minuts abans de l&#039;alarma perquè el meu cos ja s&#039;ha acostumat a aquest horari. M&#039;han entrenat, com un gos. Durant aquest temps mort, m&#039;agrada reflexionar sobre el meu destí.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Hauria d&#039;esforçar-me més?&lt;/li&gt;
@@ -936,15 +936,15 @@ By following this optimized prompt, you will generate an effective summary that 
 Ets prou madur per saber que els teus fracassos del passat no poden carregar el teu futur, amb la humilitat de qui sap que l&#039;orgull et pot encegar ─&lt;em&gt;aquesta vegada ho aconseguiràs, demà ho aconseguiràs tot&lt;/em&gt;─.&lt;/p&gt;
 &lt;p&gt;Sort un nou dia (i això no és poca cosa) i t&#039;adones que aquest és el matí en què les coses haurien de millorar, que aquest és el matí en què hauries de fer totes les coses que vas dir ahir ─&lt;em&gt;en realitat no tenies intenció de fer-les, només vas delegar aquestes accions al teu jo futur&lt;/em&gt; ─, però avui és el demà d&#039;ahir i no hi ha cap &lt;em&gt;jo del demà&lt;/em&gt; present, i ets tu amb la mateixa depressió i amargor de sempre.&lt;/p&gt;
 &lt;p&gt;La teva &lt;strong&gt;esperança&lt;/strong&gt;, la teva determinació (que feia només 6 hores que estava en el seu punt àlgid) s&#039;esvaeix com el cafè torrat que acabes de vessar a la teva tassa d&#039;aigua bullent.&lt;/p&gt;
-</content>
+]]></content>
 </entry>
 <entry>
-<title>Sense comentaris</title>
+<title><![CDATA[Sense comentaris]]></title>
 <id>https://alunya.cat/alan/sense-comentaris.html</id>
 <link rel="alternate" href="https://alunya.cat/alan/sense-comentaris.html"/>
 <updated>2016-09-19T00:00:00.000Z</updated>
-<summary type="text">¿Què fa que un blog sigui un blog?</summary>
-<content type="html">&lt;p&gt;&lt;strong&gt;Tots els blogs són blogs, amb o sense comentari.&lt;/strong&gt; Un blog només necessita, en la meva humil opinió, un creador de contingut. Amb aquest factor, és igual si té comentaris o no en té, si els censura, si els modera, etcètera. L&#039;important dels blogs és tenir alguna cosa per explicar i explicar-la, per descomptat. La resta de les coses són condiments, que en alguns casos milloren la finalitat d&#039;alguna cosa i en d&#039;altres simplement no afecten en res.&lt;/p&gt;
+<summary type="html"><![CDATA[¿Què fa que un blog sigui un blog?]]></summary>
+<content type="html"><![CDATA[&lt;p&gt;&lt;strong&gt;Tots els blogs són blogs, amb o sense comentari.&lt;/strong&gt; Un blog només necessita, en la meva humil opinió, un creador de contingut. Amb aquest factor, és igual si té comentaris o no en té, si els censura, si els modera, etcètera. L&#039;important dels blogs és tenir alguna cosa per explicar i explicar-la, per descomptat. La resta de les coses són condiments, que en alguns casos milloren la finalitat d&#039;alguna cosa i en d&#039;altres simplement no afecten en res.&lt;/p&gt;
 &lt;p&gt;La qual cosa no treu que els comentaris siguin entretinguts i divertits si l&#039;autor del blog té ganes i temps per mantenir-los decentment. El que veritablement atreu la gent a llegir els blogs és el contingut. Així de senzill.&lt;/p&gt;
 &lt;p&gt;Encara que no hi hagi un sistema de comentaris es poden seguir mantenint converses mitjançant el correu electrònic (&lt;em&gt;&lt;a href=&quot;mailto:oriolavilagrijalva@gmail.com&quot;&gt;oriolavilagrijalva@gmail.com&lt;/a&gt;&lt;/em&gt;) i fins i tot realitzar «actualitzacions» que s&#039;afegeixen a les entrades. A vegades simplement conversem per correu, no es publica res. Les que es publiquen són actualitzacions generalment rellevants i, sobretot, «sense soroll».&lt;/p&gt;
 &lt;p&gt;No importa si l&#039;entrada és suculenta en debat, en informació, o si és una entrada de contingut regular, breu, programada, el tema és que &lt;strong&gt;la gran majoria dels comentaris són d&#039;índole insubstancial: no aporten res&lt;/strong&gt;. Quan em refereixo al fet que no aporten res simplement dic que no afegeixen valor a la discussió &lt;em&gt;per se&lt;/em&gt;, sinó que són veus de farciment, poden estar o no d&#039;acord amb el locutor i per això no han de ser millor o pitjor en matèria de contingut.&lt;/p&gt;
@@ -955,6 +955,6 @@ Ets prou madur per saber que els teus fracassos del passat no poden carregar el 
 &lt;p&gt;Els correus que solem obtenir tenen una càrrega més personal. Cada correu està dirigit cap a una persona o entitat en concret i no per a una audiència. Tenen un emissari i un receptor, això ens fa més cauts amb la nostra elecció de paraules.&lt;/p&gt;
 &lt;p&gt;I finalment, i el més important per als lectors, &lt;strong&gt;els comentaris canvien permanentment la forma en què els autors escriuen&lt;/strong&gt;. En lloc d&#039;escriure per a tothom, el locutor escriu anticipant-se i esperant la resposta a l&#039;escrit als comentaris.&lt;/p&gt;
 &lt;p&gt;En definitiva, els comentaris no són l&#039;única, ni necessàriament la millor, forma d&#039;interacció entre autors i lectors de weblogs i no van formar part estructural del mitjà en els seus començaments.&lt;/p&gt;
-</content>
+]]></content>
 </entry>
 </feed>

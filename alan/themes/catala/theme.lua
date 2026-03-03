@@ -134,7 +134,7 @@ return {
         
         { "%.html$", fs.readThemeFile("post.etlua") },
         { "^topics/.-%.html$", fs.readThemeFile("index.etlua") },
-        { "^feed.xml$", fs.readThemeFile("../shared/feed.etlua") },
+        { "^feed.xml$", fs.readThemeFile("feed.etlua") },
         { "^index.html$", fs.readThemeFile("blog.etlua") },
         { "^_404.html$", fs.readThemeFile("404.etlua") },
     }),
