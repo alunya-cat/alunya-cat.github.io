@@ -635,6 +635,78 @@ hr.footnotes-sep {
     100% { background-color: transparent; }
 }
 
+/* ==========================================================================
+   TABLA DE CONTENIDOS (TOC) - ADAPTADO AL ESTILO ALUNYA.CAT
+   ========================================================================== */
+
+/* La caja principal: Usamos el fondo bento y el borde estándar */
+.toc-container {
+    background-color: var(--bento-bg); 
+    border: 1px solid var(--border);
+    border-radius: 12px; /* Siguiendo el radio de tus imágenes */
+    padding: 1.5rem;
+    margin: 2.5rem 0;
+    font-family: var(--font-serif);
+}
+
+/* El título: Estilo similar a tus h5 pero adaptado */
+.toc-title {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 0.5rem;
+}
+
+/* Lista y enlaces */
+.toc-container ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.toc-container li {
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+}
+
+.toc-container a {
+    text-decoration: none !important; /* Quitamos el subrayado global */
+    color: var(--text-main);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.toc-container a:hover {
+    color: var(--text-muted);
+}
+
+/* Jerarquía visual con sangrías */
+.toc-h2 { margin-left: 0; font-size: 1.05rem; }
+.toc-h3 { margin-left: 1.2rem; font-size: 0.95rem; color: var(--text-description); }
+.toc-h4 { margin-left: 2.4rem; font-size: 0.9rem; color: var(--text-muted); }
+
+/* Flecha de retorno al índex: Usamos tu color accent y fuente mono */
+.toc-return {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    text-decoration: none !important;
+    color: var(--text-muted);
+    margin-left: 10px;
+    opacity: 0.4;
+    transition: opacity 0.3s, color 0.3s;
+}
+
+.toc-return:hover {
+    opacity: 1;
+    color: var(--accent);
+}
+
 /* --- Responsive --- */
 @media screen and (max-width: 900px) {
   main, body > footer { width: 90%; margin-top: 2rem; margin-bottom: 2rem; }
@@ -644,6 +716,11 @@ hr.footnotes-sep {
   .item-flex { flex-direction: column; align-items: flex-start; }
   .item-flex span { margin-left: 0; margin-top: 0.5rem; }
   nav ul li { display: inline-block; white-space: normal; margin-bottom: 0.5rem; }
+  .toc-container {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 1rem;
+    }
 }
 
 @media screen and (max-width: 600px) {

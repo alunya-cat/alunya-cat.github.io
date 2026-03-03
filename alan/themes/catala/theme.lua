@@ -120,6 +120,54 @@ local function generateFootnotes(text)
 end
 -- ==========================================
 
+-- ==========================================
+-- FUNCIÓN PARA TABLA DE CONTENIDOS (TOC) CON FLECHA DE RETORNO
+-- ==========================================
+local function generateTOC(text)
+    if not text or not string.find(text, "%[TOC%]") then return text end
+
+    local toc_items = {}
+    local counter = 0
+
+    text = "\n" .. text
+
+    text = string.gsub(text, "\n(#+)%s+([^\n]+)", function(hashes, title)
+        counter = counter + 1
+        local level = #hashes
+        
+        local slug = string.lower(title)
+        slug = string.gsub(slug, "[%p]", "") 
+        slug = string.gsub(slug, "%s+", "-") 
+        if slug == "" then slug = "seccion-" .. counter end
+
+        table.insert(toc_items, string.format('<li class="toc-h%d"><a href="#%s">%s</a></li>', level, slug, title))
+
+        -- EL CAMBIO ESTÁ AQUÍ: Añadimos la flecha (↩) apuntando al #toc
+        return string.format('\n<a id="%s"></a>\n%s %s <a href="#toc" class="toc-return" title="Tornar a l\'índex">↩</a>', slug, hashes, title)
+    end)
+
+    text = string.sub(text, 2)
+
+    if counter == 0 then
+        return string.gsub(text, "%[TOC%]", "")
+    end
+
+    -- EL OTRO CAMBIO ESTÁ AQUÍ: Añadimos id="toc" al div principal
+    local toc_html = {
+        '<div id="toc" class="toc-container">',
+        '  <p class="toc-title">Continguts</p>',
+        '  <ul>',
+        table.concat(toc_items, "\n"),
+        '  </ul>',
+        '</div>'
+    }
+
+    text = string.gsub(text, "%[TOC%]", table.concat(toc_html, "\n"))
+
+    return text
+end
+-- ==========================================
+
 -- Site metadata
 local site = {
 	title = "alunya.cat/Alan",
@@ -147,9 +195,12 @@ return {
     -- ==========================================
     deriveMetadata({
         content = function (item)
-            -- Nos aseguramos de aplicarlo solo al texto, por si lee imágenes u otros archivos
             if item.content and type(item.content) == "string" then
-                return generateFootnotes(item.content)
+                -- Procesamos primero las notas al pie
+                local processed_text = generateFootnotes(item.content)
+                -- Luego procesamos la tabla de contenidos
+                processed_text = generateTOC(processed_text)
+                return processed_text
             end
             return item.content
         end

@@ -6,6 +6,8 @@ update: Modificat el
 keywords: [blog]
 ---
 
+[TOC]
+
 # H1: Títol Principal
 ## H2: Subtítol de Secció
 ### H3: Títol de tercer nivell
