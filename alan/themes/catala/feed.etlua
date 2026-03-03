@@ -2,7 +2,8 @@
 local filtered_posts = {}
 
 for _, item in ipairs(items) do
-    local draft = string.match(item.path, "^_") or string.match(item.path, "/_")
+    local p = item.path or ""
+    local draft = string.match(p, "^_") or string.match(p, "/_")
     
     if not draft and item.date then
         table.insert(filtered_posts, item)
@@ -11,31 +12,46 @@ end
 
 local posts = table.sortBy(filtered_posts, "date", true) 
 
-local function safeCDATA(str)
-    if not str then return "" end
-    return (string.gsub(str, "]]>", "]]]]><![CDATA[>"))
+local first_date = "1970-01-01"
+if posts[1] and posts[1].date then
+    first_date = posts[1].date
+end
+
+local function cleanText(str)
+    -- If the input is not a string (nil, number, or table), return an empty string
+    if type(str) ~= "string" then return "" end
+    
+    -- Clean syntax highlighter tags if they are in normal HTML
+    str = string.gsub(str, "<span class=\"hl%-[^\"]+\">", "")
+    str = string.gsub(str, "</span>", "")
+    
+    -- Clean syntax highlighter tags if they are escaped (fixes the apostrophe bug)
+    str = string.gsub(str, "&lt;span class=&quot;hl%-[^&]+&quot;&gt;", "")
+    str = string.gsub(str, "&lt;/span&gt;", "")
+    
+    return str
 end
 -%>
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-<title><%= site.title %></title>
-<id><%= site.url %></id>
-<link rel="self" href="<%= site.url .. "feed.xml" %>"/>
-<link rel="alternate" href="<%= site.url %>"/>
+<title><%= site.title or "" %></title>
+<id><%= site.url or "" %></id>
+<link rel="self" href="<%= (site.url or "") .. "feed.xml" %>"/>
+<link rel="alternate" href="<%= site.url or "" %>"/>
 <author>
-<name><%= site.title %></name>
+<name><%= site.title or "" %></name>
 </author>
-<updated><%= shared.yamlDateToIso((posts[1] or {date="1970-01-01"}).date) %></updated>
+<updated><%= shared.yamlDateToIso(first_date) or "1970-01-01T00:00:00Z" %></updated>
 
 <% for i, post in ipairs(posts) do -%>
 <% if i > 5 then break end -%>
 <entry>
-<title><![CDATA[<%= safeCDATA(post.title) %>]]></title>
-<id><%= site.url .. post.path %></id>
-<link rel="alternate" href="<%= site.url .. post.path %>"/>
-<updated><%= shared.yamlDateToIso(post.date) %></updated>
-<summary type="html"><![CDATA[<%= safeCDATA(post.description or post.title) %>]]></summary>
-<content type="html"><![CDATA[<%= safeCDATA(shared.atomifyItemContent(post, site.url)) %>]]></content>
+<title><%= cleanText(post.title) %></title>
+<id><%= (site.url or "") .. (post.path or "") %></id>
+<link rel="alternate" href="<%= (site.url or "") .. (post.path or "") %>"/>
+<updated><%= shared.yamlDateToIso(post.date) or "1970-01-01T00:00:00Z" %></updated>
+<summary type="html"><%= cleanText(post.description or post.title) %></summary>
+<content type="html"><%= cleanText(shared.atomifyItemContent(post, site.url)) %></content>
 </entry>
 <% end -%>
 </feed>

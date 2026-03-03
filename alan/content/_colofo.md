@@ -20,8 +20,8 @@ Posteriorment executo el fitxer *luasmith* per generar els fitxers de la carpeta
 
 - **Registrador del domini**: Github Pages.
 - **Allotjament**: Github Pages.
-- **Repositori**: https://github.com/avilagrijalva/avilagrijalva.github.io
-- **Desplegament**: [Github Actions](https://github.com/avilagrijalva/avilagrijalva.github.io/blob/main/.github/workflows/static.yml).
+- **Repositori**: https://github.com/alunya-cat
+- **Desplegament**: [Github Actions](https://github.com/alunya-cat/alunya-cat.github.io/blob/main/.github/workflows/static.yml).
 
 ## Stack tecnològic
 

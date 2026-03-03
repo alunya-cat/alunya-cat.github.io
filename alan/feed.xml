@@ -10,12 +10,12 @@
 <updated>2026-01-30T00:00:00.000Z</updated>
 
 <entry>
-<title><![CDATA[Configuració de l&#039;HP 250 G5]]></title>
+<title>Configuració de l&#039;HP 250 G5</title>
 <id>https://alunya.cat/alan/250G5.html</id>
 <link rel="alternate" href="https://alunya.cat/alan/250G5.html"/>
 <updated>2026-01-30T00:00:00.000Z</updated>
-<summary type="html"><![CDATA[La meva experiència al donar-li una segona vida a un portàtil com a servidor.]]></summary>
-<content type="html"><![CDATA[&lt;p&gt;En aquest article vull compartir l&#039;experiència i els motius que m&#039;han portat a transformar un portàtil sense cap utilitat prèvia a ser el meu propi servidor, així com els seus avantatges i inconvenients que m&#039;ha portat aquesta decisió.&lt;/p&gt;
+<summary type="html">La meva experiència al donar-li una segona vida a un portàtil com a servidor.</summary>
+<content type="html">&lt;p&gt;En aquest article vull compartir l&#039;experiència i els motius que m&#039;han portat a transformar un portàtil sense cap utilitat prèvia a ser el meu propi servidor, així com els seus avantatges i inconvenients que m&#039;ha portat aquesta decisió.&lt;/p&gt;
 &lt;p&gt;Com molts de nosaltres que fem servir serveis al núvol com el correu electrònic, l&#039;emmagatzematge de fitxers, les fotos, etcètera, vaig començar a buscar maneres de reduir la meva dependència de Google. En particular, em preocupava que si Google algun dia decidís tancar o canviar els seus termes de servei, perdés l&#039;accés a les meves dades. Tanmateix, el meu desig d&#039;estar menys dependent no es limitava només a Google, sinó també a altres serveis de tercers.&lt;/p&gt;
 &lt;p&gt;Avui puc dir amb orgull que he «des-googlitzat» la meva vida digital. Allotjo el meu propi servidor de calendari i diari, a més de gestionar els meus documents, fotos, vídeos i altres serveis.&lt;/p&gt;
 &lt;p&gt;Sóc (relativament) el propietari de la meva informació personal i, tot i que podria haver optat per un servidor autoallotjat per al meu correu electrònic, vaig triar seguir utilitzant els serveis de Google per comoditat més que per cap altra cosa.&lt;/p&gt;
@@ -31,21 +31,21 @@ També és important tenir en compte no només el cost del maquinari, sinó tamb
 &lt;p&gt;M&#039;he decantat per Debian bàsicament perquè m&#039;agrada la seva filosofia i fa anys que utilitzo la seva branca &lt;em&gt;testing&lt;/em&gt; com a ordinador personal. Prefereix-ho estalviar-me el procés d&#039;instal·lació del sistema operatiu, però bàsicament és crear un USB &lt;em&gt;bootable&lt;/em&gt; amb l&#039;ISO de Debian, utilitzar tot el disc dur pel sistema sense complicacions de particions, seleccionar l&#039;opció del servidor SSH perquè s&#039;instal·li i l&#039;entorn gràfic que vulguem (tot i que posteriorment el desactivarem).&lt;/p&gt;
 &lt;h3 id=&quot;21-treballar-amb-la-tapa-tancada&quot;&gt;2.1. Treballar amb la tapa tancada&lt;/h3&gt;
 &lt;p&gt;Com no volem que l&#039;ordinador s&#039;apagui quan tanquem la tapa hem d&#039;editar la configuració de &lt;em&gt;logind&lt;/em&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;nano&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;etc&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;systemd&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;logind&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;conf&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo nano /etc/systemd/logind.conf
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;En aquesta busquem la línia que diu &lt;code&gt;#HandleLidSwitch=suspend&lt;/code&gt; i traiem &lt;strong&gt;#&lt;/strong&gt; i canviem el &lt;strong&gt;suspend&lt;/strong&gt; per &lt;strong&gt;ignore&lt;/strong&gt;. Un cop fet, guardem (&lt;em&gt;Ctrl+O&lt;/em&gt;) i sortim (&lt;em&gt;Ctrl+X&lt;/em&gt;).&lt;/p&gt;
 &lt;h3 id=&quot;22-treballar-amb-la-pantalla-apagada&quot;&gt;2.2. Treballar amb la pantalla apagada&lt;/h3&gt;
 &lt;p&gt;Per maximitzar l&#039;estalvi d&#039;electricitat desactivarem la pantalla al cap de pocs segons que el sistema s&#039;inici. Per fer-ho editem el &lt;strong&gt;GRUB&lt;/strong&gt; amb:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;nano&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;etc&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;grub&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo nano /etc/default/grub
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Seguidament, busquem la línia &lt;code&gt;GRUB_CMDLINE_LINUX_DEFAULT&lt;/code&gt; i li afegim &lt;code&gt;consoleblank=30&lt;/code&gt; perquè s&#039;apagui al cap de 30 segons. Quedant la configuració del GRUB tal que així:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-variable&quot;&gt;GRUB_CMDLINE_LINUX_DEFAULT&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;=&lt;/span&gt;&lt;i class=&quot;hl-string&quot;&gt;&amp;quot;quiet consoleblank=30&amp;quot;&lt;/i&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;GRUB_CMDLINE_LINUX_DEFAULT=&lt;i class=&quot;hl-string&quot;&gt;&amp;quot;quiet consoleblank=30&amp;quot;&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Guardem (&lt;em&gt;Ctrl+O&lt;/em&gt;) i sortim (&lt;em&gt;Ctrl+X&lt;/em&gt;). Per actualitzar el GRUB fem &lt;code&gt;sudo update-grub&lt;/code&gt; i reiniciem l&#039;ordinador (&lt;code&gt;sudo reboot&lt;/code&gt;).&lt;/p&gt;
 &lt;h2 id=&quot;3-connexi-ssh-amb-el-servidor&quot;&gt;3. Connexió SSH amb el servidor&lt;/h2&gt;
 &lt;p&gt;Un cop tenim el portàtil configurat és hora de connectar-se mitjançant un ordinador per poder portar a terme les tasques més fàcilment, però si deixem que el rúter assigni al portàtil una IP aleatòria cada cop que aquest és reinici, un dia ens modificaran la IP i ens serà impossible accedir als nostres serveis.&lt;/p&gt;
 &lt;p&gt;Abans d&#039;escriure res, hem de saber com Debian anomena el nostre cable de xarxa. Executem això a la terminal:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;ip&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;show&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;ip -c link show
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Veurem una llista:&lt;/p&gt;
 &lt;ol&gt;
@@ -69,8 +69,8 @@ També és important tenir en compte no només el cost del maquinari, sinó tamb
 &lt;li&gt;Tanquem el menú (&lt;code&gt;&amp;lt;Back&amp;gt;&lt;/code&gt; -&amp;gt; &lt;code&gt;&amp;lt;Exit&amp;gt;&lt;/code&gt;).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Ara que l&#039;hem configurat, reiniciem la connexió de manera segura:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;nmcli&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;connection&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;reload&lt;/span&gt;
-&lt;span class=&quot;hl-identifier&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;nmcli&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;networking&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;off&lt;/span&gt; &lt;span class=&quot;hl-operator&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;nmcli&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;networking&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;on&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo nmcli connection reload
+sudo nmcli networking off &amp;amp;&amp;amp; sudo nmcli networking on
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;O simplement reiniciem el servidor (&lt;code&gt;sudo reboot&lt;/code&gt;) i comprovem que l&#039;IP del nostre servidor és la que hem posat amb &lt;code&gt;ip addr show YOUR_INTERFACE&lt;/code&gt;. Per connectar-nos amb el servidor mitjançant SSH posarem a la terminal de l&#039;ordinador principal &lt;code&gt;ssh usuari@IP&lt;/code&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;4-gestionant-els-nostres-serveis&quot;&gt;4. Gestionant els nostres serveis&lt;/h2&gt;
@@ -170,29 +170,29 @@ Personalment utilitzo &lt;strong&gt;Clonezilla&lt;/strong&gt; i las faig mensual
 &lt;h3 id=&quot;adguard-home--3000&quot;&gt;Adguard Home ~ :3000&lt;/h3&gt;
 &lt;p&gt;Servidor DNS que bloqueja anuncis i rastrejadors a tota la xarxa local. La seva configuració és més complexa perquè el meu rúter no accepta canviar els DNS (maleïda Vodafone) i estic obligat a utilitzar el servidor com a servei DHCP pel meu rúter.&lt;/p&gt;
 &lt;p&gt;Primer crearem el nostre servei d&#039;Adguard amb Docker-Compose mitjançant:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;adguardhome&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;adguard&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;adguardhome&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;adguardhome&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;unless&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-stopped&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
+    restart: unless-stopped
     
     &lt;i class=&quot;hl-comment&quot;&gt;# Asignem la nostra xarxa creada anteriorment.&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;adguard_net&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;ipv4_address&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.200&lt;/i&gt;  &lt;i class=&quot;hl-comment&quot;&gt;# &amp;lt;--- LA IP QUE VOLS PER ADGUARD&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;work&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;opt&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;adguardhome&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;work&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;conf&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;opt&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;adguardhome&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;conf&lt;/span&gt;
+    networks:
+      adguard_net:
+        ipv4_address: &lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.200&lt;/i&gt;  &lt;i class=&quot;hl-comment&quot;&gt;# &amp;lt;--- LA IP QUE VOLS PER ADGUARD&lt;/i&gt;
+    volumes:
+      - ./work:/opt/adguardhome/work
+      - ./conf:/opt/adguardhome/conf
 
-&lt;span class=&quot;hl-identifier&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;adguard_net&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;macvlan&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;driver_opts&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;enp7s0&lt;/span&gt;  &lt;i class=&quot;hl-comment&quot;&gt;# &amp;lt;--- CANVIEM AIXÒ PEL NOSTRE NOM DEL CABLE DE XARXA (ex. enp3s0)&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ipam&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;subnet&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;24&lt;/i&gt;    &lt;i class=&quot;hl-comment&quot;&gt;# &amp;lt;--- EL NOSTRE RANG DE XARXA&lt;/i&gt;
-          &lt;span class=&quot;hl-identifier&quot;&gt;gateway&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.1&lt;/i&gt;      &lt;i class=&quot;hl-comment&quot;&gt;# &amp;lt;--- LA IP DEL NOSTRE RÚTER&lt;/i&gt;
+networks:
+  adguard_net:
+    driver: macvlan
+    driver_opts:
+      parent: enp7s0  &lt;i class=&quot;hl-comment&quot;&gt;# &amp;lt;--- CANVIEM AIXÒ PEL NOSTRE NOM DEL CABLE DE XARXA (ex. enp3s0)&lt;/i&gt;
+    ipam:
+      config:
+        - subnet: &lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;/&lt;i class=&quot;hl-number&quot;&gt;24&lt;/i&gt;    &lt;i class=&quot;hl-comment&quot;&gt;# &amp;lt;--- EL NOSTRE RANG DE XARXA&lt;/i&gt;
+          gateway: &lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.1&lt;/i&gt;      &lt;i class=&quot;hl-comment&quot;&gt;# &amp;lt;--- LA IP DEL NOSTRE RÚTER&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Seguidament, entrem al nostre panell d&#039;Adguard amb la IP que li hem assignat i accedim a &lt;strong&gt;Configuració &amp;gt; Configuració de DHCP&lt;/strong&gt; i aquí omplim les dades de la següent manera:&lt;/p&gt;
 &lt;ol&gt;
@@ -258,34 +258,34 @@ h3://dns.nextdns.io/
 &lt;p&gt;Aquestes llistes t&#039;han de proporcionar una bona protecció general contra anuncis, seguidors i programari maliciós. Tanmateix, no es poden bloquejar tots els anuncis a nivell DNS. Necessitaràs una extensió o complement per gestionar els anuncis que AdGuard Home no bloqueja, com per exemple uBlock Origin a Firefox.&lt;/p&gt;
 &lt;h3 id=&quot;freshrss--8080&quot;&gt;FreshRSS ~ :8080&lt;/h3&gt;
 &lt;p&gt;Agregador de notícies i feeds RSS lleuger i ràpid per llegir blogs i premsa. Aquest a la seva vegada està configurat amb l&#039;aplicació &lt;strong&gt;ReadYou&lt;/strong&gt; a Android mitjançant l&#039;API de FreshRSS i amb l&#039;ajuda de &lt;strong&gt;TailScale&lt;/strong&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;extensions&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;volumes:
+  data:
+  extensions:
 
-&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;freshrss&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;freshrss&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;freshrss&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;1.28&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;
+services:
+  freshrss:
+    image: freshrss/freshrss:&lt;i class=&quot;hl-number&quot;&gt;1.28&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;# # Optional build section if you want to build the image locally:&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;# build:&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;#   # Pick #latest (slow releases) or #edge (rolling release) or a specific release like #1.27.1&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;#   context: https://github.com/FreshRSS/FreshRSS.git#latest&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;#   dockerfile: Docker/Dockerfile-Alpine&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;freshrss&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;hostname&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;freshrss&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;unless&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-stopped&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-size&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;10&lt;/i&gt;&lt;span class=&quot;hl-identifier&quot;&gt;m&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;www&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;FreshRSS&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;data&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;extensions&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;www&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;FreshRSS&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;extensions&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
+    container_name: freshrss
+    hostname: freshrss
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: &lt;i class=&quot;hl-number&quot;&gt;10&lt;/i&gt;m
+    volumes:
+      - data:/var/www/FreshRSS/data
+      - extensions:/var/www/FreshRSS/extensions
+    ports:
       &lt;i class=&quot;hl-comment&quot;&gt;# If you want to open a port 8080 on the local machine:&lt;/i&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8080:80&amp;quot;&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;TZ&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Europe&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;Madrid&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;CRON_MIN&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;apos;3,33&amp;apos;&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;TRUSTED_PROXY&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;0&lt;/i&gt;
+      - &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8080:80&amp;quot;&lt;/i&gt;
+    environment:
+      TZ: Europe/Madrid
+      CRON_MIN: &lt;i class=&quot;hl-string&quot;&gt;&amp;apos;3,33&amp;apos;&lt;/i&gt;
+      TRUSTED_PROXY: &lt;i class=&quot;hl-number&quot;&gt;0&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;# # Optional healthcheck section:&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;# healthcheck:&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;#   test: [&amp;quot;CMD&amp;quot;, &amp;quot;cli/health.php&amp;quot;]&lt;/i&gt;
@@ -297,187 +297,187 @@ h3://dns.nextdns.io/
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;bentopdf--8081&quot;&gt;BentoPDF ~ :8081&lt;/h3&gt;
 &lt;p&gt;És un conjunt d&#039;eines per a PDF que permet manipular, editar, fusionar i processar fitxers PDF directament al navegador.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;bentopdf&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
+  bentopdf:
     &lt;i class=&quot;hl-comment&quot;&gt;# simple mode - bentopdf/bentopdf-simple:latest&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;# default mode - bentopdf/bentopdf:latest&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;bentopdf&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;bentopdf&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-simple&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;latest&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;bentopdf&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;unless&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-stopped&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;apos;8081:8080&amp;apos;&lt;/i&gt;
+    image: bentopdf/bentopdf-simple:latest
+    container_name: bentopdf
+    restart: unless-stopped
+    ports:
+      - &lt;i class=&quot;hl-string&quot;&gt;&amp;apos;8081:8080&amp;apos;&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;# For IPv4-only environments&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;#environment:&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;#  - DISABLE_IPV6=true&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;trip--8082&quot;&gt;Trip ~ :8082&lt;/h3&gt;
 &lt;p&gt;És un rastrejador de mapes i planificador de viatges minimalista per visualitzar els teus punts d&#039;interès i organitzar els detalls de la teva propera aventura.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;ghcr&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;itskovacs&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;trip&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;1.34&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.1&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;8082&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;8000&lt;/i&gt; &lt;i class=&quot;hl-comment&quot;&gt;#127.0.0.1: locally exposed, on port 8080 by default&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;storage&lt;/span&gt; &lt;i class=&quot;hl-comment&quot;&gt;#If you were previously using a named volume, follow https://github.com/itskovacs/trip/releases/tag/1.5.0 to migrate your data.&lt;/i&gt;
-    &lt;b class=&quot;hl-function&quot;&gt;command&lt;/b&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-operator&quot;&gt;[&lt;/span&gt;&lt;i class=&quot;hl-string&quot;&gt;&amp;quot;fastapi&amp;quot;&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;,&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;run&amp;quot;&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;,&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;/app/trip/main.py&amp;quot;&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;,&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;--host&amp;quot;&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;,&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;0.0.0.0&amp;quot;&lt;/i&gt;&lt;span class=&quot;hl-operator&quot;&gt;]&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
+  app:
+    image: ghcr.io/itskovacs/trip:&lt;i class=&quot;hl-number&quot;&gt;1.34&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.1&lt;/i&gt;
+    ports:
+      - &lt;i class=&quot;hl-number&quot;&gt;8082&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;8000&lt;/i&gt; &lt;i class=&quot;hl-comment&quot;&gt;#127.0.0.1: locally exposed, on port 8080 by default&lt;/i&gt;
+    volumes:
+      - ./storage:/app/storage &lt;i class=&quot;hl-comment&quot;&gt;#If you were previously using a named volume, follow https://github.com/itskovacs/trip/releases/tag/1.5.0 to migrate your data.&lt;/i&gt;
+    &lt;b class=&quot;hl-function&quot;&gt;command&lt;/b&gt;: [&lt;i class=&quot;hl-string&quot;&gt;&amp;quot;fastapi&amp;quot;&lt;/i&gt;, &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;run&amp;quot;&lt;/i&gt;, &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;/app/trip/main.py&amp;quot;&lt;/i&gt;, &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;--host&amp;quot;&lt;/i&gt;, &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;0.0.0.0&amp;quot;&lt;/i&gt;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;tasktrove--8083&quot;&gt;TaskTrove ~ :8083&lt;/h3&gt;
 &lt;p&gt;Gestor de tasques. No hi ha més que explicar, simplement el millor que he provat.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;tasktrove&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;ghcr&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;dohsimpson&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;tasktrove&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;v0&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;.12&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.4&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;tasktrove&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8083:3000&amp;quot;&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;data&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;backups&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;backups&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
+  tasktrove:
+    image: ghcr.io/dohsimpson/tasktrove:v0&lt;i class=&quot;hl-number&quot;&gt;.12&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.4&lt;/i&gt;
+    container_name: tasktrove
+    ports:
+      - &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8083:3000&amp;quot;&lt;/i&gt;
+    volumes:
+      - ./data:/app/data
+      - ./backups:/app/backups
     &lt;i class=&quot;hl-comment&quot;&gt;# environment:&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;#   - AUTH_SECRET=CHANGE_ME&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;unless&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-stopped&lt;/span&gt;
+    restart: unless-stopped
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;eigenfocus--8084&quot;&gt;Eigenfocus ~ :8084&lt;/h3&gt;
 &lt;p&gt;És una eina de gestió que destaca per les seves múltiples vistes de projecte (tauler, llista i quadrícula) i integra un cronòmetre que permet gestionar les hores i generar informes. Especial atenció al cronòmetre per projecte doncs l&#039;utilitzo per calcular el temps destinat a diverses tasques.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;eigenfocus&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;eigenfocus&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;1.4&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.1&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;-free&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;unless&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-stopped&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-data&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;eigenfocus&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-app&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-data&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-     &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;DEFAULT_HOST_URL&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;localhost&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;8084&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;8084&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;3000&lt;/i&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
+  web:
+    image: eigenfocus/eigenfocus:&lt;i class=&quot;hl-number&quot;&gt;1.4&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.1&lt;/i&gt;-free
+    restart: unless-stopped
+    volumes:
+      - ./app-data:/eigenfocus-app/app-data
+    environment:
+     - DEFAULT_HOST_URL=http://localhost:&lt;i class=&quot;hl-number&quot;&gt;8084&lt;/i&gt;
+    ports:
+      - &lt;i class=&quot;hl-number&quot;&gt;8084&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;3000&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;metube--8085&quot;&gt;MeTube ~ :8085&lt;/h3&gt;
 &lt;p&gt;Interfície web per a &lt;em&gt;youtube-dl/yt-dlp&lt;/em&gt;; permet descarregar vídeos de YouTube i altres plataformes fàcilment.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;metube&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;ghcr&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;alexta69&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;metube&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;metube&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;unless&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-stopped&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8085:8081&amp;quot;&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;downloads&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;downloads&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
+  metube:
+    image: ghcr.io/alexta69/metube
+    container_name: metube
+    restart: unless-stopped
+    ports:
+      - &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8085:8081&amp;quot;&lt;/i&gt;
+    volumes:
+      - ./downloads:/downloads
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;languagetool--8086&quot;&gt;LanguageTool ~ :8086&lt;/h3&gt;
 &lt;p&gt;És un corrector de gramàtica, estil i ortografia de codi obert i gratuït que utilitzo principalment amb l&#039;extensió LTeX+ a VSCodium perquè es connecti a l&#039;API de LanguageTool i corregeix-hi les faltes.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;languagetool&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;erikvl87&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;languagetool&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;languagetool&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;8086&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;8010&lt;/i&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
+  languagetool:
+    image: erikvl87/languagetool
+    container_name: languagetool
+    ports:
+      - &lt;i class=&quot;hl-number&quot;&gt;8086&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;8010&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;yamtrack--8087&quot;&gt;YamTrack ~ :8087&lt;/h3&gt;
 &lt;p&gt;És un seguidor de mitjans per a pel·lícules, sèries de televisió, anime, manga, videojocs, llibres, còmics i jocs de taula. Per mi substitueix &lt;em&gt;Trak.tv&lt;/em&gt; i &lt;em&gt;GoodReads&lt;/em&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;yamtrack&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;yamtrack&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;ghcr&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;fuzzygrim&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;yamtrack&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;dev&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;unless&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-stopped&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;depends_on&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;redis&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;TZ&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;Europe&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;Madrid&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;SECRET&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;longstring&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;REDIS_URL&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;redis&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;redis&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;6379&lt;/i&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;TMDB_NSFW&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;MU_NSFW&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;MAL_NSFW&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;ADMIN_ENABLED&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;STEAM_API_KEY&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;D2EFFF405881FD8F18638768D5394648&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;yamtrack&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;db&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8087:8000&amp;quot;&lt;/i&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
+  yamtrack:
+    container_name: yamtrack
+    image: ghcr.io/fuzzygrim/yamtrack:dev
+    restart: unless-stopped
+    depends_on:
+      - redis
+    environment:
+      - TZ=Europe/Madrid
+      - SECRET=longstring
+      - REDIS_URL=redis://redis:&lt;i class=&quot;hl-number&quot;&gt;6379&lt;/i&gt;
+      - TMDB_NSFW=true
+      - MU_NSFW=true
+      - MAL_NSFW=true
+      - ADMIN_ENABLED=true
+      - STEAM_API_KEY=D2EFFF405881FD8F18638768D5394648
+    volumes:
+      - ./db:/yamtrack/db
+    ports:
+      - &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8087:8000&amp;quot;&lt;/i&gt;
 
-  &lt;span class=&quot;hl-identifier&quot;&gt;redis&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;yamtrack&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-redis&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;redis&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;8&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;-alpine&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;unless&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-stopped&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;redis_data&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;data&lt;/span&gt;
+  redis:
+    container_name: yamtrack-redis
+    image: redis:&lt;i class=&quot;hl-number&quot;&gt;8&lt;/i&gt;-alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
 
-&lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;redis_data&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
+volumes:
+  redis_data:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;lubelogger--8088&quot;&gt;LubeLogger ~ :8088&lt;/h3&gt;
 &lt;p&gt;Registre digital per al manteniment, reparacions i consum de combustible dels teus vehicles.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;ghcr&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;hargata&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;lubelogger&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;latest&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;unless&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-stopped&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
+  app:
+    image: ghcr.io/hargata/lubelogger:latest
+    restart: unless-stopped
     &lt;i class=&quot;hl-comment&quot;&gt;# volumes used to keep data persistent&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;data&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;aspnet&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;DataProtection&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-Keys&lt;/span&gt;
+    volumes:
+      - data:/App/data
+      - keys:/root/.aspnet/DataProtection-Keys
     &lt;i class=&quot;hl-comment&quot;&gt;# expose port and/or use serving via traefik&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;8088&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;8080&lt;/i&gt;
+    ports:
+      - &lt;i class=&quot;hl-number&quot;&gt;8088&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;8080&lt;/i&gt;
 
-&lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
+volumes:
+  data:
+  keys:
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;mazanoke--8089&quot;&gt;Mazanoke ~ :8089&lt;/h3&gt;
 &lt;p&gt;És un optimitzador d&#039;imatges senzill que funciona al vostre navegador, treballa sense connexió i manté les vostres imatges privades sense sortir mai del vostre dispositiu.&lt;/p&gt;
 &lt;p&gt;Serveix com a alternativa a les eines en línia «gratuïtes» qüestionables i l&#039;utilitzo per disminuir el tamany de les fotos del blog.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;mazanoke&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;mazanoke&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;ghcr&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;civilblur&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;mazanoke&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;latest&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8089:80&amp;quot;&lt;/i&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
+  mazanoke:
+    container_name: mazanoke
+    image: ghcr.io/civilblur/mazanoke:latest
+    ports:
+      - &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8089:80&amp;quot;&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;scrutiny--8090&quot;&gt;Scrutiny ~ :8090&lt;/h3&gt;
 &lt;p&gt;Monitorització de la salut dels discs durs (dades S.M.A.R.T) a través d&#039;una interfície web.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;scrutiny&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;unless&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-stopped&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;scrutiny&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;ghcr&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;starosdev&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;scrutiny&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;latest&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-omnibus&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;cap_add&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;SYS_RAWIO&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8090:8080&amp;quot;&lt;/i&gt; &lt;i class=&quot;hl-comment&quot;&gt;# webapp&lt;/i&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8091:8086&amp;quot;&lt;/i&gt; &lt;i class=&quot;hl-comment&quot;&gt;# influxDB admin&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;udev&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;udev&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;ro&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;opt&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;scrutiny&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;config&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;influxdb&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;opt&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;scrutiny&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;influxdb&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;devices&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;/dev/sda&amp;quot;&lt;/i&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
+  scrutiny:
+    restart: unless-stopped
+    container_name: scrutiny
+    image: ghcr.io/starosdev/scrutiny:latest-omnibus
+    cap_add:
+      - SYS_RAWIO
+    ports:
+      - &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8090:8080&amp;quot;&lt;/i&gt; &lt;i class=&quot;hl-comment&quot;&gt;# webapp&lt;/i&gt;
+      - &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8091:8086&amp;quot;&lt;/i&gt; &lt;i class=&quot;hl-comment&quot;&gt;# influxDB admin&lt;/i&gt;
+    volumes:
+      - /run/udev:/run/udev:ro
+      - ./config:/opt/scrutiny/config
+      - ./influxdb:/opt/scrutiny/influxdb
+    devices:
+      - &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;/dev/sda&amp;quot;&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;filewizard--8092&quot;&gt;Filewizard ~ :8092&lt;/h3&gt;
 &lt;p&gt;Una utilitat per a la conversió de fitxers, el reconeixement òptic de caràcters (OCR) i la transcripció d&#039;àudio. Engloba convertidors comuns (FFmpeg, LibreOffice, Pandoc, ImageMagick, etc.).&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;loredcast&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;filewizard&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;0.4&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;-latest&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-operator&quot;&gt;.&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;full&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-final&lt;/span&gt; &lt;i class=&quot;hl-comment&quot;&gt;# Change to &amp;apos;full-final&amp;apos; or &amp;apos;small-final&amp;apos; as needed&lt;/i&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
+  web:
+    image: loredcast/filewizard:&lt;i class=&quot;hl-number&quot;&gt;0.4&lt;/i&gt;-latest
+    build:
+      context: .
+      target: full-final &lt;i class=&quot;hl-comment&quot;&gt;# Change to &amp;apos;full-final&amp;apos; or &amp;apos;small-final&amp;apos; as needed&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;#env_file:&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;# - .env&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;LOCAL_ONLY&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;True&lt;/span&gt; &lt;i class=&quot;hl-comment&quot;&gt;# set to False to enable OIDC auth (requires configuration in settings.yml)&lt;/i&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;SECRET_KEY&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt; &lt;i class=&quot;hl-comment&quot;&gt;# if using auth&lt;/i&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;UPLOADS_DIR&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;uploads&lt;/span&gt; &lt;i class=&quot;hl-comment&quot;&gt;# directory structure INSIDE the container, not on host&lt;/i&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;PROCESSED_DIR&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;processed&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;OMP_NUM_THREADS&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;1&lt;/i&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;DOWNLOAD_KOKORO_ON_STARTUP&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;TRANSCRIPTION_DEVICE&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;cpu&lt;/span&gt;  &lt;i class=&quot;hl-comment&quot;&gt;# change to &amp;apos;cuda&amp;apos; if GPU available&lt;/i&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;TRANSCRIPTION_COMPUTE_TYPE&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;int8&lt;/span&gt; &lt;i class=&quot;hl-comment&quot;&gt;# change to &amp;apos;float16&amp;apos; or &amp;apos;int8_float16&amp;apos; if GPU available&lt;/i&gt;
+    environment:
+      - LOCAL_ONLY=True &lt;i class=&quot;hl-comment&quot;&gt;# set to False to enable OIDC auth (requires configuration in settings.yml)&lt;/i&gt;
+      - SECRET_KEY= &lt;i class=&quot;hl-comment&quot;&gt;# if using auth&lt;/i&gt;
+      - UPLOADS_DIR=/app/uploads &lt;i class=&quot;hl-comment&quot;&gt;# directory structure INSIDE the container, not on host&lt;/i&gt;
+      - PROCESSED_DIR=/app/processed
+      - OMP_NUM_THREADS=&lt;i class=&quot;hl-number&quot;&gt;1&lt;/i&gt;
+      - DOWNLOAD_KOKORO_ON_STARTUP=true
+      - TRANSCRIPTION_DEVICE=cpu  &lt;i class=&quot;hl-comment&quot;&gt;# change to &amp;apos;cuda&amp;apos; if GPU available&lt;/i&gt;
+      - TRANSCRIPTION_COMPUTE_TYPE=int8 &lt;i class=&quot;hl-comment&quot;&gt;# change to &amp;apos;float16&amp;apos; or &amp;apos;int8_float16&amp;apos; if GPU available&lt;/i&gt;
       &lt;i class=&quot;hl-comment&quot;&gt;#- TRANSCRIPTION_DEVICE_INDEX=0 # change if multiple GPUs available&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;#user: &amp;quot;1000:1000&amp;quot;&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8092:8000&amp;quot;&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
+    ports:
+      - &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8092:8000&amp;quot;&lt;/i&gt;
+    volumes:
       &lt;i class=&quot;hl-comment&quot;&gt;# Mount local directories and files into the container for persistence&lt;/i&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;config&lt;/span&gt; &lt;i class=&quot;hl-comment&quot;&gt;# you can copy settings.default.yml into here as settings.yml&lt;/i&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;uploads_data&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;uploads&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;processed_data&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;processed&lt;/span&gt;
+      - ./config:/app/config &lt;i class=&quot;hl-comment&quot;&gt;# you can copy settings.default.yml into here as settings.yml&lt;/i&gt;
+      - ./uploads_data:/app/uploads
+      - ./processed_data:/app/processed
 
     &lt;i class=&quot;hl-comment&quot;&gt;# For CUDA builds, enable GPU access (uncomment below)&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;#deploy:&lt;/i&gt;
@@ -488,151 +488,151 @@ h3://dns.nextdns.io/
     &lt;i class=&quot;hl-comment&quot;&gt;#          count: all&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;#          capabilities: [gpu]&lt;/i&gt;
 
-&lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;uploads_data&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;processed_data&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
+volumes:
+  uploads_data: {}
+  processed_data: {}
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;dashdot--8093&quot;&gt;Dashdot ~ :8093&lt;/h3&gt;
 &lt;p&gt;És un panell de control per al teu servidor domèstic i està pensat per oferir una visió ràpida de la càrrega actual del teu sistema (i per tenir un bon aspecte).&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;dash&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;mauricenino&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;dashdot&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;latest&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;unless&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-stopped&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;privileged&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;apos;8093:3001&amp;apos;&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;mnt&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;ro&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;DASHDOT_PAGE_TITLE&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;apos;HP250G5&amp;apos;&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;DASHDOT_ALWAYS_SHOW_PERCENTAGES&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;apos;true&amp;apos;&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;DASHDOT_ENABLE_CPU_TEMPS&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;apos;true&amp;apos;&lt;/i&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
+  dash:
+    image: mauricenino/dashdot:latest
+    restart: unless-stopped
+    privileged: true
+    ports:
+      - &lt;i class=&quot;hl-string&quot;&gt;&amp;apos;8093:3001&amp;apos;&lt;/i&gt;
+    volumes:
+      - /:/mnt/host:ro
+    environment:
+      DASHDOT_PAGE_TITLE: &lt;i class=&quot;hl-string&quot;&gt;&amp;apos;HP250G5&amp;apos;&lt;/i&gt;
+      DASHDOT_ALWAYS_SHOW_PERCENTAGES: &lt;i class=&quot;hl-string&quot;&gt;&amp;apos;true&amp;apos;&lt;/i&gt;
+      DASHDOT_ENABLE_CPU_TEMPS: &lt;i class=&quot;hl-string&quot;&gt;&amp;apos;true&amp;apos;&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;mafl--8094&quot;&gt;Mafl ~ :8094&lt;/h3&gt;
 &lt;p&gt;Panell central per poder-hi accedir directament a tots els contenidors Docker.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;mafl&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;hywax&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;mafl&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;latest&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;unless&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-stopped&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;apos;8094:3000&amp;apos;&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;yml&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;yml&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
+  mafl:
+    image: hywax/mafl:latest
+    restart: unless-stopped
+    ports:
+      - &lt;i class=&quot;hl-string&quot;&gt;&amp;apos;8094:3000&amp;apos;&lt;/i&gt;
+    volumes:
+      - ./config.yml:/app/data/config.yml
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;I la seva configuració que utilitzo actualment:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;HP&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;250&lt;/i&gt; &lt;span class=&quot;hl-identifier&quot;&gt;G5&lt;/span&gt;
-&lt;span class=&quot;hl-identifier&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;dark&lt;/span&gt;
-&lt;span class=&quot;hl-identifier&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;diari&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;blue&lt;/span&gt;
-&lt;span class=&quot;hl-identifier&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;grid&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;small&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;1&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;medium&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;2&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;large&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;3&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;xlarge&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;3&lt;/i&gt;
-&lt;span class=&quot;hl-identifier&quot;&gt;checkUpdates&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-&lt;span class=&quot;hl-identifier&quot;&gt;behaviour&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;_blank&lt;/span&gt;
-&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;Serveis&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;FreshRSS&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Agregador&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;de&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;not&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;�&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;�&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;cies&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;feeds&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;RSS&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;8080&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;diari&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;raw&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;githubusercontent&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;FreshRSS&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;FreshRSS&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;d7848e9fd674c6113dae5d1e448abcc94452b646&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;themes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;icons&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;favicon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;svg&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
-    &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Trip&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Planificador&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;de&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;viatges&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;minimalista&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;8082&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;itskovacs&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;trip&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;raw&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;favicon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;png&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
-    &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;TraskTrove&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Gestor&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;de&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;tasques&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;8083&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;diari&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;raw&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;githubusercontent&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;dohsimpson&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;TaskTrove&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;f5b9550096d6e6190dd12a82af487adcea66be06&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;apps&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;web&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-rounded&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;svg&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
-    &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;EigenFocus&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Gesti&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;�&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;�&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;de&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;productivitat&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;8084&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;diari&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;raw&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;githubusercontent&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;Eigenfocus&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;eigenfocus&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;af844672e387dae8110f8ec00cdb152c606a3475&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;svg&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
-    &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Yamtrack&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Seguidor&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;de&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;mitjans&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;de&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;consum&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;8087&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;FuzzyGrim&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;Yamtrack&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;blob&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;9098&lt;/i&gt;&lt;span class=&quot;hl-identifier&quot;&gt;ced3cd2f5801649274f25694afbf6f1365bd&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;favicon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-chrome&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;-192&lt;/i&gt;&lt;span class=&quot;hl-identifier&quot;&gt;x192&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;png&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;raw&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
-    &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;LubeLogger&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Registre&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;digital&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;dels&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;teus&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;vehicles&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;8088&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;hargata&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;lubelog&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;blob&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;wwwroot&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;defaults&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;lubelogger_maskable_icon_192&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;png&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;raw&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
-    &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Dashdot&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Panell&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;de&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;control&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;del&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;servidor&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;8093&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;MauriceNino&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;dashdot&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;blob&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;apps&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;docs&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;logo512&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;png&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;raw&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
-    &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Mealie&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Gestor&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;de&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;receptes&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;9925&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;mealie&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-recipes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;mealie&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;blob&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;mealie&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-next&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;frontend&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;png&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;raw&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
-    &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Mafl&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Panell&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;central&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;de&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;tots&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;els&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;contenidors&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Docker&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;8094&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;raw&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;githubusercontent&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;hywax&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;mafl&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;f2166171b46f16c59b80204b717d6bb352567810&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;docs&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;logotype&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;svg&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;false&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;Eines&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;AdGuard&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Home&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Servidor&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;DNS&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.200&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;upload&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;wikimedia&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;wikipedia&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;commons&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;4&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;4&lt;/i&gt;&lt;span class=&quot;hl-identifier&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;AdGuard&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;svg&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;false&lt;/span&gt;
-    &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;BentoPDF&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Conjunt&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;d&lt;/span&gt;&lt;i class=&quot;hl-string&quot;&gt;&amp;apos;eines per a PDF
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;title: HP &lt;i class=&quot;hl-number&quot;&gt;250&lt;/i&gt; G5
+theme: dark
+tags:
+  - name: diari
+    color: blue
+layout:
+  grid:
+    small: &lt;i class=&quot;hl-number&quot;&gt;1&lt;/i&gt;
+    medium: &lt;i class=&quot;hl-number&quot;&gt;2&lt;/i&gt;
+    large: &lt;i class=&quot;hl-number&quot;&gt;3&lt;/i&gt;
+    xlarge: &lt;i class=&quot;hl-number&quot;&gt;3&lt;/i&gt;
+checkUpdates: true
+behaviour:
+  target: _blank
+services:
+  Serveis:
+    - title: FreshRSS
+      description: Agregador de notícies i feeds RSS
+      link: http://&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;8080&lt;/i&gt;
+      tags:
+        - diari
+      icon:
+        url: https://raw.githubusercontent.com/FreshRSS/FreshRSS/d7848e9fd674c6113dae5d1e448abcc94452b646/p/themes/icons/favicon.svg
+        wrap: true
+      status:
+        enabled: true
+        interval: &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
+    - title: Trip
+      description: Planificador de viatges minimalista
+      link: http://&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;8082&lt;/i&gt;
+      icon:
+        url: https://github.com/itskovacs/trip/raw/main/src/public/favicon.png
+        wrap: true
+      status:
+        enabled: true
+        interval: &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
+    - title: TraskTrove
+      description: Gestor de tasques
+      link: http://&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;8083&lt;/i&gt;
+      tags:
+        - diari
+      icon:
+        url: https://raw.githubusercontent.com/dohsimpson/TaskTrove/f5b9550096d6e6190dd12a82af487adcea66be06/apps/web/public/icon-rounded.svg
+        wrap: true
+      status:
+        enabled: true
+        interval: &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
+    - title: EigenFocus
+      description: Gestió de productivitat
+      link: http://&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;8084&lt;/i&gt;
+      tags:
+        - diari
+      icon:
+        url: https://raw.githubusercontent.com/Eigenfocus/eigenfocus/af844672e387dae8110f8ec00cdb152c606a3475/public/icon.svg
+        wrap: true
+      status:
+        enabled: true
+        interval: &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
+    - title: Yamtrack
+      description: Seguidor de mitjans de consum
+      link: http://&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;8087&lt;/i&gt;
+      icon:
+        url: https://github.com/FuzzyGrim/Yamtrack/blob/&lt;i class=&quot;hl-number&quot;&gt;9098&lt;/i&gt;ced3cd2f5801649274f25694afbf6f1365bd/src/static/favicon/android-chrome&lt;i class=&quot;hl-number&quot;&gt;-192&lt;/i&gt;x192.png?raw=true
+        wrap: true
+      status:
+        enabled: true
+        interval: &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
+    - title: LubeLogger
+      description: Registre digital dels teus vehicles
+      link: http://&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;8088&lt;/i&gt;
+      icon:
+        url: https://github.com/hargata/lubelog/blob/main/wwwroot/defaults/lubelogger_maskable_icon_192.png?raw=true
+        wrap: true
+      status:
+        enabled: true
+        interval: &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
+    - title: Dashdot
+      description: Panell de control del servidor
+      link: http://&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;8093&lt;/i&gt;
+      icon:
+        url: https://github.com/MauriceNino/dashdot/blob/main/apps/docs/static/img/logo512.png?raw=true
+        wrap: true
+      status:
+        enabled: true
+        interval: &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
+    - title: Mealie
+      description: Gestor de receptes
+      link: http://&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;9925&lt;/i&gt;
+      icon:
+        url: https://github.com/mealie-recipes/mealie/blob/mealie-next/frontend/static/icon.png?raw=true
+        wrap: true
+      status:
+        enabled: true
+        interval: &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
+    - title: Mafl
+      description: Panell central de tots els contenidors Docker
+      link: http://&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;8094&lt;/i&gt;
+      icon:
+        url: https://raw.githubusercontent.com/hywax/mafl/f2166171b46f16c59b80204b717d6bb352567810/docs/public/logotype.svg
+        wrap: true
+      status:
+        enabled: false
+  Eines:
+    - title: AdGuard Home
+      description: Servidor DNS
+      link: http://&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.200&lt;/i&gt;
+      icon:
+        url: https://upload.wikimedia.org/wikipedia/commons/&lt;i class=&quot;hl-number&quot;&gt;4&lt;/i&gt;/&lt;i class=&quot;hl-number&quot;&gt;4&lt;/i&gt;c/AdGuard.svg
+        wrap: true
+      status:
+        enabled: false
+    - title: BentoPDF
+      description: Conjunt d&lt;i class=&quot;hl-string&quot;&gt;&amp;apos;eines per a PDF
       link: http://192.168.0.19:8081
       icon:
         url: https://raw.githubusercontent.com/alam00000/bentopdf/36ebb3b429b0ae9b2b086b8c64b6c27af1057569/public/images/favicon.svg
@@ -659,41 +659,41 @@ h3://dns.nextdns.io/
         enabled: true
         interval: 3600
     - title: Mazanoke
-      description: Optimitzador d&amp;apos;&lt;/i&gt;&lt;span class=&quot;hl-identifier&quot;&gt;imatges&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;8089&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;civilblur&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;mazanoke&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;blob&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;assets&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;images&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-chrome&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;-192&lt;/i&gt;&lt;span class=&quot;hl-identifier&quot;&gt;x192&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;png&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;raw&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
-    &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Scrutiny&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Monitoritzaci&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;�&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;�&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;de&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;T&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;8090&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;raw&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;githubusercontent&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;Starosdev&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;scrutiny&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;24&lt;/i&gt;&lt;span class=&quot;hl-identifier&quot;&gt;f6518a81a1c487251f1e8bc62cc28bf0074667&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;webapp&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;frontend&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;assets&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;images&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;logo&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;scrutiny&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-logo-white&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;svg&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
-    &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Filewizardmon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;1&lt;/i&gt;&lt;span class=&quot;hl-identifier&quot;&gt;r8njh6&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;future_paradox_reshiram_concept&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Conversi&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;�&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;�&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;de&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;fitxers&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;8092&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;streamline&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-plump&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;convert&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-pdf&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;-1&lt;/i&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
-    &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;ChangeDetection&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Monitora&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;�&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;�&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;gines&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;web&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;5555&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;dgtlmoon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;changedetection&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;blob&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;892&lt;/i&gt;&lt;span class=&quot;hl-identifier&quot;&gt;b645147e05b206af2ec952539593e6d57b9a7&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;changedetectionio&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;images&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;avatar&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;-256&lt;/i&gt;&lt;span class=&quot;hl-identifier&quot;&gt;x256&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;png&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;raw&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
+      description: Optimitzador d&amp;apos;&lt;/i&gt;imatges
+      link: http://&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;8089&lt;/i&gt;
+      icon:
+        url: https://github.com/civilblur/mazanoke/blob/main/assets/images/android-chrome&lt;i class=&quot;hl-number&quot;&gt;-192&lt;/i&gt;x192.png?raw=true
+        wrap: true
+      status:
+        enabled: true
+        interval: &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
+    - title: Scrutiny
+      description: Monitorització de S.M.A.R.T
+      link: http://&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;8090&lt;/i&gt;
+      icon:
+        url: https://raw.githubusercontent.com/Starosdev/scrutiny/&lt;i class=&quot;hl-number&quot;&gt;24&lt;/i&gt;f6518a81a1c487251f1e8bc62cc28bf0074667/webapp/frontend/src/assets/images/logo/scrutiny-logo-white.svg
+        wrap: true
+      status:
+        enabled: true
+        interval: &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
+    - title: Filewizardmon/comments/&lt;i class=&quot;hl-number&quot;&gt;1&lt;/i&gt;r8njh6/future_paradox_reshiram_concept/
+      description: Conversió de fitxers
+      link: http://&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;8092&lt;/i&gt;
+      icon:
+        name: streamline-plump:convert-pdf&lt;i class=&quot;hl-number&quot;&gt;-1&lt;/i&gt;
+        wrap: true
+      status:
+        enabled: true
+        interval: &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
+    - title: ChangeDetection
+      description: Monitora pàgines web
+      link: http://&lt;i class=&quot;hl-number&quot;&gt;192.168&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.0&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.19&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;5555&lt;/i&gt;
+      icon:
+        url: https://github.com/dgtlmoon/changedetection.io/blob/&lt;i class=&quot;hl-number&quot;&gt;892&lt;/i&gt;b645147e05b206af2ec952539593e6d57b9a7/changedetectionio/static/images/avatar&lt;i class=&quot;hl-number&quot;&gt;-256&lt;/i&gt;x256.png?raw=true
+        wrap: true
+      status:
+        enabled: true
+        interval: &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;haus--8095&quot;&gt;Haus ~ :8095&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;services:
@@ -708,97 +708,97 @@ h3://dns.nextdns.io/
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;changedetection--5555&quot;&gt;ChangeDetection ~ :5555&lt;/h3&gt;
 &lt;p&gt;Monitora pàgines web i t&#039;envia una notificació quan detecta canvis en el contingut. Ho tinc configurat amb un bot de Telegram per enviar-me avisos automàtics quan apareixen productes a Wallapop.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;browser&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-sockpuppet-chrome&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;dgtlmoon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;sockpuppetbrowser&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;latest&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;browser&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-sockpuppet-chrome&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;hostname&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;browser&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-sockpuppet-chrome&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;unless&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-stopped&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;cap_add&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;SYS_ADMIN&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;cpu_shares&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;90&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;MAX_CONCURRENT_CHROME_PROCESSES&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;10&lt;/i&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;SCREEN_DEPTH&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;16&lt;/i&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;SCREEN_HEIGHT&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;1024&lt;/i&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;SCREEN_WIDTH&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;1920&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;dgtlmoon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;changedetection&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;blob&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;dev&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;changedetectionio&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;favicons&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-chrome&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;-192&lt;/i&gt;&lt;span class=&quot;hl-identifier&quot;&gt;x192&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;png&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;raw&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;browser&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-sockpuppet-chrome&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;resources&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;limits&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-          &lt;span class=&quot;hl-identifier&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;4&lt;/i&gt;&lt;span class=&quot;hl-identifier&quot;&gt;G&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
+  browser-sockpuppet-chrome:
+    image: dgtlmoon/sockpuppetbrowser:latest
+    container_name: browser-sockpuppet-chrome
+    hostname: browser-sockpuppet-chrome
+    restart: unless-stopped
+    cap_add:
+      - SYS_ADMIN
+    cpu_shares: &lt;i class=&quot;hl-number&quot;&gt;90&lt;/i&gt;
+    environment:
+      - MAX_CONCURRENT_CHROME_PROCESSES=&lt;i class=&quot;hl-number&quot;&gt;10&lt;/i&gt;
+      - SCREEN_DEPTH=&lt;i class=&quot;hl-number&quot;&gt;16&lt;/i&gt;
+      - SCREEN_HEIGHT=&lt;i class=&quot;hl-number&quot;&gt;1024&lt;/i&gt;
+      - SCREEN_WIDTH=&lt;i class=&quot;hl-number&quot;&gt;1920&lt;/i&gt;
+    labels:
+      icon: https://github.com/dgtlmoon/changedetection.io/blob/dev/changedetectionio/static/favicons/android-chrome&lt;i class=&quot;hl-number&quot;&gt;-192&lt;/i&gt;x192.png?raw=true
+    networks:
+      - browser-sockpuppet-chrome
+    deploy:
+      resources:
+        limits:
+          memory: &lt;i class=&quot;hl-number&quot;&gt;4&lt;/i&gt;G
 
-  &lt;span class=&quot;hl-identifier&quot;&gt;changedetection&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;lscr&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;linuxserver&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;changedetection&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;0.51&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.4&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;changedetection&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;hostname&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;changedetection&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;unless&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-stopped&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;depends_on&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;browser&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-sockpuppet-chrome&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;condition&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;service_started&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;required&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;PGID&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;1000&lt;/i&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;PUID&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;1000&lt;/i&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;TZ&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;Europe&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;Madrid&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;PLAYWRIGHT_DRIVER_URL&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;ws&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;browser&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-sockpuppet-chrome&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;3000&lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;dgtlmoon&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;changedetection&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;blob&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;dev&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;changedetectionio&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;favicons&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;android&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-chrome&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;-192&lt;/i&gt;&lt;span class=&quot;hl-identifier&quot;&gt;x192&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;png&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;raw&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;browser&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-sockpuppet-chrome&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;5000&lt;/i&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;published&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;5555&amp;quot;&lt;/i&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;protocol&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;tcp&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;changedetection&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-data&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;config&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;resources&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;limits&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-          &lt;span class=&quot;hl-identifier&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;1&lt;/i&gt;&lt;span class=&quot;hl-identifier&quot;&gt;G&lt;/span&gt;
-&lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;changedetection&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-data&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;hl-identifier&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;browser&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-sockpuppet-chrome&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;browser&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-sockpuppet-chrome&lt;/span&gt;
+  changedetection:
+    image: lscr.io/linuxserver/changedetection.io:&lt;i class=&quot;hl-number&quot;&gt;0.51&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.4&lt;/i&gt;
+    container_name: changedetection
+    hostname: changedetection
+    restart: unless-stopped
+    depends_on:
+      browser-sockpuppet-chrome:
+        condition: service_started
+        required: true
+    environment:
+      - PGID=&lt;i class=&quot;hl-number&quot;&gt;1000&lt;/i&gt;
+      - PUID=&lt;i class=&quot;hl-number&quot;&gt;1000&lt;/i&gt;
+      - TZ=Europe/Madrid
+      - PLAYWRIGHT_DRIVER_URL=ws://browser-sockpuppet-chrome:&lt;i class=&quot;hl-number&quot;&gt;3000&lt;/i&gt;
+    labels:
+      icon: https://github.com/dgtlmoon/changedetection.io/blob/dev/changedetectionio/static/favicons/android-chrome&lt;i class=&quot;hl-number&quot;&gt;-192&lt;/i&gt;x192.png?raw=true
+    networks:
+      - browser-sockpuppet-chrome
+    ports:
+      - target: &lt;i class=&quot;hl-number&quot;&gt;5000&lt;/i&gt;
+        published: &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;5555&amp;quot;&lt;/i&gt;
+        protocol: tcp
+    volumes:
+      - changedetection-data:/config
+    deploy:
+      resources:
+        limits:
+          memory: &lt;i class=&quot;hl-number&quot;&gt;1&lt;/i&gt;G
+volumes:
+  changedetection-data:
+networks:
+  browser-sockpuppet-chrome:
+    name: browser-sockpuppet-chrome
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&quot;mealie--9925&quot;&gt;Mealie ~ :9925&lt;/h3&gt;
 &lt;p&gt;Gestor de receptes de cuina, planificador de menjars i llistes de la compra.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;hl-identifier&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;mealie&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;ghcr&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;mealie&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-recipes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;mealie&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;v3&lt;/span&gt;&lt;i class=&quot;hl-number&quot;&gt;.9&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.2&lt;/i&gt; &lt;i class=&quot;hl-comment&quot;&gt;# &lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;mealie&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;unless&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;-stopped&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;9925:9000&amp;quot;&lt;/i&gt; &lt;i class=&quot;hl-comment&quot;&gt;# &lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;resources&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;hl-identifier&quot;&gt;limits&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-          &lt;span class=&quot;hl-identifier&quot;&gt;memory&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;1000&lt;/i&gt;&lt;span class=&quot;hl-identifier&quot;&gt;M&lt;/span&gt; &lt;i class=&quot;hl-comment&quot;&gt;# &lt;/i&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;hl-default&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;mealie&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;
-    &lt;span class=&quot;hl-identifier&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie:v3&lt;i class=&quot;hl-number&quot;&gt;.9&lt;/i&gt;&lt;i class=&quot;hl-number&quot;&gt;.2&lt;/i&gt; &lt;i class=&quot;hl-comment&quot;&gt;# &lt;/i&gt;
+    container_name: mealie
+    restart: unless-stopped
+    ports:
+        - &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;9925:9000&amp;quot;&lt;/i&gt; &lt;i class=&quot;hl-comment&quot;&gt;# &lt;/i&gt;
+    deploy:
+      resources:
+        limits:
+          memory: &lt;i class=&quot;hl-number&quot;&gt;1000&lt;/i&gt;M &lt;i class=&quot;hl-comment&quot;&gt;# &lt;/i&gt;
+    volumes:
+      - mealie:/app/data/
+    environment:
       &lt;i class=&quot;hl-comment&quot;&gt;# Set Backend ENV Variables Here&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;ALLOW_SIGNUP&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;false&amp;quot;&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;PUID&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;1000&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;PGID&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;i class=&quot;hl-number&quot;&gt;1000&lt;/i&gt;
-      &lt;span class=&quot;hl-identifier&quot;&gt;TZ&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;hl-identifier&quot;&gt;Europe&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;hl-identifier&quot;&gt;Madrid&lt;/span&gt;
+      ALLOW_SIGNUP: &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;false&amp;quot;&lt;/i&gt;
+      PUID: &lt;i class=&quot;hl-number&quot;&gt;1000&lt;/i&gt;
+      PGID: &lt;i class=&quot;hl-number&quot;&gt;1000&lt;/i&gt;
+      TZ: Europe/Madrid
 
-&lt;span class=&quot;hl-identifier&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;hl-identifier&quot;&gt;mealie&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;:&lt;/span&gt;
+volumes:
+  mealie:
 &lt;/code&gt;&lt;/pre&gt;
-]]></content>
+</content>
 </entry>
 <entry>
-<title><![CDATA[Configuració d&#039;Acer Predator G3610]]></title>
+<title>Configuració d&#039;Acer Predator G3610</title>
 <id>https://alunya.cat/alan/g3610.html</id>
 <link rel="alternate" href="https://alunya.cat/alan/g3610.html"/>
 <updated>2021-04-30T00:00:00.000Z</updated>
-<summary type="html"><![CDATA[]]></summary>
-<content type="html"><![CDATA[&lt;p&gt;Deixa de llegir, de debò, no ho facis. La publicació d&#039;avui no és un reflexió, és només que el meu ordinador m&#039;ha estat donant problemes i he esborrat per accident diverses coses.&lt;/p&gt;
+<summary type="html"></summary>
+<content type="html">&lt;p&gt;Deixa de llegir, de debò, no ho facis. La publicació d&#039;avui no és un reflexió, és només que el meu ordinador m&#039;ha estat donant problemes i he esborrat per accident diverses coses.&lt;/p&gt;
 &lt;p&gt;Com que la cosa no pinta bé i podria deixar de funcionar en qualsevol moment, seria un desastre perdre tota la informació i l&#039;ergonomia de treball que he cultivat amb tant d&#039;esforç. Per això, aniré apuntant tot el que he fet servir per si en necessito recopilar la configuració i els programes en una instal·lació neta en el futur.&lt;/p&gt;
 &lt;h2 id=&quot;installaci-de-debian&quot;&gt;Instal·lació de Debian&lt;/h2&gt;
 &lt;p&gt;Si decidiu instal·lar aquesta meravellosa distribució de Linux, us recomano que utilitzeu els paràmetres següents:&lt;/p&gt;
@@ -863,56 +863,56 @@ By following this optimized prompt, you will generate an effective summary that 
 &lt;li&gt;Creeu un document. En el meu cas, faig servir Markdown i LuaLaTeX com a compilador de PDF. Per a qui ho vulgui, aquí teniu la plantilla completa:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre&gt;&lt;code class=&quot;language-latex&quot;&gt;&lt;i class=&quot;hl-comment&quot;&gt;% Definimos el estilo del documento&lt;/i&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\documentclass&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
+\documentclass[11pt,twoside,a4paper,spanish]{article}
 &lt;i class=&quot;hl-comment&quot;&gt;% Utilizamos el paquete para utilizar español&lt;/i&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt; &lt;i class=&quot;hl-comment&quot;&gt;%% remove option &amp;apos;lining&amp;apos; to get oldstyle figures as default&lt;/i&gt;
+\usepackage[spanish]{babel}
+\usepackage[lining]{ibarra} &lt;i class=&quot;hl-comment&quot;&gt;%% remove option &amp;apos;lining&amp;apos; to get oldstyle figures as default&lt;/i&gt;
 &lt;i class=&quot;hl-comment&quot;&gt;% Utilizamos el paquete para gestionar acentos !- Con LuaLaTeX no hace falta inputenc y éste hace uso directo de UTF-8 -!&lt;/i&gt;
 &lt;i class=&quot;hl-comment&quot;&gt;% \usepackage[latin1]{inputenc}&lt;/i&gt;
 &lt;i class=&quot;hl-comment&quot;&gt;% Utilizamos el paquete para gestionar la estructura del papel&lt;/i&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\geometry&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
+\usepackage{geometry}
+\geometry{margin=0.5in}
 &lt;i class=&quot;hl-comment&quot;&gt;% Recommended, but optional, packages for figures and better typesetting:&lt;/i&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt; &lt;i class=&quot;hl-comment&quot;&gt;% for professional tables&lt;/i&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{booktabs} &lt;i class=&quot;hl-comment&quot;&gt;% for professional tables&lt;/i&gt;
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 &lt;i class=&quot;hl-comment&quot;&gt;% Utilizamos el paquete para usar markdown dentro de LaTeX&lt;/i&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;w&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
+\usepackage[hashEnumerators,smartEllipses,hybrid,pipeTables,tableCaptions]{markdown}
 &lt;i class=&quot;hl-comment&quot;&gt;% Specify to LaTeX that it should not make tables float&lt;/i&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\makeatletter&lt;/span&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\renewcommand&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-command&quot;&gt;\fps&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;H&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\makeatother&lt;/span&gt;
+\usepackage{float}
+\makeatletter
+\renewcommand*{\fps@table}{H}
+\makeatother
 &lt;i class=&quot;hl-comment&quot;&gt;% Autor&lt;/i&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\author&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;hl-command&quot;&gt;\title&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;L&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;hl-default&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;hl-default&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hl-operator&quot;&gt;}&lt;/span&gt;
+\author{Autor}
+\title{MDLatex Template}
 &lt;i class=&quot;hl-comment&quot;&gt;%Empieza el documento&lt;/i&gt;
-&lt;span class=&quot;hl-environment&quot;&gt;\begin{document}&lt;/span&gt;
+\begin{document}
 
-&lt;span class=&quot;hl-environment&quot;&gt;\begin{markdown}&lt;/span&gt;
+\begin{markdown}
 &lt;i class=&quot;hl-comment&quot;&gt;% (El contenido aquí está colapsado en la imagen, líneas 33-98)&lt;/i&gt;
 
-&lt;span class=&quot;hl-command&quot;&gt;\newpage&lt;/span&gt;
+\newpage
 
-&lt;span class=&quot;hl-environment&quot;&gt;\begin{markdown}&lt;/span&gt;
+\begin{markdown}
 &lt;i class=&quot;hl-comment&quot;&gt;% (El contenido aquí está colapsado en la imagen, líneas 103-130)&lt;/i&gt;
 
-&lt;span class=&quot;hl-environment&quot;&gt;\end{document}&lt;/span&gt;
+\end{document}
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&quot;assets/texmaker.webp&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-]]></content>
+</content>
 </entry>
 <entry>
-<title><![CDATA[Nessun Dorma]]></title>
+<title>Nessun Dorma</title>
 <id>https://alunya.cat/alan/nessundorma.html</id>
 <link rel="alternate" href="https://alunya.cat/alan/nessundorma.html"/>
 <updated>2020-09-26T00:00:00.000Z</updated>
-<summary type="html"><![CDATA[]]></summary>
-<content type="html"><![CDATA[&lt;p&gt;Són les 4 de la matinada i el despertador està a punt de sonar.&lt;/p&gt;
+<summary type="html"></summary>
+<content type="html">&lt;p&gt;Són les 4 de la matinada i el despertador està a punt de sonar.&lt;/p&gt;
 &lt;p&gt;Em llevo uns 10 minuts abans de l&#039;alarma perquè el meu cos ja s&#039;ha acostumat a aquest horari. M&#039;han entrenat, com un gos. Durant aquest temps mort, m&#039;agrada reflexionar sobre el meu destí.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Hauria d&#039;esforçar-me més?&lt;/li&gt;
@@ -936,15 +936,15 @@ By following this optimized prompt, you will generate an effective summary that 
 Ets prou madur per saber que els teus fracassos del passat no poden carregar el teu futur, amb la humilitat de qui sap que l&#039;orgull et pot encegar ─&lt;em&gt;aquesta vegada ho aconseguiràs, demà ho aconseguiràs tot&lt;/em&gt;─.&lt;/p&gt;
 &lt;p&gt;Sort un nou dia (i això no és poca cosa) i t&#039;adones que aquest és el matí en què les coses haurien de millorar, que aquest és el matí en què hauries de fer totes les coses que vas dir ahir ─&lt;em&gt;en realitat no tenies intenció de fer-les, només vas delegar aquestes accions al teu jo futur&lt;/em&gt; ─, però avui és el demà d&#039;ahir i no hi ha cap &lt;em&gt;jo del demà&lt;/em&gt; present, i ets tu amb la mateixa depressió i amargor de sempre.&lt;/p&gt;
 &lt;p&gt;La teva &lt;strong&gt;esperança&lt;/strong&gt;, la teva determinació (que feia només 6 hores que estava en el seu punt àlgid) s&#039;esvaeix com el cafè torrat que acabes de vessar a la teva tassa d&#039;aigua bullent.&lt;/p&gt;
-]]></content>
+</content>
 </entry>
 <entry>
-<title><![CDATA[Sense comentaris]]></title>
+<title>Sense comentaris</title>
 <id>https://alunya.cat/alan/sense-comentaris.html</id>
 <link rel="alternate" href="https://alunya.cat/alan/sense-comentaris.html"/>
 <updated>2016-09-19T00:00:00.000Z</updated>
-<summary type="html"><![CDATA[¿Què fa que un blog sigui un blog?]]></summary>
-<content type="html"><![CDATA[&lt;p&gt;&lt;strong&gt;Tots els blogs són blogs, amb o sense comentari.&lt;/strong&gt; Un blog només necessita, en la meva humil opinió, un creador de contingut. Amb aquest factor, és igual si té comentaris o no en té, si els censura, si els modera, etcètera. L&#039;important dels blogs és tenir alguna cosa per explicar i explicar-la, per descomptat. La resta de les coses són condiments, que en alguns casos milloren la finalitat d&#039;alguna cosa i en d&#039;altres simplement no afecten en res.&lt;/p&gt;
+<summary type="html">¿Què fa que un blog sigui un blog?</summary>
+<content type="html">&lt;p&gt;&lt;strong&gt;Tots els blogs són blogs, amb o sense comentari.&lt;/strong&gt; Un blog només necessita, en la meva humil opinió, un creador de contingut. Amb aquest factor, és igual si té comentaris o no en té, si els censura, si els modera, etcètera. L&#039;important dels blogs és tenir alguna cosa per explicar i explicar-la, per descomptat. La resta de les coses són condiments, que en alguns casos milloren la finalitat d&#039;alguna cosa i en d&#039;altres simplement no afecten en res.&lt;/p&gt;
 &lt;p&gt;La qual cosa no treu que els comentaris siguin entretinguts i divertits si l&#039;autor del blog té ganes i temps per mantenir-los decentment. El que veritablement atreu la gent a llegir els blogs és el contingut. Així de senzill.&lt;/p&gt;
 &lt;p&gt;Encara que no hi hagi un sistema de comentaris es poden seguir mantenint converses mitjançant el correu electrònic (&lt;em&gt;&lt;a href=&quot;mailto:oriolavilagrijalva@gmail.com&quot;&gt;oriolavilagrijalva@gmail.com&lt;/a&gt;&lt;/em&gt;) i fins i tot realitzar «actualitzacions» que s&#039;afegeixen a les entrades. A vegades simplement conversem per correu, no es publica res. Les que es publiquen són actualitzacions generalment rellevants i, sobretot, «sense soroll».&lt;/p&gt;
 &lt;p&gt;No importa si l&#039;entrada és suculenta en debat, en informació, o si és una entrada de contingut regular, breu, programada, el tema és que &lt;strong&gt;la gran majoria dels comentaris són d&#039;índole insubstancial: no aporten res&lt;/strong&gt;. Quan em refereixo al fet que no aporten res simplement dic que no afegeixen valor a la discussió &lt;em&gt;per se&lt;/em&gt;, sinó que són veus de farciment, poden estar o no d&#039;acord amb el locutor i per això no han de ser millor o pitjor en matèria de contingut.&lt;/p&gt;
@@ -955,6 +955,6 @@ Ets prou madur per saber que els teus fracassos del passat no poden carregar el 
 &lt;p&gt;Els correus que solem obtenir tenen una càrrega més personal. Cada correu està dirigit cap a una persona o entitat en concret i no per a una audiència. Tenen un emissari i un receptor, això ens fa més cauts amb la nostra elecció de paraules.&lt;/p&gt;
 &lt;p&gt;I finalment, i el més important per als lectors, &lt;strong&gt;els comentaris canvien permanentment la forma en què els autors escriuen&lt;/strong&gt;. En lloc d&#039;escriure per a tothom, el locutor escriu anticipant-se i esperant la resposta a l&#039;escrit als comentaris.&lt;/p&gt;
 &lt;p&gt;En definitiva, els comentaris no són l&#039;única, ni necessàriament la millor, forma d&#039;interacció entre autors i lectors de weblogs i no van formar part estructural del mitjà en els seus començaments.&lt;/p&gt;
-]]></content>
+</content>
 </entry>
 </feed>
