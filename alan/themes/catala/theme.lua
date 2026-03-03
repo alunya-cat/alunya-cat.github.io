@@ -154,7 +154,7 @@ return {
     }),
     -- ==========================================
     processMarkdown(),
-    omitWhen(function (item) return item.path == "site.lua" end),
+    omitWhen(function (item) return item.draft or item.path == "site.lua" end),
     highlightSyntax(highlightSpan),
     -- readingTime
     deriveMetadata({

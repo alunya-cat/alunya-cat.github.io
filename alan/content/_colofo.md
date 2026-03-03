@@ -34,10 +34,10 @@ Posteriorment executo el fitxer *luasmith* per generar els fitxers de la carpeta
 - Un botó per canviar entre el mode clar i fosc.
 - `site.description` a *theme.lua* per a una breu descripció del blog.
 - `site.email` a *theme.lua* per afegir el teu email. Aquest ha d'estar al revés per ofuscar-ho.
--   Una pàgina d'error 404 ([https://avilagrijalva.github.io/404.html](https://avilagrijalva.github.io/404.html))
+-   Una pàgina d'error 404 ([https://alunya-cat.github.io/404.html](https://alunya-cat.github.io/404.html))
 -   Esborranys o fitxers Markdown que no vull que apareguin a la llista d'índex, però que vull que es generin igualment per poder-hi accedir mitjançant un enllaç directe. Això s'aconsegueix amb `^[^_].*%.html$`, la qual cosa significa que tots els fitxers Markdown que comencin amb un subratllat es tractaran d'aquesta manera.
 - Obfuscament del correu electrònic mitjançat CSS `unicode-bidi: bidi-override; direction: rtl`.
-- Seguiment RSS localitzat a [https://avilagrijalva.github.io/feed.xml](https://avilagrijalva.github.io/feed.xml).
+- Seguiment RSS localitzat a [https://alunya-cat.github.io/feed.xml](https://alunya-cat.github.io/feed.xml).
 - Se li ha afegit l'etiqueta **update** al Markdown que es veu reflectit a:
   - *theme.lua* amb `<div class="date-update"><%= item.update %></div>`.
   - *post.lua* amb `<div class="date-update"><%= update %></div>`.
@@ -57,7 +57,7 @@ Aquest projecte opera sota una **doble llicència** per separar el codi del cont
 
 Tot el codi font desenvolupat per a aquest tema està llicenciat sota la **GNU General Public License v3.0 (GPLv3)**.
 Això garanteix que el programari romangui lliure i obert per a tothom.
-Pots consultar el text complet a l'arxiu [LICENSE](https://github.com/avilagrijalva/avilagrijalva.github.io/blob/main/LICENSE).
+Pots consultar el text complet a l'arxiu [LICENSE](https://github.com/alunya-cat/alunya-cat.github.io/blob/main/LICENSE).
 
 2. **Contingut (Articles i Textos)**
 

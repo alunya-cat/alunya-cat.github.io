@@ -593,10 +593,10 @@ th, td {
     color: var(--accent);
 }
 hr.footnotes-sep {
-    margin: 3.5em 0 1.5em 0; /* Mayor margen arriba para separar del texto principal */
+    margin: 3.5em 0 1.5em 0;
     border: 0;
-    border-top: 1px solid var(--border); /* Línea sólida usando tu variable de color */
-    width: 100%; /* Ocupa todo el ancho disponible */
+    border-top: 1px solid var(--border);
+    width: 100%;
 }
 .footnotes {
     font-size: 0.85em;

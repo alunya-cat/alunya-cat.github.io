@@ -4,6 +4,7 @@ description:
 date: 2026-01-20
 update: 
 keywords: []
+draft: true
 ---
 
 Cuenta Plutarco en algún lugar que, en el transcurso de la segunda Guerra Médica, un soldado de apariencia enclenque instaba a su general, Pausanias, a plantear con urgencia batalla por tierra y mar. Pausanias le conminó: “_¿Por qué no te desnudas y nos muestras qué clase de hombre nos aconseja luchar?_”.

@@ -61,8 +61,8 @@ end
 
 -- Site metadata
 local site = {
-	title = "Oriol Àvila Grijalva",
-	url = "https://avilagrijalva.github.io/",
+	title = "Title",
+	url = "/",
 }
 
 local siteOverrides = fs.tryLoadFile("site.lua")

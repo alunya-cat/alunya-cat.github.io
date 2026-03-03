@@ -4,6 +4,7 @@ description:
 date: 2026-01-20
 update: 
 keywords: []
+draft: true
 ---
 
 Es importante que hagamos uso de nuestro propio nodo Bitcoin para poder confirmar las transacciones. Para ello sincronizaremos nuestro nodo con una billetera de sólo lectura en Sparrow Wallet.

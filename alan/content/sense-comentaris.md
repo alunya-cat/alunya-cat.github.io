@@ -10,7 +10,7 @@ keywords: [blog]
 
 La qual cosa no treu que els comentaris siguin entretinguts i divertits si l'autor del blog té ganes i temps per mantenir-los decentment. El que veritablement atreu la gent a llegir els blogs és el contingut. Així de senzill.
 
-Encara que no hi hagi un sistema de comentaris es poden seguir mantenint converses mitjançant el correu electrònic (_oriolavilagrijalva@gmail.com_) i fins i tot realitzar «actualitzacions» que s'afegeixen a les entrades. A vegades simplement conversem per correu, no es publica res. Les que es publiquen són actualitzacions generalment rellevants i, sobretot, «sense soroll».
+Encara que no hi hagi un sistema de comentaris es poden seguir mantenint converses mitjançant el correu electrònic i fins i tot realitzar «actualitzacions» que s'afegeixen a les entrades. A vegades simplement conversem per correu, no es publica res. Les que es publiquen són actualitzacions generalment rellevants i, sobretot, «sense soroll».
 
 No importa si l'entrada és suculenta en debat, en informació, o si és una entrada de contingut regular, breu, programada, el tema és que **la gran majoria dels comentaris són d'índole insubstancial: no aporten res**. Quan em refereixo al fet que no aporten res simplement dic que no afegeixen valor a la discussió _per se_, sinó que són veus de farciment, poden estar o no d'acord amb el locutor i per això no han de ser millor o pitjor en matèria de contingut.
 
