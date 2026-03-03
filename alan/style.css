@@ -3,7 +3,7 @@
  * sota els termes de la GNU General Public License (GPLv3).
 */
 
-/* --- Variables & Dark Mode (Sincronizadas con style.css) --- */
+/* --- Variables & Dark Mode --- */
 :root {
     --bg: #FAF9F5;  
     --font-serif: 'Cormorant Garamond', 'Garamond', serif;
@@ -53,7 +53,7 @@ body:has(.toggle:checked) {
 /* --- Base & Typo --- */
 html, body {
   font-family: var(--font-serif);
-  font-size: 1.1rem; /* Un poco más grande para Garamond, ya que tiende a verse pequeña */
+  font-size: 1.1rem;
   line-height: 1.7;
   background-color: var(--bg);
   color: var(--text-main);
@@ -283,7 +283,7 @@ body > header { text-align: center; }
 main, body > footer {
   flex-grow: 1; 
   width: 100%;
-  max-width: 700px; /* Igualamos el ancho a style.css (700px) */
+  max-width: 700px;
   margin: 0 auto; 
 }
 
@@ -563,7 +563,7 @@ th, td {
   margin-left: 10px;
 }
 
-/* --- Syntax Highlighting Editorial (Se mantiene igual pero con sutiles mejoras) --- */
+/* --- Syntax Highlighting Editorial --- */
 .hl-comment, .hl-quote { font-style: italic; color: var(--text-muted); }
 .hl-keyword, .hl-selector-tag, .hl-subst { font-weight: 600; color: #8959a8; }
 .hl-string, .hl-attribute, .hl-symbol, .hl-bullet, .hl-addition { color: #718c00; font-style: italic; }

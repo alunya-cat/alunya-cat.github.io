@@ -1,4 +1,4 @@
 return {
-    title = "Oriol Ávila Grijalva",
-    url = "https://avilagrijalva.github.io/",
+    title = "alunya.cat/Alan",
+    url = "https://alunya.cat",
 }

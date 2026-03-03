@@ -500,12 +500,12 @@ p {
 /* --- Language Selector --- */
 .lang-selector {
     position: fixed;
-    top: 28px; /* Alineado verticalmente con el botón de tema */
+    top: 28px;
     left: 24px;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-family: var(--font-mono); /* Usamos tu tipografía técnica */
+    font-family: var(--font-mono);
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.05em;
@@ -516,26 +516,26 @@ p {
     color: var(--text-muted);
     text-decoration: none;
     transition: color 0.3s ease, transform 0.2s ease;
-    padding: 2px 4px; /* Área de clic un poco más grande */
+    padding: 2px 4px;
 }
 
 .lang-selector a:hover {
     color: var(--text-main);
-    transform: translateY(-1px); /* Pequeño salto al pasar el ratón */
+    transform: translateY(-1px);
 }
 
-/* Estilo para el idioma que estás viendo actualmente */
+
 .lang-selector a.active {
     color: var(--text-main);
     font-weight: 600;
     cursor: default;
-    pointer-events: none; /* Evita que el usuario haga clic en el idioma en el que ya está */
+    pointer-events: none;
 }
 
 .lang-selector .separator {
-    color: var(--border); /* Se funde sutilmente con el fondo */
+    color: var(--border);
     font-size: 11px;
-    user-select: none; /* Evita que se pueda seleccionar el texto de la barra '/' */
+    user-select: none;
 }
 
 /* --- Responsive --- */
