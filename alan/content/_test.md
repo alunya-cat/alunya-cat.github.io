@@ -15,6 +15,11 @@ keywords: [blog]
 
 Aquest és un paràgraf de prova per verificar la tipografia base. Aquí pots veure com es comporta el text en **negreta**, en *cursiva*, i el text ~~tatxat~~. També podem incloure `codi en línia` per ressaltar ordres.
 
+
+Contingut aquí. El peu de nota [^1].
+
+Més contingut aquí. Un altre peu de nota [^2].
+
 ### Llistes
 
 **Llista Desordenada:**
@@ -58,3 +63,6 @@ function saludar(nom) {
 Aquest és un paràgraf que conté [un enllaç de prova](https://example.com) per verificar el color dels hipervincles.
 
 ![Text alternatiu de la imatge](https://images.steamusercontent.com/ugc/2538424573657363611/1E5E2AFA144559FF1EF2F3B0B54B3A5BEF01B3AB/)
+
+[^1]: https://example.com
+[^2]: https://example2.com

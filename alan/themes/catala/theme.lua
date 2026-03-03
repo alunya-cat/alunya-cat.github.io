@@ -73,6 +73,51 @@ local function highlightSpan(verbatim, tag)
 	return "<" .. element .. " class=\"hl-" .. tag .. "\">" .. verbatim .. "</" .. element .. ">"
 end
 
+-- ==========================================
+-- NUEVA FUNCIÓN PARA NOTAS AL PIE
+-- ==========================================
+local function generateFootnotes(text)
+    if not text then return "" end
+
+    local footnotes = {}
+    local order = {}
+    local count = 0
+
+    -- 1. Extraer las definiciones
+    text = string.gsub(text, "%[%^([^%]]+)%]:%s*([^\n]+)", function(id, content)
+        if not footnotes[id] then
+            table.insert(order, id)
+        end
+        footnotes[id] = content
+        return "" 
+    end)
+
+    -- 2. Reemplazar las referencias
+    text = string.gsub(text, "%[%^([^%]]+)%]", function(id)
+        if footnotes[id] then
+            count = count + 1
+            return string.format('<sup id="fnref:%s"><a href="#fn:%s" class="footnote-ref">%d</a></sup>', id, id, count)
+        else
+            return string.format('[^%s]', id)
+        end
+    end)
+
+    -- 3. Inyectar la lista al final
+    if #order > 0 then
+        local html = { '\n<hr class="footnotes-sep">\n<section class="footnotes">\n<ol>' }
+        for _, id in ipairs(order) do
+            local content = footnotes[id]
+            table.insert(html, string.format('<li id="fn:%s">%s <a href="#fnref:%s" class="footnote-backref" title="Tornar al text">↩</a></li>', id, content, id))
+        end
+        table.insert(html, '</ol>\n</section>')
+        
+        text = text .. table.concat(html, "\n")
+    end
+
+    return text
+end
+-- ==========================================
+
 -- Site metadata
 local site = {
 	title = "alunya.cat/Alan",
@@ -97,7 +142,17 @@ return {
         ["style.css"] = fs.readThemeFile("style.css"), 
         ["_404.html"] = "",
     }),
-
+    -- ==========================================
+    deriveMetadata({
+        content = function (item)
+            -- Nos aseguramos de aplicarlo solo al texto, por si lee imágenes u otros archivos
+            if item.content and type(item.content) == "string" then
+                return generateFootnotes(item.content)
+            end
+            return item.content
+        end
+    }),
+    -- ==========================================
     processMarkdown(),
     omitWhen(function (item) return item.path == "site.lua" end),
     highlightSyntax(highlightSpan),

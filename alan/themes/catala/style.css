@@ -64,6 +64,7 @@ html, body {
   display: flex;
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
 }
 
 h1, h2, h3, h4, h5, h6, th { font-weight: 600; }
@@ -573,6 +574,66 @@ th, td {
 .hl-meta, .hl-preprocessor, .hl-annotation { color: #3e999f; font-weight: 600; }
 .hl-deletion, .hl-error { color: #c00000; text-decoration: underline; }
 .hl-link { color: var(--text-muted); text-decoration: underline; }
+
+/* --- Footnotes --- */
+
+.footnote-ref {
+    font-size: 0.75em;
+    vertical-align: super;
+    line-height: 0;
+    text-decoration: none;
+    padding: 0 2px;
+    margin-left: 2px;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+}
+.footnote-ref:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    color: var(--accent);
+}
+hr.footnotes-sep {
+    margin: 3.5em 0 1.5em 0;
+    border: 0;
+    border-top: 1px solid var(--border);
+    width: 100%;
+}
+.footnotes {
+    font-size: 0.85em;
+    color: var(--text-description);
+    line-height: 1.6;
+}
+.footnotes ol {
+    padding-left: 1.5em;
+    margin-top: 0;
+}
+.footnotes li {
+    margin-bottom: 0.6em;
+    border-radius: 6px;
+    padding: 4px 8px;
+    margin-left: -8px;
+}
+.footnote-backref {
+    text-decoration: none;
+    font-family: var(--font-mono);
+    margin-left: 6px;
+    padding: 2px 5px;
+    color: var(--text-muted);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+.footnote-backref:hover {
+    color: var(--accent);
+    background-color: var(--bento-bg);
+}
+.footnotes li:target {
+    animation: highlight-note 2s ease-out;
+}
+
+@keyframes highlight-note {
+    0% { background-color: var(--bento-bg); }
+    100% { background-color: transparent; }
+}
 
 /* --- Responsive --- */
 @media screen and (max-width: 900px) {
