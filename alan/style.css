@@ -152,7 +152,7 @@ ins {
 /* --- CODE, PRE, SAMP, KBD --- */
 code, pre, samp, kbd {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.65rem;
   color: var(--code-color);
 }
 kbd { font-weight: 600; }
@@ -160,70 +160,57 @@ kbd { font-weight: 600; }
 /* Code+Table */
 code, pre, samp, thead, tfoot { background-color: var(--bento-bg); }
 
-code, samp {
-  border: solid 1px var(--border);
-  border-radius: 4px;
-  padding: 0.2em 0.4em;
-  white-space: nowrap;
-}
-
 pre {
-  border: solid 1px var(--border);
-  border-radius: 8px;
-  padding: 1rem;
-  overflow-x: auto;
-  margin-top: calc(1.5rem - 1px);
-  margin-bottom: -1px;
-  text-wrap: stable;
-  max-height: 150px;
-  overflow: hidden;
-  position: relative;
-  transition: max-height 0.5s ease-in-out;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    background-color: var(--bento-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem; /* Un poco más de aire */
+    
+    /* CONTROL VERTICAL */
+    display: block;
+    width: 100%;       /* Asegura que ocupe todo el ancho disponible */
+    white-space: pre-wrap; /* ¡ESTO ES CLAVE! Hace que el texto salte de línea y crezca hacia abajo */
+    word-wrap: break-word;
+    
+    /* ESTÉTICA */
+    font-family: var(--font-mono);
+    line-height: 1.6;
+    margin: 1.5rem 0;
+    position: relative;
 }
 
-pre code {
-  border: none;
-  padding: 0;
-  background-color: transparent;
-  white-space: inherit;
-}
-
-pre::after {
-  content: "\276F"; 
-  display: block; 
-  transform: rotate(90deg); 
-  font-size: 28px;       
-  font-weight: bold;     
-  color: var(--text-muted);           
+.copy-button {
   position: absolute;
-  bottom: 10px;          
-  left: 0;
-  right: 0;              
-  margin: 0 auto;        
-  width: 40px;           
-  height: 40px;
-  line-height: 40px;     
-  text-align: center;
-  animation: pulse 2s infinite;
+    top: 12px;
+    right: 12px;
+    
+    /* Tipografía coherente con tus etiquetas */
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    
+    /* Colores basados en tu paleta */
+    background-color: var(--accent);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    
+    /* Estética visual */
+    padding: 4px 10px;
+    border-radius: 20px; /* Estilo píldora como tus botones de navegación */
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+    opacity: 0.6; /* Un poco tenue para no distraer de la lectura */
 }
 
-@keyframes pulse {
-  0% { transform: rotate(90deg) scale(1); opacity: 0.7; }
-  50% { transform: rotate(90deg) scale(1.3); opacity: 1; } 
-  100% { transform: rotate(90deg) scale(1); opacity: 0.7; }
-}
-
-pre:hover,
-pre:focus-within {
-  max-height: 3000px;
-}
-
-pre:hover::after,
-pre:focus-within::after {
-  opacity: 0;
-  pointer-events: none;
+/* Hover: Invertimos colores usando tu color de acento */
+.copy-button:hover {
+  opacity: 1;
+  background-color: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 /* nav */

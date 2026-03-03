@@ -24,12 +24,45 @@
     <p class="post-description">La meva experiència al donar-li una segona vida a un portàtil com a servidor.</p>
   <div class="post-meta">
     <time datetime="2026-01-30">30 de gener de 2026</time>
-    · 25 min
+    · 26 min
     · <span style="float:none;">(Actualitzat el 2026-02-26)</span>
     · <a href="topics/tecnologia.html">#tecnologia</a>
 
   </div>
 <hr>
+<div id="toc" class="toc-container">
+  <p class="toc-title">Continguts</p>
+  <ul>
+<li class="toc-h2"><a href="#1-elecció-del-servidor">1. Elecció del servidor</a></li>
+<li class="toc-h2"><a href="#2-instal·lació-i-configuració-del-sistema-operatiu">2. Instal·lació i configuració del sistema operatiu</a></li>
+<li class="toc-h3"><a href="#21-treballar-amb-la-tapa-tancada">2.1. Treballar amb la tapa tancada</a></li>
+<li class="toc-h3"><a href="#22-treballar-amb-la-pantalla-apagada">2.2. Treballar amb la pantalla apagada</a></li>
+<li class="toc-h2"><a href="#3-connexió-ssh-amb-el-servidor">3. Connexió SSH amb el servidor</a></li>
+<li class="toc-h2"><a href="#4-gestionant-els-nostres-serveis">4. Gestionant els nostres serveis</a></li>
+<li class="toc-h2"><a href="#5-còpies-de-seguretat-clonezilla">5. Còpies de seguretat (CloneZilla)</a></li>
+<li class="toc-h2"><a href="#6-conclusions-i-diagrama">6. Conclusions i diagrama</a></li>
+<li class="toc-h2"><a href="#7-contenidors-docker">7. Contenidors Docker</a></li>
+<li class="toc-h3"><a href="#adguard-home-3000">Adguard Home ~ :3000</a></li>
+<li class="toc-h4"><a href="#configuració-dadguard-home">Configuració d'Adguard Home</a></li>
+<li class="toc-h3"><a href="#freshrss-8080">FreshRSS ~ :8080</a></li>
+<li class="toc-h3"><a href="#bentopdf-8081">BentoPDF ~ :8081</a></li>
+<li class="toc-h3"><a href="#trip-8082">Trip ~ :8082</a></li>
+<li class="toc-h3"><a href="#tasktrove-8083">TaskTrove ~ :8083</a></li>
+<li class="toc-h3"><a href="#eigenfocus-8084">Eigenfocus ~ :8084</a></li>
+<li class="toc-h3"><a href="#metube-8085">MeTube ~ :8085</a></li>
+<li class="toc-h3"><a href="#languagetool-8086">LanguageTool ~ :8086</a></li>
+<li class="toc-h3"><a href="#yamtrack-8087">YamTrack ~ :8087</a></li>
+<li class="toc-h3"><a href="#lubelogger-8088">LubeLogger ~ :8088</a></li>
+<li class="toc-h3"><a href="#mazanoke-8089">Mazanoke ~ :8089</a></li>
+<li class="toc-h3"><a href="#scrutiny-8090">Scrutiny ~ :8090</a></li>
+<li class="toc-h3"><a href="#filewizard-8092">Filewizard ~ :8092</a></li>
+<li class="toc-h3"><a href="#dashdot-8093">Dashdot ~ :8093</a></li>
+<li class="toc-h3"><a href="#mafl-8094">Mafl ~ :8094</a></li>
+<li class="toc-h3"><a href="#haus-8095">Haus ~ :8095</a></li>
+<li class="toc-h3"><a href="#changedetection-5555">ChangeDetection ~ :5555</a></li>
+<li class="toc-h3"><a href="#mealie-9925">Mealie ~ :9925</a></li>
+  </ul>
+</div>
 <p>En aquest article vull compartir l'experiència i els motius que m'han portat a transformar un portàtil sense cap utilitat prèvia a ser el meu propi servidor, així com els seus avantatges i inconvenients que m'ha portat aquesta decisió.</p>
 <p>Com molts de nosaltres que fem servir serveis al núvol com el correu electrònic, l'emmagatzematge de fitxers, les fotos, etcètera, vaig començar a buscar maneres de reduir la meva dependència de Google. En particular, em preocupava que si Google algun dia decidís tancar o canviar els seus termes de servei, perdés l'accés a les meves dades. Tanmateix, el meu desig d'estar menys dependent no es limitava només a Google, sinó també a altres serveis de tercers.</p>
 <p>Avui puc dir amb orgull que he «des-googlitzat» la meva vida digital. Allotjo el meu propi servidor de calendari i diari, a més de gestionar els meus documents, fotos, vídeos i altres serveis.</p>
@@ -37,19 +70,23 @@
 <blockquote>
 <p>En un futur m'agradaria tindre automatitzada les còpies de seguretat de les dades en comptes d'anar fent còpies esporàdiques seguint la norma 3-2-1 <em>(3 còpies en 2 sistemes diferents i 1 d'ells fora del meu abast)</em>.</p>
 </blockquote>
-<h2 id="1-elecci-del-servidor">1. Elecció del servidor</h2>
+<p><a id="1-elecció-del-servidor"></a></p>
+<h2 id="1-elecci-del-servidor-">1. Elecció del servidor <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h2>
 <p>El cost de muntar un servidor domèstic depèn del tipus de servidor que muntis i dels serveis que vulguis instal·lar. En el meu cas, vaig muntar un servidor en un portàtil que tenia la bateria i un parell de tecles trencades, així que el meu cost d'adquisició és zero.
 També és important tenir en compte no només el cost del maquinari, sinó també el consum elèctric del servidor (el portàtil consumeix entre 8W i 15W <em>-sense tindre en compte el consum dels discs durs adicionals-</em>).</p>
 <p>Si ho mires des de la perspectiva que en autoallotjar certs serveis pots estalviar en quotes de subscripció com les de Google Drive o OneDrive, la inversió comença a tenir sentit.</p>
 <p>El portàtil trencat del qual us parlava és un <strong>HP 250 G5</strong> de 2017 amb el processador i3-5005U i 8GB DDR3L de RAM.</p>
-<h2 id="2-installaci-i-configuraci-del-sistema-operatiu">2. Instal·lació i configuració del sistema operatiu</h2>
+<p><a id="2-instal·lació-i-configuració-del-sistema-operatiu"></a></p>
+<h2 id="2-installaci-i-configuraci-del-sistema-operatiu-">2. Instal·lació i configuració del sistema operatiu <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h2>
 <p>M'he decantat per Debian bàsicament perquè m'agrada la seva filosofia i fa anys que utilitzo la seva branca <em>testing</em> com a ordinador personal. Prefereix-ho estalviar-me el procés d'instal·lació del sistema operatiu, però bàsicament és crear un USB <em>bootable</em> amb l'ISO de Debian, utilitzar tot el disc dur pel sistema sense complicacions de particions, seleccionar l'opció del servidor SSH perquè s'instal·li i l'entorn gràfic que vulguem (tot i que posteriorment el desactivarem).</p>
-<h3 id="21-treballar-amb-la-tapa-tancada">2.1. Treballar amb la tapa tancada</h3>
+<p><a id="21-treballar-amb-la-tapa-tancada"></a></p>
+<h3 id="21-treballar-amb-la-tapa-tancada-">2.1. Treballar amb la tapa tancada <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>Com no volem que l'ordinador s'apagui quan tanquem la tapa hem d'editar la configuració de <em>logind</em>:</p>
 <pre><code class="language-bash"><span class="hl-identifier">sudo</span> <span class="hl-identifier">nano</span> <span class="hl-default">/</span><span class="hl-identifier">etc</span><span class="hl-default">/</span><span class="hl-identifier">systemd</span><span class="hl-default">/</span><span class="hl-identifier">logind</span><span class="hl-default">.</span><span class="hl-identifier">conf</span>
 </code></pre>
 <p>En aquesta busquem la línia que diu <code>#HandleLidSwitch=suspend</code> i traiem <strong>#</strong> i canviem el <strong>suspend</strong> per <strong>ignore</strong>. Un cop fet, guardem (<em>Ctrl+O</em>) i sortim (<em>Ctrl+X</em>).</p>
-<h3 id="22-treballar-amb-la-pantalla-apagada">2.2. Treballar amb la pantalla apagada</h3>
+<p><a id="22-treballar-amb-la-pantalla-apagada"></a></p>
+<h3 id="22-treballar-amb-la-pantalla-apagada-">2.2. Treballar amb la pantalla apagada <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>Per maximitzar l'estalvi d'electricitat desactivarem la pantalla al cap de pocs segons que el sistema s'inici. Per fer-ho editem el <strong>GRUB</strong> amb:</p>
 <pre><code class="language-bash"><span class="hl-identifier">sudo</span> <span class="hl-identifier">nano</span> <span class="hl-default">/</span><span class="hl-identifier">etc</span><span class="hl-default">/</span><span class="hl-identifier">default</span><span class="hl-default">/</span><span class="hl-identifier">grub</span>
 </code></pre>
@@ -57,7 +94,8 @@ També és important tenir en compte no només el cost del maquinari, sinó tamb
 <pre><code class="language-bash"><span class="hl-variable">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="hl-operator">=</span><i class="hl-string">&quot;quiet consoleblank=30&quot;</i>
 </code></pre>
 <p>Guardem (<em>Ctrl+O</em>) i sortim (<em>Ctrl+X</em>). Per actualitzar el GRUB fem <code>sudo update-grub</code> i reiniciem l'ordinador (<code>sudo reboot</code>).</p>
-<h2 id="3-connexi-ssh-amb-el-servidor">3. Connexió SSH amb el servidor</h2>
+<p><a id="3-connexió-ssh-amb-el-servidor"></a></p>
+<h2 id="3-connexi-ssh-amb-el-servidor-">3. Connexió SSH amb el servidor <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h2>
 <p>Un cop tenim el portàtil configurat és hora de connectar-se mitjançant un ordinador per poder portar a terme les tasques més fàcilment, però si deixem que el rúter assigni al portàtil una IP aleatòria cada cop que aquest és reinici, un dia ens modificaran la IP i ens serà impossible accedir als nostres serveis.</p>
 <p>Abans d'escriure res, hem de saber com Debian anomena el nostre cable de xarxa. Executem això a la terminal:</p>
 <pre><code class="language-bash"><span class="hl-identifier">ip</span> <span class="hl-default">-c</span> <span class="hl-identifier">link</span> <span class="hl-identifier">show</span>
@@ -88,7 +126,8 @@ També és important tenir en compte no només el cost del maquinari, sinó tamb
 <span class="hl-identifier">sudo</span> <span class="hl-identifier">nmcli</span> <span class="hl-identifier">networking</span> <span class="hl-identifier">off</span> <span class="hl-operator">&amp;</span><span class="hl-operator">&amp;</span> <span class="hl-identifier">sudo</span> <span class="hl-identifier">nmcli</span> <span class="hl-identifier">networking</span> <span class="hl-identifier">on</span>
 </code></pre>
 <p>O simplement reiniciem el servidor (<code>sudo reboot</code>) i comprovem que l'IP del nostre servidor és la que hem posat amb <code>ip addr show YOUR_INTERFACE</code>. Per connectar-nos amb el servidor mitjançant SSH posarem a la terminal de l'ordinador principal <code>ssh usuari@IP</code>.</p>
-<h2 id="4-gestionant-els-nostres-serveis">4. Gestionant els nostres serveis</h2>
+<p><a id="4-gestionant-els-nostres-serveis"></a></p>
+<h2 id="4-gestionant-els-nostres-serveis-">4. Gestionant els nostres serveis <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h2>
 <p>Per la seva gestió he decidit utilitzar Docker i els seus contenidors. Per la instal·lació de Docker Engine, crec que és millor us guieu per la pàgina web oficial de (Docker)[<a href="https://docs.docker.com/engine/install/debian/#install-using-the-repository">https://docs.docker.com/engine/install/debian/#install-using-the-repository</a>].</p>
 <p>A l'hora de gestionar a mi m'agrada organitzat els projectes dintre de carpetes i per fer-ho normalment faig <code>cd docker</code> i <code>mkdir projecte</code>. Seguidament <code>cd projecte</code> i <code>nano docker-compose.yml</code>.</p>
 <blockquote>
@@ -101,7 +140,8 @@ També és important tenir en compte no només el cost del maquinari, sinó tamb
 <li><code>docker container list</code> per veure tots els contenidors que tenen un projecte establert.</li>
 <li><code>docker container start/stop projecte</code> per iniciar o aturar un projecte.</li>
 </ul>
-<h2 id="5-cpies-de-seguretat-clonezilla">5. Còpies de seguretat (CloneZilla)</h2>
+<p><a id="5-còpies-de-seguretat-clonezilla"></a></p>
+<h2 id="5-cpies-de-seguretat-clonezilla-">5. Còpies de seguretat (CloneZilla) <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h2>
 <p>Ara ens trobem amb la part més important d'un servidor; les còpies de seguretat.
 Personalment utilitzo <strong>Clonezilla</strong> i las faig mensualment.</p>
 <p>Clonezilla, per defecte, guarda la mida del disc d'origen en les metadades de la imatge creada com a còpia de seguretat. Si fem una còpia d'un disc de 1TB (tot i que només s'utilitzin 100GB) no podrem restaurar-la en un disc d'una mida menor. Per evitar aquest conflicte podem:</p>
@@ -157,7 +197,8 @@ Personalment utilitzo <strong>Clonezilla</strong> i las faig mensualment.</p>
 <li><strong>Xifratge:</strong> <code>senc</code> (Sense xifrar).</li>
 <li><strong>Acció en finalitzar:</strong> <code>poweroff</code> (Apagar) o <code>reboot</code>.</li>
 </ul>
-<h2 id="6-conclusions-i-diagrama">6. Conclusions i diagrama</h2>
+<p><a id="6-conclusions-i-diagrama"></a></p>
+<h2 id="6-conclusions-i-diagrama-">6. Conclusions i diagrama <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h2>
 <p>Una de les grans lliçons de crear i mantenir un servidor domèstic és que has de tenir ganes d'aprendre i, sobretot, temps. Al llarg del procés, segur que et trobaràs amb problemes tècnics o necessitaràs adquirir coneixements que abans no tenies.</p>
 <p>La millor part és que, passi el temps que passi, sempre estaràs aprenent alguna cosa nova. Ja sigui una actualització, un pegat de seguretat o un canvi de maquinari, sempre hi haurà alguna cosa per investigar i aprendre. Això és el que fa que el procés sigui tan interessant i gratificant, però també exigent.</p>
 <p><img src="assets/hp250g5-diagrama.webp" alt=""></p>
@@ -181,8 +222,10 @@ Personalment utilitzo <strong>Clonezilla</strong> i las faig mensualment.</p>
 </ul>
 </li>
 </ol>
-<h2 id="7-contenidors-docker">7. Contenidors Docker</h2>
-<h3 id="adguard-home--3000">Adguard Home ~ :3000</h3>
+<p><a id="7-contenidors-docker"></a></p>
+<h2 id="7-contenidors-docker-">7. Contenidors Docker <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h2>
+<p><a id="adguard-home-3000"></a></p>
+<h3 id="adguard-home--3000-">Adguard Home ~ :3000 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>Servidor DNS que bloqueja anuncis i rastrejadors a tota la xarxa local. La seva configuració és més complexa perquè el meu rúter no accepta canviar els DNS (maleïda Vodafone) i estic obligat a utilitzar el servidor com a servei DHCP pel meu rúter.</p>
 <p>Primer crearem el nostre servei d'Adguard amb Docker-Compose mitjançant:</p>
 <pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
@@ -224,7 +267,8 @@ Personalment utilitzo <strong>Clonezilla</strong> i las faig mensualment.</p>
 <li><strong>MOLT IMPORTANT!</strong> No fem clic a &quot;Activa el servidor DHCP&quot; encara. Fem clic al botó que normalment apareix a sota per a <strong>&quot;Comprovar conflictes&quot;</strong>. Sortirà en vermell: <em>&quot;S'ha detectat un altre servidor DHCP a la xarxa&quot;</em>. Això és bo! Vol dir que l'AdGuard veu el rúter.</li>
 </ol>
 <p>Ara n'anirem a la IP del nostre rúter i accedim amb l'usuari i contrasenya per canviar posteriorment, si fos necessari, al mode expert per poder modificar l'apartat <strong>Servidor DHCP</strong> el qual desconnectarem per anar ràpidament a Adguard i <em>Habilitar servidor DHCP</em>.</p>
-<h4 id="configuraci-dadguard-home">Configuració d'Adguard Home</h4>
+<p><a id="configuració-dadguard-home"></a></p>
+<h4 id="configuraci-dadguard-home-">Configuració d'Adguard Home <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h4>
 <p>Aquesta és la meva configuració personal. Totes aquelles parts que no mencioni s'han de deixar tal com estan.</p>
 <ul>
 <li><strong>Configuració General</strong>:<ul>
@@ -271,7 +315,8 @@ h3://dns.nextdns.io/
 </li>
 </ul>
 <p>Aquestes llistes t'han de proporcionar una bona protecció general contra anuncis, seguidors i programari maliciós. Tanmateix, no es poden bloquejar tots els anuncis a nivell DNS. Necessitaràs una extensió o complement per gestionar els anuncis que AdGuard Home no bloqueja, com per exemple uBlock Origin a Firefox.</p>
-<h3 id="freshrss--8080">FreshRSS ~ :8080</h3>
+<p><a id="freshrss-8080"></a></p>
+<h3 id="freshrss--8080-">FreshRSS ~ :8080 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>Agregador de notícies i feeds RSS lleuger i ràpid per llegir blogs i premsa. Aquest a la seva vegada està configurat amb l'aplicació <strong>ReadYou</strong> a Android mitjançant l'API de FreshRSS i amb l'ajuda de <strong>TailScale</strong>.</p>
 <pre><code class="language-bash"><span class="hl-identifier">volumes</span><span class="hl-default">:</span>
   <span class="hl-identifier">data</span><span class="hl-default">:</span>
@@ -310,7 +355,8 @@ h3://dns.nextdns.io/
     <i class="hl-comment">#   interval: 75s</i>
     <i class="hl-comment">#   retries: 3</i>
 </code></pre>
-<h3 id="bentopdf--8081">BentoPDF ~ :8081</h3>
+<p><a id="bentopdf-8081"></a></p>
+<h3 id="bentopdf--8081-">BentoPDF ~ :8081 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>És un conjunt d'eines per a PDF que permet manipular, editar, fusionar i processar fitxers PDF directament al navegador.</p>
 <pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
   <span class="hl-identifier">bentopdf</span><span class="hl-default">:</span>
@@ -325,7 +371,8 @@ h3://dns.nextdns.io/
     <i class="hl-comment">#environment:</i>
     <i class="hl-comment">#  - DISABLE_IPV6=true</i>
 </code></pre>
-<h3 id="trip--8082">Trip ~ :8082</h3>
+<p><a id="trip-8082"></a></p>
+<h3 id="trip--8082-">Trip ~ :8082 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>És un rastrejador de mapes i planificador de viatges minimalista per visualitzar els teus punts d'interès i organitzar els detalls de la teva propera aventura.</p>
 <pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
   <span class="hl-identifier">app</span><span class="hl-default">:</span>
@@ -336,7 +383,8 @@ h3://dns.nextdns.io/
       <span class="hl-default">-</span> <span class="hl-default">.</span><span class="hl-default">/</span><span class="hl-identifier">storage</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">app</span><span class="hl-default">/</span><span class="hl-identifier">storage</span> <i class="hl-comment">#If you were previously using a named volume, follow https://github.com/itskovacs/trip/releases/tag/1.5.0 to migrate your data.</i>
     <b class="hl-function">command</b><span class="hl-default">:</span> <span class="hl-operator">[</span><i class="hl-string">&quot;fastapi&quot;</i><span class="hl-default">,</span> <i class="hl-string">&quot;run&quot;</i><span class="hl-default">,</span> <i class="hl-string">&quot;/app/trip/main.py&quot;</i><span class="hl-default">,</span> <i class="hl-string">&quot;--host&quot;</i><span class="hl-default">,</span> <i class="hl-string">&quot;0.0.0.0&quot;</i><span class="hl-operator">]</span>
 </code></pre>
-<h3 id="tasktrove--8083">TaskTrove ~ :8083</h3>
+<p><a id="tasktrove-8083"></a></p>
+<h3 id="tasktrove--8083-">TaskTrove ~ :8083 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>Gestor de tasques. No hi ha més que explicar, simplement el millor que he provat.</p>
 <pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
   <span class="hl-identifier">tasktrove</span><span class="hl-default">:</span>
@@ -351,7 +399,8 @@ h3://dns.nextdns.io/
     <i class="hl-comment">#   - AUTH_SECRET=CHANGE_ME</i>
     <span class="hl-identifier">restart</span><span class="hl-default">:</span> <span class="hl-identifier">unless</span><span class="hl-default">-stopped</span>
 </code></pre>
-<h3 id="eigenfocus--8084">Eigenfocus ~ :8084</h3>
+<p><a id="eigenfocus-8084"></a></p>
+<h3 id="eigenfocus--8084-">Eigenfocus ~ :8084 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>És una eina de gestió que destaca per les seves múltiples vistes de projecte (tauler, llista i quadrícula) i integra un cronòmetre que permet gestionar les hores i generar informes. Especial atenció al cronòmetre per projecte doncs l'utilitzo per calcular el temps destinat a diverses tasques.</p>
 <pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
   <span class="hl-identifier">web</span><span class="hl-default">:</span>
@@ -364,7 +413,8 @@ h3://dns.nextdns.io/
     <span class="hl-identifier">ports</span><span class="hl-default">:</span>
       <span class="hl-default">-</span> <i class="hl-number">8084</i><span class="hl-default">:</span><i class="hl-number">3000</i>
 </code></pre>
-<h3 id="metube--8085">MeTube ~ :8085</h3>
+<p><a id="metube-8085"></a></p>
+<h3 id="metube--8085-">MeTube ~ :8085 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>Interfície web per a <em>youtube-dl/yt-dlp</em>; permet descarregar vídeos de YouTube i altres plataformes fàcilment.</p>
 <pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
   <span class="hl-identifier">metube</span><span class="hl-default">:</span>
@@ -376,7 +426,8 @@ h3://dns.nextdns.io/
     <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
       <span class="hl-default">-</span> <span class="hl-default">.</span><span class="hl-default">/</span><span class="hl-identifier">downloads</span><span class="hl-default">:</span><span class="hl-default">/</span><span class="hl-identifier">downloads</span>
 </code></pre>
-<h3 id="languagetool--8086">LanguageTool ~ :8086</h3>
+<p><a id="languagetool-8086"></a></p>
+<h3 id="languagetool--8086-">LanguageTool ~ :8086 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>És un corrector de gramàtica, estil i ortografia de codi obert i gratuït que utilitzo principalment amb l'extensió LTeX+ a VSCodium perquè es connecti a l'API de LanguageTool i corregeix-hi les faltes.</p>
 <pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
   <span class="hl-identifier">languagetool</span><span class="hl-default">:</span>
@@ -385,7 +436,8 @@ h3://dns.nextdns.io/
     <span class="hl-identifier">ports</span><span class="hl-default">:</span>
       <span class="hl-default">-</span> <i class="hl-number">8086</i><span class="hl-default">:</span><i class="hl-number">8010</i>
 </code></pre>
-<h3 id="yamtrack--8087">YamTrack ~ :8087</h3>
+<p><a id="yamtrack-8087"></a></p>
+<h3 id="yamtrack--8087-">YamTrack ~ :8087 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>És un seguidor de mitjans per a pel·lícules, sèries de televisió, anime, manga, videojocs, llibres, còmics i jocs de taula. Per mi substitueix <em>Trak.tv</em> i <em>GoodReads</em>.</p>
 <pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
   <span class="hl-identifier">yamtrack</span><span class="hl-default">:</span>
@@ -418,7 +470,8 @@ h3://dns.nextdns.io/
 <span class="hl-identifier">volumes</span><span class="hl-default">:</span>
   <span class="hl-identifier">redis_data</span><span class="hl-default">:</span>
 </code></pre>
-<h3 id="lubelogger--8088">LubeLogger ~ :8088</h3>
+<p><a id="lubelogger-8088"></a></p>
+<h3 id="lubelogger--8088-">LubeLogger ~ :8088 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>Registre digital per al manteniment, reparacions i consum de combustible dels teus vehicles.</p>
 <pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
   <span class="hl-identifier">app</span><span class="hl-default">:</span>
@@ -436,7 +489,8 @@ h3://dns.nextdns.io/
   <span class="hl-identifier">data</span><span class="hl-default">:</span>
   <span class="hl-identifier">keys</span><span class="hl-default">:</span>
 </code></pre>
-<h3 id="mazanoke--8089">Mazanoke ~ :8089</h3>
+<p><a id="mazanoke-8089"></a></p>
+<h3 id="mazanoke--8089-">Mazanoke ~ :8089 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>És un optimitzador d'imatges senzill que funciona al vostre navegador, treballa sense connexió i manté les vostres imatges privades sense sortir mai del vostre dispositiu.</p>
 <p>Serveix com a alternativa a les eines en línia «gratuïtes» qüestionables i l'utilitzo per disminuir el tamany de les fotos del blog.</p>
 <pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
@@ -446,7 +500,8 @@ h3://dns.nextdns.io/
     <span class="hl-identifier">ports</span><span class="hl-default">:</span>
       <span class="hl-default">-</span> <i class="hl-string">&quot;8089:80&quot;</i>
 </code></pre>
-<h3 id="scrutiny--8090">Scrutiny ~ :8090</h3>
+<p><a id="scrutiny-8090"></a></p>
+<h3 id="scrutiny--8090-">Scrutiny ~ :8090 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>Monitorització de la salut dels discs durs (dades S.M.A.R.T) a través d'una interfície web.</p>
 <pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
   <span class="hl-identifier">scrutiny</span><span class="hl-default">:</span>
@@ -465,7 +520,8 @@ h3://dns.nextdns.io/
     <span class="hl-identifier">devices</span><span class="hl-default">:</span>
       <span class="hl-default">-</span> <i class="hl-string">&quot;/dev/sda&quot;</i>
 </code></pre>
-<h3 id="filewizard--8092">Filewizard ~ :8092</h3>
+<p><a id="filewizard-8092"></a></p>
+<h3 id="filewizard--8092-">Filewizard ~ :8092 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>Una utilitat per a la conversió de fitxers, el reconeixement òptic de caràcters (OCR) i la transcripció d'àudio. Engloba convertidors comuns (FFmpeg, LibreOffice, Pandoc, ImageMagick, etc.).</p>
 <pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
   <span class="hl-identifier">web</span><span class="hl-default">:</span>
@@ -507,7 +563,8 @@ h3://dns.nextdns.io/
   <span class="hl-identifier">uploads_data</span><span class="hl-default">:</span> <span class="hl-operator">{</span><span class="hl-operator">}</span>
   <span class="hl-identifier">processed_data</span><span class="hl-default">:</span> <span class="hl-operator">{</span><span class="hl-operator">}</span>
 </code></pre>
-<h3 id="dashdot--8093">Dashdot ~ :8093</h3>
+<p><a id="dashdot-8093"></a></p>
+<h3 id="dashdot--8093-">Dashdot ~ :8093 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>És un panell de control per al teu servidor domèstic i està pensat per oferir una visió ràpida de la càrrega actual del teu sistema (i per tenir un bon aspecte).</p>
 <pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
   <span class="hl-identifier">dash</span><span class="hl-default">:</span>
@@ -523,7 +580,8 @@ h3://dns.nextdns.io/
       <span class="hl-identifier">DASHDOT_ALWAYS_SHOW_PERCENTAGES</span><span class="hl-default">:</span> <i class="hl-string">&apos;true&apos;</i>
       <span class="hl-identifier">DASHDOT_ENABLE_CPU_TEMPS</span><span class="hl-default">:</span> <i class="hl-string">&apos;true&apos;</i>
 </code></pre>
-<h3 id="mafl--8094">Mafl ~ :8094</h3>
+<p><a id="mafl-8094"></a></p>
+<h3 id="mafl--8094-">Mafl ~ :8094 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>Panell central per poder-hi accedir directament a tots els contenidors Docker.</p>
 <pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
   <span class="hl-identifier">mafl</span><span class="hl-default">:</span>
@@ -710,7 +768,8 @@ h3://dns.nextdns.io/
         <span class="hl-identifier">enabled</span><span class="hl-default">:</span> <span class="hl-identifier">true</span>
         <span class="hl-identifier">interval</span><span class="hl-default">:</span> <i class="hl-number">3600</i>
 </code></pre>
-<h3 id="haus--8095">Haus ~ :8095</h3>
+<p><a id="haus-8095"></a></p>
+<h3 id="haus--8095-">Haus ~ :8095 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <pre><code>services:
   haus:
     image: ghcr.io/remvze/haus:latest
@@ -721,7 +780,8 @@ h3://dns.nextdns.io/
     ports:
       - '8095:8080'
 </code></pre>
-<h3 id="changedetection--5555">ChangeDetection ~ :5555</h3>
+<p><a id="changedetection-5555"></a></p>
+<h3 id="changedetection--5555-">ChangeDetection ~ :5555 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>Monitora pàgines web i t'envia una notificació quan detecta canvis en el contingut. Ho tinc configurat amb un bot de Telegram per enviar-me avisos automàtics quan apareixen productes a Wallapop.</p>
 <pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
   <span class="hl-identifier">browser</span><span class="hl-default">-sockpuppet-chrome</span><span class="hl-default">:</span>
@@ -780,7 +840,8 @@ h3://dns.nextdns.io/
   <span class="hl-identifier">browser</span><span class="hl-default">-sockpuppet-chrome</span><span class="hl-default">:</span>
     <span class="hl-identifier">name</span><span class="hl-default">:</span> <span class="hl-identifier">browser</span><span class="hl-default">-sockpuppet-chrome</span>
 </code></pre>
-<h3 id="mealie--9925">Mealie ~ :9925</h3>
+<p><a id="mealie-9925"></a></p>
+<h3 id="mealie--9925-">Mealie ~ :9925 <a href="#toc" class="toc-return" title="Tornar a l'índex">↩</a></h3>
 <p>Gestor de receptes de cuina, planificador de menjars i llistes de la compra.</p>
 <pre><code class="language-bash"><span class="hl-identifier">services</span><span class="hl-default">:</span>
   <span class="hl-identifier">mealie</span><span class="hl-default">:</span>
@@ -865,5 +926,25 @@ h3://dns.nextdns.io/
         });
     }
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('pre code').forEach((block) => {
+      const button = document.createElement('button');
+      button.className = 'copy-button';
+      button.textContent = 'Copiar';
+      button.addEventListener('click', () => {
+        const range = document.createRange();
+        range.selectNodeContents(block);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('copy');
+        button.textContent = 'Copiat!!';
+        setTimeout(() => { button.textContent = 'Copiar'; }, 2000);
+      });
+      block.parentNode.insertBefore(button, block);
+    });
+  });
+  </script>
 </body>
 </html>

@@ -33,7 +33,7 @@
                     <p class="post-entry-description">
             <time datetime="2026-01-30">30 de gener de 2026</time>
              
-            · 25 min 
+            · 26 min 
                         · <span>Actualitzat el 2026-02-26</span>
             </p>
         <div class="post-entry-meta">
@@ -157,5 +157,25 @@
         });
     }
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('pre code').forEach((block) => {
+      const button = document.createElement('button');
+      button.className = 'copy-button';
+      button.textContent = 'Copiar';
+      button.addEventListener('click', () => {
+        const range = document.createRange();
+        range.selectNodeContents(block);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('copy');
+        button.textContent = 'Copiat!!';
+        setTimeout(() => { button.textContent = 'Copiar'; }, 2000);
+      });
+      block.parentNode.insertBefore(button, block);
+    });
+  });
+  </script>
 </body>
 </html>

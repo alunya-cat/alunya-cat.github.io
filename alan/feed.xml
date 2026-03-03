@@ -15,26 +15,63 @@
 <link rel="alternate" href="https://alunya.cat/alan/250G5.html"/>
 <updated>2026-01-30T00:00:00.000Z</updated>
 <summary type="html">La meva experiència al donar-li una segona vida a un portàtil com a servidor.</summary>
-<content type="html">&lt;p&gt;En aquest article vull compartir l&#039;experiència i els motius que m&#039;han portat a transformar un portàtil sense cap utilitat prèvia a ser el meu propi servidor, així com els seus avantatges i inconvenients que m&#039;ha portat aquesta decisió.&lt;/p&gt;
+<content type="html">&lt;div id=&quot;toc&quot; class=&quot;toc-container&quot;&gt;
+  &lt;p class=&quot;toc-title&quot;&gt;Continguts&lt;/p&gt;
+  &lt;ul&gt;
+&lt;li class=&quot;toc-h2&quot;&gt;&lt;a href=&quot;#1-elecció-del-servidor&quot;&gt;1. Elecció del servidor&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h2&quot;&gt;&lt;a href=&quot;#2-instal·lació-i-configuració-del-sistema-operatiu&quot;&gt;2. Instal·lació i configuració del sistema operatiu&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#21-treballar-amb-la-tapa-tancada&quot;&gt;2.1. Treballar amb la tapa tancada&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#22-treballar-amb-la-pantalla-apagada&quot;&gt;2.2. Treballar amb la pantalla apagada&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h2&quot;&gt;&lt;a href=&quot;#3-connexió-ssh-amb-el-servidor&quot;&gt;3. Connexió SSH amb el servidor&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h2&quot;&gt;&lt;a href=&quot;#4-gestionant-els-nostres-serveis&quot;&gt;4. Gestionant els nostres serveis&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h2&quot;&gt;&lt;a href=&quot;#5-còpies-de-seguretat-clonezilla&quot;&gt;5. Còpies de seguretat (CloneZilla)&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h2&quot;&gt;&lt;a href=&quot;#6-conclusions-i-diagrama&quot;&gt;6. Conclusions i diagrama&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h2&quot;&gt;&lt;a href=&quot;#7-contenidors-docker&quot;&gt;7. Contenidors Docker&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#adguard-home-3000&quot;&gt;Adguard Home ~ :3000&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h4&quot;&gt;&lt;a href=&quot;#configuració-dadguard-home&quot;&gt;Configuració d&#039;Adguard Home&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#freshrss-8080&quot;&gt;FreshRSS ~ :8080&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#bentopdf-8081&quot;&gt;BentoPDF ~ :8081&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#trip-8082&quot;&gt;Trip ~ :8082&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#tasktrove-8083&quot;&gt;TaskTrove ~ :8083&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#eigenfocus-8084&quot;&gt;Eigenfocus ~ :8084&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#metube-8085&quot;&gt;MeTube ~ :8085&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#languagetool-8086&quot;&gt;LanguageTool ~ :8086&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#yamtrack-8087&quot;&gt;YamTrack ~ :8087&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#lubelogger-8088&quot;&gt;LubeLogger ~ :8088&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#mazanoke-8089&quot;&gt;Mazanoke ~ :8089&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#scrutiny-8090&quot;&gt;Scrutiny ~ :8090&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#filewizard-8092&quot;&gt;Filewizard ~ :8092&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#dashdot-8093&quot;&gt;Dashdot ~ :8093&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#mafl-8094&quot;&gt;Mafl ~ :8094&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#haus-8095&quot;&gt;Haus ~ :8095&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#changedetection-5555&quot;&gt;ChangeDetection ~ :5555&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h3&quot;&gt;&lt;a href=&quot;#mealie-9925&quot;&gt;Mealie ~ :9925&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+&lt;p&gt;En aquest article vull compartir l&#039;experiència i els motius que m&#039;han portat a transformar un portàtil sense cap utilitat prèvia a ser el meu propi servidor, així com els seus avantatges i inconvenients que m&#039;ha portat aquesta decisió.&lt;/p&gt;
 &lt;p&gt;Com molts de nosaltres que fem servir serveis al núvol com el correu electrònic, l&#039;emmagatzematge de fitxers, les fotos, etcètera, vaig començar a buscar maneres de reduir la meva dependència de Google. En particular, em preocupava que si Google algun dia decidís tancar o canviar els seus termes de servei, perdés l&#039;accés a les meves dades. Tanmateix, el meu desig d&#039;estar menys dependent no es limitava només a Google, sinó també a altres serveis de tercers.&lt;/p&gt;
 &lt;p&gt;Avui puc dir amb orgull que he «des-googlitzat» la meva vida digital. Allotjo el meu propi servidor de calendari i diari, a més de gestionar els meus documents, fotos, vídeos i altres serveis.&lt;/p&gt;
 &lt;p&gt;Sóc (relativament) el propietari de la meva informació personal i, tot i que podria haver optat per un servidor autoallotjat per al meu correu electrònic, vaig triar seguir utilitzant els serveis de Google per comoditat més que per cap altra cosa.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;En un futur m&#039;agradaria tindre automatitzada les còpies de seguretat de les dades en comptes d&#039;anar fent còpies esporàdiques seguint la norma 3-2-1 &lt;em&gt;(3 còpies en 2 sistemes diferents i 1 d&#039;ells fora del meu abast)&lt;/em&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&quot;1-elecci-del-servidor&quot;&gt;1. Elecció del servidor&lt;/h2&gt;
+&lt;p&gt;&lt;a id=&quot;1-elecció-del-servidor&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;1-elecci-del-servidor-&quot;&gt;1. Elecció del servidor &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;El cost de muntar un servidor domèstic depèn del tipus de servidor que muntis i dels serveis que vulguis instal·lar. En el meu cas, vaig muntar un servidor en un portàtil que tenia la bateria i un parell de tecles trencades, així que el meu cost d&#039;adquisició és zero.
 També és important tenir en compte no només el cost del maquinari, sinó també el consum elèctric del servidor (el portàtil consumeix entre 8W i 15W &lt;em&gt;-sense tindre en compte el consum dels discs durs adicionals-&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;Si ho mires des de la perspectiva que en autoallotjar certs serveis pots estalviar en quotes de subscripció com les de Google Drive o OneDrive, la inversió comença a tenir sentit.&lt;/p&gt;
 &lt;p&gt;El portàtil trencat del qual us parlava és un &lt;strong&gt;HP 250 G5&lt;/strong&gt; de 2017 amb el processador i3-5005U i 8GB DDR3L de RAM.&lt;/p&gt;
-&lt;h2 id=&quot;2-installaci-i-configuraci-del-sistema-operatiu&quot;&gt;2. Instal·lació i configuració del sistema operatiu&lt;/h2&gt;
+&lt;p&gt;&lt;a id=&quot;2-instal·lació-i-configuració-del-sistema-operatiu&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;2-installaci-i-configuraci-del-sistema-operatiu-&quot;&gt;2. Instal·lació i configuració del sistema operatiu &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;M&#039;he decantat per Debian bàsicament perquè m&#039;agrada la seva filosofia i fa anys que utilitzo la seva branca &lt;em&gt;testing&lt;/em&gt; com a ordinador personal. Prefereix-ho estalviar-me el procés d&#039;instal·lació del sistema operatiu, però bàsicament és crear un USB &lt;em&gt;bootable&lt;/em&gt; amb l&#039;ISO de Debian, utilitzar tot el disc dur pel sistema sense complicacions de particions, seleccionar l&#039;opció del servidor SSH perquè s&#039;instal·li i l&#039;entorn gràfic que vulguem (tot i que posteriorment el desactivarem).&lt;/p&gt;
-&lt;h3 id=&quot;21-treballar-amb-la-tapa-tancada&quot;&gt;2.1. Treballar amb la tapa tancada&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;21-treballar-amb-la-tapa-tancada&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;21-treballar-amb-la-tapa-tancada-&quot;&gt;2.1. Treballar amb la tapa tancada &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Com no volem que l&#039;ordinador s&#039;apagui quan tanquem la tapa hem d&#039;editar la configuració de &lt;em&gt;logind&lt;/em&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo nano /etc/systemd/logind.conf
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;En aquesta busquem la línia que diu &lt;code&gt;#HandleLidSwitch=suspend&lt;/code&gt; i traiem &lt;strong&gt;#&lt;/strong&gt; i canviem el &lt;strong&gt;suspend&lt;/strong&gt; per &lt;strong&gt;ignore&lt;/strong&gt;. Un cop fet, guardem (&lt;em&gt;Ctrl+O&lt;/em&gt;) i sortim (&lt;em&gt;Ctrl+X&lt;/em&gt;).&lt;/p&gt;
-&lt;h3 id=&quot;22-treballar-amb-la-pantalla-apagada&quot;&gt;2.2. Treballar amb la pantalla apagada&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;22-treballar-amb-la-pantalla-apagada&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;22-treballar-amb-la-pantalla-apagada-&quot;&gt;2.2. Treballar amb la pantalla apagada &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Per maximitzar l&#039;estalvi d&#039;electricitat desactivarem la pantalla al cap de pocs segons que el sistema s&#039;inici. Per fer-ho editem el &lt;strong&gt;GRUB&lt;/strong&gt; amb:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo nano /etc/default/grub
 &lt;/code&gt;&lt;/pre&gt;
@@ -42,7 +79,8 @@ També és important tenir en compte no només el cost del maquinari, sinó tamb
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;GRUB_CMDLINE_LINUX_DEFAULT=&lt;i class=&quot;hl-string&quot;&gt;&amp;quot;quiet consoleblank=30&amp;quot;&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Guardem (&lt;em&gt;Ctrl+O&lt;/em&gt;) i sortim (&lt;em&gt;Ctrl+X&lt;/em&gt;). Per actualitzar el GRUB fem &lt;code&gt;sudo update-grub&lt;/code&gt; i reiniciem l&#039;ordinador (&lt;code&gt;sudo reboot&lt;/code&gt;).&lt;/p&gt;
-&lt;h2 id=&quot;3-connexi-ssh-amb-el-servidor&quot;&gt;3. Connexió SSH amb el servidor&lt;/h2&gt;
+&lt;p&gt;&lt;a id=&quot;3-connexió-ssh-amb-el-servidor&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;3-connexi-ssh-amb-el-servidor-&quot;&gt;3. Connexió SSH amb el servidor &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Un cop tenim el portàtil configurat és hora de connectar-se mitjançant un ordinador per poder portar a terme les tasques més fàcilment, però si deixem que el rúter assigni al portàtil una IP aleatòria cada cop que aquest és reinici, un dia ens modificaran la IP i ens serà impossible accedir als nostres serveis.&lt;/p&gt;
 &lt;p&gt;Abans d&#039;escriure res, hem de saber com Debian anomena el nostre cable de xarxa. Executem això a la terminal:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;ip -c link show
@@ -73,7 +111,8 @@ També és important tenir en compte no només el cost del maquinari, sinó tamb
 sudo nmcli networking off &amp;amp;&amp;amp; sudo nmcli networking on
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;O simplement reiniciem el servidor (&lt;code&gt;sudo reboot&lt;/code&gt;) i comprovem que l&#039;IP del nostre servidor és la que hem posat amb &lt;code&gt;ip addr show YOUR_INTERFACE&lt;/code&gt;. Per connectar-nos amb el servidor mitjançant SSH posarem a la terminal de l&#039;ordinador principal &lt;code&gt;ssh usuari@IP&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;4-gestionant-els-nostres-serveis&quot;&gt;4. Gestionant els nostres serveis&lt;/h2&gt;
+&lt;p&gt;&lt;a id=&quot;4-gestionant-els-nostres-serveis&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;4-gestionant-els-nostres-serveis-&quot;&gt;4. Gestionant els nostres serveis &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Per la seva gestió he decidit utilitzar Docker i els seus contenidors. Per la instal·lació de Docker Engine, crec que és millor us guieu per la pàgina web oficial de (Docker)[&lt;a href=&quot;https://docs.docker.com/engine/install/debian/#install-using-the-repository&quot;&gt;https://docs.docker.com/engine/install/debian/#install-using-the-repository&lt;/a&gt;].&lt;/p&gt;
 &lt;p&gt;A l&#039;hora de gestionar a mi m&#039;agrada organitzat els projectes dintre de carpetes i per fer-ho normalment faig &lt;code&gt;cd docker&lt;/code&gt; i &lt;code&gt;mkdir projecte&lt;/code&gt;. Seguidament &lt;code&gt;cd projecte&lt;/code&gt; i &lt;code&gt;nano docker-compose.yml&lt;/code&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -86,7 +125,8 @@ sudo nmcli networking off &amp;amp;&amp;amp; sudo nmcli networking on
 &lt;li&gt;&lt;code&gt;docker container list&lt;/code&gt; per veure tots els contenidors que tenen un projecte establert.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;docker container start/stop projecte&lt;/code&gt; per iniciar o aturar un projecte.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;5-cpies-de-seguretat-clonezilla&quot;&gt;5. Còpies de seguretat (CloneZilla)&lt;/h2&gt;
+&lt;p&gt;&lt;a id=&quot;5-còpies-de-seguretat-clonezilla&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;5-cpies-de-seguretat-clonezilla-&quot;&gt;5. Còpies de seguretat (CloneZilla) &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Ara ens trobem amb la part més important d&#039;un servidor; les còpies de seguretat.
 Personalment utilitzo &lt;strong&gt;Clonezilla&lt;/strong&gt; i las faig mensualment.&lt;/p&gt;
 &lt;p&gt;Clonezilla, per defecte, guarda la mida del disc d&#039;origen en les metadades de la imatge creada com a còpia de seguretat. Si fem una còpia d&#039;un disc de 1TB (tot i que només s&#039;utilitzin 100GB) no podrem restaurar-la en un disc d&#039;una mida menor. Per evitar aquest conflicte podem:&lt;/p&gt;
@@ -142,7 +182,8 @@ Personalment utilitzo &lt;strong&gt;Clonezilla&lt;/strong&gt; i las faig mensual
 &lt;li&gt;&lt;strong&gt;Xifratge:&lt;/strong&gt; &lt;code&gt;senc&lt;/code&gt; (Sense xifrar).&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Acció en finalitzar:&lt;/strong&gt; &lt;code&gt;poweroff&lt;/code&gt; (Apagar) o &lt;code&gt;reboot&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;6-conclusions-i-diagrama&quot;&gt;6. Conclusions i diagrama&lt;/h2&gt;
+&lt;p&gt;&lt;a id=&quot;6-conclusions-i-diagrama&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;6-conclusions-i-diagrama-&quot;&gt;6. Conclusions i diagrama &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Una de les grans lliçons de crear i mantenir un servidor domèstic és que has de tenir ganes d&#039;aprendre i, sobretot, temps. Al llarg del procés, segur que et trobaràs amb problemes tècnics o necessitaràs adquirir coneixements que abans no tenies.&lt;/p&gt;
 &lt;p&gt;La millor part és que, passi el temps que passi, sempre estaràs aprenent alguna cosa nova. Ja sigui una actualització, un pegat de seguretat o un canvi de maquinari, sempre hi haurà alguna cosa per investigar i aprendre. Això és el que fa que el procés sigui tan interessant i gratificant, però també exigent.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;assets/hp250g5-diagrama.webp&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
@@ -166,8 +207,10 @@ Personalment utilitzo &lt;strong&gt;Clonezilla&lt;/strong&gt; i las faig mensual
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;7-contenidors-docker&quot;&gt;7. Contenidors Docker&lt;/h2&gt;
-&lt;h3 id=&quot;adguard-home--3000&quot;&gt;Adguard Home ~ :3000&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;7-contenidors-docker&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;7-contenidors-docker-&quot;&gt;7. Contenidors Docker &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a id=&quot;adguard-home-3000&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;adguard-home--3000-&quot;&gt;Adguard Home ~ :3000 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Servidor DNS que bloqueja anuncis i rastrejadors a tota la xarxa local. La seva configuració és més complexa perquè el meu rúter no accepta canviar els DNS (maleïda Vodafone) i estic obligat a utilitzar el servidor com a servei DHCP pel meu rúter.&lt;/p&gt;
 &lt;p&gt;Primer crearem el nostre servei d&#039;Adguard amb Docker-Compose mitjançant:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
@@ -209,7 +252,8 @@ networks:
 &lt;li&gt;&lt;strong&gt;MOLT IMPORTANT!&lt;/strong&gt; No fem clic a &amp;quot;Activa el servidor DHCP&amp;quot; encara. Fem clic al botó que normalment apareix a sota per a &lt;strong&gt;&amp;quot;Comprovar conflictes&amp;quot;&lt;/strong&gt;. Sortirà en vermell: &lt;em&gt;&amp;quot;S&#039;ha detectat un altre servidor DHCP a la xarxa&amp;quot;&lt;/em&gt;. Això és bo! Vol dir que l&#039;AdGuard veu el rúter.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Ara n&#039;anirem a la IP del nostre rúter i accedim amb l&#039;usuari i contrasenya per canviar posteriorment, si fos necessari, al mode expert per poder modificar l&#039;apartat &lt;strong&gt;Servidor DHCP&lt;/strong&gt; el qual desconnectarem per anar ràpidament a Adguard i &lt;em&gt;Habilitar servidor DHCP&lt;/em&gt;.&lt;/p&gt;
-&lt;h4 id=&quot;configuraci-dadguard-home&quot;&gt;Configuració d&#039;Adguard Home&lt;/h4&gt;
+&lt;p&gt;&lt;a id=&quot;configuració-dadguard-home&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;configuraci-dadguard-home-&quot;&gt;Configuració d&#039;Adguard Home &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;Aquesta és la meva configuració personal. Totes aquelles parts que no mencioni s&#039;han de deixar tal com estan.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Configuració General&lt;/strong&gt;:&lt;ul&gt;
@@ -256,7 +300,8 @@ h3://dns.nextdns.io/
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Aquestes llistes t&#039;han de proporcionar una bona protecció general contra anuncis, seguidors i programari maliciós. Tanmateix, no es poden bloquejar tots els anuncis a nivell DNS. Necessitaràs una extensió o complement per gestionar els anuncis que AdGuard Home no bloqueja, com per exemple uBlock Origin a Firefox.&lt;/p&gt;
-&lt;h3 id=&quot;freshrss--8080&quot;&gt;FreshRSS ~ :8080&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;freshrss-8080&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;freshrss--8080-&quot;&gt;FreshRSS ~ :8080 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Agregador de notícies i feeds RSS lleuger i ràpid per llegir blogs i premsa. Aquest a la seva vegada està configurat amb l&#039;aplicació &lt;strong&gt;ReadYou&lt;/strong&gt; a Android mitjançant l&#039;API de FreshRSS i amb l&#039;ajuda de &lt;strong&gt;TailScale&lt;/strong&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;volumes:
   data:
@@ -295,7 +340,8 @@ services:
     &lt;i class=&quot;hl-comment&quot;&gt;#   interval: 75s&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;#   retries: 3&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;bentopdf--8081&quot;&gt;BentoPDF ~ :8081&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;bentopdf-8081&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;bentopdf--8081-&quot;&gt;BentoPDF ~ :8081 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;És un conjunt d&#039;eines per a PDF que permet manipular, editar, fusionar i processar fitxers PDF directament al navegador.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
   bentopdf:
@@ -310,7 +356,8 @@ services:
     &lt;i class=&quot;hl-comment&quot;&gt;#environment:&lt;/i&gt;
     &lt;i class=&quot;hl-comment&quot;&gt;#  - DISABLE_IPV6=true&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;trip--8082&quot;&gt;Trip ~ :8082&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;trip-8082&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;trip--8082-&quot;&gt;Trip ~ :8082 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;És un rastrejador de mapes i planificador de viatges minimalista per visualitzar els teus punts d&#039;interès i organitzar els detalls de la teva propera aventura.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
   app:
@@ -321,7 +368,8 @@ services:
       - ./storage:/app/storage &lt;i class=&quot;hl-comment&quot;&gt;#If you were previously using a named volume, follow https://github.com/itskovacs/trip/releases/tag/1.5.0 to migrate your data.&lt;/i&gt;
     &lt;b class=&quot;hl-function&quot;&gt;command&lt;/b&gt;: [&lt;i class=&quot;hl-string&quot;&gt;&amp;quot;fastapi&amp;quot;&lt;/i&gt;, &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;run&amp;quot;&lt;/i&gt;, &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;/app/trip/main.py&amp;quot;&lt;/i&gt;, &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;--host&amp;quot;&lt;/i&gt;, &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;0.0.0.0&amp;quot;&lt;/i&gt;]
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;tasktrove--8083&quot;&gt;TaskTrove ~ :8083&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;tasktrove-8083&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;tasktrove--8083-&quot;&gt;TaskTrove ~ :8083 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Gestor de tasques. No hi ha més que explicar, simplement el millor que he provat.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
   tasktrove:
@@ -336,7 +384,8 @@ services:
     &lt;i class=&quot;hl-comment&quot;&gt;#   - AUTH_SECRET=CHANGE_ME&lt;/i&gt;
     restart: unless-stopped
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;eigenfocus--8084&quot;&gt;Eigenfocus ~ :8084&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;eigenfocus-8084&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;eigenfocus--8084-&quot;&gt;Eigenfocus ~ :8084 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;És una eina de gestió que destaca per les seves múltiples vistes de projecte (tauler, llista i quadrícula) i integra un cronòmetre que permet gestionar les hores i generar informes. Especial atenció al cronòmetre per projecte doncs l&#039;utilitzo per calcular el temps destinat a diverses tasques.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
   web:
@@ -349,7 +398,8 @@ services:
     ports:
       - &lt;i class=&quot;hl-number&quot;&gt;8084&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;3000&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;metube--8085&quot;&gt;MeTube ~ :8085&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;metube-8085&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;metube--8085-&quot;&gt;MeTube ~ :8085 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Interfície web per a &lt;em&gt;youtube-dl/yt-dlp&lt;/em&gt;; permet descarregar vídeos de YouTube i altres plataformes fàcilment.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
   metube:
@@ -361,7 +411,8 @@ services:
     volumes:
       - ./downloads:/downloads
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;languagetool--8086&quot;&gt;LanguageTool ~ :8086&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;languagetool-8086&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;languagetool--8086-&quot;&gt;LanguageTool ~ :8086 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;És un corrector de gramàtica, estil i ortografia de codi obert i gratuït que utilitzo principalment amb l&#039;extensió LTeX+ a VSCodium perquè es connecti a l&#039;API de LanguageTool i corregeix-hi les faltes.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
   languagetool:
@@ -370,7 +421,8 @@ services:
     ports:
       - &lt;i class=&quot;hl-number&quot;&gt;8086&lt;/i&gt;:&lt;i class=&quot;hl-number&quot;&gt;8010&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;yamtrack--8087&quot;&gt;YamTrack ~ :8087&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;yamtrack-8087&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;yamtrack--8087-&quot;&gt;YamTrack ~ :8087 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;És un seguidor de mitjans per a pel·lícules, sèries de televisió, anime, manga, videojocs, llibres, còmics i jocs de taula. Per mi substitueix &lt;em&gt;Trak.tv&lt;/em&gt; i &lt;em&gt;GoodReads&lt;/em&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
   yamtrack:
@@ -403,7 +455,8 @@ services:
 volumes:
   redis_data:
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;lubelogger--8088&quot;&gt;LubeLogger ~ :8088&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;lubelogger-8088&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;lubelogger--8088-&quot;&gt;LubeLogger ~ :8088 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Registre digital per al manteniment, reparacions i consum de combustible dels teus vehicles.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
   app:
@@ -421,7 +474,8 @@ volumes:
   data:
   keys:
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;mazanoke--8089&quot;&gt;Mazanoke ~ :8089&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;mazanoke-8089&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;mazanoke--8089-&quot;&gt;Mazanoke ~ :8089 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;És un optimitzador d&#039;imatges senzill que funciona al vostre navegador, treballa sense connexió i manté les vostres imatges privades sense sortir mai del vostre dispositiu.&lt;/p&gt;
 &lt;p&gt;Serveix com a alternativa a les eines en línia «gratuïtes» qüestionables i l&#039;utilitzo per disminuir el tamany de les fotos del blog.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
@@ -431,7 +485,8 @@ volumes:
     ports:
       - &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;8089:80&amp;quot;&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;scrutiny--8090&quot;&gt;Scrutiny ~ :8090&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;scrutiny-8090&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;scrutiny--8090-&quot;&gt;Scrutiny ~ :8090 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Monitorització de la salut dels discs durs (dades S.M.A.R.T) a través d&#039;una interfície web.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
   scrutiny:
@@ -450,7 +505,8 @@ volumes:
     devices:
       - &lt;i class=&quot;hl-string&quot;&gt;&amp;quot;/dev/sda&amp;quot;&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;filewizard--8092&quot;&gt;Filewizard ~ :8092&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;filewizard-8092&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;filewizard--8092-&quot;&gt;Filewizard ~ :8092 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Una utilitat per a la conversió de fitxers, el reconeixement òptic de caràcters (OCR) i la transcripció d&#039;àudio. Engloba convertidors comuns (FFmpeg, LibreOffice, Pandoc, ImageMagick, etc.).&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
   web:
@@ -492,7 +548,8 @@ volumes:
   uploads_data: {}
   processed_data: {}
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;dashdot--8093&quot;&gt;Dashdot ~ :8093&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;dashdot-8093&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;dashdot--8093-&quot;&gt;Dashdot ~ :8093 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;És un panell de control per al teu servidor domèstic i està pensat per oferir una visió ràpida de la càrrega actual del teu sistema (i per tenir un bon aspecte).&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
   dash:
@@ -508,7 +565,8 @@ volumes:
       DASHDOT_ALWAYS_SHOW_PERCENTAGES: &lt;i class=&quot;hl-string&quot;&gt;&amp;apos;true&amp;apos;&lt;/i&gt;
       DASHDOT_ENABLE_CPU_TEMPS: &lt;i class=&quot;hl-string&quot;&gt;&amp;apos;true&amp;apos;&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;mafl--8094&quot;&gt;Mafl ~ :8094&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;mafl-8094&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;mafl--8094-&quot;&gt;Mafl ~ :8094 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Panell central per poder-hi accedir directament a tots els contenidors Docker.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
   mafl:
@@ -695,7 +753,8 @@ services:
         enabled: true
         interval: &lt;i class=&quot;hl-number&quot;&gt;3600&lt;/i&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;haus--8095&quot;&gt;Haus ~ :8095&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;haus-8095&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;haus--8095-&quot;&gt;Haus ~ :8095 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;pre&gt;&lt;code&gt;services:
   haus:
     image: ghcr.io/remvze/haus:latest
@@ -706,7 +765,8 @@ services:
     ports:
       - &#039;8095:8080&#039;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;changedetection--5555&quot;&gt;ChangeDetection ~ :5555&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;changedetection-5555&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;changedetection--5555-&quot;&gt;ChangeDetection ~ :5555 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Monitora pàgines web i t&#039;envia una notificació quan detecta canvis en el contingut. Ho tinc configurat amb un bot de Telegram per enviar-me avisos automàtics quan apareixen productes a Wallapop.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
   browser-sockpuppet-chrome:
@@ -765,7 +825,8 @@ networks:
   browser-sockpuppet-chrome:
     name: browser-sockpuppet-chrome
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;mealie--9925&quot;&gt;Mealie ~ :9925&lt;/h3&gt;
+&lt;p&gt;&lt;a id=&quot;mealie-9925&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;mealie--9925-&quot;&gt;Mealie ~ :9925 &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Gestor de receptes de cuina, planificador de menjars i llistes de la compra.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;services:
   mealie:
@@ -798,9 +859,20 @@ volumes:
 <link rel="alternate" href="https://alunya.cat/alan/g3610.html"/>
 <updated>2021-04-30T00:00:00.000Z</updated>
 <summary type="html"></summary>
-<content type="html">&lt;p&gt;Deixa de llegir, de debò, no ho facis. La publicació d&#039;avui no és un reflexió, és només que el meu ordinador m&#039;ha estat donant problemes i he esborrat per accident diverses coses.&lt;/p&gt;
+<content type="html">&lt;div id=&quot;toc&quot; class=&quot;toc-container&quot;&gt;
+  &lt;p class=&quot;toc-title&quot;&gt;Continguts&lt;/p&gt;
+  &lt;ul&gt;
+&lt;li class=&quot;toc-h2&quot;&gt;&lt;a href=&quot;#instal·lació-de-debian&quot;&gt;Instal·lació de Debian&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h2&quot;&gt;&lt;a href=&quot;#instal·lació-dels-controladors-nvidia&quot;&gt;Instal·lació dels controladors Nvidia.&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h2&quot;&gt;&lt;a href=&quot;#prompts-per-a-ollama-qwen34b&quot;&gt;Prompts per a Ollama (qwen3:4B).&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h2&quot;&gt;&lt;a href=&quot;#còpies-de-seguretat-darxius-amb-rclone&quot;&gt;Còpies de seguretat d&#039;arxius amb RClone&lt;/a&gt;&lt;/li&gt;
+&lt;li class=&quot;toc-h2&quot;&gt;&lt;a href=&quot;#texmaker&quot;&gt;TexMaker:&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+&lt;p&gt;Deixa de llegir, de debò, no ho facis. La publicació d&#039;avui no és un reflexió, és només que el meu ordinador m&#039;ha estat donant problemes i he esborrat per accident diverses coses.&lt;/p&gt;
 &lt;p&gt;Com que la cosa no pinta bé i podria deixar de funcionar en qualsevol moment, seria un desastre perdre tota la informació i l&#039;ergonomia de treball que he cultivat amb tant d&#039;esforç. Per això, aniré apuntant tot el que he fet servir per si en necessito recopilar la configuració i els programes en una instal·lació neta en el futur.&lt;/p&gt;
-&lt;h2 id=&quot;installaci-de-debian&quot;&gt;Instal·lació de Debian&lt;/h2&gt;
+&lt;p&gt;&lt;a id=&quot;instal·lació-de-debian&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;installaci-de-debian-&quot;&gt;Instal·lació de Debian &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Si decidiu instal·lar aquesta meravellosa distribució de Linux, us recomano que utilitzeu els paràmetres següents:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Un arrel (root) Ext4 &amp;quot;/&amp;quot;, d&#039;aproximadament 120 GB, per al sistema operatiu i arrencable.&lt;/li&gt;
@@ -817,13 +889,15 @@ volumes:
 &lt;p&gt;Si per alguna raó no podem editar-lo per falta de permisos d&#039;usuari, hem de permetre que el nostre usuari utilitzi l&#039;ordre amb &lt;code&gt;usermod -aG sudo USUARI&lt;/code&gt;.
 Finalment, fem un &lt;em&gt;reboot now&lt;/em&gt; perquè els canvis tinguin efecte.&lt;/p&gt;
 &lt;p&gt;De vegades, els passos anteriors no solucionen el problema i l&#039;única opció és utilitzar &lt;em&gt;sudo&lt;/em&gt; amb cada comanda, ja que no se&#039;ns permet mantenir-nos com a superusuaris o accedir a &lt;em&gt;root&lt;/em&gt; escrivint &lt;strong&gt;su&lt;/strong&gt; a la consola (els canvis fets amb root es quedaran a la carpeta root i no a la carpeta de l&#039;usuari del sistema).&lt;/p&gt;
-&lt;h2 id=&quot;installaci-dels-controladors-nvidia&quot;&gt;Instal·lació dels controladors Nvidia.&lt;/h2&gt;
+&lt;p&gt;&lt;a id=&quot;instal·lació-dels-controladors-nvidia&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;installaci-dels-controladors-nvidia-&quot;&gt;Instal·lació dels controladors Nvidia. &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Fem servir els repositoris de Debian seguint la guia a &lt;a href=&quot;https://wiki.debian.org/NvidiaGraphicsDrivers&quot;&gt;https://wiki.debian.org/NvidiaGraphicsDrivers&lt;/a&gt;.
 Presteu especial atenció a la part sobre l&#039;ús de Wayland a Debian, on primer hem de comprovar si &lt;code&gt;# cat /sys/module/nvidia_drm/parameters/modeset&lt;/code&gt; retorna un &lt;em&gt;Y&lt;/em&gt; o un &lt;em&gt;N&lt;/em&gt;.
 Si retorna un &lt;em&gt;N&lt;/em&gt;, hem d&#039;afegir &lt;code&gt;options nvidia-drm modeset=1&lt;/code&gt; al fitxer &lt;em&gt;/etc/modprobe.d/nvidia-options.conf&lt;/em&gt; amb &lt;em&gt;sudo nano&lt;/em&gt;.
 Després d&#039;això, podem reiniciar sempre que no tinguem la intenció d&#039;utilitzar l&#039;opció per suspendre l&#039;ordinador. En el nostre cas, sí que ho volem fer, i per tant hem d&#039;afegir l&#039;opció &lt;code&gt;options nvidia NVreg_PreserveVideoMemoryAllocations=1&lt;/code&gt; al fitxer &lt;em&gt;/etc/modprobe.d/nvidia-options.conf&lt;/em&gt; amb &lt;em&gt;sudo nano&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;A més, a Wayland hi ha un error amb els controladors de Nvidia que provocarà molts parpelleigs a les aplicacions perquè l&#039;&lt;strong&gt;opció GSP&lt;/strong&gt; està habilitada. Per desactivar-la, executem &lt;em&gt;sudo nano /etc/modprobe.d/nvidia-gsp-disable.conf&lt;/em&gt; i afegim &lt;code&gt;options nvidia NVreg_EnableGpuFirmware=0&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;prompts-per-a-ollama-qwen34b&quot;&gt;Prompts per a Ollama (qwen3:4B).&lt;/h2&gt;
+&lt;p&gt;&lt;a id=&quot;prompts-per-a-ollama-qwen34b&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;prompts-per-a-ollama-qwen34b-&quot;&gt;Prompts per a Ollama (qwen3:4B). &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Normalment, faig servir la IA local per obtenir una URL modificada per a un vídeo de YouTube perquè estigui a punt per fer servir amb &lt;strong&gt;yt-dlp&lt;/strong&gt; i pugui descarregar la transcripció en anglès sense els segells de temps.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;You&#039;re a bot and you will  refactor the next code with the URL I give you on the brackets of &amp;lt;URL_GOES_HERE_WITHOUT_QUOTES&amp;gt;.  Don&#039;t think, just give me the code with the URL changed. Don&#039;t give me any summary, just the code.
 
@@ -841,7 +915,8 @@ Give me the output within a code block so I can copy it
 
 By following this optimized prompt, you will generate an effective summary that encapsulates the essence of the given text in a clear, concise, and reader-friendly manner.
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;cpies-de-seguretat-darxius-amb-rclone&quot;&gt;Còpies de seguretat d&#039;arxius amb RClone&lt;/h2&gt;
+&lt;p&gt;&lt;a id=&quot;còpies-de-seguretat-darxius-amb-rclone&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;cpies-de-seguretat-darxius-amb-rclone-&quot;&gt;Còpies de seguretat d&#039;arxius amb RClone &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Per fer còpies de seguretat utilitzant el &lt;strong&gt;mètode 3-2-1&lt;/strong&gt; (3 còpies de les dades, 1 original i 2 còpies, en 2 suports diferents, una de les quals és fora de les instal·lacions) farem servir RClone (&lt;code&gt;sudo -v ; curl https://rclone.org/install.sh | sudo bash&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;Un cop hàgim configurat RClone (en el meu cas, seria &lt;em&gt;Original+HDD+GDrive&lt;/em&gt;), farem servir el codi següent per muntar el GDrive com un &amp;quot;disc local&amp;quot;, especificant que l&#039;emmagatzematge de GDrive (rclonedrive:) estigui muntat al nostre emmagatzematge local (&lt;em&gt;/home/user/rclonedrive&lt;/em&gt;) amb l&#039;opció &lt;code&gt;--vfs-cache-mode full&lt;/code&gt; perquè sigui totalment compatible amb els nostres fitxers, a costa d&#039;utilitzar més espai al disc.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;rclone mount rclonedrive: /home/user/rclonedrive/ --vfs-cache-mode full
@@ -856,7 +931,8 @@ By following this optimized prompt, you will generate an effective summary that 
 &lt;li&gt;Si no existeixen a SOURCE, s&#039;eliminaran de DESTINATION.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Si per qualsevol motiu no confiem en la SOURCE, podem afegir l&#039;etiqueta &lt;em&gt;--backup-dir&lt;/em&gt;*, que mourà a DESTINATION els fitxers que es modificarien com a resultat de la SOURCE.&lt;/p&gt;
-&lt;h2 id=&quot;texmaker&quot;&gt;TexMaker:&lt;/h2&gt;
+&lt;p&gt;&lt;a id=&quot;texmaker&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;texmaker-&quot;&gt;TexMaker: &lt;a href=&quot;#toc&quot; class=&quot;toc-return&quot; title=&quot;Tornar a l&#039;índex&quot;&gt;↩&lt;/a&gt;&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;Primer, instal·lem TexLive amb &lt;code&gt;sudo apt-get install texlive-full&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Continuem amb TexMaker &lt;code&gt;sudo apt-get install texmaker&lt;/code&gt;.&lt;/li&gt;
