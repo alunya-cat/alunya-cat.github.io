@@ -9,7 +9,9 @@ function htmlifyDateShort(date)
 end
 
 function htmlifyDate(date)
-	return htmlDateTemplate({ short = date, long = shared.formatDate(date) })
+	local year, month, day = string.match(date, "^(%d%d%d%d)-(%d%d)-(%d%d)")
+	local longDate = string.toNumber(day) .. " de " .. string.lower(months[string.toNumber(month)]) .. " de " .. year
+	return htmlDateTemplate({ short = date, long = longDate })
 end
 
 local keywordListTemplate = etlua.compile([[<%

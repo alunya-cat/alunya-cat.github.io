@@ -1,7 +1,0 @@
-<header>
-<h1>#<%= key %></h1>
-</header>
-<%- postList(self) %>
-<footer>
-<p>&crarr; <a href="<%= pathToRoot %>index.html">Back</a>
-</footer>

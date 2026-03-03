@@ -578,7 +578,7 @@ th, td {
 /* --- Footnotes --- */
 
 .footnote-ref {
-    font-size: 0.75em;
+    font-size: 1.15em;
     vertical-align: super;
     line-height: 0;
     text-decoration: none;

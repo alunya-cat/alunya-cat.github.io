@@ -6,7 +6,7 @@ The following text is written in catalan, if you want another language use the A
 
 ---
 
-Aquest repositori alberga el contingut de https://avilagrijalva.github.io. Us ensenyaré pas a pas com tindre un blog semblant sense que tinguis cap mena de coneixement tecnològic anterior, el qual per cert jo no tinc.
+Aquest repositori alberga el contingut de https://alunya-cat.github.io. Us ensenyaré pas a pas com tindre un blog semblant sense que tinguis cap mena de coneixement tecnològic anterior, el qual per cert jo no tinc.
 
 # Creem la nostra carpeta amb el compilador de Luasmith
 
@@ -64,7 +64,7 @@ Per la configuració del lloc (title & URL) han de coincidir en contingut **/con
 
 | /content/site.lua        | /themes/blog/theme.lua    |
 | ------------- |:-------------:|
-| ```return {title = "Oriol Ávila Grijalva", url = "https://avilagrijalva.github.io/",}```      | ```local site = {title = "Oriol Ávila Grijalva", url = "https://avilagrijalva.github.io/",}``` |
+| ```return {title = "Alan", url = "https://alunya-cat.github.io/",}```      | ```local site = {title = "Alan", url = "https://alunya-cat.github.io/",}``` |
 
 ---
 
