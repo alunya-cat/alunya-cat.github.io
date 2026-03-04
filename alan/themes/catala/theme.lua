@@ -142,7 +142,6 @@ local function generateTOC(text)
 
         table.insert(toc_items, string.format('<li class="toc-h%d"><a href="#%s">%s</a></li>', level, slug, title))
 
-        -- EL CAMBIO ESTÁ AQUÍ: Añadimos la flecha (↩) apuntando al #toc
         return string.format('\n<a id="%s"></a>\n%s %s <a href="#toc" class="toc-return" title="Tornar a l\'índex">↩</a>', slug, hashes, title)
     end)
 
@@ -152,7 +151,6 @@ local function generateTOC(text)
         return string.gsub(text, "%[TOC%]", "")
     end
 
-    -- EL OTRO CAMBIO ESTÁ AQUÍ: Añadimos id="toc" al div principal
     local toc_html = {
         '<div id="toc" class="toc-container">',
         '  <p class="toc-title">Continguts</p>',

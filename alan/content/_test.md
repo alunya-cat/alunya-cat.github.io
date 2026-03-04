@@ -50,6 +50,9 @@ function saludar(nom) {
   console.log("Hola, " + nom);
   return true;
 }
+
+[^1]
+[TOC]
 ```
 
 ### Taules

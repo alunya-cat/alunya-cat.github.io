@@ -164,15 +164,11 @@ pre {
     background-color: var(--bento-bg);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 1.2rem; /* Un poco más de aire */
-    
-    /* CONTROL VERTICAL */
+    padding: 1.2rem;
     display: block;
-    width: 100%;       /* Asegura que ocupe todo el ancho disponible */
-    white-space: pre-wrap; /* ¡ESTO ES CLAVE! Hace que el texto salte de línea y crezca hacia abajo */
+    width: 100%;
+    white-space: pre-wrap;
     word-wrap: break-word;
-    
-    /* ESTÉTICA */
     font-family: var(--font-mono);
     line-height: 1.6;
     margin: 1.5rem 0;
@@ -183,28 +179,21 @@ pre {
   position: absolute;
     top: 12px;
     right: 12px;
-    
-    /* Tipografía coherente con tus etiquetas */
     font-family: var(--font-mono);
     font-size: 0.65rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    
-    /* Colores basados en tu paleta */
     background-color: var(--accent);
     color: var(--text-muted);
     border: 1px solid var(--border);
-    
-    /* Estética visual */
     padding: 4px 10px;
-    border-radius: 20px; /* Estilo píldora como tus botones de navegación */
+    border-radius: 20px;
     cursor: pointer;
     z-index: 10;
     transition: all 0.2s ease;
-    opacity: 0.6; /* Un poco tenue para no distraer de la lectura */
+    opacity: 0.6;
 }
 
-/* Hover: Invertimos colores usando tu color de acento */
 .copy-button:hover {
   opacity: 1;
   background-color: var(--accent);
@@ -622,21 +611,16 @@ hr.footnotes-sep {
     100% { background-color: transparent; }
 }
 
-/* ==========================================================================
-   TABLA DE CONTENIDOS (TOC) - ADAPTADO AL ESTILO ALUNYA.CAT
-   ========================================================================== */
-
-/* La caja principal: Usamos el fondo bento y el borde estándar */
+/* TOC */
 .toc-container {
     background-color: var(--bento-bg); 
     border: 1px solid var(--border);
-    border-radius: 12px; /* Siguiendo el radio de tus imágenes */
+    border-radius: 12px;
     padding: 1.5rem;
     margin: 2.5rem 0;
     font-family: var(--font-serif);
 }
 
-/* El título: Estilo similar a tus h5 pero adaptado */
 .toc-title {
     font-family: var(--font-mono);
     font-weight: 600;
@@ -650,7 +634,6 @@ hr.footnotes-sep {
     padding-bottom: 0.5rem;
 }
 
-/* Lista y enlaces */
 .toc-container ul {
     list-style-type: none;
     padding-left: 0;
@@ -663,7 +646,7 @@ hr.footnotes-sep {
 }
 
 .toc-container a {
-    text-decoration: none !important; /* Quitamos el subrayado global */
+    text-decoration: none !important;
     color: var(--text-main);
     font-weight: 500;
     transition: color 0.2s ease;
@@ -673,12 +656,10 @@ hr.footnotes-sep {
     color: var(--text-muted);
 }
 
-/* Jerarquía visual con sangrías */
 .toc-h2 { margin-left: 0; font-size: 1.05rem; }
 .toc-h3 { margin-left: 1.2rem; font-size: 0.95rem; color: var(--text-description); }
 .toc-h4 { margin-left: 2.4rem; font-size: 0.9rem; color: var(--text-muted); }
 
-/* Flecha de retorno al índex: Usamos tu color accent y fuente mono */
 .toc-return {
     font-family: var(--font-mono);
     font-size: 0.9em;
