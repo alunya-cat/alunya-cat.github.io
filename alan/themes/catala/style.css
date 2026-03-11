@@ -1,10 +1,8 @@
-/*
- * Aquest programa és programari lliure: pots redistribuir-lo i/o modificar-lo
- * sota els termes de la GNU General Public License (GPLv3).
-*/
-
-/* --- Variables & Dark Mode --- */
+/* ==========================================================================
+   VARIABLES & COLOR PALETTES
+   ========================================================================== */
 :root {
+    /* Main color palette (Light Mode Default) */
     --bg: #FAF9F5;  
     --font-serif: 'Cormorant Garamond', 'Garamond', serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;  
@@ -20,6 +18,7 @@
     --code-color: #1A1C20;
 }
 
+/* Dark Mode settings based on OS preferences */
 @media (prefers-color-scheme: dark) {
     :root {
         --bg: #1A1816; 
@@ -35,6 +34,8 @@
         --code-color: #EFE8E0;
     }
 }
+
+/* Force Dark Mode when the manual toggle is activated or class is present */
 body.dark-mode,
 body:has(.toggle:checked) {
     --bg: #1A1816; 
@@ -50,7 +51,9 @@ body:has(.toggle:checked) {
     --code-color: #EFE8E0;
 }
 
-/* --- Base & Typo --- */
+/* ==========================================================================
+   BASE STYLES & TYPOGRAPHY
+   ========================================================================== */
 html, body {
   font-family: var(--font-serif);
   font-size: 1.1rem;
@@ -67,8 +70,10 @@ html, body {
   scroll-behavior: smooth;
 }
 
+/* Headings typographic scale */
 h1, h2, h3, h4, h5, h6, th { font-weight: 600; }
 h1, h2, h3 { line-height: 1.2; margin: 1.5rem 0 1rem; }
+
 h1 {
   font-family: var(--font-serif);
   font-size: 2.2rem;
@@ -77,6 +82,7 @@ h1 {
   color: var(--text-main);
   letter-spacing: -0.04em;
 }
+
 h2 { 
   font-family: var(--font-serif);
   font-size: 1.8rem;
@@ -86,6 +92,7 @@ h2 {
   padding-bottom: 0.5rem;
   letter-spacing: -0.02em;
 }
+
 h3 {
   font-size: 1.5rem;
   text-transform: none;
@@ -93,12 +100,14 @@ h3 {
   border-bottom: solid 1px var(--border);
   padding-bottom: 0.3rem;
 }
+
 h4 {
   font-size: 1.2rem;
   text-transform: none;
   color: var(--text-main);
   border-bottom: dotted 1px var(--border);
 }
+
 h5 {
   font-family: var(--font-mono);
   font-size: 0.9rem;
@@ -106,6 +115,7 @@ h5 {
   color: var(--text-muted);
   border-bottom: dashed 1px var(--border);
 }
+
 h6 {
   font-family: var(--font-mono);
   font-size: 0.8rem;
@@ -113,17 +123,20 @@ h6 {
   color: var(--text-muted);
   opacity: 0.8;
 }
+
 small, sup, sub { font-size: 0.833em; }
 sup, sub { line-height: 1em; }
-
 p, ul, ol, dl, table, blockquote, pre { margin: 1.5rem 0 0; }
 
+/* Custom text selection styling */
 ::selection {
   color: var(--selection-text);
   background: var(--selection-bg);
 }
 
-/* --- Links --- */
+/* ==========================================================================
+   LINKS & INLINE ELEMENTS
+   ========================================================================== */
 a, header nav a:visited, a code {
   color: var(--accent);
   font-weight: 500;
@@ -149,7 +162,9 @@ ins {
   text-decoration: none;
 }
 
-/* --- CODE, PRE, SAMP, KBD --- */
+/* ==========================================================================
+   CODE BLOCKS & PREFORMATTED TEXT
+   ========================================================================== */
 code, pre, samp, kbd {
   font-family: var(--font-mono);
   font-size: 0.65rem;
@@ -157,9 +172,9 @@ code, pre, samp, kbd {
 }
 kbd { font-weight: 600; }
 
-/* Code+Table */
 code, pre, samp, thead, tfoot { background-color: var(--bento-bg); }
 
+/* Multiline code blocks */
 pre {
     background-color: var(--bento-bg);
     border: 1px solid var(--border);
@@ -175,6 +190,7 @@ pre {
     position: relative;
 }
 
+/* Copy to clipboard button inside code blocks */
 .copy-button {
   position: absolute;
     top: 12px;
@@ -202,7 +218,9 @@ pre {
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-/* nav */
+/* ==========================================================================
+   NAVIGATION BAR
+   ========================================================================== */
 .main-header {
   display: flex;
   justify-content: space-between;
@@ -219,6 +237,7 @@ pre {
   margin-top: 0; 
   margin-bottom: 3rem;
 }
+
 .site-title {
   margin: 0;
   font-size: 1.5rem;
@@ -228,6 +247,7 @@ pre {
   text-transform: none !important;
   letter-spacing: 0 !important;
 }
+
 .nav-header {
   display: flex;
   gap: 15px;
@@ -235,6 +255,7 @@ pre {
   padding: 0;
   font-size: 0;
 }
+
 .nav-header a {
   display: inline-block;
   font-size: 16px;
@@ -248,13 +269,16 @@ pre {
   border: none !important;
   background: none !important;
 }
+
 .nav-header a:hover,
 .nav-header a.active {
   color: var(--text-muted) !important;
   cursor: pointer;
 }
 
-/* --- Layout --- */
+/* ==========================================================================
+   MAIN LAYOUT & CONTENT SPACING
+   ========================================================================== */
 body > header { text-align: center; }
 
 main, body > footer {
@@ -297,10 +321,13 @@ img {
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-/* --- Lists --- */
+/* ==========================================================================
+   LISTS & TABLES
+   ========================================================================== */
 ul, ol, dd { padding: 0; }
 ul ul, ol ol, ul ol, ol ul { margin: 0; }
 dd { margin: 0; }
+
 ul > li { list-style-type: disc; list-style-position: inside; padding-left: 1.15rem; margin-left: 0; }
 li ul > li { list-style-type: circle; }
 li li ul > li { list-style-type: square; }
@@ -308,11 +335,11 @@ ol > li { list-style-type: decimal; list-style-position: inside; padding-left: 1
 li ol > li { list-style-type: lower-roman; }
 li li ol > li { list-style-type: lower-alpha; }
 
+/* Nav menu lists */
 nav ul { padding: 0; list-style-type: none; }
 nav ul li { display: inline; padding-left: 1ch; white-space: nowrap; }
 nav ul li:first-child { padding-left: 0; }
 
-/* --- Tables --- */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -320,12 +347,15 @@ table {
   line-height: calc(1.5rem - 1px);
   margin-bottom: -1px;
 }
+
 th, td {
   border: solid 1px var(--border);
   padding: 0.5rem 1rem;
 }
 
-/* Toggle Light-Dark */
+/* ==========================================================================
+   DARK/LIGHT MODE TOGGLE BUTTON (CSS DRAWING)
+   ========================================================================== */
 .toggle {
   --size: 20px;
   appearance: none;
@@ -333,6 +363,7 @@ th, td {
   cursor: pointer;
   width: var(--size);
   height: var(--size);
+  /* Draws the moon shape */
   box-shadow: inset calc(var(--size) * 0.33) calc(var(--size) * -0.25) 0;
   border-radius: 999px;
   color: var(--text-main);
@@ -340,6 +371,7 @@ th, td {
   position: relative; 
 }
 
+/* Transforms the moon into a sun when checked */
 .toggle:checked {
   --ray-size: calc(var(--size) * -0.4);
   --offset-orthogonal: calc(var(--size) * 0.65);
@@ -358,14 +390,16 @@ th, td {
     var(--offset-diagonal) calc(var(--offset-diagonal) * -1) 0 var(--ray-size);
 }
 
-/* --- Index List --- */
+/* ==========================================================================
+   INDEX / BLOG LIST LAYOUT
+   ========================================================================== */
 .post-list-container {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* Un year-header mucho más limpio, sutil y elegante */
+/* Minimalist separator header for the post year */
 .year-header {
   padding: 0;
   margin: 2rem 0 0.5rem 0;
@@ -377,11 +411,11 @@ th, td {
   padding-bottom: 6px;
   list-style: none;
 }
-
 .year-header:first-child {
   margin-top: 0;
 }
 
+/* Individual post row wrapping */
 .post-row {
   display: flex;
   flex-direction: column;
@@ -400,6 +434,7 @@ th, td {
   transform: scale(1.01);
 }
 
+/* Container splitting title (left) and metadata (right) */
 .post-entry-header {
   display: flex;
   justify-content: space-between;
@@ -419,7 +454,7 @@ th, td {
   display: none;
 }
 
-/* Contenedor derecho: todo en una sola línea */
+/* Wrapper for date, tags and reading time aligned to the right */
 .post-entry-right {
   display: flex;
   align-items: baseline;
@@ -434,19 +469,17 @@ th, td {
   margin: 0;
 }
 
-.post-entry-keywords {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
+.post-entry-keywords,
 .post-entry-reading-time {
   font-family: var(--font-mono);
   font-size: 0.85rem;
   color: var(--text-muted);
+}
+.post-entry-reading-time {
   opacity: 0.8;
 }
 
+/* Ensures description is visible and limits to 2 lines with ellipsis */
 .post-entry-description {
   width: 100%; 
   margin: 2px 0;
@@ -464,7 +497,7 @@ th, td {
   overflow: hidden;
 }
 
-/* El bloque inferior solo contendrá la actualización (si la hay) */
+/* Bottom block for 'Last updated' meta info */
 .post-entry-meta {
   margin-top: 2px;
   font-family: var(--font-mono);
@@ -473,12 +506,15 @@ th, td {
   opacity: 0.8;
 }
 
-/* --- Articles --- */
+/* ==========================================================================
+   SINGLE ARTICLE (POST) VIEW
+   ========================================================================== */
 .post-title {
   margin-top: 0;
   margin-bottom: 0.5rem;
   line-height: 1.1;
 }
+
 .post-description {
   font-size: 1.2rem;
   color: var(--text-description);
@@ -487,6 +523,7 @@ th, td {
   font-style: italic;
   text-align: center;
 }
+
 .post-meta {
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -500,7 +537,9 @@ th, td {
   text-transform: uppercase;
 }
 
-/* Footer-Nav */
+/* ==========================================================================
+   FOOTER NAVIGATION
+   ========================================================================== */
 .footer-nav {
   display: flex;
   justify-content: space-between;
@@ -517,15 +556,18 @@ th, td {
   box-sizing: border-box;
   padding: 20px calc(50vw - 50%);
 }
+
 .footer-nav .nav-left, .footer-nav .nav-center a {
   color: var(--text-muted);
   text-decoration: none;
   font-size: 0.85rem;
 }
+
 .footer-nav .nav-left { gap: 15px; display: flex; }
 .footer-nav .nav-left a { display: flex; }
 .footer-nav .nav-center a { margin: 0 10px; }
 .footer-nav .nav-right { display: flex; gap: 15px; }
+
 .footer-nav .nav-right a {
   color: var(--text-main);
   display: flex;
@@ -533,9 +575,13 @@ th, td {
   text-decoration: none;
   transition: color 0.2s;
 }
-.footer-nav .nav-right a:hover { color: var(--text-muted); transform: translateY(-2px); }
 
-/* Contact email */
+.footer-nav .nav-right a:hover { 
+  color: var(--text-muted); 
+  transform: translateY(-2px); 
+}
+
+/* Checkbox hack to reveal contact email address smoothly */
 .contact-toggle {
   display: inline-flex;
   align-items: center;
@@ -568,7 +614,9 @@ th, td {
   margin-left: 10px;
 }
 
-/* --- Syntax Highlighting Editorial --- */
+/* ==========================================================================
+   SYNTAX HIGHLIGHTING (TERMINAL STYLE)
+   ========================================================================== */
 .hl-comment, .hl-quote { font-style: italic; color: var(--text-muted); }
 .hl-keyword, .hl-selector-tag, .hl-subst { font-weight: 600; color: #8959a8; }
 .hl-string, .hl-attribute, .hl-symbol, .hl-bullet, .hl-addition { color: #718c00; font-style: italic; }
@@ -579,8 +627,9 @@ th, td {
 .hl-deletion, .hl-error { color: #c00000; text-decoration: underline; }
 .hl-link { color: var(--text-muted); text-decoration: underline; }
 
-/* --- Footnotes --- */
-
+/* ==========================================================================
+   FOOTNOTES STYLING
+   ========================================================================== */
 .footnote-ref {
     font-size: 1.15em;
     vertical-align: super;
@@ -591,32 +640,39 @@ th, td {
     color: var(--text-muted);
     transition: color 0.2s ease;
 }
+
 .footnote-ref:hover {
     text-decoration: underline;
     text-decoration-color: var(--accent);
     color: var(--accent);
 }
+
 hr.footnotes-sep {
     margin: 3.5em 0 1.5em 0;
     border: 0;
     border-top: 1px solid var(--border);
     width: 100%;
 }
+
 .footnotes {
     font-size: 0.85em;
     color: var(--text-description);
     line-height: 1.6;
 }
+
 .footnotes ol {
     padding-left: 1.5em;
     margin-top: 0;
 }
+
 .footnotes li {
     margin-bottom: 0.6em;
     border-radius: 6px;
     padding: 4px 8px;
     margin-left: -8px;
 }
+
+/* Return arrow for footnotes */
 .footnote-backref {
     text-decoration: none;
     font-family: var(--font-mono);
@@ -626,10 +682,13 @@ hr.footnotes-sep {
     border-radius: 4px;
     transition: all 0.2s ease;
 }
+
 .footnote-backref:hover {
     color: var(--accent);
     background-color: var(--bento-bg);
 }
+
+/* Animation to highlight the footnote when clicked from text */
 .footnotes li:target {
     animation: highlight-note 2s ease-out;
 }
@@ -639,7 +698,9 @@ hr.footnotes-sep {
     100% { background-color: transparent; }
 }
 
-/* TOC */
+/* ==========================================================================
+   TABLE OF CONTENTS (TOC)
+   ========================================================================== */
 .toc-container {
     background-color: var(--bento-bg); 
     border: 1px solid var(--border);
@@ -684,10 +745,12 @@ hr.footnotes-sep {
     color: var(--text-muted);
 }
 
+/* Indentation based on heading level */
 .toc-h2 { margin-left: 0; font-size: 1.05rem; }
 .toc-h3 { margin-left: 1.2rem; font-size: 0.95rem; color: var(--text-description); }
 .toc-h4 { margin-left: 2.4rem; font-size: 0.9rem; color: var(--text-muted); }
 
+/* Return to TOC arrow next to headings */
 .toc-return {
     font-family: var(--font-mono);
     font-size: 0.9em;
@@ -701,18 +764,13 @@ hr.footnotes-sep {
 .toc-return:hover {
     opacity: 1;
     color: var(--accent);
-}@media screen and (max-width: 600px) {
-  .footer-nav { flex-direction: column; gap: 1.5rem; }
-  .nav-left, .nav-center, .nav-right { width: 100%; justify-content: center; text-align: center; }
-  code, samp { white-space: normal; overflow-wrap: break-word; word-break: break-word; }
-  pre code { white-space: inherit; overflow-wrap: normal; }
-  .post-list-container { grid-template-columns: 1fr; }
-  .year-header { grid-column: 1; padding: 20px 10px 8px 10px; font-size: 1.1rem; }
-  .post-row { grid-column: 1; padding: 12px 10px; }
-  .post-entry-description { font-size: 0.95rem; }
 }
 
-/* --- Responsive --- */
+/* ==========================================================================
+   RESPONSIVE DESIGN / MEDIA QUERIES
+   ========================================================================== */
+
+/* Tablets and small desktops */
 @media screen and (max-width: 900px) {
   main, body > footer { width: 90%; margin-top: 2rem; margin-bottom: 2rem; }
   main figure, main aside { float: none; display: block; width: 100%; margin: 1.5rem 0; }
@@ -721,6 +779,7 @@ hr.footnotes-sep {
   .item-flex { flex-direction: column; align-items: flex-start; }
   .item-flex span { margin-left: 0; margin-top: 0.5rem; }
   nav ul li { display: inline-block; white-space: normal; margin-bottom: 0.5rem; }
+  
   .toc-container {
         margin-left: 10px;
         margin-right: 10px;
@@ -728,13 +787,14 @@ hr.footnotes-sep {
     }
 }
 
+/* Mobile Devices */
 @media screen and (max-width: 600px) {
   .footer-nav { flex-direction: column; gap: 1.5rem; }
   .nav-left, .nav-center, .nav-right { width: 100%; justify-content: center; text-align: center; }
   code, samp { white-space: normal; overflow-wrap: break-word; word-break: break-word; }
   pre code { white-space: inherit; overflow-wrap: normal; }
   
-  /* Ajustes Index Móvil */
+  /* Index List Mobile Adjustments */
   .year-header { font-size: 1rem; margin-left: 0; }
   .post-row { 
       padding: 12px 10px; 
@@ -742,7 +802,7 @@ hr.footnotes-sep {
   }
   .post-entry-header { flex-direction: column; gap: 6px; }
   
-  /* En móvil, la línea técnica pasa a estar debajo del título */
+  /* On mobile, wrap the technical meta info right under the title */
   .post-entry-right { width: 100%; justify-content: flex-start; flex-wrap: wrap; gap: 8px; }
   
   .post-entry-description { font-size: 0.95rem; }

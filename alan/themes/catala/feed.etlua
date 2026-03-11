@@ -1,4 +1,5 @@
 <% 
+-- Filter out draft posts
 local filtered_posts = {}
 
 for _, item in ipairs(items) do
@@ -10,13 +11,16 @@ for _, item in ipairs(items) do
     end
 end
 
+-- Sort posts by date (newest first)
 local posts = table.sortBy(filtered_posts, "date", true) 
 
+-- Get the date of the most recent post
 local first_date = "1970-01-01"
 if posts[1] and posts[1].date then
     first_date = posts[1].date
 end
 
+-- Utility function to strip HTML syntax highlighting
 local function cleanText(str)
     -- If the input is not a string (nil, number, or table), return an empty string
     if type(str) ~= "string" then return "" end

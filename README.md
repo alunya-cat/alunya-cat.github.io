@@ -11,8 +11,8 @@ Aquest repositori alberga el contingut de https://alunya-cat.github.io. Us ensen
 # Creem la nostra carpeta amb el compilador de Luasmith
 
 1. Afegim el fitxer **luasmith** que el podem descarregar del seu autor [original](https://github.com/jaredkrinke/luasmith/).
-2. Reorganitzem el contingut de la carpeta de la següent forma on *content* tindrà el contingut dels fitxers MarkDown més el fitxer **site.lua** on s'especifica la configuració de la pàgina web que es generarà a la carpeta *out*. Recomano tindre els fitxers .md sense espais i utilitzar els guions com alternativa perquè sino quan es generi l'URL apareixerà *%20* on hauria d'haver-hi un espai.
-3. Executem `./luasmith blog` i trobarem els fitxers generats a la carpeta *out*. Podemos canviar *blog* per qualsevol altre tema com per exemple *catala*.
+2. Reorganitzem el contingut de la carpeta de la següent forma on *content* tindrà el contingut dels fitxers MarkDown. Recomano tindre els fitxers .md sense espais i utilitzar els guions com alternativa perquè sino quan es generi l'URL apareixerà *%20* on hauria d'haver-hi un espai.
+3. Executem `./luasmith catala` i trobarem els fitxers generats en format HTML.
 
 # Connectem el repositori de Github amb la nostra carpeta
 
@@ -53,20 +53,10 @@ Ara cada cop que modifiquem els continguts de la carpeta *content* amb Obsidian.
 
 |  Taula resum: |
 | --- |
-|   ./luasmith blog  |
+|   ./luasmith catala  |
 | git add . |
 | git commit -m "missatge"|
 | git push -u origin main |
-
-## Notes
-
-Per la configuració del lloc (title & URL) han de coincidir en contingut **/content/site.lua** i **/themes/blog/theme.lua**:
-
-| /content/site.lua        | /themes/blog/theme.lua    |
-| ------------- |:-------------:|
-| ```return {title = "Alan", url = "https://alunya-cat.github.io/",}```      | ```local site = {title = "Alan", url = "https://alunya-cat.github.io/",}``` |
-
----
 
 ## Contingut i llicències
 
@@ -83,4 +73,3 @@ Tret que s'indiqui el contrari, el contingut dels articles, les entrades del blo
 Això significa que ets lliure de compartir i adaptar el contingut, sempre que donis el crèdit adequat i distribueixis les teves contribucions sota la mateixa llicència.
 
 [![CC BY-SA 4.0](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/deed.ca)
-
