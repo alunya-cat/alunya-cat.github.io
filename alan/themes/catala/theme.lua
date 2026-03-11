@@ -27,30 +27,41 @@ local postListTemplate = etlua.compile([[
 <% for i, item in ipairs(table.sortBy(items, "date", true)) do
    local year = string.match(item.date, "^(%d%d%d%d)")
    if lastYear ~= year then -%>
-     <time class="year-header"><%= year %></time>
+     <li class="year-header"><%= year %></li>
 <% lastYear = year end -%>
-    <div class="post-row">
-        <li class="post-entry-title">
-            <a href="<%= pathToRoot %><%= item.path %>"><%= item.title %></a>
-        </li>
+    <li class="post-row">
+        <div class="post-entry-header">
+            <span class="post-entry-title">
+                <a href="<%= pathToRoot %><%= item.path %>"><%= item.title %></a>
+            </span>
+            
+            <div class="post-entry-right">
+                <span class="post-date"><%- htmlifyDateShort(item.date) %></span>
+                <% if item.keywords then -%>
+                <span class="post-entry-keywords">
+                    <%- keywordList(pathToRoot, item.keywords) %>
+                </span>
+                <% end -%>
+                <% if item.readingTime then -%>
+                <span class="post-entry-reading-time">
+                    · <%= item.readingTime %>
+                </span>
+                <% end -%>
+            </div>
+        </div>
+        
         <% if item.description then -%>
             <p class="post-entry-description">
-            <%= item.description %>
+                <%= item.description %>
             </p>
         <% end -%>
-            <p class="post-entry-description">
-            <%- htmlifyDate(item.date) %>
-            <% if item.readingTime then %> 
-            · <%= item.readingTime %> <% end %>
-            <% if item.update then -%>
-            · <span><%= item.update %></span>
-            </p>
+        
+        <% if item.update then -%>
         <div class="post-entry-meta">
-            <% if item.keywords then -%>
-            <%- keywordList(pathToRoot, item.keywords) %>
-            <% end -%>
+            <span><%= item.update %></span>
         </div>
-    </div> <% end -%>
+        <% end -%>
+    </li>
 <% end -%>
 </ul>
 ]])
@@ -194,10 +205,45 @@ return {
     deriveMetadata({
         content = function (item)
             if item.content and type(item.content) == "string" then
-                -- Procesamos primero las notas al pie
-                local processed_text = generateFootnotes(item.content)
-                -- Luego procesamos la tabla de contenidos
+                local processed_text = item.content
+                local protected_blocks = {}
+                
+                -- Función auxiliar para guardar el texto original y dejar una marca
+                local function protect(match)
+                    table.insert(protected_blocks, match)
+                    return "___PROTECTED_" .. #protected_blocks .. "___"
+                end
+
+                -- 1. Proteger bloques de código multilínea (```...```)
+                processed_text = string.gsub(processed_text, "(```.-```)", protect)
+                
+                -- 2. Proteger código en línea (`...`)
+                processed_text = string.gsub(processed_text, "(`[^`]+`)", protect)
+
+                -- 3. Proteger URLs (empiezan con http:// o https:// y siguen sin espacios)
+                -- Esto protege enlaces sueltos y las URLs dentro de los paréntesis en Markdown [texto](url)
+                processed_text = string.gsub(processed_text, "(https?://%S+)", protect)
+
+                -- 4. Proteger etiquetas HTML (por si tienes atributos como <a href="...[TOC]...">)
+                processed_text = string.gsub(processed_text, "(<[^>]+>)", protect)
+
+                -- ==========================================
+                -- Ejecutamos las modificaciones seguras
+                -- ==========================================
+                processed_text = generateFootnotes(processed_text)
                 processed_text = generateTOC(processed_text)
+
+                -- ==========================================
+                -- Restauramos el texto original
+                -- ==========================================
+                -- Usamos un bucle while por si alguna marca quedó anidada o junta
+                local count = 1
+                while count > 0 do
+                    processed_text, count = string.gsub(processed_text, "___PROTECTED_(%d+)___", function(index)
+                        return protected_blocks[tonumber(index)]
+                    end)
+                end
+
                 return processed_text
             end
             return item.content

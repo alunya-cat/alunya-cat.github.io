@@ -6,6 +6,8 @@ update: Modificat el
 keywords: [blog]
 ---
 
+[Mi web](https://alunya.cat/alan/?param=[^1])
+
 [TOC]
 
 # H1: Títol Principal
