@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-<title>alunya.cat/Alan</title>
+<title>Alan</title>
 <id>https://alunya.cat/alan/</id>
 <link rel="self" href="https://alunya.cat/alan/feed.xml"/>
 <link rel="alternate" href="https://alunya.cat/alan/"/>
 <author>
-<name>alunya.cat/Alan</name>
+<name>Alan</name>
 </author>
 <updated>2026-01-30T00:00:00.000Z</updated>
 

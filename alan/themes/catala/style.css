@@ -2,20 +2,20 @@
    VARIABLES & COLOR PALETTES
    ========================================================================== */
 :root {
-    /* Main color palette (Light Mode Default) */
-    --bg: #FAF9F5;  
-    --font-serif: 'Cormorant Garamond', 'Garamond', serif;
+    /* Main color palette (Minimalist White) */
+    --bg: #FFFFFF;  /* Blanco puro para máxima elegancia */
+    --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;  
-    --text-main: #1A1C20; 
-    --text-muted: #8B949E;
-    --text-description: #52585F;
-    --border: #E0D8D0;
-    --card-hover: #EFE8E0;
-    --accent: #000000;
-    --bento-bg: #F4EFEA; 
-    --selection-bg: #171717;
-    --selection-text: #FAFAF9;
-    --code-color: #1A1C20;
+    --text-main: #111111; /* Un negro un poco más oscuro para contrastar con el blanco puro */
+    --text-muted: #888888;
+    --text-description: #555555;
+    --border: #E5E5E5; /* Borde más claro y sutil, sin tonos cálidos */
+    --card-hover: #F9F9F9;
+    --accent: #000000; /* Acento en negro absoluto */
+    --bento-bg: #F7F7F7; /* Gris muy claro y neutro, en lugar del crema anterior */
+    --selection-bg: #111111;
+    --selection-text: #FFFFFF;
+    --code-color: #111111;
 }
 
 /* Dark Mode settings based on OS preferences */
@@ -56,8 +56,8 @@ body:has(.toggle:checked) {
    ========================================================================== */
 html, body {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.6;
   background-color: var(--bg);
   color: var(--text-main);
   transition: background-color 0.5s ease, color 0.5s ease;
@@ -76,25 +76,25 @@ h1, h2, h3 { line-height: 1.2; margin: 1.5rem 0 1rem; }
 
 h1 {
   font-family: var(--font-serif);
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   text-transform: none;
   text-align: center;
   color: var(--text-main);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
 }
 
 h2 { 
   font-family: var(--font-serif);
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   text-transform: none;
   border-bottom: solid 1px var(--border);  
   color: var(--text-main);
   padding-bottom: 0.5rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-transform: none;
   color: var(--text-main);
   border-bottom: solid 1px var(--border);
@@ -102,7 +102,7 @@ h3 {
 }
 
 h4 {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   text-transform: none;
   color: var(--text-main);
   border-bottom: dotted 1px var(--border);
@@ -167,7 +167,7 @@ ins {
    ========================================================================== */
 code, pre, samp, kbd {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.85rem;
   color: var(--code-color);
 }
 kbd { font-weight: 600; }
@@ -179,7 +179,7 @@ pre {
     background-color: var(--bento-bg);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 1.2rem;
+    padding: 0.5rem;
     display: block;
     width: 100%;
     white-space: pre-wrap;
@@ -238,14 +238,44 @@ pre {
   margin-bottom: 3rem;
 }
 
+/* ==========================================================================
+   SITE TITLE (LOGOTYPE - "cat alan")
+   ========================================================================== */
+/* ==========================================================================
+   SITE TITLE (LOGOTYPE)
+   ========================================================================== */
 .site-title {
   margin: 0;
-  font-size: 1.5rem;
+  padding: 0;
   line-height: 1;
-  border: none !important;
-  padding: 0 !important;
-  text-transform: none !important;
-  letter-spacing: 0 !important;
+  border: none;
+}
+
+.site-title a {
+  font-family: var(--font-sans); /* Usa la fuente Inter que configuramos antes */
+  font-size: 1.5rem;
+  font-weight: 800; /* Extra bold: le da el peso visual de un logo real */
+  letter-spacing: -0.05em; /* Tracking negativo: junta las letras estilo marca moderna */
+  color: var(--text-main);
+  text-decoration: none !important;
+  text-transform: lowercase; /* (Opcional) Los logos en minúsculas dan un aire muy tech/minimalista */
+  display: inline-flex;
+  align-items: baseline;
+  transition: opacity 0.2s ease;
+}
+
+/* Efecto hover suave, típico de logos (sin subrayados) */
+.site-title a:hover {
+  opacity: 0.6;
+}
+
+/* El toque final: un punto de acento (isotipo minimalista) */
+.site-title a::before {
+  content: "cat";
+  font-weight: 800; /* Grosor normal para generar contraste con el 800 del título */
+  color: var(--text-muted); /* Un tono más suave para separarlo visualmente */
+  margin-right: 0.05em; /* El espacio en blanco entre "cat" y el nombre */
+  letter-spacing: normal; /* Reseteamos el tracking para que 'cat' se lea natural */
 }
 
 .nav-header {
@@ -284,8 +314,9 @@ body > header { text-align: center; }
 main, body > footer {
   flex-grow: 1; 
   width: 100%;
-  max-width: 700px;
-  margin: 0 auto; 
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 main figure, main aside {
@@ -399,111 +430,103 @@ th, td {
   margin: 0;
 }
 
-/* Minimalist separator header for the post year */
-.year-header {
-  padding: 0;
-  margin: 2rem 0 0.5rem 0;
-  font-weight: 600;
-  font-family: var(--font-mono);
-  font-size: 1.1rem;
-  color: var(--text-muted);
+/* Fila de cada artículo */
+.post-row {
+  position: relative; /* Mantiene el "Stretched Link" que hicimos antes */
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 1rem; /* Espacio exacto entre el icono y el título */
+  padding: 1.2rem 0;
+  margin: 0; 
   border-bottom: 1px solid var(--border);
-  padding-bottom: 6px;
-  list-style: none;
-}
-.year-header:first-child {
-  margin-top: 0;
+  transition: background-color 0.2s ease;
 }
 
-/* Individual post row wrapping */
-.post-row {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 12px 16px;
-  margin-bottom: 4px;
-  margin-left: -16px; 
-  box-sizing: border-box;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  border-radius: 8px;
+/* Icono fijo inyectado a la izquierda */
+.post-row::before {
+  content: "☙"; /* Opciones minimalistas: "→", "—", "•", "›", "↳" */
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  width: 20px; /* Ancho fijo para que todos los títulos empiecen en la misma línea vertical */
+  flex-shrink: 0;
+}
+
+/* Opcional: Si quieres que el icono cambie de color al pasar el ratón */
+.post-row:hover::before {
+  color: var(--text-main);
+}
+
+/* Quitamos el borde inferior del último elemento para que quede limpio */
+.post-list-container .post-row:last-child {
+  border-bottom: none;
 }
 
 .post-row:hover {
   background-color: var(--bento-bg);
   cursor: pointer;
-  transform: scale(1.01);
 }
 
-/* Container splitting title (left) and metadata (right) */
-.post-entry-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 15px;
-  width: 100%;
-}
-
-.post-entry-title {
-  margin: 0;
-  padding: 0;
-  font-weight: 600;
-  font-size: 1.15rem;
-}
-
-.post-entry-title::after {
-  display: none;
-}
-
-/* Wrapper for date, tags and reading time aligned to the right */
-.post-entry-right {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  flex-shrink: 0; 
-}
-
+/* Columna Izquierda: Fecha */
 .post-date {
   font-family: var(--font-mono);
   font-size: 0.85rem;
-  color: var(--text-muted);
-  margin: 0;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 140px;
+  flex-shrink: 0;
 }
 
-.post-entry-keywords,
-.post-entry-reading-time {
+/* Columna Central: Título */
+.post-entry-title {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-serif);
+  font-weight: 500; /* Un peso más ligero se parece más a la imagen */
+  font-size: 1.05rem;
+  flex-grow: 1; /* Ocupa todo el espacio disponible en el centro */
+}
+
+/* Quitamos el subrayado por defecto para dar un aspecto más limpio, igual que en la imagen */
+.post-entry-title a {
+  text-decoration: none;
+  color: var(--text-main);
+}
+
+.post-entry-title a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1; /* Cubre toda la fila con el área de clic */
+}
+
+.post-entry-title a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+}
+
+/* Columna Derecha: Etiqueta / Keywords */
+.post-entry-keywords {
+  position: relative;
   font-family: var(--font-mono);
   font-size: 0.85rem;
   color: var(--text-muted);
-}
-.post-entry-reading-time {
-  opacity: 0.8;
-}
-
-/* Ensures description is visible and limits to 2 lines with ellipsis */
-.post-entry-description {
-  width: 100%; 
-  margin: 2px 0;
-  font-size: 0.95rem; 
-  color: var(--text-description);
-  line-height: 1.5;
-  
-  display: -webkit-box !important; 
-  opacity: 1 !important;
-  visibility: visible !important;
-  max-height: none !important;
-
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  text-align: right;
+  width: 100px; /* Ancho fijo para mantener la alineación a la derecha */
+  flex-shrink: 0;
+  text-transform: capitalize;
+  z-index: 2;
 }
 
-/* Bottom block for 'Last updated' meta info */
-.post-entry-meta {
-  margin-top: 2px;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  opacity: 0.8;
+/* Ocultar enlaces de las etiquetas si interfieren con el diseño de texto plano (opcional) */
+.post-entry-keywords a {
+    text-decoration: none;
+    color: inherit;
 }
 
 /* ==========================================================================
@@ -565,7 +588,39 @@ th, td {
 
 .footer-nav .nav-left { gap: 15px; display: flex; }
 .footer-nav .nav-left a { display: flex; }
-.footer-nav .nav-center a { margin: 0 10px; }
+.footer-nav .nav-center a { 
+    margin: 0 10px;
+/* Usar mayúsculas con espaciado de letras da un aspecto muy premium/editorial */
+    text-transform: uppercase; 
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0;
+    position: relative; /* Necesario para la animación del subrayado */
+    transition: color 0.3s ease;
+}
+
+/* Efecto hover sobre el texto */
+.footer-nav .nav-center a:hover {
+    color: var(--text-main);
+}
+
+/* Micro-interacción: Subrayado animado moderno */
+.footer-nav .nav-center a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--text-main);
+    transform-origin: bottom right;
+    transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.footer-nav .nav-center a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
 .footer-nav .nav-right { display: flex; gap: 15px; }
 
 .footer-nav .nav-right a {
@@ -796,10 +851,28 @@ hr.footnotes-sep {
   
   /* Index List Mobile Adjustments */
   .year-header { font-size: 1rem; margin-left: 0; }
+  /* Index List Mobile Adjustments */
   .post-row { 
-      padding: 12px 10px; 
-      margin-left: 0;
+      flex-wrap: wrap; /* Permite que los elementos salten a la siguiente línea si no caben */
+      align-items: flex-start; /* Alinea todo arriba en lugar de la línea base */
+      gap: 0.25rem 1rem; /* Espaciado vertical (0.25) y horizontal (1rem) */
+      padding: 1rem 0; 
   }
+  
+  .post-entry-title { 
+      /* Obliga al título a ocupar todo el espacio restante tras el icono */
+      flex: 1 1 calc(100% - 20px - 2rem); 
+      font-size: 1.1rem;
+  }
+  
+  .post-entry-keywords { 
+      width: 100%; 
+      text-align: left; 
+      /* Empuja las etiquetas hacia la derecha para que queden perfectamente alineadas bajo el título */
+      padding-left: calc(20px + 1rem); 
+  }
+  /* .post-date { width: 100%; font-size: 0.8rem; color: var(--text-muted); } */
+  .post-entry-keywords { width: 100%; text-align: left; }
   .post-entry-header { flex-direction: column; gap: 6px; }
   
   /* On mobile, wrap the technical meta info right under the title */

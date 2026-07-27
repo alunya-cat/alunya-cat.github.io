@@ -17,6 +17,13 @@ function htmlifyDateShort(date)
 	return htmlDateTemplate({ short = date, long = months[string.toNumber(month)] .. " " .. day })
 end
 
+-- Function to generate a long numerical, date format (e.g., "11-3-2026")
+function htmlifyDateNum(date)
+	local year, month, day = string.match(date, "^(%d%d%d%d)-(%d%d)-(%d%d)")
+	local numericDate = day .. "-" .. month .. "-" .. year
+	return htmlDateTemplate({ short = date, long = numericDate })
+end
+
 -- Function to generate a long, fully localized date format (e.g., "11 de març de 2026")
 function htmlifyDate(date)
 	local year, month, day = string.match(date, "^(%d%d%d%d)-(%d%d)-(%d%d)")
@@ -30,7 +37,7 @@ end
 
 -- Template to generate the list of clickable tags/keywords with a separator (|)
 local keywordListTemplate = etlua.compile([[<%
-for i, k in ipairs(keywords) do -%><% if i > 1 then %> | <% end %><a href="<%= pathToRoot %>topics/<%= k %>.html">#<%= k %></a>
+for i, k in ipairs(keywords) do -%><% if i > 1 then %> - <% end %><a href="<%= pathToRoot %>topics/<%= k %>.html">#<%= k %></a>
 <% end -%>]])
 
 -- Function to render the keyword list template
@@ -47,44 +54,21 @@ end
 local postListTemplate = etlua.compile([[
 <% local lastYear = nil -%>
 <ul class="post-list-container">
-<% for i, item in ipairs(table.sortBy(items, "date", true)) do
-   local year = string.match(item.date, "^(%d%d%d%d)")
-   -- Print the year header only when it changes
-   if lastYear ~= year then -%>
-     <li class="year-header"><%= year %></li>
-<% lastYear = year end -%>
+<% for i, item in ipairs(table.sortBy(items, "date", true)) do -%>
     <li class="post-row">
-        <div class="post-entry-header">
-            <span class="post-entry-title">
-                <a href="<%= pathToRoot %><%= item.path %>"><%= item.title %></a>
-            </span>
-            
-            <div class="post-entry-right">
-                <span class="post-date"><%- htmlifyDateShort(item.date) %></span>
-                <% if item.keywords then -%>
-                <span class="post-entry-keywords">
-                    <%- keywordList(pathToRoot, item.keywords) %>
-                </span>
-                <% end -%>
-                <% if item.readingTime then -%>
-                <span class="post-entry-reading-time">
-                    · <%= item.readingTime %>
-                </span>
-                <% end -%>
-            </div>
-        </div>
+        <!--<span class="post-entry-keywords">
+            <% if item.keywords then -%>
+                <%- keywordList(pathToRoot, item.keywords) %>
+            <% end -%>
+        </span>-->
         
-        <% if item.description then -%>
-            <p class="post-entry-description">
-                <%= item.description %>
-            </p>
-        <% end -%>
+        <span class="post-entry-title">
+            <a href="<%= pathToRoot %><%= item.path %>"><%= item.title %></a>
+        </span>
+
+        <span class="post-date"><%- htmlifyDateNum(item.date) %></span>
         
-        <% if item.update then -%>
-        <div class="post-entry-meta">
-            <span><%= item.update %></span>
-        </div>
-        <% end -%>
+        
     </li>
 <% end -%>
 </ul>
@@ -226,7 +210,7 @@ end
 -- ==========================================
 -- Default metadata used across the static site
 local site = {
-	title = "alunya.cat/Alan",
+	title = "Alan",
 	url = "https://alunya.cat/alan/",
     description = "Breus apunts sobre temes diversos, coses quotidianes que aprenc, coses que sé però sovint oblido, i qualsevol altra cosa que em vingui de gust escriure mentre aprenc en públic. No sempre és definitiu ni nou, però espero que sigui útil o, si més no, interessant.",
     email = "tac.aynula@tac",
