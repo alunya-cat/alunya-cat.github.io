@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Fira+Code:wght@400;600&family=IM+Fell+English:ital,wght@0,400;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
 /* ==========================================================================
    VARIABLES & COLOR PALETTES
    ========================================================================== */
@@ -5,6 +6,7 @@
     /* Main color palette (Minimalist White) */
     --bg: #FFFFFF;  /* Blanco puro para máxima elegancia */
     --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    --font-quote: 'IM Fell English', serif; /* <--- AÑADIR ESTA LÍNEA */
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;  
     --text-main: #111111; /* Un negro un poco más oscuro para contrastar con el blanco puro */
     --text-muted: #888888;
@@ -332,13 +334,50 @@ main aside {
   color: var(--text-muted);
 }
 
+/* ==========================================================================
+   BLOCKQUOTE (Estilo literario vintage con IM Fell English)
+   ========================================================================== */
 blockquote {
-  border-left: 2px solid var(--border);
-  margin-right: 3ch;
-  margin-left: 1.5ch;
-  padding: 0 0 0 1.5rem;
-  font-style: italic;
-  color: var(--text-muted);
+    border: none;
+    background: transparent;
+    margin: 2rem 1.5rem;
+    padding: 0;
+    font-family: var(--font-quote); /* Utiliza IM Fell English */
+    font-size: 1.25rem; /* Subimos un poco el tamaño porque esta tipografía tiene un cuerpo más pequeño */
+    line-height: 1.6;
+    color: var(--text-description);
+}
+
+/* Párrafos del extracto */
+blockquote p {
+    font-style: italic;
+    margin: 0 0 0.5rem 0;
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* Letra capitular con la nueva fuente */
+blockquote p:first-child::first-letter {
+    font-family: var(--font-quote);
+    font-style: italic;
+    font-size: 2rem;
+    float: left;
+    line-height: 0.75;
+    margin-top: 0.1rem;
+    padding-right: 0.2rem;
+    color: var(--text-main);
+}
+
+blockquote + blockquote::before {
+    content: "";
+    display: block;
+    width: 75%;
+    height: 1px;
+    background-color: var(--border);
+    margin: 2.5rem auto;
+    opacity: 0.8;
 }
 
 hr {
@@ -819,6 +858,161 @@ hr.footnotes-sep {
 .toc-return:hover {
     opacity: 1;
     color: var(--accent);
+}
+
+/* ==========================================================================
+   SECCIONES POR CALIFICACIÓN (RATINGS)
+   ========================================================================== */
+
+.rating-section {
+    margin-top: 3rem;
+    margin-bottom: 4rem;
+}
+
+/* Cabecera de cada categoría de calificación */
+.rating-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.rating-title {
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    border: none; /* Anula el borde por defecto de los h2 */
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.rating-stars {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--text-main);
+    letter-spacing: 2px;
+}
+
+.rating-label {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.rating-count {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   BOOKSHELF GRID
+   ========================================================================== */
+.bookshelf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 2rem 1.5rem;
+    margin: 2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.book-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.book-item:hover {
+    transform: translateY(-4px);
+}
+
+/* Contenedor relativo para recortar y posicionar el overlay */
+.book-cover-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2 / 3; /* Proporción estándar de cómics/libros */
+    border-radius: 8px;
+    overflow: hidden; /* Oculta el banner amarillo cuando está abajo */
+    margin-bottom: 0.8rem;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.book-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* --- OVERLAY HOVER EFFECT --- */
+
+.books-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 28%; /* Altura del faldón amarillo */
+    background: var(--card-hover); /* Color amarillo de la referencia */
+    border-radius: 0 0 8px 8px;
+    opacity: 0;
+    transform: translateY(100%); /* Oculto debajo de la imagen */
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.books-overlay-text {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-description);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-align: center;
+}
+
+/* Activación al pasar el ratón */
+.book-item:hover .books-overlay {
+    opacity: 1;
+    transform: translateY(0); /* Sube a su posición visible */
+}
+
+/* Títulos y Autores */
+.book-title {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--text-main);
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+    border: none;
+    letter-spacing: -0.02em;
+}
+
+.book-author {
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 4px 0 0 0;
 }
 
 /* ==========================================================================

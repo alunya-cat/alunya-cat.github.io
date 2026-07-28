@@ -80,6 +80,31 @@ function postList(self)
 end
 
 -- ==========================================
+-- BOOKSHELF TEMPLATE
+-- ==========================================
+
+local bookshelfTemplate = etlua.compile([[
+<div class="bookshelf-grid">
+<% for i, item in ipairs(items) do -%>
+    <% if item.cover then -%>
+    <a href="<%= pathToRoot %><%= item.path %>" class="book-item">
+        <img src="<%= pathToRoot %><%= item.cover %>" alt="Portada de <%= item.title %>" class="book-cover">
+        <h3 class="book-title"><%= item.title %></h3>
+        <% if item.author then -%>
+            <p class="book-author"><%= item.author %></p>
+        <% end -%>
+    </a>
+    <% end -%>
+<% end -%>
+</div>
+]])
+
+-- Función para ejecutar el template del bookshelf
+function bookshelfList(self)
+	return bookshelfTemplate({ pathToRoot = self.pathToRoot, items = self.items })
+end
+
+-- ==========================================
 -- SYNTAX HIGHLIGHTING (TERMINAL/RAW HTML FALLBACK)
 -- ==========================================
 
@@ -232,6 +257,7 @@ return {
     injectFiles({ 
         ["style.css"] = fs.readThemeFile("style.css"), 
         ["_404.html"] = "",
+        ["_books.html"] = "",
     }),
     
     -- We process these custom tags before the main Markdown parser runs.
@@ -312,9 +338,17 @@ return {
         date = "1970-01-01",
     }, "^_404.html$"),
 
+    -- NUEVO: Metadatos para la estantería
+    injectMetadata({
+        title = "Mi Estantería",
+        description = "Cómics, libros y mangas que he leído recientemente.",
+        pathToRoot = site.url,
+    }, "^_books.html$"),
+
     -- Generate aggregation pages (RSS feed and the main index)
     aggregate("feed.xml", "^[^_].*%.html$"),
     aggregate("index.html", "^[^_].*%.html$"),
+    
 
     -- Generate tag/keyword index pages
     createIndexes(function (keyword) return "topics/" .. keyword .. ".html" end, "keywords", "^[^_].*%.html$"),
@@ -329,6 +363,7 @@ return {
         { "^topics/.-%.html$", fs.readThemeFile("index.etlua") },
         { "^feed.xml$", fs.readThemeFile("feed.etlua") },
         { "^index.html$", fs.readThemeFile("blog.etlua") },
+        { "^_books.html$", fs.readThemeFile("books.etlua") }, -- NUEVO
         { "^_404.html$", fs.readThemeFile("404.etlua") },
     }),
     
@@ -339,6 +374,9 @@ return {
     omitWhen(function(item)
         if item.path == "_404.html" then
             item.path = "404.html"
+        end
+        if item.path == "_books.html" then
+            item.path = "books.html"
         end
         return false
     end),
