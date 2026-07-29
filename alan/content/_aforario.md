@@ -11,50 +11,28 @@ keywords: [blog]
 [TOC]
 
 # El juego del ángel - Carlos Ruiz Zafón
-
-> Uno no sabe lo que es la sed hasta que bebe por primera vez.
-  
-> Sabe usted muchas cosas, señor Corelli. -Las suficientes para pensar que me gustaría conocerle mejor y ser su amigo. Y creo que usted no tiene muchos amigos. Yo tampoco. No confío en la gente que cree tener muchos amigos. Es señal de que no conocen a los demás.
-  
+    
 > Pero hay muchas personas que tienen talento y ganas, y muchas de ellas nunca llegan a nada. Ése es sólo el principio para hacer cualquier cosa en la vida. El talento natural es como la fuerza de un atleta. Se puede nacer con más o menos facultades, pero nadie llega a ser un atleta sencillamente porque ha nacido alto o fuerte o rápido. Lo que hace al atleta, o al artista, es el trabajo, el oficio y la técnica. La inteligencia con la que naces es simplemente munición. Para llegar a hacer algo con ella es necesario que transformes tu mente en una arma de precisión. -¿Y lo del símil bélico? -Toda obra de arte es agresiva, Isabella. Y toda vida de artista es una pequeña o gran guerra, empezando con uno mismo y sus limitaciones. Para llegar a cualquier cosa que te propongas hace falta primero la ambición y luego el talento, el conocimiento y, finalmente, la oportunidad.
   
 > La poesía se escribe con lágrimas, la novela con sangre y la historia con agua de borrajas.
   
-> Está en nuestra naturaleza sobrevivir. La fe es una respuesta instintiva a aspectos de la existencia que no podemos explicar de otro modo, bien sea el vacío moral que percibimos del universo, la certeza de la muerte, el misterio del origen de las cosas o el sentido de nuestra propia vida, o la ausencia de él. Son aspectos elementales y de extraordinaria sencillez, pero nuestras propias limitaciones nos impiden responder de un modo inequívoco a esas preguntas y por ese motivo generamos, como defensa, una respuesta emocional. Es simple y pura biología. -Según usted, entonces, todas las creencias o ideales no serían más que una ficción. -Toda interpretación u observación de la realidad lo es por necesidad. En este caso, el problema radica en que el hombre es un animal moral abandonada en un universo amoral y condenado a una existencia finita y sin otro significado que perpetuar el ciclo natural de la especie. Es imposible sobrevivir en un estado prolongado de realidad, al menos para un ser humano. Pasamos buena parte de nuestras vidas soñando, sobre todo cuando estamos despiertos. Como digo, simple biología.
+> Está en nuestra naturaleza sobrevivir. La fe es una respuesta instintiva a aspectos de la existencia que no podemos explicar de otro modo, bien sea el vacío moral que percibimos del universo, la certeza de la muerte, el misterio del origen de las cosas o el sentido de nuestra propia vida, o la ausencia de él. Son aspectos elementales y de extraordinaria sencillez, pero nuestras propias limitaciones nos impiden responder de un modo inequívoco a esas preguntas y por ese motivo generamos, como defensa, una respuesta emocional. Es simple y pura biología. -Según usted, entonces, todas las creencias o ideales no serían más que una ficción. -Toda interpretación u observación de la realidad lo es por necesidad. En este caso, el problema radica en que el hombre es un animal moral abandonadO en un universo amoral y condenado a una existencia finita y sin otro significado que perpetuar el ciclo natural de la especie. Es imposible sobrevivir en un estado prolongado de realidad, al menos para un ser humano. Pasamos buena parte de nuestras vidas soñando, sobre todo cuando estamos despiertos. Como digo, simple biología.
 
 # La sombra del viento - Carlos Ruiz Zafón
 
-> Alguien dijo alguna vez que en el momento en que te paras a pensar si quieres a alguien, ya has dejado de quererle para siempre.
-
-> ¿Y cómo me ves tú a mí? -Como un misterio. -Ése es el cumplido más raro que me han hecho nunca. -No es un cumplido. Es una amenaza. -¿Y eso? -Los misterios hay que resolverlos, averiguar qué esconden.
-
 > El aya sabía que quien quiere de verdad quiere en silencio, con hechos y nunca con palabras.
-
-> Oiga, si le parece una tontería me callo. -Al contrario. Hablar es de necios; callar es de cobardes; escuchar es de sabios.
 
 > Ni hablar. Las estadísticas lo demuestran: más gente muere en la cama que en la trinchera.
 
-> Para mí, Nuria Monfort tenía la consistencia y la credibilidad de un espejismo: no se cuestiona su veracidad, sencillamente se le sigue hasta que se desvanece o te destruye.
-
-> Ambos se preguntaban si habían sido las cartas que les había servido la vida, o si había sido el modo en que las habían jugado.
-
-> ¿Sabe el loco que está loco? ¿O los locos son los demás, que se empeñan en convencerle de su sinrazón para salvaguardar su existencia de quimeras?.
-
 # Preludio a la Fundación - Isaac Asimov
 
-> La gente cree que todo está bien y que las dificultades de los siglos pasados han terminado porque no hay insurrecciones y las cosas parecen tranquilas. No obstante, también las luchas políticas, los alzamientos y el desasosiego son indicios de cierta vitalidad. Pero ahora se está produciendo un cansancio general. Todo aparece tranquilo, y no ocurre así porque la gente esté satisfecha y viva con prosperidad, sino porque se siente cansada y se ha rendido.
+> La gente cree que todo está bien y que las dificultades de los siglos pasados han terminado porque no hay insurrecciones y las cosas parecen tranquilas. No obstante, también las luchas políticas, los alzamientos y el desasosiego son indicios de cierta vitalidad. Pero ahora se está produciendo un cansancio general. Todo parece tranquilo, y no ocurre así porque la gente esté satisfecha y viva con prosperidad, sino porque se siente cansada y se ha rendido.
 
 # Fahrenheit 451 - Ray Bradbury
 
-> Si no quieres que un hombre se sienta políticamente desgraciado, no le enseñes dos aspectos de una misma cuestión, pues le preocuparás; enséñale solo uno. O, mejor aún, no le muestres ninguno. Haz que olvide que existe una cosa llamada guerra. Si el gobierno es poco eficiente, excesivamente intelectual o aficionado a aumentar los impuestos, que lo sea pero sobre todo que la gente no se preocupe por ello. Paz, Montag. Dale a la gente concursos que puedan ganar recordando la letra de las canciones más populares, o los nombres de las capitales de estado o cuánto maíz produjo Iowa el año pasado. Atibórrala de datos no combustibles, lánzales encima tantos "hechos" que se sientan abrumados, pero totalmente al día en cuanto a información. Entonces, tendrán la sensación de que piensan, de que se mueven sin moverse, y serán felices, porque los hechos de esta naturaleza no cambian. No les des ninguna materia delicada como la filosofía o sociología para que empiecen a atar cabos. Por ese camino se llega a la melancolía.
-
-> De horas después del trabajo, sí, pero ¿y tiempo para pensar? Si no se está conduciendo un vehículo a ciento cincuenta kilómetros por hora, de modo que solo puede pensarse en el peligro que se corre, se está interviniendo en algún juego o se halla uno sentada en el salón, donde es imposible discutir con el televisor de cuatro paredes. ¿Por qué? El televisor es "real". Es inmediato, está ahí y tiene dimensión. Te dice lo que debes pensar y te lo dice a gritos. Debe de tener razón. Parece tenerla. Te hostiga de forma tan apremiante para que aceptes tus propias conclusiones que tu mente no tiene tiempo para protestar, para gritar: <<¡Qué tontería!>>.
-
-> Mi esposa afirma que los libros no son "reales". -Y gracias a Dios por ello. Uno puede cerrarlos, decir; "Aguarda un momento". Uno actúa como un dios. Pero ¿quién consigue soltarse de la garra que lo sujeta una vez se ha instalado en un salón con televisor? ¡Lo moldea a uno a su antojo! Es un medio ambiente tan auténtico como el mundo. Se convierte en la verdad y es la verdad. Los libros pueden ser combatidos con argumentos.
+> Si no quieres que un hombre se sienta políticamente desgraciado, no le enseñes dos aspectos de una misma cuestión, pues le preocuparás; enséñale solo uno. O, mejor aún, no le muestres ninguno. Haz que olvide que existe una cosa llamada guerra. Si el gobierno es poco eficiente, excesivamente intelectual o aficionado a aumentar los impuestos, que lo sea pero sobre todo que la gente no se preocupe por ello. Dale a la gente concursos que puedan ganar recordando la letra de las canciones más populares, o los nombres de las capitales de estado o cuánto maíz produjo Iowa el año pasado. Atibórrala de datos no combustibles, lánzales encima tantos "hechos" que se sientan abrumados, pero totalmente al día en cuanto a información. Entonces, tendrán la sensación de que piensan, de que se mueven sin moverse, y serán felices, porque los hechos de esta naturaleza no cambian. No les des ninguna materia delicada como la filosofía o sociología para que empiecen a atar cabos. Por ese camino se llega a la melancolía.
 
 > ¿Adónde iremos a parar? ¿Podrían ayudarnos los libros? -Solo si la tercera condición necesaria nos es concedida. La primera, como he dicho, es la calidad de la información; la segunda, tiempo de ocio para asimilarla, y la tercera, el derecho a emprender acciones basadas en lo que aprendemos por la interacción o por la acción conjunta de las otras dos.
-
-> ¿Qué hay en el fuego que lo hace tan atractivo? No importa la edad que tengamos, ¿qué nos atrae hacia él? -El capitán apagó de un soplo la llama y volvió a encenderla-. Es el movimiento continuo lo que el hombre quiso inventar, pero nunca lo consiguió. O el movimiento casi continuo. Si se la dejara arder, lo haría durante toda nuestra vida. ¿Qué es el fuego? Un misterio. Los científicos hablan mucho de fricción y de moléculas. Pero en realidad no lo saben. Su verdadera belleza es que destruye responsabilidades y consecuencias. Si un problema se hace excesivamente pesado, al fuego con él. Ahora, Montag, tú eres un problema, y el fuego me solucionará este engorro de forma limpia, rápida y segura. Después, no quedará ni rastro. Aséptico, estético, práctico.
 
 > Cuando murió, de pronto me di cuenta de que no lloraba por él, sino por las cosas que hacía. Formaba parte de nosotros, y cuando murió, todas las actividades se interrumpieron, y nadie era capaz de hacerlas como él. La noche en que falleció, el mundo sufrió una pérdida de diez millones de buenas acciones.
 
@@ -68,37 +46,19 @@ keywords: [blog]
 
 # 1984 - George Orwell
 
-> Y, si todos aceptaban la mentira impuesta por el Partido -si todos los archivos contaban la misma mentira-, la mentira pasaba a la historia y se convertía en verdad. "Quien controla el pasado -decía la consigna del Partido- controla el futuro. Quien controla el presente controla pasado.
-
-> Hasta que no tomen conciencia no se rebelarán, y sin rebelarse no podrán tomar conciencia.
-
-> La guerra la lleva a cabo cada grupo gobernante contra sus propios gobernados, y el objetivo de la guerra no es hacer o impedir conquistas territoriales, sino conversar intacta la estructura de la sociedad. La misma palabra "guerra", por tanto, se ha vuelto equívoca. Probablemente sea acertado afirmar que, al convertirse en continua, la guerra había dejado de existir. [...]. El efecto es muy similar a si los tres superestados, en lugar de combatir entre sí, hubiesen acordado una paz perpetua a fin de vivir inviolables en el interior de sus fronteras. En ese caso, cada uno de ellos sería un universo contenido en sí mismo, libre para siempre de la atemperante influencia del peligro exterior. Ese y no otro -aunque la mayoría de los miembros del Partido lo entiendan solo de manera muy superficial- es el significado último del eslogan del Partido: "La guerra es la paz".
+> Y, si todos aceptaban la mentira impuesta por el Partido -si todos los archivos contaban la misma mentira-, la mentira pasaba a la historia y se convertía en verdad. "Quien controla el pasado -decía la consigna del Partido- controla el futuro. Quien controla el presente controla el pasado.
 
 # Cuentos - Roald Dahl
 
 > Era una ciudad enloquecida por su propio dinero y no había oropeles ni falsos adornos culturales ni palabrería zalamera capaces de disimular el hecho de que la gran fruta dorada estaba podrida por dentro.
 
-> América es la tierra de la oportunidad para las mujeres, quienes, poseedoras ya de alrededor del ochenta y cinco por ciento de la riqueza del país, en breve se habrán hecho con su totalidad. El divorcio se ha convertido en una operación lucrativa, de sencillo arreglo y fácil olvido, que las hembras ambiciosas pueden repetir cuantas veces gusten negociando beneficios que alcanzan cifras astronómicas. La muerte del marido también aporta recompensas satisfactorias, y algunas señoras prefieren confiar en ese expediente: saben que la espera no será demasiado larga, pues el exceso de trabajo junto con la hipertensión no tardarán en llevarse al pobre diablo, llamado a expirar ante su escritorio con un frasco de benzedrinas en una mano y una caja de tranquilizantes en la otra.
-
 # Un mundo feliz - Aldous Huxley
-
-> Estabilidad -continuó el interventor-, estabilidad. No cabe civilización alguna sin estabilidad social. Y no hay estabilidad social sin estabilidad individual.
-
-> No somos más nuestros de lo que es nuestro lo que poseemos. No nos hicimos a nosotros mismos, no podemos ser superiores a nosotros mismos. No somos nuestros propios dueños. Somos propiedad de Dios. ¿No consiste nuestra felicidad en ver así las cosas? ¿Existe alguna felicidad o algún consuelo en creer que somos nosotros? Es posible que los jóvenes y los dichosos piensen así. Es posible que éstos piensen que es una gran cosa hacerlo según su voluntad, como ellos suponen, no depender de nadie, no tener que pensar en nada invisible, ahorrarse la molestia de tener que reconocer que rezar y que referirse continuamente todo lo que hacen a la voluntad de otro. Pero a medida que pase el tiempo, éstos, como todos los hombres, descubrirán que la independencia no fue hecha para el hombre, que es un estado antinatural, que puede sostenerse por un momento pero no puede mantenernos a salva hasta el fin....
 
 > Un hombre envejece y siente ese sensación radical de debilidad, de fatiga, de malestar, que acompaña a la edad avanzada; e imagina que está enfermo, engaña sus temores con la idea de que su desagradable estado obedece a alguna causa particular, de la que espera recobrarse como si se tratara de una enfermedad. ¡Vaya imaginación! Esta enfermedad es la vejez y es una enfermedad terrible. Dicen que el temor a la muerte y a lo que sigue a la muerte es lo que induce a los hombres a entregarse a la religión cuando envejecen. Pero mi propia experiencia me ha convencido de que, dejando a un lado tales terrores e imaginaciones, el sentimiento religioso tiende a desarrollarse a medida que la imaginación y los sentidos son menos excitables, entonces nuestra razón halla menos obstáculos en su camino, se ve menos ofuscada por las lágrimas, los deseos y las distracciones en que solía entretenerse. Ése es el momento en que Dios emerge como desde detrás de una nube y nuestra alma siente, ve, se vuelve natural...".
 
 > Sólo podéis ser independientes de Dios mientras conservéis la juventud y la prosperidad hasta el fin..
 
-> Nuestra civilización ha elegido el maquinismo, la medicina y la felicidad. Por eso tengo que guardar estos libros encerrados en la caja de seguridad. Resultan indecentes. La gente se mostraría desagradablemente sorprendida si... El salvaje le interrumpió. -Pero ¿acaso no es natural creer que existe un Dios? -La gente ahora nunca está sola -dijo Mustafá Mond-. La inducimos a odia la soledad; disponemos sus vidas de modo que resulte imposible estar solos alguna vez.
-
 > Los dioses son justos, sin duda, pero su código legal es dictado, en última instancia, por las personas que organizan la sociedad. La Providencia recibe órdenes de los hombres.
-
-# No confíes en nadie - S.J. Watson
-
-> Los hombres siempre dicen te quiero como una pregunta.
-
-> Esto no es vida, es solo una existencia.
 
 # El anarquista que se llamaba como yo - Pablo Martín Sánchez
 
@@ -113,5 +73,3 @@ keywords: [blog]
 > Mire, padre -le acaba diciendo Pablo-, yo siempre he pensado que no es más cristiano el que más habla de Dios, sino el que menos le ofende.
 
 > "Anarquistas y burgueses, codo a codo", donde se afirmaba que los anarquistas no eran sino los burgueses de la clase obrera.
-
-> El origen de la pena de muerte, tal como la aplican hoy en día los Estados, es ciertamente la venganza sin medida, tan terrible como pueda inspirarla el odio, o la venganza reglamentada por una especie de justicia sumaria, es decir, la pena del talión: ojo por ojo, diente por diente, cabeza por cabeza.

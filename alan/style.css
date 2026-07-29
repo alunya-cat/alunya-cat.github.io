@@ -343,7 +343,7 @@ blockquote {
     margin: 2rem 1.5rem;
     padding: 0;
     font-family: var(--font-quote); /* Utiliza IM Fell English */
-    font-size: 1.25rem; /* Subimos un poco el tamaño porque esta tipografía tiene un cuerpo más pequeño */
+    font-size: 1.35rem; /* Subimos un poco el tamaño porque esta tipografía tiene un cuerpo más pequeño */
     line-height: 1.6;
     color: var(--text-description);
 }
@@ -915,104 +915,81 @@ hr.footnotes-sep {
 }
 
 /* ==========================================================================
-   BOOKSHELF GRID
+   BOOK LIST (TEXT ONLY)
    ========================================================================== */
-.bookshelf-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 2rem 1.5rem;
-    margin: 2rem 0;
-    padding: 0;
-    list-style: none;
-}
-
-.book-item {
+/* Contenedor con el borde a la izquierda acompañando a la lista */
+.book-list-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    margin: 0 0 2.5rem 0;
+    padding-left: 1rem;
+    border-left: 0.45px solid var(--border); /* Borde sutil a la izquierda del bloque */
+    transition: border-color 0.3s ease;
+}
+
+/* Opcional: realzar un poco el borde al pasar el cursor por encima del bloque */
+.book-list-container:hover {
+    border-left-color: var(--accent);
+}
+
+.book-list-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid var(--border);
     text-decoration: none;
-    transition: transform 0.2s ease;
+    transition: background-color 0.2s ease;
+    gap: 1rem;
 }
 
-.book-item:hover {
-    transform: translateY(-4px);
+.book-list-row:last-child {
+    border-bottom: none;
 }
 
-/* Contenedor relativo para recortar y posicionar el overlay */
-.book-cover-container {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 2 / 3; /* Proporción estándar de cómics/libros */
-    border-radius: 8px;
-    overflow: hidden; /* Oculta el banner amarillo cuando está abajo */
-    margin-bottom: 0.8rem;
-    border: 1px solid var(--border);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+.book-list-row:hover {
+    background-color: var(--bento-bg);
+    cursor: pointer;
 }
 
-.book-cover {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* --- OVERLAY HOVER EFFECT --- */
-
-.books-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 28%; /* Altura del faldón amarillo */
-    background: var(--card-hover); /* Color amarillo de la referencia */
-    border-radius: 0 0 8px 8px;
-    opacity: 0;
-    transform: translateY(100%); /* Oculto debajo de la imagen */
-    user-select: none;
+.book-list-title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text-main);
     display: flex;
     align-items: center;
-    justify-content: center;
-    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 10px;
+    flex-grow: 1;
 }
 
-.books-overlay-text {
-    font-family: var(--font-sans);
+.book-list-badge {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    background-color: var(--border);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--text-description);
+    margin-left: auto;
+    flex-shrink: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   SUBCATEGORÍAS DE LECTURA (DENTRO DE CADA CALIFICACIÓN)
+   ========================================================================== */
+.category-subtitle {
+    font-family: var(--font-mono);
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--text-description);
     text-transform: uppercase;
-    letter-spacing: -0.02em;
-    margin: 0;
-    text-align: center;
-}
-
-/* Activación al pasar el ratón */
-.book-item:hover .books-overlay {
-    opacity: 1;
-    transform: translateY(0); /* Sube a su posición visible */
-}
-
-/* Títulos y Autores */
-.book-title {
-    font-family: var(--font-sans);
-    font-size: 0.95rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    color: var(--text-main);
-    line-height: 1.2;
-    margin: 0;
-    padding: 0;
-    border: none;
-    letter-spacing: -0.02em;
-}
-
-.book-author {
-    font-family: var(--font-serif);
-    font-size: 0.9rem;
+    letter-spacing: 1px;
     color: var(--text-muted);
-    font-style: italic;
-    margin: 4px 0 0 0;
+    margin: 2rem 0 0.5rem 0.5rem;
+    padding-bottom: 0.2rem;
+    border-bottom: dotted 1px var(--border);
 }
 
 /* ==========================================================================

@@ -340,8 +340,8 @@ return {
 
     -- NUEVO: Metadatos para la estantería
     injectMetadata({
-        title = "Mi Estantería",
-        description = "Cómics, libros y mangas que he leído recientemente.",
+        title = "Todas las lecturas que he terminado a lo largo de mi vida",
+        description = "Puedes pulsar aquellos libros que tienen alguna frase que merece ser recordada.",
         pathToRoot = site.url,
     }, "^_books.html$"),
 

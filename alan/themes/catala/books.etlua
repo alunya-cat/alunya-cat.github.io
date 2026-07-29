@@ -16,7 +16,27 @@
 <hr>
 
 <!-- Contenido -->
-
+<!-- Libro con extractos
+<a href="_test.html" class="book-item">
+    <div class="book-cover-container">
+        <img src="assets/books/orb.webp" class="book-cover">
+        <div class="books-overlay">
+            <span class="books-overlay-text">Extractos</span>
+        </div>
+    </div>
+    <h3 class="book-title">TITULO</h3>
+    <p class="book-author">Libro</p>
+</a>
+-->
+<!-- Libro/manga sin extractos
+<a class="book-item">
+    <div class="book-cover-container">
+        <img src="assets/books/orb.webp" class="book-cover">
+    </div>
+    <h3 class="book-title">TITULO</h3>
+    <p class="book-author">Libro/Manga</p>
+</a>
+-->
 <!-- ================= SECCIÓN 5 ESTRELLAS ================= -->
     <section class="rating-section">
         <div class="rating-header">
@@ -24,30 +44,72 @@
                 <span class="rating-stars">★★★★★</span>
                 <span class="rating-label">Imprescindibles</span>
             </h2>
-            <span class="rating-count">2 libros</span>
+            <span class="rating-count">15 lecturas</span>
         </div>
 
-        <div class="bookshelf-grid">
-            <a href="" class="book-item">
-                <div class="book-cover-container">
-                    <img src="assets/books/dandadan.jpg" alt="Dandadan, Vol. 13" class="book-cover">
-                    <div class="books-overlay">
-                        <span class="books-overlay-text">QUICK VIEW</span>
-                    </div>
+        <!-- Subcategoría: Libros -->
+        <h3 class="category-subtitle">Libros</h3>
+        <div class="book-list-container">
+            <a href="https://alunya.cat/alan/_aforario.html#rebeli%C3%B3n-en-la-granja-george-orwell" class="book-list-row">
+                <div class="book-list-title">
+                    Rebelión en la granja
+                    <span class="book-list-badge">Extractos</span>
                 </div>
-                <h3 class="book-title">Dandadan, Vol. 13</h3>
-                <p class="book-author">Yukinobu Tatsu</p>
             </a>
-
-            <a href="" class="book-item">
-                <div class="book-cover-container">
-                    <img src="assets/books/jujutsu.jpg" alt="Jujutsu Kaisen, Vol. 26" class="book-cover">
-                    <div class="books-overlay">
-                        <span class="books-overlay-text">QUICK VIEW</span>
-                    </div>
+            <a class="book-list-row">
+                <div class="book-list-title">Cometas en el cielo</div>
+            </a>
+            <a href="https://alunya.cat/alan/_aforario.html#la-sombra-del-viento-carlos-ruiz-zaf%C3%B3n" class="book-list-row">
+                <div class="book-list-title">
+                    La sombra del viento
+                    <span class="book-list-badge">Extractos</span>
                 </div>
-                <h3 class="book-title">Jujutsu Kaisen, Vol. 26</h3>
-                <p class="book-author">Gege Akutami</p>
+            </a>
+        </div>
+
+        <!-- Subcategoría: Mangas -->
+        <h3 class="category-subtitle">Mangas</h3>
+        <div class="book-list-container">
+            <a class="book-list-row">
+                <div class="book-list-title">Abara</div>
+            </a>
+            <a class="book-list-row">
+                <div class="book-list-title">Bleach</div>
+            </a>
+            <a class="book-list-row">
+                <div class="book-list-title">Claymore</div>
+            </a>
+            <a class="book-list-row">
+                <div class="book-list-title">Crime and Punishment: A Falsified Romance</div>
+            </a>
+            <a class="book-list-row">
+                <div class="book-list-title">Orb: On the Movements of the Earth</div>
+            </a>
+            <a class="book-list-row">
+                <div class="book-list-title">Eden: It's an Endless World!</div>
+            </a>
+            <a class="book-list-row">
+                <div class="book-list-title">Agravity Boys</div>
+            </a>
+            <a class="book-list-row">
+                <div class="book-list-title">Fullmetal Alchemist</div>
+            </a>
+            <a class="book-list-row">
+                <div class="book-list-title">GTO: Great Teacher Onizuka</div>
+            </a>
+            <a class="book-list-row">
+                <div class="book-list-title">Kino's Journey - The Beautiful World</div>
+            </a>
+        </div>
+
+        <!-- Subcategoría: Manhuas -->
+        <h3 class="category-subtitle">Manhuas</h3>
+        <div class="book-list-container">
+            <a class="book-list-row">
+                <div class="book-list-title">Distant Sky</div>
+            </a>
+            <a class="book-list-row">
+                <div class="book-list-title">Horimiya</div>
             </a>
         </div>
     </section>
@@ -59,19 +121,31 @@
                 <span class="rating-stars">★★★★☆</span>
                 <span class="rating-label">Muy recomendados</span>
             </h2>
-            <span class="rating-count">1 libro</span>
+            <span class="rating-count">3 lecturas</span>
         </div>
 
-        <div class="bookshelf-grid">
-            <a href="" class="book-item">
-                <div class="book-cover-container">
-                    <img src="assets/books/chainsaw.jpg" alt="Chainsaw Man" class="book-cover">
-                    <div class="books-overlay">
-                        <span class="books-overlay-text">QUICK VIEW</span>
-                    </div>
+        <!-- Subcategoría: Libros -->
+        <h3 class="category-subtitle">Libros</h3>
+        <div class="book-list-container">
+            <a href="https://alunya.cat/alan/_aforario.html#fahrenheit-451-ray-bradbury" class="book-list-row">
+                <div class="book-list-title">
+                    Fahrenheit 451
+                    <span class="book-list-badge">Extractos</span>
                 </div>
-                <h3 class="book-title">Chainsaw Man, Vol. 15</h3>
-                <p class="book-author">Tatsuki Fujimoto</p>
+            </a>
+            <a href="https://alunya.cat/alan/_aforario.html#el-juego-del-%C3%A1ngel-carlos-ruiz-zaf%C3%B3n" class="book-list-row">
+                <div class="book-list-title">
+                    El juego del ángel
+                    <span class="book-list-badge">Extractos</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Subcategoría: Mangas -->
+        <h3 class="category-subtitle">Mangas</h3>
+        <div class="book-list-container">
+            <a class="book-list-row">
+                <div class="book-list-title">Gantz</div>
             </a>
         </div>
     </section>
@@ -83,19 +157,17 @@
                 <span class="rating-stars">★★★☆☆</span>
                 <span class="rating-label">Entretenidos</span>
             </h2>
-            <span class="rating-count">1 libro</span>
+            <span class="rating-count">1 lectura</span>
         </div>
 
-        <div class="bookshelf-grid">
-            <a href="" class="book-item">
-                <div class="book-cover-container">
-                    <img src="assets/books/kaiju.jpg" alt="Kaiju No. 8" class="book-cover">
-                    <div class="books-overlay">
-                        <span class="books-overlay-text">QUICK VIEW</span>
-                    </div>
+        <!-- Subcategoría: Libros -->
+        <h3 class="category-subtitle">Libros</h3>
+        <div class="book-list-container">
+            <a href="https://alunya.cat/alan/_aforario.html#cuentos-roald-dahl" class="book-list-row">
+                <div class="book-list-title">
+                    Cuentos completos de Roald Dahl
+                    <span class="book-list-badge">Extractos</span>
                 </div>
-                <h3 class="book-title">Kaiju No. 8, Vol. 10</h3>
-                <p class="book-author">Naoya Matsumoto</p>
             </a>
         </div>
     </section>
@@ -107,20 +179,10 @@
                 <span class="rating-stars">★★☆☆☆</span>
                 <span class="rating-label">Decepciones (&lt; 2★)</span>
             </h2>
-            <span class="rating-count">1 libro</span>
+            <span class="rating-count">0 lecturas</span>
         </div>
-
-        <div class="bookshelf-grid">
-            <a href="" class="book-item">
-                <div class="book-cover-container">
-                    <img src="assets/books/ejemplo.jpg" alt="Obra X" class="book-cover">
-                    <div class="books-overlay">
-                        <span class="books-overlay-text">QUICK VIEW</span>
-                    </div>
-                </div>
-                <h3 class="book-title">Título genérico</h3>
-                <p class="book-author">Autor Desconocido</p>
-            </a>
+        <div class="book-list-container">
+            <!-- Vacío por ahora -->
         </div>
     </section>
 
