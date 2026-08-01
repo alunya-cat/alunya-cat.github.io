@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ca-ES">
+<head>
+<meta charset="utf-8" />
+<title>Alunya</title>
+<meta name="description" content="" />
+<meta name="keywords" content="blog" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="data:," />
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<main>
+<header class="nav-header">
+    <aside class="profile-section">
+        <div class="profile-header">
+            <div class="avatar-container">
+                <img src="https://alunya.cat/logo-b.png" alt="Alunya" class="avatar">
+            </div>
+            <div class="profile-text">
+                <h1>Alunya</a></h1>
+                <div class="avatar-description">
+                    El valor d'intentar-ho.
+                </div>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="_usos.html">Usos</a>
+            <span class="separator">/</span>
+            <a href="_colofo.html">Colofò</a>
+            <span class="separator">/</span>
+            <a href="books.html">Lecturas</a>
+        </div>
+    </aside>
+</header>
+<div class="wrapper">
+        <main>
+            <div class="block">
+                <h1 class="post-title">Colofó</h1>
+                <p class="post-description"></p>
+                <div class="post-meta">
+                    <time datetime="2026-01-18">18 de gener de 2026</time>
+                    · 4 min
+                    · <span style="float:none;">()</span>
+                    · <a href="topics/blog.html">#blog</a>
+
+                </div>
+                <hr>
+                <p>Quan vaig sentir parlar per primera vegada d'aquest tipus de pàgines, no vaig entendre realment a què es referien. Per a mi, «el colofó» és un text al final d'un document que proporciona informació sobre la seva autoria i impressió.</p>
+<p>Vaig haver de fer una mica de recerca i entendre que aquest colofó es troba en una pàgina separada per descriure les eines, els sistemes i les fonts utilitzats per crear el lloc web i per reconèixer els recursos emprats per produir-lo.</p>
+<p>Per tant, inclou el programari, el maquinari i els llenguatges de programació utilitzats en la preparació dels textos i en la creació del lloc, així com el tipus de servidor en què s'executa.</p>
+<p>Tot el seu contingut està escrit en arxius Markdown mitjançant qualsevol editor de textos, actualment utilitzo <em>VSCodium</em>.</p>
+<p>Posteriorment executo el fitxer <em>luasmith</em> per generar els fitxers de la carpeta <em>out</em> que seran pujats a Github mitjançant <strong>git</strong>.</p>
+<h2 id="infraestructura">Infraestructura</h2>
+<ul>
+<li><strong>Registrador del domini</strong>: Github Pages.</li>
+<li><strong>Allotjament</strong>: Github Pages.</li>
+<li><strong>Repositori</strong>: <a href="https://github.com/alunya-cat">https://github.com/alunya-cat</a></li>
+<li><strong>Desplegament</strong>: <a href="https://github.com/alunya-cat/alunya-cat.github.io/blob/main/.github/workflows/static.yml">Github Actions</a>.</li>
+</ul>
+<h2 id="stack-tecnolgic">Stack tecnològic</h2>
+<ul>
+<li><strong>Generador del lloc</strong>: <a href="https://github.com/jaredkrinke/luasmith/">Luasmith</a></li>
+<li><strong>Tema</strong>: Tema original de <a href="https://github.com/jaredkrinke/luasmith/tree/main/themes/blog">blog</a>, el que ve per defecte amb <em>Luasmith</em>, però ara molt modificat que jo anomeno <em>català</em>.</li>
+</ul>
+<h2 id="disseny-i-caracterstiques">Disseny i característiques</h2>
+<ul>
+<li>Un peu de pàgina amb enllaços útils.</li>
+<li>Un botó per canviar entre el mode clar i fosc.</li>
+<li><code>site.description</code> a <em>theme.lua</em> per a una breu descripció del blog.</li>
+<li><code>site.email</code> a <em>theme.lua</em> per afegir el teu email. Aquest ha d'estar al revés per ofuscar-ho.</li>
+<li>Una pàgina d'error 404 (<a href="https://alunya-cat.github.io/404.html">https://alunya-cat.github.io/404.html</a>)</li>
+<li>Esborranys o fitxers Markdown que no vull que apareguin a la llista d'índex, però que vull que es generin igualment per poder-hi accedir mitjançant un enllaç directe. Això s'aconsegueix amb <code>^[^_].*%.html$</code>, la qual cosa significa que tots els fitxers Markdown que comencin amb un subratllat es tractaran d'aquesta manera.</li>
+<li>Obfuscament del correu electrònic mitjançat CSS <code>unicode-bidi: bidi-override; direction: rtl</code>.</li>
+<li>Seguiment RSS localitzat a <a href="https://alunya-cat.github.io/feed.xml">https://alunya-cat.github.io/feed.xml</a>.</li>
+<li>Se li ha afegit l'etiqueta <strong>update</strong> al Markdown que es veu reflectit a:<ul>
+<li><em>theme.lua</em> amb <code>&lt;div class=&quot;date-update&quot;&gt;&lt;%= item.update %&gt;&lt;/div&gt;</code>.</li>
+<li><em>post.lua</em> amb <code>&lt;div class=&quot;date-update&quot;&gt;&lt;%= update %&gt;&lt;/div&gt;</code>.</li>
+</ul>
+</li>
+<li>Se li ha afegit l'etiqueta <strong>keyword</strong> a <em>theme.lua</em> amb <code>&lt;div class=&quot;keyword&quot;&gt; &lt;% if item.keywords then -%&gt; &lt;%- keywordList(pathToRoot, item.keywords) %&gt; &lt;% end -%&gt;&lt;/div&gt;&lt;% end -%&gt; </code></li>
+<li>Se li ha afegit l'etiqueta <strong>description</strong> a <em>theme.lua</em> amb <code>&lt;div class=&quot;description&quot;&gt;&lt;%= item.description %&gt;&lt;/div&gt;</code>.</li>
+<li>Se li ha afegit l'etiqueta <strong>readingTime</strong> a <em>theme.lua</em> amb <code>&lt;%= item.readingTime %&gt;</code>.</li>
+</ul>
+<h2 id="contingut-i-llicncies">Contingut i llicències</h2>
+<p>Aquest projecte opera sota una <strong>doble llicència</strong> per separar el codi del contingut editorial:</p>
+<ol>
+<li><strong>Codi del Tema</strong></li>
+</ol>
+<p>Tot el codi font desenvolupat per a aquest tema està llicenciat sota la <strong>GNU General Public License v3.0 (GPLv3)</strong>.
+Això garanteix que el programari romangui lliure i obert per a tothom.
+Pots consultar el text complet a l'arxiu <a href="https://github.com/alunya-cat/alunya-cat.github.io/blob/main/LICENSE">LICENSE</a>.</p>
+<ol start="2">
+<li><strong>Contingut (Articles i Textos)</strong></li>
+</ol>
+<p>Tret que s'indiqui el contrari, el contingut dels articles, les entrades del blog i la documentació està subjecte a la llicència <strong>Creative Commons Reconeixement-CompartirIgual 4.0 Internacional (CC BY-SA 4.0)</strong>.
+Això significa que ets lliure de compartir i adaptar el contingut, sempre que donis el crèdit adequat i distribueixis les teves contribucions sota la mateixa llicència.</p>
+<h2 id="analtiques-i-privacitat">Analítiques i privacitat</h2>
+<ul>
+<li><strong>Analítiques</strong>: Aquest lloc no posseeix ni utilitza serveis d'analítica.</li>
+<li><strong>Galetes</strong>: Aquest lloc no utilitza galetes.</li>
+<li><strong>Anuncis</strong>: Aquest lloc és completament lliure d'anuncis.</li>
+<li><strong>Conservació de dades</strong>: Nosaltres no guardem cap dada de la teva visita.</li>
+</ul>
+<p>Els articles d'aquest lloc poden incloure contingut incrustat (per exemple, vídeos, imatges, articles, etc.). El contingut incrustat d'altres webs es comporta exactament de la mateixa manera que si el visitant hagués visitat l'altra web.</p>
+<p>Aquests webs poden recopilar dades sobre tu, utilitzar galetes, incrustar un seguiment addicional de tercers, i supervisar la teva interacció amb aquest contingut incrustat, inclòs el seguiment de la teva interacció amb el contingut incrustat si tens un compte i estàs connectat a aquest web.</p>
+
+            </div>
+        </main>
+    </div>
+<footer>
+<nav class="footer-nav">
+    <div class="nav-left">
+        CC BY-SA 4.0 / GPLv3
+    </div>
+
+    <div class="nav-center">
+    </div>
+
+    <div class="nav-right">
+        <input type="checkbox" class="toggle" title="Cambiar tema">
+        <a href="https://github.com/alunya-cat/alunya-cat.github.io" aria-label="Github">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+        </a>
+        <a href="feed.xml"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 11a9 9 0 0 1 9 9"></path>
+                <path d="M4 4a16 16 0 0 1 16 16"></path>
+                <circle cx="5" cy="19" r="1"></circle>
+            </svg></a>
+        <label class="contact-toggle">
+            <input type="checkbox"> <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span class="email-reveal" style="unicode-bidi: bidi-override; direction: rtl;">
+                tac.aynula@tac
+            </span>
+        </label>
+    </div>
+</nav>
+</footer>
+</main>
+<script>
+    const themeToggle = document.querySelector('.theme-toggle-btn, .toggle');
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        if (themeToggle) themeToggle.checked = true;
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    }
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('pre code').forEach((block) => {
+      const button = document.createElement('button');
+      button.className = 'copy-button';
+      button.textContent = 'Copiar';
+      button.addEventListener('click', () => {
+        const range = document.createRange();
+        range.selectNodeContents(block);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('copy');
+        button.textContent = 'Copiat!';
+        setTimeout(() => { button.textContent = 'Copiar'; }, 2000);
+      });
+      block.parentNode.insertBefore(button, block);
+    });
+  });
+  </script>
+</body>
+</html>
