@@ -25,6 +25,7 @@
     --selection-bg: #171717;
     --selection-text: #FAFAF9;
     --status-bg: #FAF9F5;
+    --pomodoro-empty: #c6c3bc;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -43,6 +44,7 @@
         --selection-bg: #EFE8E0;
         --selection-text: #1A1816;
         --status-bg: #1A1816;
+        --pomodoro-empty: #2c2724;
     }
     .avatar {
         content: url('logo.png');
@@ -70,6 +72,101 @@ body:has(.theme-toggle-btn:checked) {
     .avatar {
         content: url('logo.png');
     }
+}
+
+/* ==========================================================================
+   POMODORO ACTIVITY GRAPH (GITHUB STYLE)
+   ========================================================================== */
+.pomodoro-graph-container {
+    overflow-x: auto;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+/* El wrapper mantiene el ancho de la cuadrícula para que los meses se alineen bien */
+.pomodoro-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: max-content; 
+}
+
+/* Fila de los meses */
+.pomodoro-months {
+    position: relative;
+    height: 14px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.pomodoro-month-label {
+    position: absolute;
+    top: 0;
+}
+
+/* Cuadrícula de los días */
+.pomodoro-grid {
+    display: grid;
+    grid-template-rows: repeat(7, 12px);
+    grid-auto-flow: column;
+    gap: 4px;
+}
+
+.pomodoro-day {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    /* Utilizamos la nueva variable para mayor claridad */
+    background-color: var(--pomodoro-empty); 
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.pomodoro-day:not(.empty):hover {
+    transform: scale(1.15);
+}
+
+/* Grados de intensidad generados dinámicamente */
+.pomodoro-day[data-level="1"] { background-color: color-mix(in srgb, var(--accent) 30%, transparent); }
+.pomodoro-day[data-level="2"] { background-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+.pomodoro-day[data-level="3"] { background-color: color-mix(in srgb, var(--accent) 80%, transparent); }
+.pomodoro-day[data-level="4"] { background-color: var(--accent); }
+
+/* --- Panel de Telemetría (Integrado en el sistema Bento Box) --- */
+.telemetry-dashboard {
+    background: var(--bento-bg);
+    border: 1px solid var(--bento-border);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px var(--shadow);
+    margin: 2.5rem 0;
+    padding: 1.5rem;
+}
+
+.telemetry-dashboard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -6px var(--shadow);
+    border-color: var(--border);
+    z-index: 2;
+}
+
+.telemetry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px dashed var(--bento-border);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 1px;
 }
 
 /* ==========================================================================
@@ -335,7 +432,6 @@ a,  nav a:visited, a code {
     color: var(--text-muted);
     text-decoration: none;
     transition: color 0.3s ease, transform 0.2s ease;
-    padding: 2px 4px;
 }
 
 .nav-links a:hover {
@@ -946,6 +1042,7 @@ blockquote + blockquote::before {
 hr {
   border-top: medium none;
   border-bottom: 1px solid var(--border);
+  margin-bottom: 1.2rem;
 }
 
 img { 
@@ -1044,6 +1141,8 @@ th, td {
    ========================================================================== */
 .post-title {
   margin-top: 0;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
   margin-bottom: 0.5rem;
   line-height: 1.1;
   display: flex;
@@ -1071,6 +1170,7 @@ th, td {
   margin-top: 1rem;
   justify-content: center;
   text-transform: uppercase;
+  padding-bottom: 8px;
 }
 
 
@@ -1250,8 +1350,6 @@ th, td {
     .profile-text { align-items: flex-start; }
 
     .nav-header { 
-        top: 24px; 
-        left: 20px;
-        position: absolute; 
+        padding: 20px 16px; /* Ajusta el aire interior en móviles */
     }
 }

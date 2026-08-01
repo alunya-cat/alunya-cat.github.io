@@ -1,15 +1,10 @@
 -- status.lua
 return {
-    reading = "Dune (Frank Herbert)",
-    reading_icon = "🔖",
-    
-    project = "Automatización Lua-SSG",
-    project_icon = "💻",
     
     focus = "Pomodoro [██░░]",
     focus_icon = "🍅",
     
-    sys_msg = "LOG: Compilación estática finalizada con éxito.",
+    msg = "LOG: Compilación estática finalizada con éxito.",
     
     -- Histórico de Pomodoros (Formato: "YYYY-MM-DD" = cantidad)
     pomodoros = {
