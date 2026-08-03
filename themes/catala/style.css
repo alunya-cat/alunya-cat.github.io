@@ -1101,8 +1101,8 @@ th, td {
 
 /* Truncar títulos súper largos para que no rompan la columna */
 .book-list-title {
-    white-space: nowrap;
-    overflow: hidden;
+    white-space: normal;
+    overflow: visible;
     text-overflow: ellipsis;
     padding-right: 10px;
     font-size: 1.2rem;

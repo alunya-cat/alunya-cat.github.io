@@ -1,14 +1,16 @@
 ---
-title: Test
-description: Testing .md
+title: Aforario
+description: Recopilatorio de textos.
 date: 1970-01-01
-update: Modificat el
+update: Modificado el 2026-08-02
 keywords: [blog]
 ---
 
-[Mi web](https://alunya.cat/alan/?param=[^1])
-
 [TOC]
+
+# El retorno de los brujos - Louis Pauwels
+
+> Quien siente la necesidad de enseñar, no vive enteramente su doctrina y no ha llegado a la cima de la iniciación.
 
 # El juego del ángel - Carlos Ruiz Zafón
     
@@ -47,10 +49,6 @@ keywords: [blog]
 # 1984 - George Orwell
 
 > Y, si todos aceptaban la mentira impuesta por el Partido -si todos los archivos contaban la misma mentira-, la mentira pasaba a la historia y se convertía en verdad. "Quien controla el pasado -decía la consigna del Partido- controla el futuro. Quien controla el presente controla el pasado.
-
-# Cuentos - Roald Dahl
-
-> Era una ciudad enloquecida por su propio dinero y no había oropeles ni falsos adornos culturales ni palabrería zalamera capaces de disimular el hecho de que la gran fruta dorada estaba podrida por dentro.
 
 # Un mundo feliz - Aldous Huxley
 

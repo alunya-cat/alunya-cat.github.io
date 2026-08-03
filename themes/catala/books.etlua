@@ -42,7 +42,7 @@ local ratingsConfig = {
 }
 
 local subcategories = {
-    { id = "book", name = "Libros y Cómics" },
+    { id = "book", name = "Libros" },
     { id = "Manga/Manhua", name = "Manga/Manhua" },
     { id = "movie", name = "Películas" },
     { id = "tv", name = "Series" },
